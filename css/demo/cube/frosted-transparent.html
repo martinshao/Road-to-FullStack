@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    body { background-color: black; }
+    .container { transform-style: preserve-3d; perspective: 2000px; }
+    .box { width: 400px; height: 400px; margin: 50px auto; transform-style: preserve-3d; transition: transform 10s; animation: rotating 10s linear infinite paused; }
+    @keyframes rotating {
+      from { transform: rotateY(0deg); }
+      to { transform: rotateY(-360deg); }
+    }
+    .box:hover { animation-play-state: running; }
+    .box > div { width: 400px; height: 400px; opacity: 0.7; position: absolute; text-align: center; line-height: 400px; color: #4b9bff; background-color: rgba(0, 84, 156, 0.55); border: 4px solid; }
+    .up { transform: rotateX(90deg) translateZ(204px); }
+    .down { transform: rotateX(-90deg) translateZ(204px); }
+    .left { transform: rotateY(-90deg) translateZ(204px); }
+    .right { transform: rotateY(90deg) translateZ(204px); }
+    .front { transform: translateZ(204px); }
+    .back { transform: rotateY(180deg) translateZ(204px); }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="box">
+      <div class="up">up</div>
+      <div class="down">down</div>
+      <div class="left">left</div>
+      <div class="right">right</div>
+      <div class="front">front</div>
+      <div class="back">back</div>
+    </div>
+  </div>
+</body>
+
+</html>

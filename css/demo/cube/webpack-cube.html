@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .splash-viz__cube {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      margin: auto;
+      z-index: 1;
+    }
+
+    .cube {
+      position: relative;
+      display: block;
+      -webkit-transform-style: preserve-3d;
+      transform-style: preserve-3d;
+      -webkit-transform: rotateX(-33.5deg) rotateY(45deg);
+      transform: rotateX(-33.5deg) rotateY(45deg);
+    }
+
+    .cube__inner,
+    .cube__outer {
+      display: inline-block;
+      -webkit-transform-style: preserve-3d;
+      transform-style: preserve-3d;
+      -webkit-transition: -webkit-transform 1000ms;
+      transition: -webkit-transform 1000ms;
+      transition: transform 1000ms;
+      transition: transform 1000ms, -webkit-transform 1000ms;
+    }
+
+    .cube__inner {
+      position: absolute;
+      top: -2px;
+      left: 0;
+    }
+
+    .cube__face {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border: 1px solid #ffffff;
+    }
+
+    .cube .cube__outer .cube__face {
+      background: rgba(141, 214, 249, 0.5);
+      -webkit-transition: border-width 0.2s;
+      transition: border-width 0.2s;
+      -webkit-transition-delay: 0.2s;
+      transition-delay: 0.2s;
+      font-size: 90px;
+      text-align: center;
+    }
+
+    .cube .cube__inner .cube__face {
+      background: #1D78C1;
+      border: 2px solid #ffffff;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="cube__container splash-viz__cube" style="width: 180px; height: 180px; padding-left: 70.5882px;">
+    <span class="cube cube--dack" style="width: 120px; padding-bottom: 60px; background-color: royalblue">
+      <figure class="cube__outer" style="width: 120px; height: 120px; transform: translateX(-50%) scale3d(1, 1, 1) rotateX(0deg) rotateY(2340deg) rotateZ(0deg);">
+        <section class="cube__face" style="transform: rotateX(0deg) translateZ(60px); border-width: 1px;">A</section>
+        <section class="cube__face" style="transform: rotateX(-90deg) translateZ(60px); border-width: 1px;">B</section>
+        <section class="cube__face" style="transform: rotateX(90deg) translateZ(60px); border-width: 1px 1px 6px 6px;">C</section>
+        <section class="cube__face" style="transform: rotateY(-90deg) translateZ(60px); border-width: 1px;">D</section>
+        <section class="cube__face" style="transform: rotateY(90deg) translateZ(60px); border-width: 1px 1px 6px 6px;">E</section>
+        <section class="cube__face" style="transform: rotateY(180deg) translateZ(60px); border-width: 1px 6px 6px 1px;">F</section>
+      </figure>
+      <!-- <figure class="cube__inner" style="width: 120px; height: 120px;">
+        <section class="cube__face" style="transform: rotateX(0deg) translateZ(60px);"></section>
+        <section class="cube__face" style="transform: rotateX(-90deg) translateZ(60px);"></section>
+        <section class="cube__face" style="transform: rotateX(90deg) translateZ(60px);"></section>
+        <section class="cube__face" style="transform: rotateY(-90deg) translateZ(60px);"></section>
+        <section class="cube__face" style="transform: rotateY(90deg) translateZ(60px);"></section>
+        <section class="cube__face" style="transform: rotateY(180deg) translateZ(60px);"></section>
+      </figure> -->
+    </span>
+  </div>
+
+</body>
+
+</html>

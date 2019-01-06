@@ -1,0 +1,169 @@
+<html>
+
+<head>
+  <style type="text/css">
+    body,
+    html {
+      margin: 0;
+    }
+
+    body {
+      display: flex;
+      align-items: center;
+    }
+
+    #parent {
+      margin: 0 auto;
+      width: 300px;
+      height: 300px;
+      position: relative;
+      transform: rotate(45deg);
+      transform-style: preserve-3d;
+      animation: 10s spin linear infinite;
+      transition: transform 1s linear;
+    }
+
+    #parent_new {
+      left: calc(50% - 75px);
+      width: 150px;
+      height: 150px;
+      position: absolute;
+      transform: rotate(45deg);
+      transform-style: preserve-3d;
+      animation: 3s spin_new linear infinite;
+      transition: transform 0.5s linear;
+    }
+
+    #parent>div {
+      width: 300px;
+      height: 300px;
+      position: absolute;
+      background-color: aqua;
+      border: 2px solid #ccc;
+
+    }
+
+    #parent_new>div {
+      width: 150px;
+      height: 150px;
+      position: absolute;
+      border: 1px solid #ccc;
+      background: black;
+      opacity: 0.5;
+    }
+
+    #parent>div:nth-child(1) {
+      transform: translateZ(-150px);
+      transition: transform 1s linear;
+
+
+    }
+
+    #parent>div:nth-child(2) {
+      transform: rotateY(-90deg) translateZ(150px);
+      transition: transform 1s linear;
+    }
+
+    #parent>div:nth-child(3) {
+      transform: rotateY(-90deg) translateZ(-150px);
+      transition: transform 1s linear;
+
+    }
+
+    #parent>div:nth-child(4) {
+      transform: rotateX(90deg) translateZ(150px);
+      transition: transform 1s linear;
+
+    }
+
+    #parent>div:nth-child(5) {
+      transform: rotateX(90deg) translateZ(-150px);
+      transition: transform 1s linear;
+
+    }
+
+    #parent>div:nth-child(6) {
+      transform: translateZ(150px);
+    }
+
+    #parent_new>div:nth-child(1) {
+      transform: translateZ(-75px);
+      transition: transform 1s linear;
+
+    }
+
+    #parent_new>div:nth-child(2) {
+      transform: rotateY(-90deg) translateZ(75px);
+      transition: transform 1s linear;
+    }
+
+    #parent_new>div:nth-child(3) {
+      transform: rotateY(-90deg) translateZ(-75px);
+      transition: transform 1s linear;
+
+    }
+
+    #parent_new>div:nth-child(4) {
+      transform: rotateX(90deg) translateZ(75px);
+      transition: transform 1s linear;
+
+    }
+
+    #parent_new>div:nth-child(5) {
+      transform: rotateX(90deg) translateZ(-75px);
+      transition: transform 1s linear;
+
+    }
+
+    #parent_new>div:nth-child(6) {
+      transform: translateZ(75px);
+    }
+
+    @keyframes spin {
+      0% {
+        transform: rotateX(0deg) rotateY(0deg);
+      }
+
+      100% {
+        transform: rotateX(360deg) rotateY(360deg);
+      }
+
+    }
+
+    @keyframes spin_new {
+      0% {
+        transform: rotateX(0deg) rotateY(0deg);
+      }
+
+      100% {
+        transform: rotateX(360deg) rotateY(360deg);
+      }
+
+    }
+  </style>
+</head>
+
+<body>
+  <!--外层立方体-->
+  <div id="parent">
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+
+  </div>
+  <!--内层立方体-->
+  <div id="parent_new">
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+
+</body>
+
+</html>
