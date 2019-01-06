@@ -7,7 +7,7 @@
 
 | Ⅰ | Ⅱ | Ⅲ | Ⅳ | Ⅴ | Ⅵ | Ⅶ | Ⅷ | Ⅸ | Ⅹ |
 | :-:| :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
-| JavaScript<br>![js][1] | CSS<br>![js][2] | HTML<br>![js][3] | Webpack<br>![js][4] | nodeJs<br>![js][5] | Typescript<br>![js][6] | Vue<br>![js][7] | React<br>![js][8] | Angular<br>![js][9] | Tools<br>![js][10] |
+| JavaScript<br>![js][1] | CSS<br>![js][2] | HTML<br>![js][3] | Webpack<br>![js][4] | NodeJs<br>![js][5] | Typescript<br>![js][6] | Vue<br>![js][7] | React<br>![js][8] | Angular<br>![js][9] | Tools<br>![js][10] |
 
 ## 后端体系
 
