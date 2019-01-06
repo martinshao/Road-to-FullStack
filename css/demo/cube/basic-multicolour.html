@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>基础旋转彩色立方体</title>
+  <style>
+    .box div {
+      position: absolute;
+      height: 160px;
+      width: 160px;
+      /* border: 2px solid #000; */
+      text-align: center;
+      line-height: 160px;
+      font-size: 36px;
+    }
+
+    .box {
+      transform-style: preserve-3d;
+      -webkit-transform-style: preserve-3d;
+      transform-origin: 80px 80px 0;
+      -webkit-transform-origin: 80px 80px 0;
+      animation-name: animation;
+      -webkit-animation-name: animation;
+      animation-timing-function: ease-in-out;
+      -webkit-animation-timing-function: ease-in-out;
+      animation-iteration-count: infinite;
+      -webkit-animation-iteration-count: infinite;
+      animation-duration: 3s;
+      -webkit-animation-duration: 3s;
+    }
+    .box .font {
+      transform: translateZ(80px);
+      background-color: rgb(90, 217, 205);
+    }
+    .box .back {
+      background-color: rgb(234, 247, 134);
+      transform: rotateX(180deg) rotateZ(180deg) translateZ(80px);
+    }
+    .box .left {
+      background-color: rgb(255,181,161);
+      transform: rotateY(-90deg) translateZ(80px);
+    }
+    .box .right {
+      background-color: rgb(184,255,184);
+      transform: rotateY(90deg) translateZ(80px);
+    }
+    .box .top {
+      background-color: rgb(184,244,255);
+      transform: rotateX(90deg) translateZ(80px);
+    }
+    .box .bottom {
+      background-color: rgb(140,255,146);
+      transform: rotateX(-90deg) translateZ(80px);
+    }
+
+    @keyframes animation
+      {
+        from,to{}
+        16% { -webkit-transform: rotateY(-90deg);}
+        33% { -webkit-transform: rotateY(-90deg) rotateZ(135deg);}
+        50% { -webkit-transform: rotateY(225deg) rotateZ(135deg);}
+        66% { -webkit-transform: rotateY(135deg) rotateX(135deg);}
+        83% { -webkit-transform: rotateX(135deg);}
+      }
+    @-webkit-keyframes animation
+      {
+        from,to{}
+        16% { -webkit-transform: rotateY(-90deg);}
+        33% { -webkit-transform: rotateY(-90deg) rotateZ(135deg);}
+        50% { -webkit-transform: rotateY(225deg) rotateZ(135deg);}
+        66% { -webkit-transform: rotateY(135deg) rotateX(135deg);}
+        83% { -webkit-transform: rotateX(135deg);}
+      }
+  </style>
+</head>
+
+<body>
+  <div class="view" style="width:160px; height:160px; margin:80px auto 0 auto;">
+    <div class="box">
+      <div class="font">font</div>
+      <div class="back">back</div>
+      <div class="left">left</div>
+      <div class="right">right</div>
+      <div class="top">top</div>
+      <div class="bottom">bottom</div>
+    </div>
+  </div>
+</body>
+
+</html>

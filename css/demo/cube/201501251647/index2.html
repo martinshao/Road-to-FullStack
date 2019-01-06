@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>纯CSS3超酷3D立方体动画特效|DEMO2_jQuery之家-自由分享jQuery、html5、css3的插件库</title>
+	<script src='http://www.htmleaf.com/assets/js/prefixfree.min.js'></script>
+	<link rel="stylesheet" type="text/css" href="css/normalize.css" />
+	<link rel="stylesheet" type="text/css" href="css/default.css">
+	<!--[if IE]>
+		<script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+	<![endif]-->
+	<style>
+
+	/* keyframes for rotating animation */
+	@-webkit-keyframes spin {
+	  from { transform: rotateY(0); }
+	  to   { transform: rotateY(360deg); }
+	}
+
+	/* scene wrapper */
+	.wrapper{
+	  height: 300px;
+	  margin-top:50px;
+	  position:relative;
+	  perspective: 800;
+	  perspective-origin: 50% 100px;
+	}
+
+	/* cube wrapper */
+	.cube{
+	  position: relative;
+	  margin: 0 auto;
+	  width: 200px;
+	  transform-style: preserve-3d;
+	  animation: spin 4s infinite linear;
+	  transition: all 1s linear;
+	}
+
+	/* outer cube */
+	b{
+	  position:absolute;
+	  width:200px;
+	  height:200px;
+	  display:block;
+	  background:rgba(255,255,255,0.1);
+	  box-shadow:inset 0 0 30px rgba(0,0,0,0.2);
+	  font-size:20px;
+	  text-align:center;
+	  line-height:200px;
+	  color:rgba(0,0,0,0.5);
+	  font-family:sans-serif;
+	  text-transform:uppercase;
+	  transition: all 1s linear;
+	}
+	b.back{
+	  transform: translateZ(-100px) rotateY(180deg);
+	}
+	b.right{
+	  transform:rotateY(-270deg) translateX(100px);
+	  transform-origin: top right;
+	}
+	b.left{
+	  transform:rotateY(270deg) translateX(-100px);
+	  transform-origin: center left;
+	}
+	b.top{
+	  transform:rotateX(-90deg) translateY(-100px);
+	  transform-origin: top center;
+	}
+	b.bottom{
+	  transform:rotateX(90deg) translateY(100px);
+	  transform-origin: bottom center;
+	}
+	b.front{
+	  transform: translateZ(100px);
+	}
+
+	/* inner cube */
+	i{
+	  position:absolute;
+	  top:50px;
+	  left:50px;
+	  width:100px;
+	  height:100px;
+	  display:block;
+	  background:url(img/cube.png);
+	  transition: all 1s linear;
+	}
+	i.front{
+	  transform: translateZ(50px);
+	}
+	i.back{
+	  transform: translateZ(-50px) rotateY(180deg);
+	}
+	i.bottom{
+	  transform:rotateX(-90deg) translateY(50px);
+	  transform-origin: left bottom;
+	}
+	i.left{
+	  transform:rotateY(270deg) translateX(-50px);
+	  transform-origin: center left;
+	}
+	i.right{
+	  transform:rotateY(-270deg) translateX(50px);
+	  transform-origin: top right;
+	}
+	i.top{
+	  transform:rotateX(-270deg) translateY(-50px);
+	  transform-origin: left top;
+	}
+
+	/* hover transformations */
+	.cube:hover{
+	  top:150px;
+	}
+	.cube:hover b.top{
+	  transform: translateZ(100px) rotateX(-210deg);
+	  transform-origin: top center;
+	}
+	.cube:hover i{
+	  top:-200px;
+	}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<header class="htmleaf-header">
+			<h1>纯CSS3超酷3D立方体动画特效 <span>Create a CSS Cube</span></h1>
+			<div class="htmleaf-links">
+				<a class="htmleaf-icon icon-home" href="http://www.htmleaf.com/" title="jQuery之家" target="_blank"><span> jQuery之家</span></a>
+				<a class="htmleaf-icon icon-arrow-right3" href="http://www.htmleaf.com/css3/css3donghua/201501251273.html" title="返回下载页" target="_blank"><span> 返回下载页</span></a>
+			</div>
+		</header>
+		<div class="htmleaf-demo center">
+		  <a href="index.html">DEMO1</a>
+		  <a href="index2.html" class="current">DEMO2</a>
+		</div>
+		<div class="content bgcolor-1">
+			<div class="wrapper">
+			  <div class="cube">
+			    <b class="front">front</b>
+			    <b class="back">back</b>
+			    <b class="top">top</b>
+			    <b class="bottom">bottom</b>
+			    <b class="left">left</b>
+			    <b class="right">right</b>
+			    <i class="front"></i>
+			    <i class="back"></i>
+			    <i class="top"></i>
+			    <i class="bottom"></i>
+			    <i class="left"></i>
+			    <i class="right"></i>
+			  </div>
+			</div>	
+			<h5 class="center">用鼠标滑过立方体看看！</h5>
+		</div>
+	</div>
+	
+</body>
+</html>

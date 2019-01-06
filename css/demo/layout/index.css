@@ -1,0 +1,30 @@
+@keyframes kname {
+  0% {background-color: red;}
+  25% {background-color: yellow;}
+  50% {background-color: blue;}
+  100% {background-color: green;}
+}
+
+div { animation: kname 5s;}
+
+div {
+  transform: translate(30px, 30ox);
+  transform: rotate(30deg);
+  transform: scale(3, 3);
+  transform: skew(30deg, 30deg);
+
+  transform: rotate(30deg);
+  perspective: 500
+}
+
+.aa {
+  transform-origin: top bottom 50px;
+  backface-visibility: hidden;
+}
+
+.bb {
+  transition-property: width;
+  transition-duration: 2s;
+  /* transition-timing-function: linear: ease: ease-in; */
+  transition-delay: 2s;
+}
