@@ -141,3 +141,10 @@ Bob-->Alice: I am good thanks!
   [3]: http://adrai.github.io/flowchart.js/
   [4]: http://bramp.github.io/js-sequence-diagrams/
   [5]: https://dev.yinxiang.com/doc/articles/enml.php
+
+
+| 帐户类型 | 免费帐户 | 标准帐户 | 高级帐户 |
+| --- | --- | --- | --- |
+| 帐户流量 | 60M | 1GB | 10GB |
+| 设备数目 | 2台 | 无限制 | 无限制 |
+| 当前价格 | 免费 | ￥8.17/月 | ￥12.33/月|
