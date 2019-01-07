@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    * {
+      transform-style: preserve-3d;
+    }
+
+    body {
+      background: black;
+    }
+
+    .container {
+      width: 200px;
+      height: 173.2px;
+      position: relative;
+      margin: 200px auto;
+    }
+
+    .container div {
+      width: 200px;
+      height: 173.2px;
+      position: absolute;
+      -webkit-clip-path: polygon(50% 0, 100% 100%, 0 100%);
+      -moz-clip-path: polygon(50% 0, 100% 100%, 0 100%);
+      clip-path: polygon(50% 0, 100% 100%, 0 100%);
+    }
+
+    .container div:nth-child(1) {
+      transform: rotateX(-70.5deg);
+      transform-origin: 0 100%;
+    }
+
+    .container div:nth-child(2) {
+      transform: rotate3d(100, -173.2, 0, 70.5deg);
+      transform-origin: 0 100%;
+    }
+
+    .container div:nth-child(3) {
+      transform: rotate3d(-100, -173.2, 0, -70.5deg);
+      transform-origin: 100% 100%;
+    }
+
+    .container div:nth-child(1) {
+      background: rgba(255, 0, 0, 0.9);
+    }
+
+    .container div:nth-child(2) {
+      background: rgba(0, 255, 0, 0.9);
+    }
+
+    .container div:nth-child(3) {
+      background: rgba(0, 0, 255, 0.9);
+    }
+
+    .container div:nth-child(4) {
+      background: rgba(0, 255, 255, 0.9);
+    }
+
+    @keyframes rotate {
+      from {
+        transform: rotateY(1, 1, 1, 0);
+      }
+
+      to {
+        transform: rotate3d(1, 1, 1, 360deg);
+      }
+    }
+
+    body {
+      animation: rotate 5s linear infinite;
+      transform-origin: 50% 200px;
+    }
+
+    html {
+      overflow: hidden;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+</body>
+<script>
+  var div = document.querySelector('div');
+  var flag = false;// 是否启动拖拽
+  document.addEventListener('mousedown', function () {
+    flag = true;
+    document.body.style.setProperty('animation-play-state', 'paused');
+  }, false);
+  document.addEventListener('mouseup', function () {
+    flag = false;
+    document.body.style.setProperty('animation-play-state', 'running');
+  }, false);
+  document.addEventListener('mousemove', function move(e) {
+    if (!flag) {
+      move.lastX = e.x;
+      move.lastY = e.y;
+      return;
+    }
+    var transform = getComputedStyle(div).getPropertyValue('transform');
+    transform == 'none' && (transform = '');
+    div.style.setProperty('transform', transform + 'rotateX(' + (move.lastY - e.y) / 5 + 'deg) rotateY(' + (e.x - move.lastX) / 5 + 'deg)');
+    move.lastX = e.x;
+    move.lastY = e.y;
+  }, false);
+</script>
+
+</html>

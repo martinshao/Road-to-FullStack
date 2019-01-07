@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    * {
+      transform-style: preserve-3d;
+    }
+
+    body {
+      background: black;
+    }
+
+    .container {
+      width: 200px;
+      height: 190.2px;
+      position: relative;
+      margin: 200px auto;
+    }
+
+    .container div {
+      width: 200px;
+      height: 190.2px;
+      position: absolute;
+      -webkit-clip-path: polygon(19.0983% 100%, 80.9017% 100%, 100% 38.19873%, 50% 0, 0 38.19873%);
+      transition: all 1s;
+    }
+
+    .one {
+      transform: rotate3d(-19.0983, -61.80127, 0, -116.56deg);
+      transform-origin: 19.0983% 100%;
+    }
+
+    .one2 {
+      transform: rotate3d(-19.0983, -61.80127, 0, 116.56deg);
+      transform-origin: 19.0983% 100%;
+    }
+
+    .two {
+      transform: rotateX(116.56deg);
+      transform-origin: 50% 100%;
+    }
+
+    .three {
+      transform: rotate3d(19.0983, -61.80127, 0, 116.56deg);
+      transform-origin: 80.9017% 100%;
+    }
+
+    .three2 {
+      transform: rotate3d(19.0983, -61.80127, 0, -116.56deg);
+      transform-origin: 80.9017% 100%;
+    }
+
+    .four {
+      transform: rotate3d(50, 38.19873, 0, -116deg);
+      transform-origin: 50% 0;
+    }
+
+    .four2 {
+      transform: rotate3d(50, 38.19873, 0, 116deg);
+      transform-origin: 50% 0;
+    }
+
+    .five {
+      transform: rotate3d(-50, 38.19873, 0, 116deg);
+      transform-origin: 50% 0;
+    }
+
+    .five2 {
+      transform: rotate3d(-50, 38.19873, 0, -116deg);
+      transform-origin: 50% 0;
+    }
+
+    .c1 {
+      background: rgba(255, 0, 0, 0.9);
+    }
+
+    .c2 {
+      background: rgba(0, 255, 0, 0.9);
+    }
+
+    .c3 {
+      background: rgba(0, 0, 255, 0.9);
+    }
+
+    .c4 {
+      background: rgba(255, 255, 0, 0.9);
+    }
+
+    .c5 {
+      background: rgba(0, 255, 255, 0.9);
+    }
+
+    .c6 {
+      background: rgba(255, 0, 255, 0.9);
+    }
+
+    @keyframes rotate {
+      from {
+        transform: rotate3d(1, 1, 1, 0);
+      }
+
+      to {
+        transform: rotate3d(1, 1, 1, 360deg);
+      }
+    }
+
+    body {
+      animation: rotate 5s linear infinite;
+      transform-origin: 50% 200px;
+    }
+
+    html {
+      overflow: hidden;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="one c1">
+      <div class="three2 c3"></div>
+      <div class="four2 c4"></div>
+    </div>
+    <div class="two c2"></div>
+    <div class="three c3">
+      <div class="one2 c5"></div>
+      <div class="five2 c1">
+        <div class="three c3"></div>
+        <div class="two c4"></div>
+      </div>
+    </div>
+    <div class="four c4"></div>
+    <div class="five c5"></div>
+    <div class="c6"></div>
+  </div>
+</body>
+<script>
+  var div = document.querySelector('div');
+  var flag = false;// 是否启动拖拽
+  document.addEventListener('mousedown', function () {
+    flag = true;
+    document.body.style.setProperty('animation-play-state', 'paused');
+  }, false);
+  document.addEventListener('mouseup', function () {
+    flag = false;
+    document.body.style.setProperty('animation-play-state', 'running');
+  }, false);
+  document.addEventListener('mousemove', function move(e) {
+    if (!flag) {
+      move.lastX = e.x;
+      move.lastY = e.y;
+      return;
+    }
+    var transform = getComputedStyle(div).getPropertyValue('transform');
+    transform == 'none' && (transform = '');
+    div.style.setProperty('transform', transform + 'rotateX(' + (move.lastY - e.y) / 5 + 'deg) rotateY(' + (e.x - move.lastX) / 5 + 'deg)');
+    move.lastX = e.x;
+    move.lastY = e.y;
+  }, false);
+</script>
+
+</html>
