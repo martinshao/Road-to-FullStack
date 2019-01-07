@@ -130,18 +130,13 @@ Bob-->Alice: I am good thanks!
 ---------
 感谢阅读这份帮助文档。请点击右上角，绑定印象笔记账号，开启全新的记录与分享体验吧。
 
-
-
-
 [^demo]: 这是一个示例脚注。请查阅 [MultiMarkdown 文档](https://github.com/fletcher/MultiMarkdown/wiki/MultiMarkdown-Syntax-Guide#footnotes) 关于脚注的说明。 **限制：** 印象笔记的笔记内容使用 [ENML][5] 格式，基于 HTML，但是不支持某些标签和属性，例如id，这就导致`脚注`和`TOC`无法正常点击。
-
 
   [1]: http://maxiang.info/client_zh
   [2]: https://chrome.google.com/webstore/detail/kidnkfckhbdkfgbicccmdggmpgogehop
   [3]: http://adrai.github.io/flowchart.js/
   [4]: http://bramp.github.io/js-sequence-diagrams/
   [5]: https://dev.yinxiang.com/doc/articles/enml.php
-
 
 | 帐户类型 | 免费帐户 | 标准帐户 | 高级帐户 |
 | --- | --- | --- | --- |
@@ -157,3 +152,15 @@ Bob-->Alice: I am good thanks!
 ```math
 $$ y = x_i^{a_1^2} $$
 ```
+
+<table><tbody>
+    <tr>
+        <th>方法说明</th><th>颜色名称</th><th>颜色</th>
+    </tr>
+    <tr>
+        <td><font color="Hotpink">此处实现方法利用 CSDN-markdown 内嵌 html 语言的优势</font></td><td><font color="Hotpink">Hotpink</font></td><td bgcolor="Hotpink">rgb(240, 248, 255)</td>
+    </tr>
+    <tr>
+        <td><font color="Pink">借助 table, tr, td 等表格标签的 bgcolor 属性实现背景色设置</font></td><td><font color="pink">AntiqueWhite</font></td><td bgcolor="Pink">rgb(255, 192, 203)</td>
+    </tr>
+</table>
