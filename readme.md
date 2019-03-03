@@ -25,3 +25,24 @@
 [8]: ./css/_assert/react.svg
 [9]: ./css/_assert/angular.svg
 [10]: ./css/_assert/tools.svg
+
+## 前端知识体系详细梳理
+
+** 各部分课程详细笔记
+* [你不知道的html][1]
+* [CSS基础与高级][2]
+* [JavaScript基础与精粹][3]
+* [JavaScript与QA测试工程师][6]
+* [PHP与MySQL入门到实践][5] *未完成*
+* [JavaScript函数式编程超指南][7]
+* [NodeJs开发实践与Web框架][8]
+* [前端工程化与构建工具选型][9]
+* [前端性能优化全面解析与实践][10]
+
+[1]: https://github.com/Martin-Shao/yideng-note/blob/master/html-senior/exercises.md
+[2]: https://github.com/Martin-Shao/yideng-note/blob/master/css-senior/overview.md
+[3]: https://github.com/Martin-Shao/yideng-note/blob/master/es5-senior/exercises.md
+[4]: https://github.com/Martin-Shao/yideng-note/blob/master/es6-senior/exercises.md
+[5]: https://github.com/Martin-Shao/yideng-note
+[6]: https://github.com/Martin-Shao/yideng-note/blob/master/fe-qa/FrontEnd-QA.md
+[7]: https://github.com/Martin-Shao/yideng-note/tree/master/functional-programming
