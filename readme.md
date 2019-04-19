@@ -23,7 +23,7 @@
 [6]: ./css/_assets/typescript.svg
 [7]: ./css/_assets/vue.svg
 [8]: ./css/_assets/react.svg
-[9]: ./css/_assets/angular.svg
+[9]: ./css/_assets/angular.png
 [10]: ./css/_assets/tools.svg
 
 ## 前端知识体系详细梳理
