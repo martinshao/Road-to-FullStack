@@ -15,16 +15,16 @@
 | :--------: | :---------: | :---------: | :---------: | :---------: | :---------:| :---------: | :-------: | :-------:| :------:|
 | 算法[:pencil2:](#pencil2-算法) | 操作系统[:computer:](#computer-操作系统)|网络[:cloud:](#cloud-网络) | 面向对象[:couple:](#couple-面向对象) |数据库[:floppy_disk:](#floppy_disk-数据库)| Java [:coffee:](#coffee-java)| 系统设计[:bulb:](#bulb-系统设计)| 工具[:hammer:](#hammer-工具)| 编码实践[:speak_no_evil:](#speak_no_evil-编码实践)| 后记[:memo:](#memo-后记) |
 
-[1]: ./css/_assert/js.svg
-[2]: ./css/_assert/css.svg
-[3]: ./css/_assert/html5.svg
-[4]: ./css/_assert/webpack.svg
-[5]: ./css/_assert/nodejs.svg
-[6]: ./css/_assert/typescript.svg
-[7]: ./css/_assert/vue.svg
-[8]: ./css/_assert/react.svg
-[9]: ./css/_assert/angular.svg
-[10]: ./css/_assert/tools.svg
+[1]: ./css/_assets/js.svg
+[2]: ./css/_assets/css.svg
+[3]: ./css/_assets/html5.svg
+[4]: ./css/_assets/webpack.svg
+[5]: ./css/_assets/nodejs.svg
+[6]: ./css/_assets/typescript.svg
+[7]: ./css/_assets/vue.svg
+[8]: ./css/_assets/react.svg
+[9]: ./css/_assets/angular.svg
+[10]: ./css/_assets/tools.svg
 
 ## 前端知识体系详细梳理
 
