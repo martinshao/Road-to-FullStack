@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let a = 1;
+      var b = 6;
+      const cc = 88;
+
+      console.info("shaogucheng");
+      setTimeout(function() {
+        func4(0);
+      }, 10000);
+      function func1() {
+        console.log("in function1");
+        setTimeout(function() {
+          func4(1);
+        }, 10000);
+      }
+
+      function func2() {
+        func1();
+        setTimeout(function() {
+          func4(2);
+        }, 10000);
+        console.log("in function2");
+      }
+
+      function func3() {
+        func2();
+        setTimeout(function() {
+          func4(3);
+        }, 10000);
+        console.log("in function3");
+      }
+
+      function func4(i) {
+        console.info("in function4", i);
+        func1();
+      }
+
+      func3();
+      func4('end...');
+    </script>
+  </body>
+</html>
