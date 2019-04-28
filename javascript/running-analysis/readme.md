@@ -17,12 +17,14 @@
 2. JavaScript执行机制深度解析——垃圾回收与四种常见内存泄露
 2. JavaScript执行机制深度解析——Stack三个概念和Heap的解析
 3. JavaScript执行机制深度解析——调用栈、异步队列和事件循环
-4. JavaScript执行机制深度解析——浏览器和NodeJs中Event Loop区别
 8. JavaScript执行机制深度解析——什么是栈帧？
+4. JavaScript执行机制深度解析——浏览器和NodeJs中Event Loop区别
+4. JavaScript执行机制深度解析——NodeJs中Event Loop实例分析
 4. JavaScript执行机制深度解析——执行上下文与调用栈
 5. JavaScript执行机制深度解析——VO、AO、GO和词法环境的区别
 6. JavaScript执行机制深度解析——执行上下文和VO、AO、GO
-7. JavaScript执行机制深度解析——执行山下文和词法环境
+7. JavaScript执行机制深度解析——变量对象解释闭包
+7. JavaScript执行机制深度解析——执行上下文和词法环境
 
 内存管理 (会包含后面几个概念): 栈内存，堆内存，内存分配，内存回收
 
