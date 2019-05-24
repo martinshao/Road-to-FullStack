@@ -2,6 +2,10 @@
 
 有感于JavaScript在日常开发中越来越重要，对于底层运行机制的了解也逐渐成为前端工程师的软实力，故有此系列文章。
 
+从JavaScript是单线程编程语言入手，分析执行栈和event loop，然后是分析堆栈中发生的事情。堆中用于存储引用变量，栈中存储执行上下文和基础变量。
+
+
+
 ## 写这个系列文章的总纲：
 1. 了解JavaScript的内存管理，这是运行机制解析的铺垫工作
 2. 在了解JavaScript的内存管理中，认识（Stack）和（Heap）
@@ -21,10 +25,10 @@
 4. JavaScript执行机制深度解析——浏览器和NodeJs中Event Loop区别
 4. JavaScript执行机制深度解析——NodeJs中Event Loop实例分析
 4. JavaScript执行机制深度解析——执行上下文与调用栈
-5. JavaScript执行机制深度解析——VO、AO、GO和词法环境的区别
-6. JavaScript执行机制深度解析——执行上下文和VO、AO、GO
+4. JavaScript执行机制深度解析——执行上下文ES3规范和ES5规范
+4. JavaScript执行机制深度解析——ES3规范和VO、AO、GO
+5. JavaScript执行机制深度解析——ES5规范和词法环境
 7. JavaScript执行机制深度解析——变量对象解释闭包
-7. JavaScript执行机制深度解析——执行上下文和词法环境
 
 内存管理 (会包含后面几个概念): 栈内存，堆内存，内存分配，内存回收
 
