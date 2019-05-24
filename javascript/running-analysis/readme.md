@@ -26,7 +26,7 @@
 4. JavaScript执行机制深度解析——NodeJs中Event Loop实例分析
 4. JavaScript执行机制深度解析——执行上下文与调用栈
 4. JavaScript执行机制深度解析——执行上下文ES3规范和ES5规范
-4. JavaScript执行机制深度解析——ES3规范和VO、AO、GO
+4. JavaScript执行机制深度解析——EC和Scope、VO、AO（ES3规范）
 5. JavaScript执行机制深度解析——ES5规范和词法环境
 7. JavaScript执行机制深度解析——变量对象解释闭包
 
