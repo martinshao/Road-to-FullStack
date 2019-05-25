@@ -52,3 +52,16 @@
 * `Function Environment Record`：函数环境记录
 * `Global Environment Records`：全局环境记录
 * `Module Environment Record`：模块环境记录
+
+## 11个重要的基本概念
+1. `An object`
+2. `A prototype chain`
+3. `Constructor`
+4. `Execution context stack`
+5. `Execution context`
+6. `Variable object`
+7. `Activation object`
+8. `Scope chain`
+9. `Closures`
+10. `This value`
+11. `Conclusion`
