@@ -1,82 +1,10 @@
-# JavaScript执行机制深度解析——执行栈、异步队列和事件循环(Event Loop)
+# JavaScript执行机制深度解析——浏览器和NodeJs中Event Loop区别
 
-## 大纲
+Event loop在browser端和node端也有区分。浏览器的 Event Loop 遵循的是 HTML5 标准，而 NodeJs 的 Event Loop 遵循的是 libuv。
 
-1. 介绍线程和进程，JavaScript单线程语言的基础知识
-2. 为什么JavaScript是单线程的，由JavaScript单线程引出同步执行栈、任务队列
-3. 任务队列的详细讲解，如何管理同步异步执行，引出event loop模型
-4. event loop模型构成的解析，运行过程讲解
-5. browser和node环境event loop的分别讲解
-6. 重点分析node的event loop模型和重点API
-7. 一些典型例题的分析
+## 浏览器的 Event Loop
 
-## 关键词
-* Process：进程
-* Thread：线程
-* Call Stack：调用栈
-* Event Table：异步事件表
-* Event Queue：异步事件队列
-* Event Loop：事件循环
-* Callback Queue: 回调队列
-
-## 重中之重——执行栈
-
-![alt text](../_assets/factorial-stack.png "factorial-stack")  
-> factorial函数是一个理解调用栈难度适中的函数
-
-关于执行栈，这其实并不是JavaScript专有的知识 ，计算机语言的执行几乎都是依赖于执行栈的。
-
-> 执行栈是计算机科学中存储有关正在运行的子程序的消息的栈。经常被用于存放子程序的返回地址。在调用任何子程序时，主程序都必须暂存子程序运行完毕后应该返回到的地址。因此，如果被调用的子程序还要调用其他的子程序，其自身的返回地址就必须存入执行栈，在其自身运行完毕后再行取回。在递归程序中，每一层次递归都必须在执行栈上增加一条地址，因此如果程序出现无限递归（或仅仅是过多的递归层次），执行栈就会产生栈溢出。
-
-关于执行栈的称呼或者说别名有很多种：
-* 执行栈（Execution stack）
-* 调用栈（Call stack）
-* 控制栈（Control stack）
-* 运行时栈（Run-time stack）
-* 机器栈（Machine stack）
-
-以上名词所要表达的都是一个意思，下文中指定使用 **执行栈** 表达
-
-### **功能**
-
-调用栈的主要功能是存放返回地址。除此之外，调用栈还用于存放：
-* 本地变量：子程序的变量可以存入调用栈，这样可以达到不同子程序间变量分离开的作用。
-* 参数传递：如果寄存器不足以容纳子程序的参数，可以在调用栈上存入参数。
-* 环境传递：有些语言（如Pascal与Ada）支持“多层子程序”，即子程序中可以利用主程序的本地变量。这些变量可以通过调用栈传入子程序。
-
-下面是段代码示例
-```js
-function func1() {
-  console.log('in function1');
-}
-
-function func2() {
-  func1();
-  console.log('in function2');
-}
-
-function func3() {
-  func2();
-  console.log('in function3');
-}
-
-func3();
-```
-
-![alt text](../_assets/20190524153323.png "JavaScript call stack ")
-
-
-### 任务队列（消息队列，异步队列）
-
-"异步队列"是一个先进先出的数据结构，排在前面的事件，优先被主线程读取。主线程的读取过程基本上是自动的，只要执行栈一清空，"异步队列"上第一位的事件就自动进入主线程。
-
-如何处理异步任务的结果，这时候就需要"回调函数"（callback）。异步任务必须指定回调函数，当主线程开始执行异步任务，就是执行对应的回调函数。
-
-JavaScript所有任务可以分成两种，一种是**同步任务（synchronous）**，另一种是**异步任务（asynchronous）**。
-* 同步任务：同步任务会被推入到主线程分配的stack中，在stack中排队执行，只有前一个任务执行完毕，才能执行后一个任务；
-* 异步任务：不进入主线程、而进入 **任务队列（task queue）** 的任务，只有"任务队列"通知主线程，某个异步任务可以执行了，该任务才会进入主线程执行。
-
-在js中其实有两类**任务队列（task queue）**：**宏任务队列（macro tasks）**和**微任务队列（micro tasks）**。不同的异步任务会被安排在不同的异步任务队列中。
+在JavaScript中，任务被分为Task（又称为MacroTask,宏任务）和MicroTask（微任务）两种。它们分别包含以下内容：
 
 **macrotask**任务队列的来源有：
 # | 浏览器 | Node 
@@ -96,35 +24,22 @@ process.nextTick | ❌| ✅
 MutationObserver | ✅| ❌
 Promise.then catch finally | ✅| ✅
 
+需要注意的一点是：在同一个上下文中，总的执行顺序为同步代码—>microTask—>macroTask。这一块我们在下文中会讲。
 
+浏览器中，一个事件循环里有很多个来自不同任务源的任务队列（task queues），每一个任务队列里的任务是严格按照先进先出的顺序执行的。但是，因为浏览器自己调度的关系，不同任务队列的任务的执行顺序是不确定的。
 
-## Event Loop模型
+具体来说，浏览器会不断从task队列中按顺序取task执行，每执行完一个task都会检查microtask队列是否为空（执行完一个task的具体标志是函数执行栈为空），如果不为空则会一次性执行完所有microtask。然后再进入下一个循环去task队列中取下一个task执行，以此类推。
 
-上文中提到JavaScript是单线程，并且有同步任务和异步任务的区分，还有同步执行栈和异步任务队列的概念，那么如何组织这些元素使得JavaScript正常运行呢？这时候Event loop机制登场了。
+一个事件循环有一个或者多个任务队列（task queues）。任务队列是task的有序列表，这些task是以下工作的对应算法：Events，Parsing，Callbacks，Using a resource，Reacting to DOM manipulation。
+每一个任务都来自一个特定的任务源（task source）。所有来自一个特定任务源并且属于特定事件循环的任务，通常必须被加入到同一个任务队列中，但是来自不同任务源的任务可能会放在不同的任务队列中。
 
-Event Loop模型（图-2）
+举个例子，用户代理有一个处理鼠标和键盘事件的任务队列。用户代理可以给这个队列比其他队列多3/4的执行时间，以确保交互的响应而不让其他任务队列饿死（starving），并且不会乱序处理任何一个任务队列的事件。
 
-![alt text](../_assets/20190527120759.png "JavaScript call stack ")
+每个事件循环都有一个进入microtask检查点（performing a microtask checkpoint）的flag标志，这个标志初始为false。它被用来组织反复调用‘进入microtask检查点’的算法。
 
-如果你暂时看不懂这个图，没有关系，让我们先学习铺垫知识。
+![alt text](../_assets/2655194155-5ab0a0c60c00b.png "JavaScript call stack ")
 
-### engine（引擎）和 runtime（运行时）
-
-我们经常会听到engine（引擎）和runtime（运行时），它们的区别是什么呢？
-
-* engine（引擎）：解释并编译代码，让它变成能交给机器运行的代码（runnable commands）。
-* runtime（运行时）：就是运行环境，它提供一些对外接口供Js调用，以跟外界打交道，比如，浏览器环境、Node.js环境。不同的runtime，会提供不同的接口，比如，在 Node.js 环境中，我们可以通过 require 来引入模块；而在浏览器中，我们有 window、 DOM。
-
-> JS引擎中负责解释和执行JavaScript代码的线程只有一个，就叫做主线程，实际上还有其它的线程，例如处理AJAX请求的线程、处理DOM事件的线程、定时器线程等等，他们叫做工作线程。
-
-
-### Event Loop
-
-Event loop在browser端和node端也有区分。浏览器的 Event Loop 遵循的是 HTML5 标准，而 NodeJs 的 Event Loop 遵循的是 libuv。
-
-#### 浏览器的 Event Loop
-
-我们上面讲到，当stack空的时候，就会从任务队列中，取任务来执行。浏览器这边，共分3步：
+我们上面讲到，当stack空的时候，主进程就会从任务队列中，取任务来执行。浏览器这边，共分3步：
 
 1. 取一个宏任务来执行。执行完毕后，下一步。
 2. 取一个微任务来执行，执行完毕后，再取一个微任务来执行。直到微任务队列为空，执行下一步。
@@ -269,44 +184,3 @@ secondFunction();
  * => I'm second!
  */
 ```
-
-
-参考资料
-* [JavaScript 异步、栈、事件循环、任务队列][1]
-* [javaScript异步、消息队列、事件循环][2]
-* [JavaScript 事件循环（译文JavaScript Event Loop）][3]
-* [JavaScript 运行机制详解：再谈Event Loop][4]
-* [js运行机制详解（Event Loop）][5]
-* [Event Loops, Event Tables & Event Queues in JavaScript][6]
-* [Understanding JS: The Event Loop][7]
-* [What is the JavaScript event loop?][8]
-* [浏览器与NodeJS的EventLoop异同，以及部分机制。][9]
-* [不要混淆nodejs和浏览器中的event loop][10]
-* [从浏览器多进程到JS单线程，JS运行机制最全面的一次梳理][11]
-* [深入理解Javascript之Callstack&EventLoop][12]
-* [027 - 进阶函数-06 call stack 调用栈][13]
-* [JavaScript中线程运行机制详解][14]
-
-* [不要混淆nodejs和浏览器中的event loop][15]
-* [一篇文章教会你Event loop——浏览器和Node][16]
-* [nodejs中的event loop][17]
-* [Node 定时器详解][18]
-
-[1]: https://segmentfault.com/a/1190000011198232
-[2]: https://blog.csdn.net/lq15310444798/article/details/80369086
-[3]: https://segmentfault.com/a/1190000006811224
-[4]: http://www.ruanyifeng.com/blog/2014/10/event-loop.html
-[5]: https://www.jianshu.com/p/e06e86ef2595
-[6]: https://knowledgescoops.com/javascript/event-loops-event-tables-event-queues-in-javascript/
-[7]: https://hackernoon.com/understanding-js-the-event-loop-959beae3ac40
-[8]: http://altitudelabs.com/blog/what-is-the-javascript-event-loop/
-[9]: https://segmentfault.com/a/1190000015552098
-[10]: https://cnodejs.org/topic/5a9108d78d6e16e56bb80882
-[11]: https://www.cnblogs.com/cangqinglang/p/8963557.html
-[12]: https://www.jianshu.com/p/735ee3d12a43
-[13]: https://blog.csdn.net/weixin_34111819/article/details/87147031
-[14]: https://segmentfault.com/a/1190000010345930
-[15]: https://cnodejs.org/topic/5a9108d78d6e16e56bb80882
-[16]: https://segmentfault.com/a/1190000013861128
-[17]: https://www.jianshu.com/p/deedcbf68880
-[18]: http://www.ruanyifeng.com/blog/2018/02/node-event-loop.html

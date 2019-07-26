@@ -34,6 +34,14 @@
 
 ## 关键词
 
+* Process：进程
+* Thread：线程
+* Call Stack：调用栈
+* Event Table：异步事件表
+* Event Queue：异步事件队列
+* Event Loop：事件循环
+* Callback Queue: 回调队列
+
 由于该文章会有大量的专业名词和简称，故有如下名词索引：
 
 * `EC`：函数执行环境（或执行上下文），Execution Context
