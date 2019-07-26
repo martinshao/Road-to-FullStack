@@ -29,7 +29,7 @@ microtask不会和Task一起，而是会放在一个叫做microtask(微任务) q
 Task（又称为MacroTask,宏任务）和MicroTask（微任务）主要来源如下：
 
 **macrotask**任务队列的来源有：
-# | 浏览器 | Node 
+api| 浏览器 | Node 
 - | :-: | :-: 
 I/O | ✅ | ✅
 setTimeout | ✅| ✅
@@ -40,7 +40,7 @@ requestAnimationFrame | ✅| ❌
 
 
 **microtask**任务队列的来源有：
-# | 浏览器 | Node 
+api | 浏览器 | Node 
 - | :-: | :-: 
 process.nextTick | ❌| ✅
 MutationObserver | ✅| ❌
