@@ -28,16 +28,6 @@ microtask不会和Task一起，而是会放在一个叫做microtask(微任务) q
 
 Task（又称为MacroTask,宏任务）和MicroTask（微任务）主要来源如下：
 
-name | 111 | 222 | 333 | 444
-:-: | :-: | :-: | :-: | :-:
-aaa | bbb | ccc | ddd | eee|
-fff | ggg| hhh | iii | 000|
-
-api | 浏览器 | Node 
-:-: | :-: | :-: 
-I/O | ✅ | ✅ |
-
-
 **macrotask**任务队列的来源有：
 
 api | 浏览器 | Node 
