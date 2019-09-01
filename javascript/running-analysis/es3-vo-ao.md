@@ -1,0 +1,340 @@
+# JavaScript执行机制深度解析——EC和Scope、VO、AO（ES3规范）
+
+## 前文回顾
+
+在探讨JavaScript执行机制的时候，我们首先引入了event loop模型，从宏观上对于JavaScript运行机制有个**大概**的了解，然后针对该模型各个部分做了详细的拆分解析，在[《JavaScript执行机制深度解析——调用栈、异步队列和事件循环》](https://github.com/Martin-Shao/Road-to-FullStack/blob/master/javascript/running-analysis/readme.md)中，我们主要探讨的JavaScript作为单线程语言，如何处理异步问题的。
+
+![alt text](../_assets/20190527161927.png "JavaScript call stack ")
+
+在[《JavaScript执行机制深度解析——执行上下文与调用栈》](https://github.com/Martin-Shao/Road-to-FullStack/blob/master/javascript/running-analysis/readme.md)中我们把上图中关于内存分配，执行上下文和调用栈的关系进行讲解，本文则是对于执行上下文更加深入的解析。
+
+我们大致知道执行上下文就是函数运行时的环境，但是这个环境如何具象化，我们还需要引出变量对象的概念，把它看做一个对象，这个对象存储着JavaScript函数运行的一切条件。这样就能更加具体对于变量、函数声明、作用域、作用域链进行更加详尽的阐述。
+
+但在深入讨论之前，我还在[《JavaScript执行机制深度解析——执行上下文ES3规范和ES5规范》](https://github.com/Martin-Shao/Road-to-FullStack/blob/master/javascript/running-analysis/readme.md)一文中，对于讨论执行上下文划分了一个界限，以不同版本的实现标准为依据进行讨论。本文主要探讨的ES3版本的执行上下文实现机制，其中包含的主要内容有变量对象、活动对象、作用域、作用域链、闭包等
+
+## 大纲
+
+* 变量和执行上下文作为知识讲解的铺垫
+* 了解执行上下文的组成
+* 接触到变量对象（Variable Object）的概念
+* 对于全局变量对象和活动对象的了解
+* 接触作用域，了解作用域链的执行机制
+* 实例说明作用域链在JavaScript中对变量作用范围的控制
+* 讲解一下闭包
+
+## 关键词
+
+* `EC`：执行上下文（`Execution Context`）
+* `Scope`：作用域
+* `Scope Chain`：作用域链
+* `VO`：变量对象（`Variable Object`）
+* `AO`：活动对象（`Activation Object`）
+* `Closure`：闭包
+
+
+## 变量和执行上下文
+
+在引出变量对象概念之前，我们先做一个铺垫。编程的世界核心元素是什么？目前的我认为是数据结构和算法，当然这已经是一种相当抽象的说法，在JavaScript编程中，切实的说就是变量和函数。但是我们在日常编程过程中写的代码是没有任何意义的，只有在运行的时候，问题才能得到解决。那么运行的时候，变量和函数又何去何从？
+
+我们知道在ECMAscript中变量是和上下文有密切关系的。
+``` js
+var a = 10; // 全局的变量
+
+(function () {
+  var b = 20; // function函数中的局部变量
+})();
+
+alert(a); // 10
+alert(b); // 全局变量 "b" 没有声明
+```
+
+并且，很多程序员也都知道，当前ECMAScript规范指出独立作用域只能通过“函数(function)”代码类型的执行上下文创建。也就是说，相对于C/C++来说，ECMAScript里的for循环并不能创建一个局部的上下文。
+
+```js
+for (var k in {a: 1, b: 2}) {
+  alert(k);
+}
+ 
+alert(k); // 尽管循环已经结束但变量k依然在当前作用域
+```
+
+如果变量与执行上下文相关，那变量自己应该知道它的数据存储在哪里，并且知道如何访问。这种机制称为变量对象(variable object)。
+
+```
+变量对象(缩写为VO)是一个与执行上下文相关的特殊对象，它存储着在上下文中声明的以下内容：
+    变量 (var, 变量声明);
+    函数声明 (FunctionDeclaration, 缩写为FD);
+    函数的形参
+```
+
+## 执行上下文（Execution Context）的组成
+
+上文中我们引出了执行上下文的概念，在理解这个概念时可以把执行上下文可以抽象为一个简单的对象。每个上下文包含一系列属性(我们称之为 上下文状态(context’s state) ) 用以跟踪相关代码的执行过程。下图展示了上下文的结构：
+
+![alt text](../_assets/20190527112822.png "JavaScript call stack ")
+
+代码表示
+
+```js
+executionContext：{
+    variable object：vars, functions, declaration, arguments...
+    scope chain: variable object + all parents scopes
+    thisValue: Context object
+}
+```
+
+除了这3个所需要的属性(变量对象(variable object)， this指针(this value)， 作用域链(scope chain) )，执行上下文根据具体实现还可以具有任意额外属性。下面我们将对这些概念进行一一解析。
+
+## 变量对象(variable object)
+
+> Every execution context has associated with it a variable object. Variables and functions declared in the source text are added as properties of the variable object. For function code, parameters are added as properties of the variable object.
+
+> 译文：每一个执行上下文都会分配一个**变量对象(variable object)**，变量对象的属性由 **变量(variable)** 和 **函数声明(function declaration)** 构成。在函数上下文情况下， **参数列表(parameter list)** 也会被加入到变量对象(variable object)中作为属性。
+
+变量对象不包含 函数表达式(function expressions) (与 函数声明(function declarations) 比较 )。
+```js
+var foo = 10;
+ 
+function bar() { var a = 20 } // function declaration, FD
+(function baz() {}); // function expression, FE
+ 
+console.log(
+  this.foo == foo, // true
+  window.bar == bar // true
+);
+ 
+console.log(baz); // ReferenceError, "baz" is not defined
+```
+![alt text](../_assets/20190525181656.png "JavaScript call stack ")
+
+### 分类
+
+我们知道执行上下文有全局执行上下文，函数执行上下文。相应的变量对象也有Global object和Activation object。
+
+可以适当的把变量对象看作是一个接口，Global object和Activation object实现了该接口，变量对象是对于执行上下文中准备执行的变量、函数声明的元素的结合的对象的一种抽象。
+
+```
+抽象变量对象VO (变量初始化过程的一般行为)
+  ║
+  ╠══> 全局上下文变量对象GlobalContextVO
+  ║        (VO === this === global)
+  ║
+  ╚══> 函数上下文变量对象FunctionContextVO
+           (VO === AO, 并且添加了<arguments>和<formal parameters>)
+```
+
+```js
+var a = 10;
+ 
+function test(x) {
+  var b = 20;
+};
+ 
+test(30);
+```
+
+伪代码表示变量对象
+``` js
+// 全局上下文的变量对象
+VO(globalContext) = {
+  a: 10,
+  test: <reference to function>
+};
+
+// test函数上下文的变量对象
+VO(test functionContext) = {
+  x: 30,
+  b: 20
+};
+
+testEC = {
+  VO: {
+    a: 10,
+    foo: <reference to function>
+  },
+  [[Scope]]: <reference to scope chain>,
+  this: <reference to this binding>
+}
+```
+
+## 全局对象（Global object）
+
+首先，我们要给全局对象一个明确的定义：
+
+全局对象(Global object) 是在进入任何执行上下文之前就已经创建了的对象；
+这个对象只存在一份，它的属性在程序中任何地方都可以访问，全局对象的生命周期终止于程序退出那一刻。
+全局对象初始创建阶段将Math、String、Date、parseInt作为自身属性，等属性初始化，同样也可以有额外创建的其它对象作为属性（其可以指向到全局对象自身）。例如，在DOM中，全局对象的window属性就可以引用全局对象自身(当然，并不是所有的具体实现都是这样)：
+
+```js
+global = {
+  Math: <...>,
+  String: <...>
+  ...
+  ...
+  window: global //引用自身
+};
+```
+
+当访问全局对象的属性时通常会忽略掉前缀，这是因为全局对象是不能通过名称直接访问的。不过我们依然可以通过全局上下文的this来访问全局对象，同样也可以递归引用自身。例如，DOM中的window。综上所述，代码可以简写为：
+
+```js
+String(10); // 就是global.String(10);
+ 
+// 带有前缀
+window.a = 10; // === global.window.a = 10 === global.a = 10;
+this.b = 20; // global.b = 20;
+```
+
+因此，回到全局上下文中的变量对象——在这里，变量对象就是全局对象自己：
+
+`VO(globalContext) === global;`
+
+非常有必要要理解上述结论，基于这个原理，在全局上下文中声明的对应，我们才可以间接通过全局对象的属性来访问它（例如，事先不知道变量名称）。
+
+```js
+var a = new String('test');
+ 
+alert(a); // 直接访问，在VO(globalContext)里找到："test"
+ 
+alert(window['a']); // 间接通过global访问：global === VO(globalContext): "test"
+alert(a === this.a); // true
+ 
+var aKey = 'a';
+alert(window[aKey]); // 间接通过动态属性名称访问："test"
+```
+
+## 活动对象(activation object)
+
+> When control enters an execution context for function code, an object called the activation object is created and associated with the execution context. The activation object is initialised with a property with name arguments and attributes { DontDelete }. The initial value of this property is the arguments object described below.  
+> The activation object is then used as the variable object for the purposes of variable instantiation.
+
+
+> 译文：当函数被激活，那么一个活动对象(activation object)就会被创建并且分配给执行上下文。活动对象由特殊对象 arguments 初始化而成。随后，他被当做变量对象(variable object)用于变量初始化。
+
+用代码来说明就是：
+```js
+function foo(x, y) {
+  var z = 30;
+  function bar() {} // FD
+  (function baz() {}); // FE
+}
+
+foo(10, 20);
+```
+
+![alt text](../_assets/20190528122136.png "JavaScript call stack ")
+
+## 执行环境和作用域链(execution context and scope chain)
+
+### scope chain
+
+> 作用域链是一个 对象列表(list of objects) ， 用以检索上下文代码中出现的 标识符(identifiers) 。
+
+作用域链规则简单并且与原型链相似：如果一个变量不是在自身的作用域内(自身 变量/活动 对象)，那么就会在它的外部作用域中查找。
+
+考虑到上下文，标识符为:变量名 ，函数声明，形式参数等等。 在函数代码中，如果标识符不是一个本地变量/函数/形参，那么就被称之为 自由变量(free variable) 。作用域链正是用于查找这些自由变量。
+
+一般情况下，作用域链是 父变量对象(parent variable objects) 列表外加(在作用域链头部)函数的 自身变量/激活对象(own variable/activation object) 。然而作用域链也会包含其他对象，举例来说某些对象会在上下文的执行过程中，动态载入作用域链——如 with-objects 或 catch-clauses 创建的特殊对象。[译注：with-objects指的是with语句，产生的临时作用域对象；catch-clauses指的是catch从句，如catch(e)，这会产生异常对象，导致作用域变更]
+
+当查找标识符的时候，会从作用域链的激活对象部分开始查找，然后(如果标识符没有在激活对象中找到)查找作用域链的顶部，循环往复，就像作用域链那样。
+
+```js
+var x = 10;
+ 
+(function foo() {
+  var y = 20;
+  (function bar() {
+    var z = 30;
+    // "x" and "y" are "free variables"
+    // and are found in the next (after
+    // bar's activation object) object
+    // of the bar's scope chain
+    console.log(x + y + z);
+  })();
+})();
+```
+
+我们可以通过隐含的__parent__ 属性来设定作用域链的范围，__parent__ 指向链表的下一个对象。这个尝试可以在真实的Rhino代码 (real Rhino code )中测试[译注:Rhino为Mozilla的开源项目，基于Java实现的ECMAScript引擎],并且是 ES5词法环境(ES5 lexical environments) 中实际使用的技术(被命名为outer的链接)。作用域链还可以通过数组展现。通过使用 __parent__ 的概念，我们可以用下图展现上面的例子(父变量对象存储在函数的[[Scope]]属性内)：
+
+![alt text](../_assets/scope-chain.png "JavaScript call stack ")
+
+代码执行时，作用域链可能会被 with语句(with-statement) 和 catch从句(catch-clause) 对象扩大(增长)。此外，由于这些对象是简单对象，他们拥有原型(和原型链)。实际上作用域链表查找分为 两个维度(two-dimensional) ：(1)首先考虑自身的作用域链表指针，(2)对于每一个作用域链表指针，需要深入到指针自身的原型链当中去(如果作用域链表的节点拥有原型)。
+
+举例：
+
+```js
+Object.prototype.x = 10;
+ 
+var w = 20;
+var y = 30;
+ 
+// in SpiderMonkey global object
+// i.e. variable object of the global
+// context inherits from "Object.prototype",
+// so we may refer "not defined global
+// variable x", which is found in
+// the prototype chain
+ 
+console.log(x); // 10
+ 
+(function foo() {
+ 
+  // "foo" local variables
+  var w = 40;
+  var x = 100;
+ 
+  // "x" is found in the
+  // "Object.prototype", because
+  // {z: 50} inherits from it
+ 
+  with ({z: 50}) {
+    console.log(w, x, y , z); // 40, 10, 30, 50
+  }
+ 
+  // after "with" object is removed
+  // from the scope chain, "x" is
+  // again found in the AO of "foo" context;
+  // variable "w" is also local
+  console.log(x, w); // 100, 40
+ 
+  // and that's how we may refer
+  // shadowed global "w" variable in
+  // the browser host environment
+  console.log(window.w); // 20
+ 
+})();
+```
+
+结构如下(这表明当我们进入 __parent__ 指针之前, 第一个 __proto__ 链会先背考虑)：
+
+![alt text](../_assets/scope-chain-with.png "JavaScript call stack ")
+
+请注意，全局对象并非在所有实现中都会继承自“Object.prototype”。上图描述的情景(从全局上下文中引用了未定义的变量”x”)可以在SpiderMonkey测试。
+
+只要所有外部函数的变量对象都存在，那么从内部函数引用外部数据则没有特别之处——我们只要遍历作用域链表，查找所需变量。然而，如上文所提及，当一个上下文终止之后，其状态与自身将会被 销毁(destroyed) ，同时内部函数将会从外部函数中返回。此外，这个返回的函数之后可能会在其他的上下文中被激活，那么如果一个之前被终止的含有一些自由变量的上下文又被激活将会怎样?通常来说，解决这个问题的概念在ECMAScript中与作用域链直接相关，被称为 (词法)闭包((lexical) closure) 。
+
+
+* [JavaScript的核心原理][8]
+* [JavaScript. The Core.][10]
+* [深入理解JavaScript系列（12）：变量对象（Variable Object）][5]
+
+* [JS 执行环境、作用域链、变量对象和活动对象的关系][4]
+
+* [一道js面试题引发的思考][1]
+* [EC+VO+SCOPE for ES3][2]
+* [分不清的javascript运行机制 ][3]
+* [JavaScript作用域、上下文、执行期上下文、作用域链、闭包][6]
+* [傻傻分不清的javascript运行机制][7]
+* [V8 javascript 引擎][9]
+
+
+[1]: https://github.com/kuitos/kuitos.github.io/issues/18
+[2]: https://www.cnblogs.com/mininice/p/3876307.html
+[3]: http://www.sohu.com/a/284117426_120045139
+[4]: http://www.php.cn/js-tutorial-407137.html
+[5]: http://www.cnblogs.com/TomXu/archive/2012/01/16/2309728.html
+[6]: https://blog.csdn.net/qq_27626333/article/details/78463565
+[7]: https://www.jianshu.com/p/775d026862d3
+[8]: https://blog.csdn.net/practicer2015/article/details/55803999
+[9]: https://blog.csdn.net/practicer2015/article/details/55804206
+[10]: http://dmitrysoshnikov.com/ecmascript/javascript-the-core/#scope-chain

@@ -2,7 +2,7 @@
 
 在我们开始研究JavaScript的执行上下文时，希望能够先普及一个知识。
 
-在我开始学习JavaScript运行机制的时候，会从网上的文章看到过很多的专有名词，Execution Context(执行环境或执行上下文)，Context Stack (执行栈)，Variable Object(VO: 变量对象)，Active Object(AO: 活动对象)，LexicalEnvironment（词法环境），VariableEnvironment（变量环境）等，特别是 VO,AO以及LexicalEnvironment，VariableEnvironment的区别很多文章都没有涉及到。
+当我们开始真正研究执行上下文内部究竟发生了什么的时候，就不得不接触一些专业名词，，Execution Context(执行环境或执行上下文)，Context Stack (执行栈)，Variable Object(VO: 变量对象)，Active Object(AO: 活动对象)，LexicalEnvironment（词法环境），VariableEnvironment（变量环境）等，特别是关于 VO,AO以及LexicalEnvironment，VariableEnvironment的区别很多文章都没有涉及到。
 
 后来了解到EC只是一个规范，对于规范的实践从时间和空间上都是不同的，我们常说的VO、AO是基于ECMAscript 3.X的标准实践的，另外LexicalEnvironment、VariableEnvironment则是出自ECMAscript 5.X的准备实践的。
 
