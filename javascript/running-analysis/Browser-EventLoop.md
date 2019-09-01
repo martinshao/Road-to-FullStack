@@ -35,7 +35,7 @@ fff | ggg| hhh | iii | 000|
 
 api | 浏览器 | Node 
 :-: | :-: | :-: 
-I/O | yes | yes |
+I/O | ✅ | ✅ |
 
 **macrotask**任务队列的来源有：
 api| 浏览器 | Node 
