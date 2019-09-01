@@ -25,8 +25,8 @@ JavaScript基础中基础
 * JavaScript继承方式详解
 
 JavaScript运行机制深入
-* JavaScript深入函数执行过程
-* 理解JavaScript 中的执行上下文和执行栈
+* [JavaScript深入函数执行过程][21]
+* [理解JavaScript 中的执行上下文和执行栈][22]
 * JavaScript深入之执行上下文栈和变量对象
 * JavaScript深入之内存空间详细图解
 * JavaScript深入之带你走进内存机制
@@ -48,3 +48,5 @@ JavaScript编程小技巧
 * JavaScript中call 和 apply原理与实践
 * JavaScript中bind原理与实践
 * JavaScript解析赋值、浅拷贝和深拷贝的区别
+
+[21]: 
