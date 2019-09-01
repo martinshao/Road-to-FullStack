@@ -63,7 +63,7 @@
 
 ### 补充目录：
 * JavaScript执行机制深度解析——内存管理
-* [JavaScript执行机制深度解析——什么是栈帧？][22]
+* [JavaScript执行机制深度解析——什么是栈帧？][28]
 * JavaScript执行机制深度解析——垃圾回收与四种常见内存泄露
 * JavaScript执行机制深度解析——Stack三个概念和Heap的解析
 
