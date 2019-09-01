@@ -66,8 +66,9 @@ JavaScript所有任务可以分成两种，一种是**同步任务（synchronous
 在js中其实有两类**任务队列（task queue）**：**宏任务队列（macro tasks）**和**微任务队列（micro tasks）**。不同的异步任务会被安排在不同的异步任务队列中。浏览器和Node中的宏任务和微任务会有一点差异
 
 **macrotask**任务队列的来源有：
+
 # | 浏览器 | Node 
-- | :-: | :-: 
+:-:| :-: | :-: 
 I/O | ✅ | ✅
 setTimeout | ✅| ✅
 setInterval | ✅| ✅
@@ -77,8 +78,9 @@ requestAnimationFrame | ✅| ❌
 
 
 **microtask**任务队列的来源有：
+
 # | 浏览器 | Node 
-- | :-: | :-: 
+:-:| :-: | :-: 
 process.nextTick | ❌| ✅
 MutationObserver | ✅| ❌
 Promise.then catch finally | ✅| ✅
