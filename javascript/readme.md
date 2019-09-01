@@ -1,6 +1,6 @@
 # JavaScript基础与精粹
 
-![base is important as Sun](./_assets/galaxy.jpg "galaxy.jpg")
+![base is important as Sun](./_assets/galaxy-stars.jpg "galaxy.jpg")
 
 不得不感慨一下，随着前端近几年的飞速发展，各种前端框架百花齐放，从业人员应接不暇的同时，也感到迷茫和困惑：怎么能够从技术包围中找到突破点，我认为应当从基础开始，前端的基础在于html、css、JavaScript，这其中我认为JavaScript是核心要领，学好JavaScript原生，就是学好了九阳神功，再接触其他框架时，便能事半功倍。
 
