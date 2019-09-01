@@ -43,7 +43,7 @@
 
 [1]: https://github.com/Martin-Shao/yideng-note/blob/master/html-senior/exercises.md
 [2]: https://github.com/Martin-Shao/yideng-note/blob/master/css-senior/overview.md
-[3]: https://github.com/Martin-Shao/yideng-note/blob/master/es5-senior/exercises.md
+[3]: https://github.com/Martin-Shao/Road-to-FullStack/tree/master/javascript
 [4]: https://github.com/Martin-Shao/yideng-note/blob/master/es6-senior/exercises.md
 [5]: https://github.com/Martin-Shao/yideng-note
 [6]: https://github.com/Martin-Shao/yideng-note/blob/master/fe-qa/FrontEnd-QA.md
