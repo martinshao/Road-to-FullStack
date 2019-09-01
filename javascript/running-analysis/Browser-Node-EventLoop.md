@@ -7,19 +7,21 @@ Event loop在browser端和node端也有区分。浏览器的 Event Loop 遵循�
 在JavaScript中，任务被分为Task（又称为MacroTask,宏任务）和MicroTask（微任务）两种。它们分别包含以下内容：
 
 **macrotask**任务队列的来源有：
-# | 浏览器 | Node 
-- | :-: | :-: 
-I/O | ✅ | ✅
-setTimeout | ✅| ✅
-setInterval | ✅| ✅
-setImmediate | ❌| ✅
-UI rendering | ✅| ❌
-requestAnimationFrame | ✅| ❌
+
+api | 浏览器 | Node 
+:-: | :-: | :-: 
+I/O | ✅ | ✅ |
+setTimeout | ✅ | ✅ |
+setInterval | ✅ | ✅ |
+setImmediate | ❌| ✅ |
+UI rendering |  ✅ | ❌ |
+requestAnimationFrame | ✅ | ❌ |
 
 
 **microtask**任务队列的来源有：
-# | 浏览器 | Node 
-- | :-: | :-: 
+
+api | 浏览器 | Node 
+:-: | :-: | :-:
 process.nextTick | ❌| ✅
 MutationObserver | ✅| ❌
 Promise.then catch finally | ✅| ✅
