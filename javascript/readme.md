@@ -41,25 +41,20 @@
 
 ## 文章目录：
 
-* JavaScript执行机制深度解析——执行上下文与调用栈
-* JavaScript执行机制深度解析——执行上下文ES3规范和ES5规范
-* JavaScript执行机制深度解析——ES3规范和Scope、VO、AO
-* JavaScript执行机制深度解析——ES5规范和词法环境
-* JavaScript执行机制深度解析——变量对象解释闭包
-* [JavaScript执行机制深度解析——理解函数执行过程][21]
+* [JavaScript执行机制深度解析——执行上下文与调用栈][21]
+* [JavaScript执行机制深度解析——执行上下文ES3规范和ES5规范][22]
+* [JavaScript执行机制深度解析——ES3规范和Scope、VO、AO][23]
+* [JavaScript执行机制深度解析——ES5规范和词法环境][24]
+* [JavaScript执行机制深度解析——变量对象解释闭包][25]
+* [JavaScript执行机制深度解析——理解函数执行过程][26]
 
-* JavaScript执行机制深度解析——调用栈与函数执行[]
 * JavaScript执行机制深度解析——调用栈、异步队列和事件循环
-* [JavaScript执行机制深度解析——什么是栈帧？][22]
 * JavaScript执行机制深度解析——浏览器和NodeJs中Event Loop区别
 * JavaScript执行机制深度解析——NodeJs中Event Loop实例分析
-* JavaScript执行机制深度解析——执行上下文与调用栈
-* JavaScript执行机制深度解析——执行上下文ES3规范和ES5规范
-* JavaScript执行机制深度解析——ES3规范和Scope、VO、AO
-* JavaScript执行机制深度解析——ES5规范和词法环境
-* JavaScript执行机制深度解析——变量对象解释闭包
 
+补充目录：
 * JavaScript执行机制深度解析——内存管理
+* [JavaScript执行机制深度解析——什么是栈帧？][22]
 * JavaScript执行机制深度解析——垃圾回收与四种常见内存泄露
 * JavaScript执行机制深度解析——Stack三个概念和Heap的解析
 
