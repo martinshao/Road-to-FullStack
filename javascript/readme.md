@@ -91,5 +91,5 @@
 
 [21]: https://github.com/Martin-Shao/Road-to-FullStack/blob/master/javascript/running-analysis/callstack-context.md
 [22]: https://github.com/Martin-Shao/Road-to-FullStack/blob/master/javascript/running-analysis/context-es3-es5.md
-[23]: https://github.com/Martin-Shao/Road-to-FullStack/blob/master/javascript/running-analysis/context-es3-es5.md
+[23]: https://github.com/Martin-Shao/Road-to-FullStack/blob/master/javascript/running-analysis/es3-vo-ao.md
 [24]: https://github.com/Martin-Shao/Road-to-FullStack/blob/master/javascript/running-analysis/es5-le-ve.md
