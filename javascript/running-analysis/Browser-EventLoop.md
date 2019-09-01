@@ -42,6 +42,9 @@ I/O | ✅ | ✅ |
 api | 浏览器 | Node 
 :-: | :-: | :-: 
 I/O | ✅ | ✅ |
+
+
+
 setTimeout | ✅ | ✅ |
 setInterval | ✅ | ✅ |
 setImmediate | ❌| ✅ |
