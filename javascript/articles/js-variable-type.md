@@ -2,7 +2,7 @@
 
 ## JavaScript变量类型思维导图
 
-![alt text](../_assert/images/js-variable-type.svg "Title")
+![alt text](../_assets/images/js-variable-type.svg "Title")
 
 ## 概述
 
@@ -30,7 +30,7 @@
 b只是保存了a复制的一个副本。所以，b的改变，对a没有影响。
 下图演示了这种基本数据类型赋值的过程：
 
-![alt text](./img/basic-data.png "Title")
+![alt text](../_assets/basic-data.png "Title")
 
 常见的引用类型数据
 也就是对象类型Object type，比如：Object 、Array 、Function 、Data等。  
@@ -48,7 +48,7 @@ javascript的引用数据类型是保存在堆内存中的对象。与其他语�
 但是实际上他们共同指向了同一个堆内存对象。实际上改变的是堆内存对象。
 下面我们来演示这个引用数据类型赋值过程：
 
-![alt text](./img/object.png "Title")
+![alt text](../_assets/images/object.png "Title")
 
 ## 总结区别
 
