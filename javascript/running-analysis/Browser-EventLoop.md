@@ -28,8 +28,13 @@ microtask不会和Task一起，而是会放在一个叫做microtask(微任务) q
 
 Task（又称为MacroTask,宏任务）和MicroTask（微任务）主要来源如下：
 
+name | 111 | 222 | 333 | 444
+:-: | :-: | :-: | :-: | :-:
+aaa | bbb | ccc | ddd | eee|
+fff | ggg| hhh | iii | 000|
+
 api | 浏览器 | Node 
- - | :-: | :-: 
+:-: | :-: | :-: 
 I/O | yes | yes |
 
 **macrotask**任务队列的来源有：
@@ -59,10 +64,6 @@ Promise.then catch finally | ✅| ✅
 
 ![alt text](../_assets/2655194155-5ab0a0c60c00b.png "JavaScript call stack ")
 
-name | 111 | 222 | 333 | 444
-:-: | :-: | :-: | :-: | :-:
-aaa | bbb | ccc | ddd | eee| 
-fff | ggg| hhh | iii | 000|
 
 参考资料：
 * [浏览器中的事件循环机制][1]
