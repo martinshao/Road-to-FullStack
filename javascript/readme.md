@@ -13,7 +13,12 @@
 
 JavaScript基础中基础
 * JavaScript基础之变量类型
+<<<<<<< HEAD
 * JavaScript探究this奥秘之旅
+=======
+* JavaScript基础当我谈论变量时
+* JavaScript探究this奥秘之旅--原理分析&绑定解析
+>>>>>>> 3ade10fc528bccb4ae347252ad179693d3bb6fd3
 * JavaScript的模块化详解
 * JavaScript面向对象编程范式简介
 * JavaScript深度理解原型链

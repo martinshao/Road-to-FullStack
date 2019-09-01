@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>mouseenter</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #f3f3f3;
+    }
+
+    .container {
+      height: 60vh;
+      width: 100%;
+      max-width: 75rem;
+      margin-left: auto;
+      margin-right: auto;
+      margin-bottom: 8.875rem;
+      padding-top: 0;
+      border: 2px solid yellowgreen;
+    }
+
+    .section {
+      height: 100%;
+      max-height: 28.5rem;
+      width: 100%;
+      max-width: 61.875rem;
+      position: relative;
+      margin: 0 auto;
+      box-shadow: 0 4px 60px rgba(0, 0, 0, .15);
+      border-top-left-radius: .25rem;
+      border-top-right-radius: .25rem;
+      overflow: hidden;
+    }
+
+    .left-img {
+      height: 100%;
+      position: absolute;
+      top: 0;
+      right: 0;
+      -o-object-fit: cover;
+      object-fit: cover;
+      -o-object-position: right;
+      object-position: right;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      pointer-events: none;
+      width: 100%;
+      z-index: 5;
+      background: #B8F4FF;
+    }
+
+    .slider {
+      height: 100%;
+      width: .2rem;
+      position: absolute;
+      top: 0;
+      left: 50%;
+      background: #a3a380;
+      margin-left: -.1rem;
+      z-index: 15;
+    }
+
+    .right-img {
+      height: 100%;
+      position: absolute;
+      top: 0;
+      right: 0;
+      -o-object-fit: cover;
+      object-fit: cover;
+      -o-object-position: right;
+      object-position: right;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      pointer-events: none;
+      background: #EEE8AB;
+      width: 50%;
+      z-index: 10;
+    }
+
+    .middle-img {
+      height: 100%;
+      position: absolute;
+      top: 0;
+      right: 0;
+      -o-object-fit: cover;
+      object-fit: cover;
+      -o-object-position: right;
+      object-position: right;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      pointer-events: none;
+    }
+
+    .presentationSlider_arrow {
+      height: 100%;
+      width: 200vw;
+      display: inline-block;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      background: transparent;
+      transform: translate(-50%, -50%);
+    }
+
+    .slider>div:after {
+      width: 1rem;
+      height: 1rem;
+      content: "";
+      display: inline-block;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      border-radius: 999rem;
+      background: #fff url(./arrow-twoSide-2c4b63763d.svg) no-repeat 50%/contain;
+      transform: translate(-50%, -50%);
+      cursor: grab
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="section">
+      <img class="left-img" src="./homepage-presentation-1e-677d5f477f.jpg" alt="left">
+      <div class="slider">
+        <div class="presentationSlider_arrow"></div>
+      </div>
+      <img class="right-img" src="./homepage-presentation-1v-4f132178ed.jpg" alt="right">
+      <img class="middle-img" src="./homepage-presentation-1m-d467a918c4.jpg" alt="middle">
+    </div>
+  </div>
+</body>
+
+<script>
+  var slider = document.querySelector('.slider')
+    , i = void 0
+    , o = void 0
+    , r = void 0
+    , l = void 0;
+  slider.addEventListener('mouseenter', function () {
+    console.info('mouseenter')
+    var sliderRect = slider.parentNode.getBoundingClientRect();
+    r = sliderRect.x;
+    l = sliderRect.width;
+    slider.addEventListener('mousemove', i = function (t) {
+      var n = (t.clientX - r) / l * 100
+        , a = slider.nextElementSibling;
+      n >= 100 ? n = 100 : n <= 0 && (n = 0),
+        slider.style.left = n + "%",
+        a.style.width = 100 - n + "%"
+    })
+  })
+  slider.addEventListener("mouseout", function () {
+    console.info('mousemove')
+    slider.removeEventListener("mousemove", i)
+  })
+</script>
+
+</html>
