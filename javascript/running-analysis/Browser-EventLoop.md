@@ -39,13 +39,13 @@ I/O | yes | yes |
 
 **macrotask**任务队列的来源有：
 api| 浏览器 | Node 
- - | :-: | :-: 
-I/O | ✅ | ✅
-setTimeout | ✅| ✅
-setInterval | ✅| ✅
-setImmediate | ❌| ✅
-UI rendering | ✅| ❌
-requestAnimationFrame | ✅| ❌
+:-: | :-: | :-: 
+I/O | ✅ | ✅ |
+setTimeout | ✅ | ✅ |
+setInterval | ✅ | ✅ |
+setImmediate | ❌| ✅ |
+UI rendering |  ✅ | ❌ |
+requestAnimationFrame | ✅ | ❌ |
 
 
 **microtask**任务队列的来源有：
