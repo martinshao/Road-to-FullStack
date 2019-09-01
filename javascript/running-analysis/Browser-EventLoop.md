@@ -30,7 +30,7 @@ Task（又称为MacroTask,宏任务）和MicroTask（微任务）主要来源如
 
 api | 浏览器 | Node 
  - | :-: | :-: 
-I/O | yes | yes
+I/O | yes | yes |
 
 **macrotask**任务队列的来源有：
 api| 浏览器 | Node 
