@@ -41,7 +41,7 @@ requestAnimationFrame | ✅| ❌
 
 **microtask**任务队列的来源有：
 api | 浏览器 | Node 
-- | :-: | :-: 
+:-: | :-: | :-:
 process.nextTick | ❌| ✅
 MutationObserver | ✅| ❌
 Promise.then catch finally | ✅| ✅
