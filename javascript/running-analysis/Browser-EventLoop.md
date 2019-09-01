@@ -37,8 +37,9 @@ api | 浏览器 | Node
 :-: | :-: | :-: 
 I/O | ✅ | ✅ |
 
+
 **macrotask**任务队列的来源有：
-api| 浏览器 | Node 
+api | 浏览器 | Node 
 :-: | :-: | :-: 
 I/O | ✅ | ✅ |
 setTimeout | ✅ | ✅ |
