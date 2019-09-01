@@ -1,5 +1,6 @@
 # JavaScript基础与精粹
 
+编程知识浩如繁星，即使站在人间最高峰，也依旧能感受到自身的渺小。
 ![base is important as Sun](./_assets/galaxy-stars.jpg "galaxy.jpg")
 
 不得不感慨一下，随着前端近几年的飞速发展，各种前端框架百花齐放，从业人员应接不暇的同时，也感到迷茫和困惑：怎么能够从技术包围中找到突破点，我认为应当从基础开始，前端的基础在于html、css、JavaScript，这其中我认为JavaScript是核心要领，学好JavaScript原生，就是学好了九阳神功，再接触其他框架时，便能事半功倍。
@@ -12,7 +13,7 @@
 
 JavaScript基础中基础
 * JavaScript基础之变量类型
-* JavaScript探究this奥秘之旅--原理分析&绑定解析
+* JavaScript探究this奥秘之旅
 * JavaScript的模块化详解
 * JavaScript面向对象编程范式简介
 * JavaScript深度理解原型链
@@ -23,6 +24,7 @@ JavaScript基础中基础
 * JavaScript继承方式详解
 
 JavaScript运行机制深入
+* JavaScript深入函数执行过程
 * 理解JavaScript 中的执行上下文和执行栈
 * JavaScript深入之执行上下文栈和变量对象
 * JavaScript深入之内存空间详细图解
