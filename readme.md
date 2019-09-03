@@ -1,5 +1,7 @@
 # 通往全栈之路
 
+![base is important as Sun](./javascript/_assets/road.jpg "galaxy.jpg")
+
 整理分享一些我在全栈之路上前进的一些知识和心得体会。
 首先，这条道路是异常艰辛，抛开前端现在发展火热的趋势，依旧有部分公司对于前端的认知不够。
 
@@ -29,20 +31,20 @@
 ## 前端知识体系详细梳理
 
 ** 各部分课程详细笔记
-* [你不知道的html][1]
-* [CSS基础与高级][2]
-* [JavaScript基础与精粹][3]
-* [JavaScript与QA测试工程师][6]
-* [PHP与MySQL入门到实践][5] *未完成*
-* [JavaScript函数式编程超指南][7]
-* [NodeJs开发实践与Web框架][8]
-* [前端工程化与构建工具选型][9]
-* [前端性能优化全面解析与实践][10]
+* [你不知道的html][61]
+* [CSS基础与高级][62]
+* [JavaScript基础与精粹][63]
+* [JavaScript与QA测试工程师][66]
+* [PHP与MySQL入门到实践][65] *未完成*
+* [JavaScript函数式编程超指南][67]
+* [NodeJs开发实践与Web框架][68]
+* [前端工程化与构建工具选型][69]
+* [前端性能优化全面解析与实践][70]
 
-[1]: https://github.com/Martin-Shao/yideng-note/blob/master/html-senior/exercises.md
-[2]: https://github.com/Martin-Shao/yideng-note/blob/master/css-senior/overview.md
-[3]: https://github.com/Martin-Shao/yideng-note/blob/master/es5-senior/exercises.md
-[4]: https://github.com/Martin-Shao/yideng-note/blob/master/es6-senior/exercises.md
-[5]: https://github.com/Martin-Shao/yideng-note
-[6]: https://github.com/Martin-Shao/yideng-note/blob/master/fe-qa/FrontEnd-QA.md
-[7]: https://github.com/Martin-Shao/yideng-note/tree/master/functional-programming
+[61]: https://github.com/Martin-Shao/yideng-note/blob/master/html-senior/exercises.md
+[62]: https://github.com/Martin-Shao/yideng-note/blob/master/css-senior/overview.md
+[63]: https://github.com/Martin-Shao/Road-to-FullStack/tree/master/javascript
+[64]: https://github.com/Martin-Shao/yideng-note/blob/master/es6-senior/exercises.md
+[65]: https://github.com/Martin-Shao/yideng-note
+[66]: https://github.com/Martin-Shao/yideng-note/blob/master/fe-qa/FrontEnd-QA.md
+[67]: https://github.com/Martin-Shao/yideng-note/tree/master/functional-programming
