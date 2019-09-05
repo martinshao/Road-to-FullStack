@@ -11,7 +11,7 @@
 
 ## JavaScript基础中基础
 
-### 系列文章思路：
+### 系列文章思路
 
 1. 对于变量的探讨
 2. 对于模块化发展历程的探讨
@@ -19,9 +19,12 @@
 4. 对于关键API的探讨
 5. 对于JavaScript继承的探讨
 
-### 系列文章目录：
+### 系列文章目录
 
 * JavaScript基础之变量类型
+* JavaScript变量存储与内存空间
+* JavaScript内存机制与垃圾回收
+* JavaScript四种常见内存泄漏
 * JavaScript探究this奥秘之旅
 * JavaScript基础当我谈论变量时
 * JavaScript的模块化详解
@@ -37,7 +40,7 @@
 
 ## JavaScript运行机制深入
 
-### 系列文章的思路：
+### 系列文章的思路
 
 1. 了解JavaScript的内存管理，这是运行机制解析的铺垫工作
 2. 在了解JavaScript的内存管理中，认识（Stack）和（Heap）
@@ -48,7 +51,7 @@
 7. JavaScript与ES5中词法环境详解过程
 8. 实战，执行上下文的实例应用举例：闭包
 
-### 系列文章目录：
+### 系列文章目录
 
 * [JavaScript执行机制深度解析——执行上下文与调用栈][21]
 * [JavaScript执行机制深度解析——执行上下文ES3规范和ES5规范][22]
@@ -61,7 +64,8 @@
 * JavaScript执行机制深度解析——浏览器和NodeJs中Event Loop区别
 * JavaScript执行机制深度解析——NodeJs中Event Loop实例分析
 
-### 补充目录：
+### 补充目录
+
 * JavaScript执行机制深度解析——内存管理
 * [JavaScript执行机制深度解析——什么是栈帧？][28]
 * JavaScript执行机制深度解析——垃圾回收与四种常见内存泄露
