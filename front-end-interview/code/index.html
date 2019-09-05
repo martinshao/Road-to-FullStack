@@ -1,12 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
 </head>
+
 <body>
-  <script src="./code1.js"></script>
+  <script>
+    // -------------------------------------------------------------
+    async function timout() {
+      return new Promise((resolve) => {
+        setTimeout(resolve, 2000, 100);
+      });
+    }
+    function getSomething(param) {
+      console.info('getSomething', param);
+      return "something";
+    }
+
+    async function test() {
+      console.info('---test---start---')
+      const v1 = await timout();
+      console.info('---await---1---')
+      const v2 = await getSomething(v1);
+      console.info('---await---2---')
+      console.log(v1, v2);
+    }
+
+    test();
+    // function resolveAfter2Seconds(x) {
+    //   setTimeout(() => {
+    //     console.info('------')
+    //     return 100
+    //   }, 2000);
+    // }
+
+    // function f1() {
+    //   var x = resolveAfter2Seconds(10);
+    //   setTimeout(() => {
+    //     console.log(x); // 10
+    //   }, 3000);
+    // }
+    // f1();
+  </script>
 </body>
+
 </html>
