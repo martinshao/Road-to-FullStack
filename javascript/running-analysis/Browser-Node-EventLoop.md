@@ -8,8 +8,8 @@ Event loop在browser端和node端也有区分。浏览器的 Event Loop 遵循�
 
 **macrotask**任务队列的来源有：
 
-api | 浏览器 | Node 
-:-: | :-: | :-: 
+api | 浏览器 | Node
+:-: | :-: | :-:
 I/O | ✅ | ✅ |
 setTimeout | ✅ | ✅ |
 setInterval | ✅ | ✅ |
@@ -17,10 +17,9 @@ setImmediate | ❌| ✅ |
 UI rendering |  ✅ | ❌ |
 requestAnimationFrame | ✅ | ❌ |
 
-
 **microtask**任务队列的来源有：
 
-api | 浏览器 | Node 
+api | 浏览器 | Node
 :-: | :-: | :-:
 process.nextTick | ❌| ✅
 MutationObserver | ✅| ❌

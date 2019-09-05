@@ -7,3 +7,4 @@ test('Function.prototype.bind', function(){
   equal(bound.call({x: 'call'}), 'bind', 'invoke by call');
   equal(bound.apply({x: 'apply'}), 'bind', 'invoke by apply');
 });
+
