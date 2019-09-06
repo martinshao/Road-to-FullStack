@@ -83,6 +83,8 @@ async function test() {
 
 test();
 
+console.info('---------js end-----------');
+
 // -------------------------------------------------------------
 async function retriveProfile(email) {
   const user = await getUser(email);
