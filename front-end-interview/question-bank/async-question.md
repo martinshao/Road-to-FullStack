@@ -3,6 +3,8 @@
 * [这一次，彻底弄懂 Promise 原理](https://juejin.im/post/5d6f7c83e51d4561c541a712)
 * [[ES6] async/await 应用指南](https://juejin.im/post/5b4220f46fb9a04f8a216b31)
 * [更快的异步函数和 Promise](https://v8.js.cn/blog/fast-async/)
+* [JavaScript loops - how to handle async/await](https://lavrton.com/javascript-loops-how-to-handle-async-await-6252dd3c795/)
+* [深入理解 async / await](https://juejin.im/post/5b99cbe35188255c930dc74c)
 
 ## setTimeout、Promise、Async/Await 的区别
 
