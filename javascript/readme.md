@@ -92,6 +92,7 @@
 * JavaScript中call 和 apply原理与实践
 * JavaScript中bind原理与实践
 * JavaScript解析赋值、浅拷贝和深拷贝的区别
+* JavaScript中的Mixin技巧
 
 [21]: https://github.com/Martin-Shao/Road-to-FullStack/blob/master/javascript/running-analysis/callstack-context.md
 [22]: https://github.com/Martin-Shao/Road-to-FullStack/blob/master/javascript/running-analysis/context-es3-es5.md
