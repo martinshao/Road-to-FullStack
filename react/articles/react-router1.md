@@ -246,5 +246,9 @@ function App() {
 ## 参考资料
 
 * [深入了解 React Router 原理][1]
+* [React-Router 源码解析][2]
+* [你不知道的 React Router 4][3]
 
 [1]: https://www.jianshu.com/p/53dc287a8020
+[2]: https://juejin.im/post/5b8251abf265da43606e9e70
+[3]: https://zhuanlan.zhihu.com/p/28585911
