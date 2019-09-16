@@ -30,7 +30,7 @@ function App() {
     setUI('Login')
   }
   let onClickRegister = () => {
-    setUI('Register') 
+    setUI('Register')
   }
   let showUI = () => {
     switch(UI) {
@@ -58,7 +58,7 @@ function App() {
 
 当然我们更希望看到的是
 
-```
+``` text
 不同 url -> 不同页面 -> 不同组件
 ```
 
@@ -80,7 +80,7 @@ function App() {
     window.location.hash = 'login'
   }
   let onClickRegister = () => {
-    setUI('Register') 
+    setUI('Register')
     window.location.hash = 'register'
   }
   let showUI = () => {
@@ -103,7 +103,7 @@ function App() {
 }
 ```
 
-这样其实已经满足我们的要求了，如果我在地址栏里输入 localhost:8080/#login，就会显示 <Login/>。但是这个 “#” 符号不太好看，如果输入 localhost:8080/login 就完美了。
+这样其实已经满足我们的要求了，如果我在地址栏里输入 localhost:8080/#login，就会显示 `<Login/>`。但是这个 “#” 符号不太好看，如果输入 localhost:8080/login 就完美了。
 
 ## 使用 pathname 切换
 
@@ -121,7 +121,7 @@ function App() {
     window.location.pathname = 'login'
   }
   let onClickRegister = () => {
-    setUI('Register') 
+    setUI('Register')
     window.location.pathname = 'register'
   }
   let showUI = () => {
@@ -164,7 +164,7 @@ function App() {
     window.history.pushState(null, '', '/login')
   }
   let onClickRegister = () => {
-    setUI('Register') 
+    setUI('Register')
     window.history.pushState(null, '', '/register')
   }
   let showUI = () => {
@@ -242,13 +242,16 @@ function App() {
 
 可以看到 React Router 帮我们做了很多的事。比如正则的匹配，路由的切换等等。更多的用法就看上面的那个官网就可以了。
 
-
 ## 参考资料
 
 * [深入了解 React Router 原理][1]
 * [React-Router 源码解析][2]
 * [你不知道的 React Router 4][3]
+* [React Router 使用总结][4]
+* [React-Router 源码解析][5]
 
 [1]: https://www.jianshu.com/p/53dc287a8020
 [2]: https://juejin.im/post/5b8251abf265da43606e9e70
 [3]: https://zhuanlan.zhihu.com/p/28585911
+[4]: https://juejin.im/post/5a6a9a7c51882573264703b0
+[5]: https://juejin.im/post/5b8251abf265da43606e9e70
