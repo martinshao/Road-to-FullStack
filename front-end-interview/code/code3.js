@@ -20,5 +20,14 @@ function bindLeft() {
     return fn.bind(null, ...args);
 }
 
+function bindLeft() {
+    let {f, ...args } = arguments;
+    return fn1.bind(null, ...args);
+}
+
+function bindLeft(fn, ...args) {
+    return fn.bind(null, ...args);
+}
+
 fn2 = bindLeft(fn1, 1, 2);
 console.log(fn2(3, 4));
