@@ -1,5 +1,13 @@
 # 深入了解 React Router 原理
 
+## 关键字
+
+* Inclusive Routing
+* Exclusive Routing
+* 嵌套布局
+* Match
+* 避免 Match Collisions
+
 ![React Router](../assets/react-router-title.png "React Router")
 
 说到 React 我们一定离不开和 Router 打交道。不管 Vue Router 和 React Router ，他们的原理都是差不多的。这篇文章会从一个简单的例子一直拓展到真正的 React Router。
