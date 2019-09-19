@@ -1,5 +1,11 @@
 # Typescript 学习之路
 
+## 参考资料
+
+* [TypeScript 强大的类型别名][101] - 文章介绍了一些 `Typescript` 关键字
+
+[101]: https://juejin.im/post/5c2f87ce5188252593122c98
+
 ## 学习资料
 
 * [英文版 官方 Document][1]
