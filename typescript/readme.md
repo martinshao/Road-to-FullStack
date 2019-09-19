@@ -2,6 +2,10 @@
 
 ## 学习资料
 
-* [深入理解 TypeScript][1]
+* [英文版 官方 Document][1]
+* [中文版 官方 Document][2]
+* [深入理解 TypeScript][10]
 
-[1]: https://jkchao.github.io/typescript-book-chinese
+[1]: https://www.typescriptlang.org/docs/home.html
+[2]: https://www.tslang.cn/docs/home.html
+[10]: https://jkchao.github.io/typescript-book-chinese
