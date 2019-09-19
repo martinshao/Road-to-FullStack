@@ -109,3 +109,19 @@ let nextState: State = {
     bar: 'world'
 };
 ```
+
+``` ts
+type Omit<T, K> = Pick<T, Exclude<keyof T, K>>;
+
+// 使用
+type Foo = Omit<{name: string, age: number}, 'name'> // -> { age: number }
+
+function max(num: number): Foo {
+  return { age: 123 }
+  // return { name: 'shaogucheng', age: 123 } -> error:
+  // Type '{ name: string; age: number; }' is not assignable to type
+  // 'Pick<{ name: string; age: number; }, "age">'.
+  // Object literal may only specify known properties, and 'name' does not exist in type
+  // 'Pick<{ name: string; age: number; }, "age">'.
+}
+```
