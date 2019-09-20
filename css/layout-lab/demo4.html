@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>float+BFC 两栏布局</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+    }
+    .wrapper-float-bfc {
+      overflow: auto;
+    }
+
+    .wrapper-float-bfc .left {
+      float: left;
+      height: 200px;
+      margin-right: 20px;
+      background: skyblue;
+    }
+
+    .wrapper-float-bfc .right {
+      height: 200px;
+      margin-left: 0;
+      overflow: auto;
+      background: yellowgreen;
+    }
+  </style>
+</head>
+
+<body>
+ <div class="wrapper-float-bfc">
+   <div class="left"></div>
+   <div class="right"></div>
+ </div>
+</body>
+
+</html>
