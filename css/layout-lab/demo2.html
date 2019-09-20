@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    .wrapper-grid {
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      align-items: start;
+    }
+
+    .wrapper-grid .left,
+    .wrapper-grid .right {
+      box-sizing: border-box;
+    }
+
+    .wrapper-grid .left {
+      grid-column: 1;
+      height: 200px;
+      background: lightblue;
+    }
+
+    .wrapper-grid .right {
+      grid-column: 2;
+      height: 200px;
+      background: skyblue;
+    }
+
+    .nav-wrapper {
+      height: 100%;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrapper-grid">
+    <div class="left"></div>
+    <div class="right"></div>
+  </div>
+</body>
+
+</html>
