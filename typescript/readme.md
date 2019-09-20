@@ -5,10 +5,20 @@
 * [TypeScript 强大的类型别名][101] - 文章介绍了一些 `Typescript` 关键字
 * [优雅的在 react 中使用 TypeScript][102]
 * [TypeScript在react中的实践][103]
+* [TypeScript 3.0 元组类型的用法和一些奇技淫巧][105]
+* [[TypeScript奇技淫巧] union to tuple][106]
+* [TypeScript 2.1 新特性一览][107]
+* [Typescript有什么冷门但是很好用的特性？][108]
+* [typescript 类型系统从无知到失智][109]
 
 [101]: https://juejin.im/post/5c2f87ce5188252593122c98
 [102]: https://juejin.im/post/5bed5f03e51d453c9515e69b
 [103]: https://juejin.im/post/5d494070f265da03a148408f
+[105]: https://zhuanlan.zhihu.com/p/38687656
+[106]: https://zhuanlan.zhihu.com/p/58704376
+[107]: https://zhuanlan.zhihu.com/p/24267683
+[108]: https://www.zhihu.com/question/276172039/answer/385498094
+[109]: https://juejin.im/entry/5c17c2d3f265da61616e9c42
 
 ## 学习资料
 

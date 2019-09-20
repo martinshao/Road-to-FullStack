@@ -31,12 +31,12 @@
 * `AO`：活动对象（`Activation Object`）
 * `Closure`：闭包
 
-
 ## 变量和执行上下文
 
 在引出变量对象概念之前，我们先做一个铺垫。编程的世界核心元素是什么？目前的我认为是数据结构和算法，当然这已经是一种相当抽象的说法，在JavaScript编程中，切实的说就是变量和函数。但是我们在日常编程过程中写的代码是没有任何意义的，只有在运行的时候，问题才能得到解决。那么运行的时候，变量和函数又何去何从？
 
 我们知道在ECMAscript中变量是和上下文有密切关系的。
+
 ``` js
 var a = 10; // 全局的变量
 
@@ -54,13 +54,13 @@ alert(b); // 全局变量 "b" 没有声明
 for (var k in {a: 1, b: 2}) {
   alert(k);
 }
- 
+
 alert(k); // 尽管循环已经结束但变量k依然在当前作用域
 ```
 
 如果变量与执行上下文相关，那变量自己应该知道它的数据存储在哪里，并且知道如何访问。这种机制称为变量对象(variable object)。
 
-```
+``` text
 变量对象(缩写为VO)是一个与执行上下文相关的特殊对象，它存储着在上下文中声明的以下内容：
     变量 (var, 变量声明);
     函数声明 (FunctionDeclaration, 缩写为FD);
@@ -88,23 +88,24 @@ executionContext：{
 ## 变量对象(variable object)
 
 > Every execution context has associated with it a variable object. Variables and functions declared in the source text are added as properties of the variable object. For function code, parameters are added as properties of the variable object.
-
 > 译文：每一个执行上下文都会分配一个**变量对象(variable object)**，变量对象的属性由 **变量(variable)** 和 **函数声明(function declaration)** 构成。在函数上下文情况下， **参数列表(parameter list)** 也会被加入到变量对象(variable object)中作为属性。
 
 变量对象不包含 函数表达式(function expressions) (与 函数声明(function declarations) 比较 )。
+
 ```js
 var foo = 10;
- 
+
 function bar() { var a = 20 } // function declaration, FD
 (function baz() {}); // function expression, FE
- 
+
 console.log(
   this.foo == foo, // true
   window.bar == bar // true
 );
- 
+
 console.log(baz); // ReferenceError, "baz" is not defined
 ```
+
 ![alt text](../_assets/20190525181656.png "JavaScript call stack ")
 
 ### 分类
@@ -113,7 +114,7 @@ console.log(baz); // ReferenceError, "baz" is not defined
 
 可以适当的把变量对象看作是一个接口，Global object和Activation object实现了该接口，变量对象是对于执行上下文中准备执行的变量、函数声明的元素的结合的对象的一种抽象。
 
-```
+``` text
 抽象变量对象VO (变量初始化过程的一般行为)
   ║
   ╠══> 全局上下文变量对象GlobalContextVO
@@ -125,15 +126,16 @@ console.log(baz); // ReferenceError, "baz" is not defined
 
 ```js
 var a = 10;
- 
+
 function test(x) {
   var b = 20;
 };
- 
+
 test(30);
 ```
 
 伪代码表示变量对象
+
 ``` js
 // 全局上下文的变量对象
 VO(globalContext) = {
@@ -179,7 +181,7 @@ global = {
 
 ```js
 String(10); // 就是global.String(10);
- 
+
 // 带有前缀
 window.a = 10; // === global.window.a = 10 === global.a = 10;
 this.b = 20; // global.b = 20;
@@ -193,12 +195,12 @@ this.b = 20; // global.b = 20;
 
 ```js
 var a = new String('test');
- 
+
 alert(a); // 直接访问，在VO(globalContext)里找到："test"
- 
+
 alert(window['a']); // 间接通过global访问：global === VO(globalContext): "test"
 alert(a === this.a); // true
- 
+
 var aKey = 'a';
 alert(window[aKey]); // 间接通过动态属性名称访问："test"
 ```
@@ -207,11 +209,10 @@ alert(window[aKey]); // 间接通过动态属性名称访问："test"
 
 > When control enters an execution context for function code, an object called the activation object is created and associated with the execution context. The activation object is initialised with a property with name arguments and attributes { DontDelete }. The initial value of this property is the arguments object described below.  
 > The activation object is then used as the variable object for the purposes of variable instantiation.
-
-
 > 译文：当函数被激活，那么一个活动对象(activation object)就会被创建并且分配给执行上下文。活动对象由特殊对象 arguments 初始化而成。随后，他被当做变量对象(variable object)用于变量初始化。
 
 用代码来说明就是：
+
 ```js
 function foo(x, y) {
   var z = 30;
@@ -240,7 +241,7 @@ foo(10, 20);
 
 ```js
 var x = 10;
- 
+
 (function foo() {
   var y = 20;
   (function bar() {
@@ -264,44 +265,44 @@ var x = 10;
 
 ```js
 Object.prototype.x = 10;
- 
+
 var w = 20;
 var y = 30;
- 
+
 // in SpiderMonkey global object
 // i.e. variable object of the global
 // context inherits from "Object.prototype",
 // so we may refer "not defined global
 // variable x", which is found in
 // the prototype chain
- 
+
 console.log(x); // 10
- 
+
 (function foo() {
- 
+
   // "foo" local variables
   var w = 40;
   var x = 100;
- 
+
   // "x" is found in the
   // "Object.prototype", because
   // {z: 50} inherits from it
- 
+
   with ({z: 50}) {
     console.log(w, x, y , z); // 40, 10, 30, 50
   }
- 
+
   // after "with" object is removed
   // from the scope chain, "x" is
   // again found in the AO of "foo" context;
   // variable "w" is also local
   console.log(x, w); // 100, 40
- 
+
   // and that's how we may refer
   // shadowed global "w" variable in
   // the browser host environment
   console.log(window.w); // 20
- 
+
 })();
 ```
 
@@ -313,7 +314,6 @@ console.log(x); // 10
 
 只要所有外部函数的变量对象都存在，那么从内部函数引用外部数据则没有特别之处——我们只要遍历作用域链表，查找所需变量。然而，如上文所提及，当一个上下文终止之后，其状态与自身将会被 销毁(destroyed) ，同时内部函数将会从外部函数中返回。此外，这个返回的函数之后可能会在其他的上下文中被激活，那么如果一个之前被终止的含有一些自由变量的上下文又被激活将会怎样?通常来说，解决这个问题的概念在ECMAScript中与作用域链直接相关，被称为 (词法)闭包((lexical) closure) 。
 
-
 * [JavaScript的核心原理][8]
 * [JavaScript. The Core.][10]
 * [深入理解JavaScript系列（12）：变量对象（Variable Object）][5]
@@ -322,11 +322,10 @@ console.log(x); // 10
 
 * [一道js面试题引发的思考][1]
 * [EC+VO+SCOPE for ES3][2]
-* [分不清的javascript运行机制 ][3]
+* [分不清的javascript运行机制][3]
 * [JavaScript作用域、上下文、执行期上下文、作用域链、闭包][6]
 * [傻傻分不清的javascript运行机制][7]
 * [V8 javascript 引擎][9]
-
 
 [1]: https://github.com/kuitos/kuitos.github.io/issues/18
 [2]: https://www.cnblogs.com/mininice/p/3876307.html
