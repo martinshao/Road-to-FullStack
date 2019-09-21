@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>form 表单的研究一</title>
+    <style>
+      h3 {
+        margin: 0;
+        padding: 0;
+        margin-bottom: 10px;
+      }
+
+      .form-style {
+        margin: 10px 30px;
+        padding: 20px;
+        width: 300px;
+        border: 1px solid skyblue;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- ========== Simple Form ========== -->
+    <div class="form-style">
+      <h3>简单标准表单</h3>
+      <form method="post" action="result.html">
+        （表示向何处发送表单数据）
+        <p>名字：<input name="name" type="text" /></p>
+        <p>密码：<input name="pass" type="password" /></p>
+        <p>
+          <input type="submit" name="Button" value="提交" />
+          <input type="reset" name="Reset" value="重填" />
+        </p>
+      </form>
+    </div>
+    <!-- ========== Simple Form ========== -->
+
+    <!-- ========== Text Syntax ========== -->
+    <div class="form-style">
+      <h3>文本框-语法</h3>
+      <input
+        type="text"
+        name="userName"
+        value="用户名"
+        size="30"
+        maxlength="20"
+      />
+    </div>
+    <!-- ========== Text Syntax ========== -->
+
+    <!-- ========== Password Syntax ========== -->
+    <div class="form-style">
+      <h3>密码框-语法</h3>
+      <input type="password " name="pass" size="20" />
+    </div>
+    <!-- ========== Password Syntax ========== -->
+
+    <!-- ========== Raio Syntax ========== -->
+    <div class="form-style">
+      <h3>单选按钮-语法</h3>
+      <form action="" method="get">
+        您最喜欢水果？<br /><br />
+        <label><input name="Fruit" type="radio" value="" checked />苹果</label>
+        <label><input name="Fruit" type="radio" value="" />桃子 </label>
+        <label><input name="Fruit" type="radio" value="" />香蕉 </label>
+        <label><input name="Fruit" type="radio" value="" />梨 </label>
+        <label><input name="Fruit" type="radio" value="" />其它 </label>
+      </form>
+    </div>
+    <!-- ========== Raio Syntax ========== -->
+
+    <!-- ========== Checkbox Syntax ========== -->
+    <div class="form-style">
+      <h3>复选框-语法</h3>
+      <form action="" method="get">
+        您最喜欢水果？<br /><br />
+        <label><input name="Fruit" type="checkbox" checked />苹果</label>
+        <label><input name="Fruit" type="checkbox" value="" />桃子 </label>
+        <label><input name="Fruit" type="checkbox" value="" />香蕉 </label>
+        <label><input name="Fruit" type="checkbox" value="" />梨 </label>
+        <label><input name="Fruit" type="checkbox" value="" />其它 </label>
+      </form>
+    </div>
+    <!-- ========== Checkbox Syntax ========== -->
+
+    <!-- ========== Select Syntax ========== -->
+    <div class="form-style">
+      <h3>列表框-语法</h3>
+      <select>
+        <option value="volvo">Volvo</option>
+        <option value="saab">Saab</option>
+        <option value="mercedes">Mercedes</option>
+        <option value="audi">Audi</option>
+      </select>
+    </div>
+    <!-- ========== Select Syntax ========== -->
+
+    <!-- ========== Select Syntax ========== -->
+    <div class="form-style">
+      <h3>按钮-语法</h3>
+      <input type="reset" name="butReset" value="reset按钮" />
+      <input type="submit" name="butSubmit" value="submit按钮" />
+      <input type="button" name="butButton" value="button按钮" />
+      图片按钮 <input type="image" src="../arrow-twoSide-2c4b63763d.svg" />
+    </div>
+    <!-- ========== Select Syntax ========== -->
+
+    <!-- ========== Textarea Syntax ========== -->
+    <div class="form-style">
+      <h3>多行文本域-语法</h3>
+      <textarea name="showText" cols="20" rows="10">文本内容 </textarea>
+    </div>
+    <!-- ========== Textarea Syntax ========== -->
+
+    <!-- ========== Filearea Syntax ========== -->
+    <div class="form-style">
+      <h3>文件域-语法</h3>
+      <form
+        action=""
+        method="post"
+        enctype="multipart/form-data"
+        （表单编码属性）
+      >
+        <p>
+          <input type="file" (文件域) name="files" />
+          <input type="submit" name="upload" value="上传" />
+        </p>
+      </form>
+    </div>
+    <!-- ========== Filearea Syntax ========== -->
+
+    <!-- ========== Mail Syntax ========== -->
+    <div class="form-style">
+      <h3>邮箱-语法</h3>
+      <p>邮箱:<input type="email" name="email" /></p>
+      <input type="submit" />
+    </div>
+    <!-- ========== Mail Syntax ========== -->
+
+    <!-- ========== Number Syntax ========== -->
+    <div class="form-style">
+      <h3>数字-语法</h3>
+      <p>
+        请输入数字:<input
+          type="number"
+          name="num"
+          min="0"
+          max="100"
+          step="10"
+        />
+      </p>
+      <input type="submit" />
+    </div>
+    <!-- ========== Number Syntax ========== -->
+
+    <!-- ========== Slider Syntax ========== -->
+    <div class="form-style">
+      <h3>滑块-语法</h3>
+      <p>
+        请输入数字:<input
+          type="range"
+          name="range1"
+          min="0"
+          max="10"
+          step="2"
+        />
+      </p>
+      <input type="submit" />
+    </div>
+    <!-- ========== Slider Syntax ========== -->
+
+    <!-- ========== Reseach Syntax ========== -->
+    <div class="form-style">
+      <h3>搜索框-语法</h3>
+      <p>请输入搜索的关键词:<input type="search" (搜索框) name="sousuo" /></p>
+      <input type="submit" />
+    </div>
+    <!-- ========== Reseach Syntax ========== -->
+
+    <!-- ========== 表单的高级应用 ========== -->
+    <div class="form-style">
+      <h3>表单的高级应用</h3>
+      <input type="hidden" value="666" name="userid" />
+      <input name="name" type="text" value="张三" readonly />
+      <input type="submit " disabled value="保存" />
+      <label for="id" (表单元素的id)>标注的文本</label>
+      <input type="radio" name="gender" id="male" />
+    </div>
+    <!-- ========== 表单的高级应用 ========== -->
+
+    <!-- ========== 表单的初级验证 ========== -->
+    <div class="form-style">
+      <input type="search" name="sousuo" placeholder="请输入要搜索的关键字" />
+      <input type="text" name="username" required />
+      <input type="text" name="tel" required pattern="^1[358]\d{9}" />
+    </div>
+    <!-- ========== 表单的初级验证 ========== -->
+  </body>
+</html>

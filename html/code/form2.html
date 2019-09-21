@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input
+      type="text"
+      name="text"
+      placeholder="请输入时间"
+      οnfοcus="(this.type='date')"
+    />
+    <form action="" method="post" enctype="multipart/form-data" novalidate>
+      <!-- anction 为后台交互的提交地址 -->
+      <input type="file" name="file" />
+      <!-- 有file type 的input 那么form 里面要加上如上的enctype 属性 -->
+      <label>用户名</label>
+      <input
+        type="text"
+        name="user"
+        placeholder="请输入用户名"
+        required
+        autofocus
+      />
+      <input type="submit" name="submit" />
+    </form>
+    <form action="" method="post" enctype="multipart/form-data">
+      <!-- anction 为后台交互的提交地址 -->
+      <input type="file" name="file" />
+      <!-- 有file type 的input 那么form 里面要加上如上的enctype 属性 -->
+      <label>用户名</label>
+      <input
+        type="text"
+        name="user"
+        placeholder="请输入用户名"
+        required
+        autofocus
+      />
+      <input type="submit" name="novasubmit" formnovalidate />
+      <input type="submit" name="submit" />
+    </form>
+  </body>
+</html>
