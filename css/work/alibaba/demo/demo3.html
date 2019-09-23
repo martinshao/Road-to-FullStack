@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="../js/arc-progress.min.js"></script>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    ul, li, p {
+      padding: 0;
+      margin: 0;
+      list-style: none
+    }
+
+    .content {
+      margin-left: 208px;
+    }
+
+    .card-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      margin-left: -4px;
+      max-width: 1218px;
+    }
+
+    .card {
+      display: flex;
+      width: 356px;
+      height: 188px;
+      margin: 12px 4px;
+      padding: 16px;
+      border: 1px solid #EBEBEB;
+      box-shadow: 0px 1px 4px 0px #0000001a;
+    }
+    .card-img {
+      margin: 0 8px;
+    }
+    .card-img img {
+      width: 80px;
+      height: 80px;
+    }
+    .card-text {
+      padding: 0 6px;
+    }
+    .card-title {
+      margin-top: 20px;
+      font-size: 14px;
+      color: #555555;
+      line-height: 22px;
+    }
+    .card-desc {
+      margin-top: -12px;
+    }
+    .card-desc span {
+      font-size: 12px;
+      color: #888888;
+      line-height: 20px;
+    }
+    .card-desc li {
+      margin-top: 12px;
+    }
+    .card-process {
+      width: 45%;
+    text-align: center;
+    }
+    .meal-surplus {
+      font-size: 12px;
+      margin-top: 42px;
+      margin-bottom: 8px;
+      color: #888888;
+      line-height: 23px;
+    }
+    .progress-container {
+      margin: auto;
+    }
+    .buy-btn {
+      display: block;
+      width: 68px;
+      height: 32px;
+      margin-top: 5px;
+      line-height: 32px;
+      background: #0070CC;
+      color: #ffffff;
+      font-size: 12px;
+      margin: auto;
+      cursor: pointer;
+    }
+    .call-times {
+      font-size: 18px !important;
+      color: #333333 !important;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="content">
+
+    <h3>已开通项目</h3>
+    <div class="card-wrapper">
+      <div class="card">
+        <div class="card-img">
+          <img src="https://img.alicdn.com/tfs/TB1I3f2gHr1gK0jSZFDXXb9yVXa-160-160.png">
+        </div>
+        <div class="card-text">
+          <p class="card-title">图像处理</p>
+          <ul class="card-desc">
+            <li><span>套餐类型：包月</span></li>
+            <li><span>用日调用量</span><br><span class="call-times">- -</span></li>
+            <li><span>昨日调用量</span><br><span class="call-times">2,801</span></li>
+          </ul>
+        </div>
+        <div class="card-process">
+          <p class="meal-surplus">套餐余量</p>
+          <span id='progress-container'></span>
+          <span class="buy-btn">购买</span>
+        </div>
+      </div>
+      <div class="card"></div>
+      <div class="card"></div>
+      <div class="card"></div>
+    </div>
+    <h3>未开通项目</h3>
+    <div class="card-wrapper"></div>
+  </div>
+  <script src="../js/demo.js"></script>
+</body>
+
+</html>
