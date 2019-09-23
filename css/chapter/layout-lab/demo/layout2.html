@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style>
+      .ant-layout {
+        box-sizing: border-box;
+        display: flex;
+        -webkit-box-flex: 1;
+        flex: auto;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        flex-direction: column;
+        min-height: 0;
+        background: #f0f2f5;
+        text-align: center;
+      }
+      .ant-layout-header {
+        height: 64px;
+        padding: 0 50px;
+        line-height: 64px;
+        background: #7dbcea;
+        color: #fff;
+        -webkit-box-flex: 0;
+        flex: 0 0 auto;
+        box-sizing: border-box;
+      }
+      .ant-layout.ant-layout-has-sider {
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+        flex-direction: row;
+      }
+      .ant-layout-sider-children {
+        height: 100%;
+        margin-top: -0.1px;
+        padding-top: 0.1px;
+        color: #fff;
+        line-height: 120px;
+        background: #3ba0e9;
+      }
+      .ant-layout-content {
+        background: #108ee9;
+        color: #fff;
+        min-height: 120px;
+        line-height: 120px;
+        -webkit-box-flex: 1;
+        -ms-flex: auto;
+        flex: auto;
+        min-height: 0;
+      }
+      .ant-layout-footer {
+        padding: 24px 50px;
+        color: rgba(0, 0, 0, 0.65);
+        font-size: 14px;
+        -webkit-box-flex: 0;
+        -ms-flex: 0 0 auto;
+        flex: 0 0 auto;
+        background: #7dbcea;
+        color: #fff;
+        line-height: 1.5;
+      }
+    </style>
+  </head>
+  <body>
+    <section class="ant-layout">
+      <header class="ant-layout-header">Header</header>
+      <section class="ant-layout ant-layout-has-sider">
+        <aside
+          class="ant-layout-sider ant-layout-sider-dark"
+          style="flex: 0 0 200px; max-width: 200px; min-width: 200px; width: 200px;"
+        >
+          <div class="ant-layout-sider-children">Sider</div>
+        </aside>
+        <main class="ant-layout-content">Content</main>
+      </section>
+      <footer class="ant-layout-footer">Footer</footer>
+    </section>
+  </body>
+</html>

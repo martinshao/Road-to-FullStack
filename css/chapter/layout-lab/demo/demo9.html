@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style>
+      .content {
+        overflow: hidden;
+      }
+      .main {
+        float: left;
+        width: 100%;
+      }
+      .main-content {
+        margin: 0 100px 0 150px;
+        background: green;
+      }
+      .left {
+        float: left;
+        margin-left: -100%;
+        width: 150px;
+        background: red;
+      }
+      .right {
+        float: left;
+        margin-left: -100px;
+        width: 100px;
+        background: gray;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="content">
+      <div class="main"><div class="main-content">中间自适应</div></div>
+      <div class="left">左边定宽</div>
+      <div class="right">右边定宽</div>
+    </div>
+  </body>
+</html>
