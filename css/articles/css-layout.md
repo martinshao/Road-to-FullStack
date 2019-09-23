@@ -12,3 +12,9 @@
 Flexbox 的原理
 为何选 Flexbox 布局，不选 Grid 布局？
 第四步：应用 Flexbox
+
+## 参考文章
+
+* [MDN CSS 布局][1]
+
+[1]: https://developer.mozilla.org/zh-CN/docs/Learn/CSS/CSS_layout

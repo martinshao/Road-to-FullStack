@@ -22,5 +22,17 @@
 ## 参考资料
 
 * [W3C Normal flow][1]
+* [MDN 视觉格式化模型][2]
+* [MDN Block formatting context][3]
+* [[布局概念] 关于CSS-BFC深入理解][4]
+* [一篇文章了解HTML文档流(normal flow)][5]
+* [Css文档流(Normal Flow)详细介绍][6]
+* [CSS标准文档流][7]
 
 [1]: https://www.w3.org/TR/CSS2/visuren.html#normal-flow
+[2]: https://developer.mozilla.org/en-US/docs/Web/CSS/Visual_formatting_model
+[3]: https://developer.mozilla.org/en-US/docs/Web/Guide/CSS/Block_formatting_context
+[4]: https://juejin.im/post/5909db2fda2f60005d2093db
+[5]: https://segmentfault.com/a/1190000012425858
+[6]: https://blog.csdn.net/drdongshiye/article/details/77619572
+[7]: https://www.jianshu.com/p/4921ba9e101d
