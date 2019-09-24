@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      console.info('---script start---');
+      let a = new Promise((resolve, reject) => {
+        setTimeout(() => {
+          resolve(100);
+        }, 1000);
+      });
+      let some = a.then(result => {
+        console.info('result', result);
+        return result;
+      });
+      console.info('some---', some.then(res => console.info('res+++', res)));
+      async function test(times) {
+        console.info('===sync===');
+        let b;
+        await times.then(res => (b = 10 + res));
+        console.info('time------', b);
+        return b;
+      }
+      const total = test(some);
+      console.info(
+        'total------',
+        total.then(res => console.info('res---', res))
+      );
+
+      function awaitMethod(num) {
+        return new Promise((resolve, reject) => {
+          setTimeout(() => {
+            resolve(2 * num);
+          }, 2000);
+        });
+      }
+
+      async function test2() {
+        let result = await awaitMethod(30);
+        console.log(result);
+      }
+
+      test2();
+      console.info('---script end---');
+    </script>
+  </body>
+</html>
