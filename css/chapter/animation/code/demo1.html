@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .box {
+            height: 100px;
+            width: 100px;
+            border: 15px solid black;
+            animation: changebox 5s ease-in-out 5s infinite alternate running forwards;
+        }
+        
+        .box:hover {
+            animation-play-state: paused;
+        }
+        
+        @keyframes changebox {
+            10% {
+                width: 150px;
+            }
+            50% {
+                width: 200px;
+                background: red;
+            }
+            70% {
+                border: 15px solid yellow;
+            }
+            100% {
+                width: 180px;
+                height: 180px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box"></div>
+</body>
+
+</html>
