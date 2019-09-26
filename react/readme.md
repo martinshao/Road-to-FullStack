@@ -1,5 +1,15 @@
 # React 从入门到精通
 
+## React系列总结文章大纲
+
+* 认识React ，已经React全家桶成员，还有很多衍生框架
+* React生命周期的变更，以及变更的原因
+* React组件的介绍，各种组件的应用
+* React类组件需要特殊注意事项
+* React类组件和生命周期
+* React函数组件和Hooks
+* React事件机制
+
 ## React全家桶好用的插件
 
 * `prop-types`: 类型检查插件
