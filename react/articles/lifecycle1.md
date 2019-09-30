@@ -35,10 +35,7 @@
 
 5. shouldComponentUpdate(nextProps, nextState)
 
-使用场景：性能优化接口
-
-通过比较 this.props 与 nextProps， 和比较 this.state 与 nextState 来返回 false 阻止组件 render
-
+使用场景：性能优化接口 通过比较 this.props 与 nextProps， 和比较 this.state 与 nextState 来返回 false 阻止组件 render
 注意：forceUpdate 不会触发该函数
 
 某些情况可以使用 React.PureComponent 替代写该函数，参考 Here
@@ -92,3 +89,10 @@
 在该函数中调用 setState 以实现错误回滚至前一页面
 
 不要使用该函数作为业务处理的一部分。
+
+
+## 参考资料
+
+* [从componentWillReceiveProps说起][1]
+
+[1]: http://www.ayqy.net/blog/%E4%BB%8Ecomponentwillreceiveprops%E8%AF%B4%E8%B5%B7/

@@ -8,7 +8,7 @@ export default class MyComponent extends React.Component {
 
     }
   }
-    
+
   static defaultProps = {
 
   }
@@ -30,7 +30,7 @@ export default class MyComponent extends React.Component {
 
   }
   shouldComponentUpdate(nextProps, nextState) {
-    
+
   }
   getSnapshotBeforeUpdate(prevProps, prevState) {
 
