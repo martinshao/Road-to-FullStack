@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/core.js"></script>
+    <style>
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  background-color: aliceblue
+}
+div {
+  float: left;
+  width: calc(100vw / 11);
+  height: calc(100vh / 11);
+  margin: calc(100vh / 11) 0 0 calc(100vw / 11);
+}
+@element 'div' {
+  $this {
+    box-shadow:
+      rgba(0,0,0,.3)
+      eval('(offsetLeft + offsetWidth/2 - cursorX) / 50')px
+      eval('(offsetTop + offsetHeight/2 - cursorY) / 50')px
+      1vh
+    ;
+  }
+}
+    </style>
+  </head>
+  <body>
+    <script src="./EQCSS.js"></script>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </body>
+  <script>
+    var cursorX = 0;
+    var cursorY = 0;
+
+    function update(e) {
+      cursorX = e.clientX || e.touches[0].clientX;
+      cursorY = e.clientY || e.touches[0].clientY;
+      EQCSS.apply();
+    }
+
+    // Update cursor position every mouse/touch move
+    document.addEventListener("mousemove", update);
+    document.addEventListener("touchmove", update);
+  </script>
+</html>

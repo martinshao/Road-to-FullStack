@@ -1,0 +1,75 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>CSS阴影-jq22.com</title>
+<script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+<style>
+.cards {
+  margin: auto;
+  padding: 1em;
+  backgroun: white;
+  width: 640px;
+}
+
+/* Colors for the cards */
+.red { background: tomato; }
+.blue { background: steelblue; }
+.purple { background: mediumpurple; }
+.brown { background: rosybrown; }
+
+/* Selecting the child elements by the tag name of "div"
+this applies the styles to all divs */
+.cards > div {
+  margin: 2em;
+  width: 250px;
+  height: 250px;
+  display: inline-block;
+  position: relative;
+  transition: transform 0.5s;
+}
+
+/* On hover it scales 1.2 times the original size
+   and changes the cursor to pointer */
+.cards > div:hover {
+  transform: scale(1.2);
+  cursor: pointer;
+}
+
+/* This is the way to create those shadows
+   which are a trend now. Generally they are always
+   smaller in width than the parent elements */
+.cards > div:after {
+  content: "";
+  background: inherit;
+  filter: blur(.9em);
+  opacity: 0;
+  height: 20%;
+  width: 70%;
+  position: absolute;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  transition: opacity 1s, bottom 0.5s;
+}
+
+.cards > div:hover:after {
+  opacity: .8;
+  bottom: -1.2em;
+}</style>
+</head>
+<body>
+<div class="cards">
+  <div class="red"></div>
+  <div class="blue"></div>
+  <div class="purple"></div>
+  <div class="brown"></div>
+</div>
+
+<script>
+</script>
+
+</body>
+</html>

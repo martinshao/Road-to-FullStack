@@ -1,0 +1,77 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>CSS 3d 阴影-jq22.com</title>
+<script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+<style>
+html {
+  height: 100%;
+}
+
+body {
+  background-color: #333;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.block,
+.block2 {
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.9);
+  margin: auto;
+  padding: 20px;
+  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.2);
+  -webkit-transition: -webkit-box-shadow 0.6s, -webkit-transform 0.6s;
+  transition: -webkit-box-shadow 0.6s, -webkit-transform 0.6s;
+  transition: box-shadow 0.6s, transform 0.6s;
+  transition: box-shadow 0.6s, transform 0.6s, -webkit-box-shadow 0.6s, -webkit-transform 0.6s;
+  width: 30vw;
+}
+
+.block {
+  background-color: #0bc;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+.block:hover {
+  -webkit-box-shadow: 1px 1px 0 #0bc, 2px 2px 0 rgba(0, 181, 204, 0.96), 3px 3px 0 rgba(0, 178, 204, 0.94), 4px 4px 0 rgba(0, 175, 204, 0.92), 5px 5px 0 rgba(0, 172, 204, 0.9), 6px 6px 0 rgba(0, 169, 204, 0.88), 7px 7px 0 rgba(0, 166, 204, 0.86), 8px 8px 0 rgba(0, 163, 204, 0.84), 9px 9px 0 rgba(0, 159, 204, 0.82), 10px 10px 0 rgba(0, 156, 204, 0.8), 11px 11px 0 rgba(0, 153, 204, 0.78), 12px 12px 0 rgba(0, 150, 204, 0.76), 13px 13px 0 rgba(0, 147, 204, 0.74), 14px 14px 0 rgba(0, 144, 204, 0.72), 15px 15px 0 rgba(0, 141, 204, 0.7), 16px 16px 0 rgba(0, 138, 204, 0.68), 17px 17px 0 rgba(0, 135, 204, 0.66), 18px 18px 0 rgba(0, 132, 204, 0.64), 19px 19px 0 rgba(0, 129, 204, 0.62), 20px 20px 0 rgba(0, 126, 204, 0.6), 21px 21px 0 rgba(0, 123, 204, 0.58), 22px 22px 0 rgba(0, 120, 204, 0.56), 23px 23px 0 rgba(0, 117, 204, 0.54), 24px 24px 0 rgba(0, 114, 204, 0.52), 25px 25px 0 rgba(0, 111, 204, 0.5), 26px 26px 0 rgba(0, 107, 204, 0.48), 27px 27px 0 rgba(0, 104, 204, 0.46), 28px 28px 0 rgba(0, 101, 204, 0.44), 29px 29px 0 rgba(0, 98, 204, 0.42), 30px 30px 0 rgba(0, 95, 204, 0.4), 31px 31px 0 rgba(0, 92, 204, 0.38), 32px 32px 0 rgba(0, 89, 204, 0.36), 33px 33px 0 rgba(0, 86, 204, 0.34), 34px 34px 0 rgba(0, 83, 204, 0.32), 35px 35px 0 rgba(0, 80, 204, 0.3), 36px 36px 0 rgba(0, 77, 204, 0.28), 37px 37px 0 rgba(0, 74, 204, 0.26), 38px 38px 0 rgba(0, 71, 204, 0.24), 39px 39px 0 rgba(0, 68, 204, 0.22), 40px 40px 0 rgba(0, 65, 204, 0.2), 41px 41px 0 rgba(0, 62, 204, 0.18), 42px 42px 0 rgba(0, 58, 204, 0.16), 43px 43px 0 rgba(0, 55, 204, 0.14), 44px 44px 0 rgba(0, 52, 204, 0.12), 45px 45px 0 rgba(0, 49, 204, 0.1), 46px 46px 0 rgba(0, 46, 204, 0.08), 47px 47px 0 rgba(0, 43, 204, 0.06), 48px 48px 0 rgba(0, 40, 204, 0.04), 49px 49px 0 rgba(0, 37, 204, 0.02), 50px 50px 0 rgba(0, 34, 204, 0);
+          box-shadow: 1px 1px 0 #0bc, 2px 2px 0 rgba(0, 181, 204, 0.96), 3px 3px 0 rgba(0, 178, 204, 0.94), 4px 4px 0 rgba(0, 175, 204, 0.92), 5px 5px 0 rgba(0, 172, 204, 0.9), 6px 6px 0 rgba(0, 169, 204, 0.88), 7px 7px 0 rgba(0, 166, 204, 0.86), 8px 8px 0 rgba(0, 163, 204, 0.84), 9px 9px 0 rgba(0, 159, 204, 0.82), 10px 10px 0 rgba(0, 156, 204, 0.8), 11px 11px 0 rgba(0, 153, 204, 0.78), 12px 12px 0 rgba(0, 150, 204, 0.76), 13px 13px 0 rgba(0, 147, 204, 0.74), 14px 14px 0 rgba(0, 144, 204, 0.72), 15px 15px 0 rgba(0, 141, 204, 0.7), 16px 16px 0 rgba(0, 138, 204, 0.68), 17px 17px 0 rgba(0, 135, 204, 0.66), 18px 18px 0 rgba(0, 132, 204, 0.64), 19px 19px 0 rgba(0, 129, 204, 0.62), 20px 20px 0 rgba(0, 126, 204, 0.6), 21px 21px 0 rgba(0, 123, 204, 0.58), 22px 22px 0 rgba(0, 120, 204, 0.56), 23px 23px 0 rgba(0, 117, 204, 0.54), 24px 24px 0 rgba(0, 114, 204, 0.52), 25px 25px 0 rgba(0, 111, 204, 0.5), 26px 26px 0 rgba(0, 107, 204, 0.48), 27px 27px 0 rgba(0, 104, 204, 0.46), 28px 28px 0 rgba(0, 101, 204, 0.44), 29px 29px 0 rgba(0, 98, 204, 0.42), 30px 30px 0 rgba(0, 95, 204, 0.4), 31px 31px 0 rgba(0, 92, 204, 0.38), 32px 32px 0 rgba(0, 89, 204, 0.36), 33px 33px 0 rgba(0, 86, 204, 0.34), 34px 34px 0 rgba(0, 83, 204, 0.32), 35px 35px 0 rgba(0, 80, 204, 0.3), 36px 36px 0 rgba(0, 77, 204, 0.28), 37px 37px 0 rgba(0, 74, 204, 0.26), 38px 38px 0 rgba(0, 71, 204, 0.24), 39px 39px 0 rgba(0, 68, 204, 0.22), 40px 40px 0 rgba(0, 65, 204, 0.2), 41px 41px 0 rgba(0, 62, 204, 0.18), 42px 42px 0 rgba(0, 58, 204, 0.16), 43px 43px 0 rgba(0, 55, 204, 0.14), 44px 44px 0 rgba(0, 52, 204, 0.12), 45px 45px 0 rgba(0, 49, 204, 0.1), 46px 46px 0 rgba(0, 46, 204, 0.08), 47px 47px 0 rgba(0, 43, 204, 0.06), 48px 48px 0 rgba(0, 40, 204, 0.04), 49px 49px 0 rgba(0, 37, 204, 0.02), 50px 50px 0 rgba(0, 34, 204, 0);
+  -webkit-transform: translate3d(-10px, -10px, 0);
+          transform: translate3d(-10px, -10px, 0);
+}
+
+.block2 {
+  background-color: #f50;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+.block2:hover {
+  -webkit-box-shadow: 10px 10px 0 #f50, 20px 20px 0 rgba(255, 123, 0, 0.8), 30px 30px 0 rgba(255, 142, 0, 0.7), 40px 40px 0 rgba(255, 162, 0, 0.6), 50px 50px 0 rgba(255, 181, 0, 0.5), 60px 60px 0 rgba(255, 200, 0, 0.4), 70px 70px 0 rgba(255, 219, 0, 0.3), 80px 80px 0 rgba(255, 238, 0, 0.2), 90px 90px 0 rgba(253, 255, 0, 0.1), 100px 100px 0 rgba(234, 255, 0, 0);
+          box-shadow: 10px 10px 0 #f50, 20px 20px 0 rgba(255, 123, 0, 0.8), 30px 30px 0 rgba(255, 142, 0, 0.7), 40px 40px 0 rgba(255, 162, 0, 0.6), 50px 50px 0 rgba(255, 181, 0, 0.5), 60px 60px 0 rgba(255, 200, 0, 0.4), 70px 70px 0 rgba(255, 219, 0, 0.3), 80px 80px 0 rgba(255, 238, 0, 0.2), 90px 90px 0 rgba(253, 255, 0, 0.1), 100px 100px 0 rgba(234, 255, 0, 0);
+  -webkit-transform: translate3d(-10px, -10px, 0);
+          transform: translate3d(-10px, -10px, 0);
+}
+</style>
+</head>
+<body>
+<div class="block">
+   <h1>Hello, World.</h1>
+   <p>
+      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Porro veritatis blanditiis deserunt, hic cupiditate, delectus mollitia veniam in dolores, dignissimos doloremque iusto tempore. Aperiam dolor laudantium voluptate numquam optio ea.
+   </p>
+</div>
+<div class="block2">
+   <h1>Hello, World.</h1>
+   <p>
+      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Porro veritatis blanditiis deserunt, hic cupiditate, delectus mollitia veniam in dolores, dignissimos doloremque iusto tempore. Aperiam dolor laudantium voluptate numquam optio ea.
+   </p>
+</div>
+
+<script>
+</script>
+
+</body>
+</html>
