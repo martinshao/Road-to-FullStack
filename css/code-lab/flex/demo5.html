@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    body, p, h1, h2, h3, h4, h5, h6, ul, li, ol, dl, dt, dd { margin: 0; padding: 0; }
+    body { font: 0.32rem/1.6 normal Helvetica; color: #6c6c6c;background-color: #f0eff5;}
+    a { color: #6c6c6c; text-decoration: none; }
+    ul, li, ol, li { list-style: none; }
+    .flex-container {
+      display: flex;
+    }
+
+    /* 以下为辅助样式 */
+
+    .flex-container {
+      background-color: #F0f0f0;
+    }
+
+    .flex-container .flex-item {
+      padding: 20px;
+      background-color: #B1FF84;
+    }
+
+    .flex-container .flex-item:first-child {
+      background-color: #F5DE25;
+    }
+
+    .flex-container .flex-item:last-child {
+      background-color: #90D9F7;
+    }
+    .tab li {
+      display: block;
+      float: left;
+    }
+    .item-left {
+      width: 80%;
+    }
+    .item-right {
+      width: 20%;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="flex-container">
+    <div class="flex-item item-left tab">
+      <ul>
+        <li class="on" dif="1">任我用</li>
+        <li dif="2" class="">飞享</li>
+        <li dif="3" class="">和家庭</li>
+        <li dif="4" class="">至享</li>
+        <li dif="5" class="">单宽</li>
+        <li dif="6" class="">和家庭</li>
+      </ul>
+    </div>
+    <div class="flex-item item-right">2</div>
+  </div>
+</body>
+
+</html>

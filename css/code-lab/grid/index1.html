@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style>
+      #grid {
+        display: grid;
+        height: 200px;
+        grid-template: repeat(3, 1fr) / repeat(3, 1fr);
+        gap: 20px 5px;
+      }
+
+      #grid > div {
+        border: 1px solid green;
+        background-color: lime;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="grid">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+  </body>
+</html>

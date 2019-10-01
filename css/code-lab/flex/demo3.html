@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .content {
+      position: fixed;
+      top: 0%;
+      left: 0%;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,.7);
+      z-index: 999;
+    }
+    .flex-container {
+      display: flex;
+      justify-content: space-evenly;
+      flex-wrap: wrap;
+      position: absolute;
+      width: 100%;
+      background-color: #fff;
+      left: 0%;
+      top: 25%;
+    }
+
+    /* 以下为辅助样式 */
+
+    .flex-container {
+      background-color: #f0f0f0;
+    }
+
+    .flex-container .flex-item {
+      padding-left: 35px;
+      padding-right: 35px;
+      padding-bottom: 5px;
+      padding-top: 5px;
+      margin-top: 10px;
+      margin-bottom: 10px;
+      border-radius: 4px;
+      background-color: #b1ff84;
+    }
+
+    .flex-container .flex-item:first-child {
+      background-color: #f5de25;
+    }
+
+    .flex-container .flex-item:last-child {
+      background-color: #90d9f7;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="content">
+    <div class="flex-container">
+        <div class="flex-item">合肥</div>
+        <div class="flex-item">安庆</div>
+        <div class="flex-item">蚌埠</div>
+        <div class="flex-item">亳州</div>
+        <div class="flex-item">池州</div>
+        <div class="flex-item">滁州</div>
+        <div class="flex-item">阜阳</div>
+        <div class="flex-item">淮北</div>
+        <div class="flex-item">淮南</div>
+        <div class="flex-item">黄山</div>
+        <div class="flex-item">六安</div>
+        <div class="flex-item">铜陵</div>
+        <div class="flex-item">芜湖</div>
+        <div class="flex-item">宿州</div>
+        <div class="flex-item">宣城</div>
+        <div class="flex-item">马鞍山</div>
+      </div>
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Flex练习</title>
+    <style>
+      body {
+        background: #f3f3f3;
+      }
+      .container {
+        margin: 2rem;
+        display: flex;
+        width: 500px;
+        height: 100px;
+        background: #fff;
+        flex-wrap: nowrap;
+        align-items: center;
+        justify-content: space-evenly;
+        border: 1px solid red;
+      }
+      .container > div {
+        width: 100px;
+        text-align: center;
+      }
+      .container > div:nth-child(1) {
+        background: #6cacff;
+      }
+      .container > div:nth-child(2) {
+        background: #d4fc78;
+      }
+      .container > div:nth-child(3) {
+        background: #41c7af;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div>1</div>
+      <div>2</div>
+      <div>3</div>
+    </div>
+  </body>
+</html>
