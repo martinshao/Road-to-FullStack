@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+  #test li {
+    font-size: 60px;
+    list-style: none;
+    transition: color 1s ease-in-out;
+  }
+  </style>
+</head>
+<body>
+  <ul id="test">
+    <li>item1</li>
+    <li>item1</li>
+    <li>item1</li>
+  </ul>
+</body>
+<script>
+const test = document.querySelector('#test');
+
+test.addEventListener('mouseenter', e => {
+  e.target.style.color = '#FFFFFF';
+
+  setTimeout(() => {
+    e.target.style.color = '';
+  }, 1000);
+})
+
+test.addEventListener('mouseover', e => {
+  e.target.style.color = 'orange';
+
+  setTimeout(() => {
+    e.target.style.color = '';
+  }, 1000);
+})
+</script>
+</html>
