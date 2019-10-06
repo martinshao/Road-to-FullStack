@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>mayue</title>
+  <link rel="stylesheet" href="./demo6.css">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+    }
+    .title {
+      width: 500px;
+      /* font-size: 6rem; */
+      /* padding: 0.8rem; */
+      padding-top: 10px;
+    }
+
+    .card {
+      margin: 30px;
+      padding: 20px;
+      width: 320px;
+      height: 180px;
+      /* border: 1px solid #f9f9f9; */
+      background: skyblue;
+      background: linear-gradient(to right, #90caf9, #047edf 99%);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="title">邵伟和马悦</div>
+  <div id="content">邵伟很帅</div>
+  <button id="btn">点击我</button>
+  <button onclick="alert('马悦是个好同志。')">点击我</button>
+  <button onclick="handleClicks()"">点击我</button>
+  <div class="card">
+    <p>马悦</p>
+    <p>和邵伟</p>
+    <span>马悦</span>
+    <span>和邵伟</span>
+    </div>
+    <form id="form">
+      <input type="password" placeholder="password">
+      <input type="text" placeholder="text input">
+    </form>
+</body>
+<script src="./dome6.js"></script>
+<script>
+  function handleClicks() {
+    alert('mayue he shaowei...');
+  }
+  // let btn = document.querySelectorAll('#btn');
+  // console.info(btn);
+  // function handleClick() {
+  //   console.info('handleClick');
+  // }
+  // btn.onclick = function handleClick() {
+  //   alert('马悦是个好同志。')
+  // }
+  // btn.addEventListener('click', function() {
+  //   alert('马悦是个好同志。');
+  // })
+  // document.getElementById('btn').onclick = function handleBtn() {
+  //   alert('马悦是个好同志。');
+  // }
+  // console.info(document.getElementById('btn'));
+  // console.info('btn[0]', btn[0]);
+  // console.info(document.querySelector('#btn'));
+  // btn[0].addEventListener('click', function() {
+  //   alert('马悦是个好同志。');
+  // })
+  let btn = document.querySelector('#btn');
+  btn.addEventListener('click', function () {
+    console.info('handle click event...');
+  })
+  const password = document.querySelector('input[type="password"]');
+
+  password.addEventListener('focus', (event) => {
+    event.target.style.background = 'pink';
+  });
+
+  password.addEventListener('blur', (event) => {
+    event.target.style.background = '';
+  });
+</script>
+
+</html>

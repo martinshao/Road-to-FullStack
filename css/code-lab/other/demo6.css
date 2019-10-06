@@ -1,0 +1,8 @@
+/* 选择器 */
+.title{
+  background: yellowgreen;
+}
+#content {
+  font-size: 6rem;
+  color: lightblue;
+}

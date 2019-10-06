@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-size: 13px;
+      color: #58666e;
+      background-color: #f0f3f4;
+    }
+    nav {
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 100%;
+      z-index: 1000;
+      text-align: center;
+      line-height: 55px;
+      height: 55px;
+      color: #fff;
+      border: none;
+      margin-bottom: 20px;
+      background-color: #2196F3;
+      box-shadow: 0 1px 0px rgba(0,0,0,0.12), 0 1px 1px rgba(0,0,0,0.24);
+    }
+    .container-wrapper {
+      margin-right: auto;
+      margin-left: auto;
+    }
+    .left-menu {
+      box-sizing: border-box;
+    }
+    .sub-left-menu {
+      overflow: hidden;
+      outline: none;
+      width: 230px;
+      display: block;
+      /* padding-top: 50px; */
+      position: fixed;
+      background: #fff;
+      height: 100%;
+    }
+    .content {
+      margin-top: 51px;
+      padding-left: 230px;
+      padding-right: 0px;
+      padding-bottom: 10px;
+      /* background: lightblue; */
+    }
+    .panel {
+      height: 200px;
+      margin: 20px;
+      background: skyblue;
+    }
+    .card-wrapper {
+      height: 300px;
+      background: lightskyblue;
+    }
+    .right-menu {
+      position: fixed;
+      /* display: block; */
+      display: none;
+      width: 230px;
+      top: 50px;
+      right: 0;
+      height: 100%;
+      background: #fff;
+      box-shadow: 0px 9px 0px 0px white, 0 -9px 0px 0px white, 4px 0 15px -4px rgba(0, 0, 0, 0.16), -4px 0 15px -4px rgba(0, 0, 0, 0.12);
+    }
+  </style>
+</head>
+<body>
+  <!-- start: Header -->
+  <nav>Navigation</nav>
+  <!-- end: Header -->
+  <div class="container-wrapper">
+    <!-- start: Left Menu -->
+    <div class="left-menu">
+      <div class="sub-left-menu">
+        <ul class="nav nav-list">
+          <li>My information</li>
+          <li>My Production</li>
+        </ul>
+      </div>
+    </div>
+    <!-- end: Left Menu -->
+    <!-- start: Content -->
+    <div class="content">
+      <div class="panel">Content</div>
+      <div class="card-wrapper">Card Wrapper</div>
+    </div>
+    <!-- end: Content -->
+    <!-- start: Right Menu -->
+    <div class="right-menu">Right Menu</div>
+    <!-- end: Right Menu -->
+    <!-- <div class="container">Container</div> -->
+  </div>
+</body>
+</html>
