@@ -17,7 +17,7 @@
 > * Higher Order Component -> 高阶组件(HOC)
 > * Functions as Child Components -> 函数子组件(FaCC)
 
-## 三种组件的创建方式
+## 三种组件创建方式
 
 ![react](../assets/20191007211702.png "react")
 
