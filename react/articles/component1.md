@@ -1,4 +1,4 @@
-# 关于React组件，我们会聊些什么
+# 认识React组件基础篇——Class component & Function Component
 
 ## 关键词
 
@@ -17,7 +17,7 @@
 > * Higher Order Component -> 高阶组件(HOC)
 > * Functions as Child Components -> 函数子组件(FaCC)
 
-## 介绍组件系统
+## 三种组件的创建方式
 
 ![react](../assets/20191007211702.png "react")
 
