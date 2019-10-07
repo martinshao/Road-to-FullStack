@@ -144,9 +144,7 @@ react的组件类型是五花八门，暂时也没有一个定性的标准去划
 
 ## Class组件和Function组件
 
-上文提过，在React**0.14**版本发布之后，Class component和Function component便成为主流的组件声明方式。这其中Class component更是主流的主流。
-
-而在2019年的今年，随着 react 最新的一个大版本中，给我们带来了 Hooks：[React v16.8: The One With Hooks][101]，从而将 Function component 的能力提高了一大截，成功的拥有了可以与 Class component 抗衡的能力。但话说回来，虽然 `Hooks` 看起来很美好，最近也有不少文章都讲解了Hooks这一“黑魔法”，但技术的不断演进，本身就是一个解决以往所存在问题的过程，因此我个人认为着眼于现在，回望过去，去看一看 react component 的发展之路，去看看 Class component 以及 Function component 为什么会出现以及它们出现的意义，所要解决的问题，也对于我们全面了解 react 是很有帮助的。
+上文提过，在React**0.14**版本发布之后，Class component和Function component便成为主流的组件声明方式。这其中Class component更是主流的主流。一般模版如下，值得一提的是，React的生命周期也在16版本发生了重大变化。在之前之前，推荐的class component的模版如下：
 
 ``` js
 import PropTypes from 'prop-types';
@@ -173,6 +171,19 @@ class App extends Component {
   componentDidMount() {
     // ...
   }
+  componentWillReceiveProps(nextProps) {
+    // this.setState({})
+  }
+  shouldComponentUpdate(nextProps, nextState) {
+    // return true
+  }
+  componentWillUpdate(nextProps, nextState) {
+    // ...
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    // ...
+  }
   render() {
     return <div>This is a demo.</div>
   }
@@ -180,6 +191,58 @@ class App extends Component {
 
 export default App;
 ```
+
+16.8版本之后的React取消了componentWillMount，componentWillReceiveProps，componentWillUpdate，取而代之的是getDerivedStateFromProps，getSnapshotBeforeUpdate，这前后之间的具体区别则是另外一篇文章的事情了。
+
+``` js
+import React from 'react'
+
+export default class MyComponent extends React.Component {
+  constructor(props) {
+    super(props);
+    // 初始化state方式（1）
+    this.state = {
+      // ...
+    }
+  }
+
+  static defaultProps = {
+    // ...
+  }
+
+  // 初始化state方式（2）
+  state = {
+    // ...
+  }
+  static getDerivedStateFromProps(props, state) {
+    return state
+  }
+  componentDidCatch(error, info) {
+    // ...
+  }
+  render() {
+    return <div>This is a demo.</div>
+  }
+  componentDidMount() {
+    // ...
+  }
+  shouldComponentUpdate(nextProps, nextState) {
+    // ...
+  }
+  getSnapshotBeforeUpdate(prevProps, prevState) {
+    // ...
+  }
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    // ...
+  }
+  componentWillUnmount() {
+    // ...
+  }
+}
+```
+
+而在2019年的今年，随着 react 最新的一个大版本中，给我们带来了 Hooks：[React v16.8: The One With Hooks][101]，从而将 Function component 的能力提高了一大截，成功的拥有了可以与 Class component 抗衡的能力。但话说回来，虽然 `Hooks` 看起来很美好，最近也有不少文章都讲解了Hooks这一“黑魔法”，但技术的不断演进，本身就是一个解决以往所存在问题的过程，因此我个人认为着眼于现在，回望过去，去看一看 react component 的发展之路，去看看 Class component 以及 Function component 为什么会出现以及它们出现的意义，所要解决的问题，也对于我们全面了解 react 是很有帮助的。
+
 
 ``` js
 import React from 'react'
