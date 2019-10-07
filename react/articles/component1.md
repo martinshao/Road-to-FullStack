@@ -197,7 +197,7 @@ export default App;
 ``` js
 import React from 'react'
 
-export default class MyComponent extends React.Component {
+export default class App extends React.Component {
   constructor(props) {
     super(props);
     // 初始化state方式（1）
@@ -239,20 +239,29 @@ export default class MyComponent extends React.Component {
     // ...
   }
 }
+export default App;
 ```
 
 而在2019年的今年，随着 react 最新的一个大版本中，给我们带来了 Hooks：[React v16.8: The One With Hooks][101]，从而将 Function component 的能力提高了一大截，成功的拥有了可以与 Class component 抗衡的能力。但话说回来，虽然 `Hooks` 看起来很美好，最近也有不少文章都讲解了Hooks这一“黑魔法”，但技术的不断演进，本身就是一个解决以往所存在问题的过程，因此我个人认为着眼于现在，回望过去，去看一看 react component 的发展之路，去看看 Class component 以及 Function component 为什么会出现以及它们出现的意义，所要解决的问题，也对于我们全面了解 react 是很有帮助的。
+
+在hooks出现之前，函数组件是不支持state，使用无状态的函数构建的组件称为无状态组件，这种构建方式是0.14版本之后新增的，并且官方也十分推崇。
+
+无状态组件只传入props和context两个参数；也就是说，它不存在state，也没有生命周期方法，组件本身即上面两种React组件构建方法种的render方法。不过，像propTypes和defaultProps还是可以通过向方法设置静态属性来实现的。
 
 
 ``` js
 import React from 'react'
 
 // functional component
-function APP(props) {
-  return <h1>Hello, {props.name}</h1>;
+function Button({color='color', text='Confirm'}) {
+  return (
+    <button className={`btn btn-${color}`}>
+      <em>{text}</em>
+    </button>
+  )
 }
 
-export default App;
+export default Button;
 ```
 
 > Hooks are a new addition in React 16.8. They let you use state and other React features without writing a class.

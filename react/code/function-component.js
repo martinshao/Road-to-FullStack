@@ -6,3 +6,11 @@ function APP(props) {
 }
 
 export default App;
+
+function Button({color='color', text='Confirm'}) {
+  return (
+    <button className={`btn btn-${color}`}>
+      <em>{text}</em>
+    </button>
+  )
+}
