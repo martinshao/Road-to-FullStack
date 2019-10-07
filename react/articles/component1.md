@@ -19,17 +19,21 @@
 
 ## 介绍组件系统
 
-React是一个视图层框架，换句话说，视图的构成由React的组件构成。React发展至今，声明组件的方式也发生了不小的变化，这里先简单的介绍一下React组件的发展历程。
+![react](../assets/20191007211702.png "react")
 
-从 react component 的发展历程上来看，它主要是经历了一下三个阶段：
+如果用 `E=mc²` 揭示质能关系的本质的化，我觉得 `UI=f(data)` 能够揭示React作为一个视图层框架。用 `React` 构建视图这句话的意思就已经说明了很多问题，以往的开发我们用 `JQuery` 操纵dom或者模板拼凑页面，但到了 `React` ，我们用函数和JSX这一利器，真正地完成了从 `JS -> DOM` 的转变。
+
+如何使用 `React` 作为工具构建页面，我们真正开发从事的工作，还是如何设计更加优秀的组件，通过组件层层嵌套或者组合构成完成页面，或者说是应用。 `React` 从2013年推出发展至今（2019年），声明组件的方式也发生了不小的变化，这里先简单的介绍一下 `React` 组件的发展历程。
+
+从 `React component` 的发展历程上来看，它主要是经历了一下三个阶段：
 
 > 1. createClass Component
 > 2. Class Component
 > 3. Function Component
 
-这个三个阶段也是 `React` 的组件不断走向轻量级的一个过程。其中 Class Component 完全替代了 createClass Component 成为了现在我们开发 react 组件的主流，而 Function Component 也在 Hooks 推出后磨刀霍霍，准备大干一场。下面就让我们去看看三者的具体情况吧~
+这个三个阶段也是 `React` 的组件不断走向轻量级的一个过程。其中 Class Component 完全替代了 createClass Component 成为了现在我们开发 react 组件的主流，而 Function Component 也在 Hooks 推出后摩拳擦掌，准备大干一场。下面就让我们去看看三者的具体情况吧。
 
-注：这篇文章整体只是对React Component的发展历程的一个概括或者说是我自己学习后的一个整理，想要详细了解，还请看看我在文章贴的那些链接。
+需要格外说明的是，这篇文章着重对于 React component 发展的历史和大概组件的分类做一个阐述，具体深入到组件设计和使用方方面面的细节，都将在另外一篇文章给出答案。
 
 用 `React.createClass` 构建组件是React最传统、也是兼容性最好的方法。在**0.14**版本发布之前，这一直都是React官方唯一指定的组件写法。示例如下：
 
@@ -55,6 +59,7 @@ const MyComponent = React.createClass({
       placeholder: this.props.initialValue || ''
     };
   },
+
   render() {
     const { placeholder } = this.state;
     const { color, text } = this.props;
@@ -72,6 +77,8 @@ const MyComponent = React.createClass({
 ```
 
 在**0.14**版本发布之后，React迎来了 `Class component` 和 `Function class` ，直到如今 `Class component` 也是大多数组件的声明方式。顺理成章的，`React.createClass` 渐渐被淘汰，直到被遗弃在历史的垃圾堆里。**15.5版本**之后，React把 `createClass` 分离成独立的包 `create-react-class`，到**16版本**之后，就已经彻底删除该方法。
+
+实际上，从17年开始，createClass就渐渐销声匿迹了，这里简单介绍，让大家感受一下 React 组件声明方式的发展历程。
 
 ``` js
 // 15.4 以前
