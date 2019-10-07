@@ -129,6 +129,12 @@ Component.propTypes = {
 };
 ```
 
+react.createClass的语法并不复杂，它通过 createClass 来创建一个组件，并通过propTypes和getDefaultProps来获取props，通过通过getInitialState()方法返回一个包含初始值的对象，虽然从现在看来还是有点麻烦，但总体上来看代码也比较清晰，跟现在的 Class Component差别并不是太大。但 react.createClass 自从 react 15.5版本就不再为 react 官方所推介，而是想让大家的使用 class component 来代替它。而且在 react 16版本发布后，createClass 更是被废弃，当我们使用它的时候，会提示报错，也就是说，在 react 团队看来 createClass 已经完全没有存在的必要了。
+
+其实 Class Component 完全替代 React.createClass 并不是说 React.createClass 有多坏，相反它还有一些 class Component 所没有的特性。它的废弃是由于ES6的出现，新增了 class 这一语法糖，让我们在 JavaScript 的开发中可以直接使用 extends 来扩展我们的对象，因此为了与标准的ES6接轨，原有的只在 react 中使用的 createClass 自然而然也成为了被抛弃的对象。但 class Component 在刚出现的时候也仍然存在的不小的争议，因为这两者还是存在一定的差别的，比如当时在Stack Overflow便出现了关于这两者的讨论，感兴趣的朋友可以去看看：
+
+> [React.Component vs React.createClass [stackoverflow]][102]
+
 为了更好的展示createClass与Class component组件之间的区别，图示如下：
 ![createClass and class component](../assets/20191007165935.png 'createClass')
 
@@ -137,6 +143,96 @@ Component.propTypes = {
 react的组件类型是五花八门，暂时也没有一个定性的标准去划分不同的组件，笔者只是针对现有出现的组件做一些介绍。
 
 ## Class组件和Function组件
+
+上文提过，在React**0.14**版本发布之后，Class component和Function component便成为主流的组件声明方式。这其中Class component更是主流的主流。
+
+而在2019年的今年，随着 react 最新的一个大版本中，给我们带来了 Hooks：[React v16.8: The One With Hooks][101]，从而将 Function component 的能力提高了一大截，成功的拥有了可以与 Class component 抗衡的能力。但话说回来，虽然 `Hooks` 看起来很美好，最近也有不少文章都讲解了Hooks这一“黑魔法”，但技术的不断演进，本身就是一个解决以往所存在问题的过程，因此我个人认为着眼于现在，回望过去，去看一看 react component 的发展之路，去看看 Class component 以及 Function component 为什么会出现以及它们出现的意义，所要解决的问题，也对于我们全面了解 react 是很有帮助的。
+
+``` js
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
+
+class App extends Component {
+  static propTypes = {
+    name: PropTypes.string
+    // ...
+  }
+  static defaultProps = {
+    // ...
+  }
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      // ...
+    }
+  }
+  componentWillMount() {
+    // ...
+  }
+  componentDidMount() {
+    // ...
+  }
+  render() {
+    return <div>This is a demo.</div>
+  }
+}
+
+export default App;
+```
+
+``` js
+import React from 'react'
+
+// functional component
+function APP(props) {
+  return <h1>Hello, {props.name}</h1>;
+}
+
+export default App;
+```
+
+> Hooks are a new addition in React 16.8. They let you use state and other React features without writing a class.
+
+在React 16.8版本之前，我们可以说无状态组件就是函数式组件，但是自从16.8版本hooks来临后，Function component也可以有自己维护的state状态。那么相比较从前，Function组件只比class组件缺少生命周期的管理了。
+
+``` js
+import React, { useState } from 'react';
+
+function Example() {
+  // Declare a new state variable, which we'll call "count"
+  const [count, setCount] = useState(0);
+
+  return (
+    <div>
+      <p>You clicked {count} times</p>
+      <button onClick={() => setCount(count + 1)}>
+        Click me
+      </button>
+    </div>
+  );
+}
+```
+
+3、函数式组件与基于Class声明的组件比较
+* 不需要声明类，可以避免大量的譬如extends或者constructor这样的代码
+* 不需要显示声明this关键字，在ES6的类声明中往往需要将函数的this关键字绑定到当前作用域，而因为函数式声明的特性，我们不需要再强制绑定。
+* 更佳的性能表现:因为函数式组件中并不需要进行生命周期的管理与状态管理，因此React并不需要进行某些特定的检查或者内存分配，从而保证了更好地性能表现。
+* 16.8版本之前不能进行状态管理，之后hooks提供的 useState useEffects 让函数组件也有了维护state处理副作用的能力。
+
+所以为什么要用函数式组件(Functional Components)呢
+
+函数式组件易于追溯.
+函数式组件具有很好的可读性
+易于测试,debug
+有更好的性能
+能更好的复用
+能更好的降低代码之间的耦合
+这些情况下不要用函数式组件(Funcional Components)!!!
+
+列表如果你的组件需要在生命周期的钩子函数里做一些事情, 或者对state做一些操作, 你应该用类组件.
+
+这是一个函数式组件(Functional Component), 它和类组件(Class Component)最关键的区别就是: 函数式组件没有state和一系列的钩子函数,这也是函数式组件经常被用作无状态组件的原因
 
 ## 受控组件和非受控组件
 
@@ -184,6 +280,7 @@ react的组件类型是五花八门，暂时也没有一个定性的标准去划
 * [【译】 React官方：函数组件与类组件的差异 ？][11]
 * [React（二）：类组件、函数式组件][12]
 * [五分钟，聊一聊React Component的发展历程][13]
+* [Function 与 Classes 组件的区别在哪？][14]
 
 [1]: https://juejin.im/post/5d6be5c95188255aee7aa4e0
 [2]: https://juejin.im/post/5d6f127bf265da03cf7aab6d
@@ -198,5 +295,7 @@ react的组件类型是五花八门，暂时也没有一个定性的标准去划
 [11]: https://juejin.im/post/5c98310ff265da612d634730
 [12]: https://juejin.im/post/5c0dfa265188257a5a2514d6
 [13]: https://www.jianshu.com/p/5a6d44e1ca9e
+[14]: https://juejin.im/post/5c80f4976fb9a049b7812679
 
 [101]: https://reactjs.org/blog/2019/02/06/react-v16.8.0.html
+[102]: https://stackoverflow.com/questions/30668464/react-component-vs-react-createclass
