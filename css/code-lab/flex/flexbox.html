@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+    />
+    <title>Document</title>
+    <style>
+      body {
+        margin: 0;
+      }
+      .flexing {
+        display: flex;
+        height: 100vh;
+      }
+      @media (max-width: 720px) {
+        .flexing {
+          flex-flow: column;
+        }
+      }
+      .flexing .section {
+        flex: 1;
+        position: relative;
+        cursor: pointer;
+        transition: 0.5s ease;
+      }
+      .flexing .section--yellow {
+        background-color: #eac435;
+      }
+      .flexing .section--pink {
+        background-color: #e40066;
+      }
+      .flexing .section--green {
+        background-color: #03cea4;
+      }
+      .flexing .section:hover {
+        flex: 3;
+      }
+      .flexing .section:hover h3 {
+        -webkit-transform: translate(-50%, -50%) rotate(0);
+        -ms-transform: translate(-50%, -50%) rotate(0);
+        transform: translate(-50%, -50%) rotate(0);
+      }
+      @media (max-width: 720px) {
+        .flexing .section:hover h3 {
+          -webkit-transform: translate(-50%, -50%) scale(1);
+          -ms-transform: translate(-50%, -50%) scale(1);
+          transform: translate(-50%, -50%) scale(1);
+        }
+      }
+      .flexing .section h3 {
+        -webkit-transform: translate(-50%, -50%) rotate(90deg);
+        -ms-transform: translate(-50%, -50%) rotate(90deg);
+        transform: translate(-50%, -50%) rotate(90deg);
+        font-size: 85px;
+        font-family: 'Fredoka One', cursive;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        margin: 0;
+        transition: 0.5s ease;
+      }
+      @media (max-width: 720px) {
+        .flexing .section h3 {
+          -webkit-transform: translate(-50%, -50%) scale(0.75);
+          -ms-transform: translate(-50%, -50%) scale(0.75);
+          transform: translate(-50%, -50%) scale(0.75);
+        }
+      }
+      .flexing .section:active {
+        flex: 5;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="flexing">
+      <div class="section section--yellow">
+        <h3>Work</h3>
+      </div>
+      <div class="section section--pink">
+        <h3>About</h3>
+      </div>
+      <div class="section section--green">
+        <h3>Contact</h3>
+      </div>
+    </div>
+  </body>
+</html>
