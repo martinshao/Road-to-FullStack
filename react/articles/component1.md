@@ -21,15 +21,13 @@
 
 React是一个视图层框架，换句话说，视图的构成由React的组件构成。React发展至今，声明组件的方式也发生了不小的变化，这里先简单的介绍一下React组件的发展历程。
 
-随着 react 最新的一个大版本中，给我们带来了 Hooks：[React v16.8: The One With Hooks][101]，从而将 Function component 的能力提高了一大截，成功的拥有了可以与 Class component 抗衡的能力。但话说回来，虽然 Hooks 看起来很美好，最近也有不少文章都讲解了Hooks这一“黑魔法”，但技术的不断演进，本身就是一个解决以往所存在问题的过程，因此我个人认为着眼于现在，回望过去，去看一看 react component 的发展之路，去看看 Class component 以及 Function component 为什么会出现以及它们出现的意义，所要解决的问题，也对于我们全面了解 react 是很有帮助的。
-
 从 react component 的发展历程上来看，它主要是经历了一下三个阶段：
 
 > 1. createClass Component
 > 2. Class Component
 > 3. Function Component
 
-这个三个阶段也是react的组件不断走向轻量级的一个过程。其中 Class Component 完全替代了 createClass Component 成为了现在我们开发 react 组件的主流，而 Function Component 也在 Hooks 推出后磨刀霍霍，准备大干一场。下面就让我们去看看三者的具体情况吧~
+这个三个阶段也是 `React` 的组件不断走向轻量级的一个过程。其中 Class Component 完全替代了 createClass Component 成为了现在我们开发 react 组件的主流，而 Function Component 也在 Hooks 推出后磨刀霍霍，准备大干一场。下面就让我们去看看三者的具体情况吧~
 
 注：这篇文章整体只是对React Component的发展历程的一个概括或者说是我自己学习后的一个整理，想要详细了解，还请看看我在文章贴的那些链接。
 
