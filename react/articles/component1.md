@@ -21,9 +21,9 @@
 
 ![react](../assets/20191007211702.png "react")
 
-如果用 `E=mc²` 揭示质能关系的本质的化，我觉得 `UI=f(data)` 能够揭示React作为一个视图层框架。用 `React` 构建视图这句话的意思就已经说明了很多问题，以往的开发我们用 `JQuery` 操纵dom或者模板拼凑页面，但到了 `React` ，我们用函数和JSX这一利器，真正地完成了从 `JS -> DOM` 的转变。
+如果用 `E=mc²` 揭示质能关系的本质的话，我觉得 `UI=f(data)` 能够揭示React作为一个视图层框架的本质。用 `React` 构建视图这句话就已经能说明很多问题，以往的开发我们用 `JQuery` 操纵dom或者模板拼凑页面，但到了 `React` ，我们用函数和JSX利器，真正地完成了从 `JS -> DOM` 的转变。
 
-如何使用 `React` 作为工具构建页面，我们真正开发从事的工作，还是如何设计更加优秀的组件，通过组件层层嵌套或者组合构成完成页面，或者说是应用。 `React` 从2013年推出发展至今（2019年），声明组件的方式也发生了不小的变化，这里先简单的介绍一下 `React` 组件的发展历程。
+如何使用 `React` 作为工具构建页面，预期说前端开发每天使用React写js，不如形象点的说是在写组件，通过组件层层嵌套或者组合构成完整页面，或应用。 `React` 从2013年推出发展至今（2019年），声明组件的方式也发生了不小的变化，这里先简单的介绍一下 `React` 组件的发展历程。
 
 从 `React component` 的发展历程上来看，它主要是经历了一下三个阶段：
 
@@ -31,9 +31,9 @@
 > 2. Class Component
 > 3. Function Component
 
-这个三个阶段也是 `React` 的组件不断走向轻量级的一个过程。其中 Class Component 完全替代了 createClass Component 成为了现在我们开发 react 组件的主流，而 Function Component 也在 Hooks 推出后摩拳擦掌，准备大干一场。下面就让我们去看看三者的具体情况吧。
+这个三个阶段也是 `React` 的组件不断走向轻量级的一个过程。其中 `Class Component` 完全替代了 `createClass Component` 成为了现在我们开发 `React` 组件的主流，而 `Function Component` 也在 `Hooks` 推出后摩拳擦掌，准备大干一场。下面就让我们去看看三者的具体情况吧。
 
-需要格外说明的是，这篇文章着重对于 React component 发展的历史和大概组件的分类做一个阐述，具体深入到组件设计和使用方方面面的细节，都将在另外一篇文章给出答案。
+需要格外说明的是，这篇文章着重对于 `React component` 发展的历史和组件的分类做一个阐述，具体深入到组件设计和使用方方面面的细节，都将在另外的文章给出答案。
 
 用 `React.createClass` 构建组件是React最传统、也是兼容性最好的方法。在**0.14**版本发布之前，这一直都是React官方唯一指定的组件写法。示例如下：
 
@@ -103,7 +103,7 @@ var Component = createReactClass({
 });
 ```
 
-**15.5版本**还有一个重大的改变就是将在之前的版本之中，我们可以通过React.PropTypes这个API访问React内置的一些类型来检查props，独立成了一个新的包 prop-types
+**15.5版本**还有一个重大的改变就是，将之前的版本中我们可以通过 `React.PropTypes` 这个API访问React内置的一些类型来检查 `props` ，独立成了一个新的包 `prop-types`
 
 ``` js
 // 15.4 以前
@@ -134,22 +134,22 @@ Component.propTypes = {
 };
 ```
 
-react.createClass的语法并不复杂，它通过 createClass 来创建一个组件，并通过propTypes和getDefaultProps来获取props，通过通过getInitialState()方法返回一个包含初始值的对象，虽然从现在看来还是有点麻烦，但总体上来看代码也比较清晰，跟现在的 Class Component差别并不是太大。但 react.createClass 自从 react 15.5版本就不再为 react 官方所推介，而是想让大家的使用 class component 来代替它。而且在 react 16版本发布后，createClass 更是被废弃，当我们使用它的时候，会提示报错，也就是说，在 react 团队看来 createClass 已经完全没有存在的必要了。
+`React.createClass` 的语法并不复杂，它通过 `createClass` 来创建一个组件，并通过 `propTypes` 和 `getDefaultProps` 来获取props，通过 `getInitialState()` 方法返回一个包含初始值的对象，虽然从现在看来还是有点麻烦，但总体上来看代码也比较清晰，跟现在的 `Class Component` 差别并不是太大。但 `React.createClass` 自从 **react 15.5版本** 就不再为 React 官方所推介，而是想让大家的使用 `class component` 来代替它。而且在 **react 16版本** 发布后， `createClass` 更是被废弃，当我们使用它的时候，会提示报错，也就是说，在 React 团队看来 `createClass` 已经完全没有存在的必要了。
 
-其实 Class Component 完全替代 React.createClass 并不是说 React.createClass 有多坏，相反它还有一些 class Component 所没有的特性。它的废弃是由于ES6的出现，新增了 class 这一语法糖，让我们在 JavaScript 的开发中可以直接使用 extends 来扩展我们的对象，因此为了与标准的ES6接轨，原有的只在 react 中使用的 createClass 自然而然也成为了被抛弃的对象。但 class Component 在刚出现的时候也仍然存在的不小的争议，因为这两者还是存在一定的差别的，比如当时在Stack Overflow便出现了关于这两者的讨论，感兴趣的朋友可以去看看：
+其实 `Class Component` 完全替代 `React.createClass` 并不是说 `React.createClass` 有多坏，相反它还有一些 `class Component` 所没有的特性。它的废弃是由于ES6的出现，新增了 class 这一语法糖，让我们在 JavaScript 的开发中可以直接使用 `extends` 来扩展我们的对象，因此为了与标准的ES6接轨，原有的只在 React 中使用的 `createClass` 自然而然也成为了被抛弃的对象。但 `class Component` 在刚出现的时候也仍然存在的不小的争议，因为这两者还是存在一定的差别的，比如当时在Stack Overflow便出现了关于这两者的讨论，感兴趣的朋友可以去看看：
 
 > [React.Component vs React.createClass [stackoverflow]][102]
 
-为了更好的展示createClass与Class component组件之间的区别，图示如下：
+为了更好的展示 `createClass` 与 `Class component` 组件之间的区别，图示如下：
 ![createClass and class component](../assets/20191007165935.png 'createClass')
 
 ## 首先是分类
 
 react的组件类型是五花八门，暂时也没有一个定性的标准去划分不同的组件，笔者只是针对现有出现的组件做一些介绍。
 
-## Class组件和Function组件
+## Class component & Function component
 
-上文提过，在React**0.14**版本发布之后，Class component和Function component便成为主流的组件声明方式。这其中Class component更是主流的主流。一般模版如下，值得一提的是，React的生命周期也在16版本发生了重大变化。在之前之前，推荐的class component的模版如下：
+上文提过，在React**0.14**版本发布之后， `Class component` 和 `Function component` 便成为主流的组件声明方式。这其中`Class component` 更是主流的主流。一般模版如下，值得一提的是，React的生命周期也在16版本发生了重大变化。在之前之前，推荐的`class component` 的模版如下：
 
 ``` js
 import PropTypes from 'prop-types';
