@@ -34,3 +34,22 @@ class App extends Component {
 }
 
 export default App;
+
+class Button extends Componnet {
+  constructor(props) {
+    super(props)
+  }
+
+  static defaultProps = {
+    color: 'color',
+    text: 'Confirm'
+  };
+
+  render() {
+    const { color, text } = this.props;
+    
+    <button className={`btn btn-${color}`}>
+      <em>{text}</em>
+    </button>
+  }
+}
