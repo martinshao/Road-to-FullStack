@@ -4,10 +4,10 @@
 
 > * Functional Component -> 函数组件
 > * Class Component -> 类组件
-> * Controlled Component -> 受控组件
-> * Uncontrolled Component -> 非受控组件
 > * Stateless Component -> 无状态组件
 > * Stateful Component -> 有状态组件
+> * Controlled Component -> 受控组件
+> * Uncontrolled Component -> 非受控组件
 > * Presentational Component -> 展示组件
 > * Container Component -> 容器组件
 > * Dumb Components -> 木偶组件
@@ -248,7 +248,7 @@ export default App;
 
 无状态组件只传入props和context两个参数；也就是说，它不存在state，也没有生命周期方法，组件本身即上面两种React组件构建方法种的render方法。不过，像propTypes和defaultProps还是可以通过向方法设置静态属性来实现的。
 
-
+这是一个函数式组件(Functional Component), 它和类组件(Class Component)最关键的区别就是: 函数式组件没有state和一系列的钩子函数,这也是函数式组件经常被用作无状态组件的原因
 ``` js
 import React from 'react'
 
@@ -286,25 +286,19 @@ function Example() {
 }
 ```
 
-3、函数式组件与基于Class声明的组件比较
+函数式组件的优点：
+* 函数式组件易于追溯.
+* 函数式组件具有很好的可读性
+* 易于测试,debug
+* 有更好的性能
+* 能更好的复用
+* 能更好的降低代码之间的耦合
+
+函数式组件与基于Class声明的组件比较：
 * 不需要声明类，可以避免大量的譬如extends或者constructor这样的代码
 * 不需要显示声明this关键字，在ES6的类声明中往往需要将函数的this关键字绑定到当前作用域，而因为函数式声明的特性，我们不需要再强制绑定。
 * 更佳的性能表现:因为函数式组件中并不需要进行生命周期的管理与状态管理，因此React并不需要进行某些特定的检查或者内存分配，从而保证了更好地性能表现。
 * 16.8版本之前不能进行状态管理，之后hooks提供的 useState useEffects 让函数组件也有了维护state处理副作用的能力。
-
-所以为什么要用函数式组件(Functional Components)呢
-
-函数式组件易于追溯.
-函数式组件具有很好的可读性
-易于测试,debug
-有更好的性能
-能更好的复用
-能更好的降低代码之间的耦合
-这些情况下不要用函数式组件(Funcional Components)!!!
-
-列表如果你的组件需要在生命周期的钩子函数里做一些事情, 或者对state做一些操作, 你应该用类组件.
-
-这是一个函数式组件(Functional Component), 它和类组件(Class Component)最关键的区别就是: 函数式组件没有state和一系列的钩子函数,这也是函数式组件经常被用作无状态组件的原因
 
 ## 受控组件和非受控组件
 
