@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css?family=Roboto:700');
+
+    html,
+    body,
+    div {
+      margin: 0;
+      padding: 0;
+      font-family: 'Roboto';
+      text-align: center;
+    }
+
+    .container {
+      position: relative;
+      padding-top: 100px;
+      width: 960px;
+      height: 500px;
+      font-size: 36px;
+      text-transform: uppercase;
+      /* background-color: #f0f0f0; */
+    }
+
+    .list {
+      height: 50px;
+      overflow: hidden;
+    }
+
+    .list>div>div {
+      display: inline-block;
+      height: 50px;
+      color: #fff;
+      margin-bottom: 50px;
+      padding: 4px 12px;
+    }
+
+    .list div:first-child {
+      animation: dropdown 8s linear infinite;
+    }
+
+    @keyframes dropdown {
+      0% {
+        margin-top: 0px;
+      }
+
+      10% {
+        margin-top: 0px;
+      }
+
+      50% {
+        margin-top: -100px;
+      }
+
+      60% {
+        margin-top: -100px;
+      }
+
+      90% {
+        margin-top: -200px;
+      }
+
+      100% {
+        margin-top: -200px;
+      }
+    }
+
+    .list div div {
+      background-color: #42c58a;
+    }
+
+    .list div:first-child div {
+      background-color: #4ec7f3;
+    }
+
+    .list div:last-child div {
+      background-color: #DC143C;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    LIFE IS A GIRL.
+    <div class="list">
+      <div>
+        <div>特别鸣谢</div>
+      </div>
+      <div>
+        <div>Charles Yang</div>
+      </div>
+      <div>
+        <div>Marvel</div>
+      </div>
+    </div>
+    Hail Hydra!
+  </div>
+</body>
+
+</html>
