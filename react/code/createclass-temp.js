@@ -27,10 +27,22 @@ var InputControlES5 = React.createClass({
 });
 
 const Button = React.createClass({
+
+  propTypes: {
+    color: React.PropTypes.string,
+    text: React.PropTypes.string
+  },
+
   getDefaultProps() {
     return {
       color: 'blue',
       text: 'Confirm'
+    };
+  },
+
+  getInitialState() {
+    return {
+      loading: this.props.initialValue || true
     };
   },
 
@@ -48,26 +60,85 @@ const Button = React.createClass({
 import React from 'react'
 
 const MyComponent = React.createClass({
-  // 通过proTypes对象和getDefaultProps()方法来设置和获取props
+
   propTypes: {
-    name: React.PropTypes.string
+    color: React.PropTypes.string,
+    text: React.PropTypes.string
   },
+
   getDefaultProps() {
     return {
-
-    }
+      color: 'blue',
+      text: 'Confirm'
+    };
   },
-  // 通过getInitialState()方法返回一个包含初始值的对象
+
   getInitialState() {
     return {
-      sayHello: 'Hello Srtian'
-    }
+      placeholder: this.props.initialValue || ''
+    };
   },
   render() {
+    const { placeholder } = this.state;
+    const { color, text } = this.props;
+
     return (
-      <p></p>
+      <div>
+        <input type="text" placeholder={placeholder} />
+        <button className={`btn btn-${color}`}>
+          <em>{text}</em>
+        </button>
+      </div>
     )
   }
 })
 
 export default MyComponent
+
+// 15.4 以前
+import React from 'react';
+
+class Component extends React.Component {
+  render() {
+    return <div>{this.props.text}</div>;
+  }
+}
+
+Component.propTypes = {
+  text: React.PropTypes.string.isRequired,
+}
+
+// 15.5 以后
+import React from 'react';
+import PropTypes from 'prop-types';
+
+class Component extends React.Component {
+  render() {
+    return <div>{this.props.text}</div>;
+  }
+}
+
+Component.propTypes = {
+  text: PropTypes.string.isRequired,
+};
+
+// 15.4 以前
+var React = require('react');
+
+var Component = React.createClass({
+  mixins: [MixinA],
+  render() {
+    return <Child />;
+  }
+});
+
+// 15.5 以后
+var React = require('react');
+var createReactClass = require('create-react-class');
+
+var Component = createReactClass({
+  mixins: [MixinA],
+  render() {
+    return <Child />;
+  }
+});
