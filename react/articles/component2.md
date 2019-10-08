@@ -118,6 +118,17 @@ React 自己控制表单的数据产生了受控组件，那是否有非受控�
 
 受控组件是必须提供事件处理器onChange，来同步 表单值和组件的状态，在这个必要条件下，我们可以通过一些技术手段避免声明大量事件处理函数，在一个函数中通过条件 判断来处理多个表单域是一种常规手段。
 
+## 表单几个重要属性
+
+主要分为 1、状态属性；2、事件属性 两大类
+
+* 状态属性
+  1. value：类型为text的input组件、textarea组件以及select组件都借助value prop来展示应用的状态。
+  2. checked：类型为radio或checkbox的组件借助值为boolean类型的checked prop 来展示应用的状态 。
+  3. selected：该属性可作用于select组件下面的option上，React并不建议使用这种方式表示状态，而推荐在select组件上使用value的方式。
+* 事件属性
+  1. onChange：上面提到的状态属性与事件属性存在一定关联——在状态属性发生变化时，会触发onChangee事件属性。受控组件中的change事件与HTML DOM中提供的额input事件更为了类似。同样，React支持DOM Level 3 定义的所有表单事件。
+
 ## 参考资料
 
 * [表单操作 [caibaojian]][1]
