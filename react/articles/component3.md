@@ -63,18 +63,26 @@ const Header = ({headStyle, title='xxx'}) => (
 有状态组件主要用来定义交互逻辑和业务数据（如果用了Redux，可以把业务数据抽离出去统一管理），使用{this.state.xxx}的表达式把业务数据挂载到容器组件的实例上（有状态组件也可以叫做容器组件，无状态组件也可以叫做展示组件），然后传递props到展示组件，展示组件接收到props，把props塞到模板里面。创建有状态组件如下：
 
 ``` js
-class Home extends React.Component {
-  constructor(props) {
-    super(props);
-  };
+class ButtonCounter extends React.Component {
+  constructor() {
+    super()
+    this.state = { clicks: 0 }
+    this.handleClick = this.handleClick.bind(this)
+  }
+ 
+  handleClick() {
+    this.setState({ clicks: this.state.clicks + 1 })
+  }
+ 
   render() {
     return (
-      <Header/>  //也可以写成<Header></Header>
+      <Button
+        onClick={this.handleClick}
+        text={`You've clicked me ${this.state.clicks} times!`}
+      />
     )
   }
 }
 ```
 
-这个是官方默认的写法，在构造函数里面默认要传递一个参数进去，并且要调用super()方法，来获取子类的实例。但是比较疑惑的地方是为什么要传递这些参数，传递这些参数有什么用？
-
-因为从render()里面的组件来看，构造函数不传递参数也可以获取到组件实例上的props属性。如下：
+如您所见，第二个组件的 constructor(构造函数) 包含一个组件 state(状态)，而第一个组件是一个简单的组件，通过 props(属性) 渲染文本。有状态组件和无状态组件的划分看起来非常简单，但可以使 Button 组件具有高度可重用性。
