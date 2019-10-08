@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    h3 {
+      margin: 0;
+      padding: 0;
+      margin-bottom: 10px;
+    }
+
+    .form-style {
+      margin: 10px 30px;
+      padding: 20px;
+      width: 300px;
+      border: 1px solid skyblue;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- ========== Simple Form ========== -->
+  <div class="form-style">
+    <form method="post" action="result.html">
+      <p>名字：<input name="name" type="text" /></p>
+      <p>密码：<input name="pass" type="password" /></p>
+      <div>
+        <p>您最喜欢水果？</p>
+        <label><input name="Fruit" type="radio" value="" checked />苹果</label>
+        <label><input name="Fruit" type="radio" value="" />桃子 </label>
+        <label><input name="Fruit" type="radio" value="" />香蕉 </label>
+        <label><input name="Fruit" type="radio" value="" />梨 </label>
+        <label><input name="Fruit" type="radio" value="" />其它 </label>
+      </div>
+      <div>
+        <p>喜欢的汽车品牌？</p>
+        <select>
+          <option value="volvo">Volvo</option>
+          <option value="saab">Saab</option>
+          <option value="mercedes">Mercedes</option>
+          <option value="audi">Audi</option>
+        </select>
+      </div>
+      <p>
+        <input type="submit" name="Button" value="提交" />
+        <input type="reset" name="Reset" value="重填" />
+      </p>
+    </form>
+    <form>
+      <p><label>姓名：<input></label></p>
+      <p><label>电话：<input type="tel"></label></p>
+      <p><label>邮箱：<input type="email"></label></p>
+      <fieldset>
+        <legend> 披萨大小 </legend>
+        <label><input type="radio" name="size"> 小 </label>
+        <label><input type="radio" name="size"> 中 </label>
+        <label><input type="radio" name="size"> 大 </label>
+      </fieldset>
+      <fieldset>
+        <legend> 披萨配料 </legend>
+        <label><input type="checkbox"> 熏肉 </input></label>
+        <label><input type="checkbox"> 奶酪 </input></label>
+        <label><input type="checkbox"> 洋葱 </input></label>
+        <label><input type="checkbox"> 蘑菇 </input></label>
+      </fieldset>
+      <p><label>配送时间：<input type="time" min="11:00" max="2100" step="900"></label></p>
+      <p><button>提交订单</button></p>
+    </form>
+  </div>
+  <!-- ========== Simple Form ========== -->
+</body>
+
+</html>
