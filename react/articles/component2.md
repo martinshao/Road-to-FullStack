@@ -41,7 +41,74 @@
 
 但是表单元素有其特殊之处，用户可以通过键盘输入与鼠标选择，改变界面的显示。界面的改变也意味着有一些数据被改动，比较明显的是input的value，textarea的innerHTML，radio/checkbox的checked，不太明显的是option的selected与selectedIndex，这两个是被动修改的。
 
-还是回到React最本质的问题，React是一个单向数据流的视图层框架，我们希望数据和视图分离，我们能够完全掌握对数据的操作，从而通过改变数据去改变视图。那么form的问题又在哪里？表单元素相当特殊，通过上面示例我们可以发现，用户可以通过
+还是回到React最本质的问题，React是一个单向数据流的视图层框架，我们希望数据和视图分离，我们能够完全掌握对数据的操作，从而通过改变数据去改变视图。那么form的问题又在哪里？表单元素相当特殊，通过上面示例我们可以发现，用户可以通过键盘输入与鼠标选择，改变界面的显示。界面的改变也意味着有一些数据被改动，比较明显的是input的value，textarea的innerHTML，radio/checkbox的checked，不太明显的是option和selected与selectedIndex，这两个是被动修改的。这些充分说明了表单是有自己的状态，并且能够自己维护的，但这样一样就和React的理念有所冲突，React是希望view只负责展示，data由React进行管理和维护。
+
+由此，我们就可以引申出受控组件和非受控组件两个概念，让我们看看React是如何解决这个问题的。
+
+## 受控组件
+
+既然React和原生表单有数据控制权的冲突，那么让我们看看React是如何解决这个问题的。
+
+``` js
+import React, { Component } from 'react';
+
+class App extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      inputValue: ''
+    };
+
+    this.handleInputChange = this.handleInputChange.bind(this);
+  }
+
+  handleInputChange(e) {
+    this.setState({
+      inputValue: e.target.value
+    });
+  }
+
+  render() {
+    const { inputValue } = this.state;
+
+    return (
+      <div>
+        <input
+          type='text'
+          value={inputValue}
+          onChange={this.handleInputChange}
+        />
+        <p>输入内容： {inputValue}</p>
+      </div>
+    );
+  }
+}
+```
+
+这就是受控组件！
+当运行这段代码的时候，你会惊人发现这跟数据双向绑定是惊人的相似。值得注意的是，要牢记我们在React框架的js中写的html其实是JSX，官方文档也提醒了这点，我们可以像写html标签一样写JSX，但其实这并不是html。注意这一点我们就会发现，通过React强大的合成事件机制，React取到对表单状态的控制权，并且产生了类似数据双向绑定的效果。
+
+然后我们总结一下React受控组件更新state的流程：
+
+1. 可以通过在初始state中设置表单的默认值。
+2. 每当表单的值发生变化时，调用onChange事件处理器。
+3. 事件处理器通过合成事件对象e拿到改变后的状态，并更新应用到state。
+4. setState触发视图的重新渲染，完成表单组件值的更新。
+
+到这里我们可以看出，基于React的单向数据流，表单的数据来源于state或者props，然后通过onChange事件处理器将新的表单数据写回到state，完成数据双向绑定。
+
+至此，受控组件中受控二字便解释的淋漓尽致。受控组件的特点也一览无余。
+* 表单的数据来源于state或props。
+* 通过合成事件处理器onChange更新状态。
+
+## 非受控组件
+
+React 自己控制表单的数据产生了受控组件，那是否有非受控组件，答案是有的。
+
+在React中判定一个组件是否为非受控组件的方法还是非常简单的，如果一个表单组件没有value props（单选按钮和复选框对应的是checked prop）时，那么它就是非受控组件。相应的，我们可以使用defaultValue 和 defaultChecked prop 来表示组件的默认状态。
+
+在React中，非受控组件是一种反模式，它的值不受组件自身的state或props控制。通常需要通过为其添加ref prop来访问渲染后的底层dom元素。
 
 ## 参考资料
 
