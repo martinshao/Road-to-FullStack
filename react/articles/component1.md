@@ -1,4 +1,4 @@
-# 认识React组件基础篇——Class component & Function Component
+# 认识React组件基础篇——类组件&函数组件
 
 ## 关键词
 
