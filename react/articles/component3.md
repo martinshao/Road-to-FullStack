@@ -1,5 +1,8 @@
 # 认识React组件基础篇——有状态组件&无状态组件
 
+## 概念辨析
+
+以是否有自身状态需要维护，React中的组件可以分为无状态组件（Stateless Component）和有状态组件（Stateful Component）两类。这个组件分类还是很容易理解，但还是需要注意的一点如下：
 
 ```js
 // 函数组件
@@ -15,11 +18,31 @@ class Welcome extends React.Component {
 }
 ```
 
-上面的两种写法是等价的，但函数组件的写法要比类组件简洁，不过类组件比函数组件功能更加强大。类组件可以维护自身的状态变量，即组件的state，类组件还有不同的生命周期方法，可以让开发者能够在组件的不同阶段（挂载、更新、卸载），对组件做更多的控制。
+上面的两种写法看起来是等价的，并且都没有自身的state需要维护，这时候可能有的同学会把下面的类组件也当成无状态组件，但其实，只有无状态的函数组件才能称为无状态组件。自从16.8版本hooks横空出世以后，函数组件也可以维护自身的state，因为不能像以前那样，把函数组件等价为无状态组件。
 
-React中的组件主要分为无状态组件和有状态组件两类。
+``` js
+import React, { useState } from 'react';
 
-1，无状态组件主要用来定义模板，接收来自父组件props传递过来的数据，使用{props.xxx}的表达式把props塞到模板里面。无状态组件应该保持模板的纯粹性，以便于组件复用。创建无状态组件如下：
+function Example() {
+  // Declare a new state variable, which we'll call "count"
+  const [count, setCount] = useState(0);
+
+  return (
+    <div>
+      <p>You clicked {count} times</p>
+      <button onClick={() => setCount(count + 1)}>
+        Click me
+      </button>
+    </div>
+  );
+}
+```
+
+上述函数组件肯定不能称为无状态组件了。
+
+## 无状态组件
+
+无状态组件主要用来定义模板，接收来自父组件props传递过来的数据，使用{props.xxx}的表达式把props塞到模板里面。无状态组件应该保持模板的纯粹性，以便于组件复用。创建无状态组件如下：
 
 ``` js
 const Header(props) {
@@ -35,7 +58,9 @@ const Header = ({headStyle, title='xxx'}) => (
 )
 ```
 
-2，有状态组件主要用来定义交互逻辑和业务数据（如果用了Redux，可以把业务数据抽离出去统一管理），使用{this.state.xxx}的表达式把业务数据挂载到容器组件的实例上（有状态组件也可以叫做容器组件，无状态组件也可以叫做展示组件），然后传递props到展示组件，展示组件接收到props，把props塞到模板里面。创建有状态组件如下：
+## 有状态组件
+
+有状态组件主要用来定义交互逻辑和业务数据（如果用了Redux，可以把业务数据抽离出去统一管理），使用{this.state.xxx}的表达式把业务数据挂载到容器组件的实例上（有状态组件也可以叫做容器组件，无状态组件也可以叫做展示组件），然后传递props到展示组件，展示组件接收到props，把props塞到模板里面。创建有状态组件如下：
 
 ``` js
 class Home extends React.Component {
