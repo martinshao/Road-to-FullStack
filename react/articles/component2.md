@@ -42,3 +42,11 @@
 但是表单元素有其特殊之处，用户可以通过键盘输入与鼠标选择，改变界面的显示。界面的改变也意味着有一些数据被改动，比较明显的是input的value，textarea的innerHTML，radio/checkbox的checked，不太明显的是option的selected与selectedIndex，这两个是被动修改的。
 
 还是回到React最本质的问题，React是一个单向数据流的视图层框架，我们希望数据和视图分离，我们能够完全掌握对数据的操作，从而通过改变数据去改变视图。那么form的问题又在哪里？表单元素相当特殊，通过上面示例我们可以发现，用户可以通过
+
+## 参考资料
+
+* [表单操作 [caibaojian]][1]
+* [创建我的第一个表单 [MDN]][2]
+
+[1]: http://caibaojian.com/fend_note/chapter3/12_form_manipulation.html
+[2]: https://developer.mozilla.org/zh-CN/docs/Learn/HTML/Forms/Your_first_HTML_form
