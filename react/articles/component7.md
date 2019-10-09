@@ -1,5 +1,11 @@
 # React组件设计技巧——高阶组件和函数子组件
 
+## 关键字
+
+* 复用(multiplexing): 具体指代码复用，通常涉及到抽象，抽离，封装等概念
+* 增强(enhance): 具体指功能增强，一种特殊的代码复用技术，增强器可复用，对特定组件进行功能增强
+* 横切关注点: 直接的业务关注点，是直切关注点。而为直切关注点提供服务的，就是横切关注点。
+
 这篇文章着重介绍一些React组件的设计技巧，让组件更具有可读性，可复用性。
 
 Render Props
@@ -123,6 +129,10 @@ this.props.children
 * [高阶组件][5]
 * [React中的函数子组件(FaCC)和高阶组件(HOC)][6]
 * [React 中的 Render Props][7]
+* [横切关注点的两种实现方法][8]
+* [之 横切关注点、通知、切点、连接点、引入、织入、创建切点][9]
+* [了解AOP][10]
+* [我想要 AOP — 使用 AOP 分离关注点][11]
 
 [1]: https://juejin.im/post/5bd2fbfef265da0aca335198
 [2]: http://www.alloyteam.com/2013/08/yong-aop-gai-shan-javascript-dai-ma/
@@ -131,3 +141,7 @@ this.props.children
 [5]: https://zh-hans.reactjs.org/docs/higher-order-components.html
 [6]: https://segmentfault.com/a/1190000016269347
 [7]: https://juejin.im/entry/5a151f4b518825296421555e
+[8]: https://blog.csdn.net/shendl/article/details/526362
+[9]: https://my.oschina.net/u/2378713/blog/670056
+[10]: http://www.uml.org.cn/mxdx/mxdx15.htm
+[11]: https://keelii.com/2019/07/06/i-want-my-aop-cn/
