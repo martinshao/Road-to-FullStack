@@ -16,6 +16,7 @@
 * `prop-types`: 类型检查插件
 * `classnames`: 样式处理插件
 * `react-css-module`: 样式处理插件
+* `react-powerplug`: 基于 `render props` 的插件库，想更加深刻理解 `render props` 可以看下源码
 
 ## React组件类型一网打尽系列
 
@@ -51,9 +52,11 @@
 1. React路由管理与react-router
 1. react-router原理与源码解析
 
-另外还有高阶组件的概念
+## React周边--好用的项目收集
 
-React 组件有很多种分类方式，常见的分类方式有函数组件和类组件，无状态组件和有状态组件，展示型组件和容器型组件。好吧，这又是一篇咬文嚼字的文章。但是，真正把这几组概念咬清楚、嚼明白后，对于页面的组件划分、组件之间的解耦是大有裨益的。
+* [react-admin react后台管理框架][1]
+
+[1]: https://github.com/yezihaohao/react-admin
 
 
 
