@@ -27,6 +27,13 @@
 4. React组件设计技巧——类组件和纯组件
 5. React组件设计技巧——高阶组件和函数子组件
 
+## React黑魔法Hooks
+
+1. hooks介绍与基本应用
+1. hooks使用实践及注意事项
+1. hooks造轮子之Redux实现
+1. hooks造轮子之……
+
 ## React原理深度解析系列
 
 1. React原理之 JSX转换
@@ -34,8 +41,15 @@
 3. React 原理之Fiber调度过程
 4. React 原理之Fiber更新过程
 5. React 原理之React hooks
-6. Redux 原理
-7. Mobx原理
+
+## React全家桶
+1. Redux介绍与原理解析
+1. react-redux源码分析
+1. Redux中间件:redux-thunk、redux-saga
+1. 深度封装的状态库:dva
+1. Mobx原理
+1. React路由管理与react-router
+1. react-router原理与源码解析
 
 另外还有高阶组件的概念
 
