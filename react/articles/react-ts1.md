@@ -1,6 +1,6 @@
 # React 与 Typescript 实战
 
-## 参考文章‘
+## 参考文章
 
 * [react与typescript搭配干活就是不累(译)][1]
 * [React与ts快速上手][2]
