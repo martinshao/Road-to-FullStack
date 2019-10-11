@@ -10,6 +10,7 @@
 * [TypeScript 2.1 新特性一览][107]
 * [Typescript有什么冷门但是很好用的特性？][108]
 * [typescript 类型系统从无知到失智][109]
+* [Typescript 中的 interface 和 type 到底有什么区别][110]
 
 [101]: https://juejin.im/post/5c2f87ce5188252593122c98
 [102]: https://juejin.im/post/5bed5f03e51d453c9515e69b
@@ -19,6 +20,7 @@
 [107]: https://zhuanlan.zhihu.com/p/24267683
 [108]: https://www.zhihu.com/question/276172039/answer/385498094
 [109]: https://juejin.im/entry/5c17c2d3f265da61616e9c42
+[110]: https://juejin.im/post/5c2723635188252d1d34dc7d
 
 ## 学习资料
 
