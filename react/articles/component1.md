@@ -6,6 +6,7 @@
 > * Class Component -> 类组件
 > * Stateless Component -> 无状态组件
 > * Stateful Component -> 有状态组件
+> * stateless function components -> 无状态函数组件
 > * Controlled Component -> 受控组件
 > * Uncontrolled Component -> 非受控组件
 > * Presentational Component -> 展示组件

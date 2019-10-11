@@ -6,5 +6,5 @@ interface User extends Name {
 }
 
 class Person<User> {
-  
+
 }
