@@ -30,9 +30,10 @@ export interface StoreCreator {
 }
 ```
 
-所以最简单粗暴的fix上面报错的方法就是：
+所以最简单粗暴的fix上面报错的方法就是（不得不说any在ts中真是万能药，但是滥用就失去了使用ts的意义）：
 ``` ts
-const store = createStore<StoreState, any, any, any>(enthusiasm);
+import { EnthusiasmAction } from './actions/index';
+const store = createStore<StoreState, EnthusiasmAction, any, any>(enthusiasm);
 
 // 或者就干脆不要在createStore上加泛型约束，不会报错，也不会对运行时产生影响
 const store = createStore(enthusiasm);
