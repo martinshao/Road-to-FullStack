@@ -14,7 +14,6 @@
 > * Dumb Components -> 木偶组件
 > * Smart Components -> 聪明组件
 > * PureComponent -> 纯组件
-> * Switching Component
 > * Higher Order Component -> 高阶组件(HOC)
 > * Functions as Child Components -> 函数子组件(FaCC)
 

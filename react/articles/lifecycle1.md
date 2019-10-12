@@ -40,8 +40,12 @@ componentDidCatch()
 * [React v16.3 版本新生命周期函数浅析及升级方案][2]
 * [[译] React v16.9.0 and the Roadmap Update][3]
 * [理解React组件的生命周期][4]
+* [ReactV16.3即将更改的生命周期][5]
+* [Update on Async Rendering][6]
 
 [1]: https://juejin.im/entry/587de1b32f301e0057a28897
 [2]: https://juejin.im/post/5ae6cd96f265da0b9c106931
 [3]: https://juejin.im/post/5d527bbb51882515374dd15a
 [4]: https://segmentfault.com/a/1190000013354181
+[5]: https://www.zcfy.cc/article/update-on-async-rendering
+[6]: https://reactjs.org/blog/2018/03/27/update-on-async-rendering.html#updating-state-based-on-props
