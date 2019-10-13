@@ -42,6 +42,9 @@ componentDidCatch()
 * [理解React组件的生命周期][4]
 * [ReactV16.3即将更改的生命周期][5]
 * [Update on Async Rendering][6]
+* [React 中 getDerivedStateFromProps 的用法和反模式][7]
+* [我对 React v16.4 生命周期的理解][8]
+* [ReactV16.3即将更改的生命周期][9]
 
 [1]: https://juejin.im/entry/587de1b32f301e0057a28897
 [2]: https://juejin.im/post/5ae6cd96f265da0b9c106931
@@ -49,3 +52,6 @@ componentDidCatch()
 [4]: https://segmentfault.com/a/1190000013354181
 [5]: https://www.zcfy.cc/article/update-on-async-rendering
 [6]: https://reactjs.org/blog/2018/03/27/update-on-async-rendering.html#updating-state-based-on-props
+[7]: https://juejin.im/post/5c3ad49be51d45521053fde0
+[8]: https://juejin.im/post/5b6f1800f265da282d45a79a
+[9]: https://www.zcfy.cc/article/update-on-async-rendering
