@@ -13,3 +13,10 @@ dispatch({
     type: 'click-submit-button',
     payload: this.form.data
 })
+
+import { connect } from 'dva';
+
+function mapStateToProps(state) {
+  return { todos: state.todos };
+}
+connect(mapStateToProps)(App);
