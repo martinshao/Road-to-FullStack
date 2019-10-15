@@ -4,6 +4,18 @@
 
 在 [JavaScript执行机制深度解析——调用栈、异步队列和事件循环(Event Loop)](https://github.com/Martin-Shao/Road-to-FullStack/blob/master/javascript/running-analysis/3.md) 一文中重点介绍了event loop模型。可以说event loop是处理异步事件的重要模型。但是在那篇文章中，我们是从宏观角度解析的event loop模型，重点介绍了任务队列以及相关知识。而这片文章我们就需要重点分析JS runtime engine中发生的事情。
 
+如果你是JavaScript的设计者，你该如何实现一个JavaScript执行机制的模型？带着这样一个问题，我们开始JavaScript执行机制之旅。
+
+还是为了回答上面的问题，我们写下一段JavaScript代码，扔进浏览器开始执行，如果让我们设计JavaScript的执行机制模型的话，我们需要做哪些工作？要怎么做？
+
+大体的思路就是，至少要有存储变量的地方，然后要有函数执行执行的地方，在函数执行期间，要为函数准备各种物料。这里就引出了执行上下文和调用栈。
+
+如何去理解执行上下文的概念？
+
+先从字面上去理解，我们把这个概念拆分成 执行 和 上下文 两部分理解。首先什么是上下文？还记得初中语文课堂最常见的问题之一就是根据课文上下文理解这句话的意思，这样就容易理解，有的时候文章中单独的一句话是不能够很好理解的，要根据上下文去推敲要理解的句话的真实意义，套用在编程上也是同样的道理，一个函数可能会引用很多外部的变量或者函数，这时候单独的一个函数是无法依靠自已独立执行，它需要一个上下文，和所有相关的代码产生某种关联，从而顺利执行。剩下的执行二字就很好理解了，因为js的上下文只有在代码执行的时候才会创建。
+
+
+
 ## 大纲
 
 * 代码执行的基础，内存分配
@@ -28,6 +40,19 @@
 
 ![alt text](../_assets/factorial-stack.png "factorial-stack")  
 > factorial函数是一个理解调用栈难度适中的函数
+
+``` js
+function factorial (num) { 
+  if (num < 0) { 
+    return -1; 
+  } else if (num === 0 || num === 1) { 
+    return 1; 
+  } else { 
+    return (num * factorial(num - 1)); 
+  } 
+};
+factorial(6);
+```
 
 关于执行栈，这其实并不是JavaScript专有的知识 ，计算机语言的执行几乎都是依赖于执行栈的。
 
