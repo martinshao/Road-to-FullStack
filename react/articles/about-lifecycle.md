@@ -12,7 +12,7 @@ React 2013年推出至今（2019年）已经有6年时间，这期间 React 的�
 
 首先，React 推出至今在我的认知里发生过一次大改动和一次小改动。**React 16** 版本由于使用了全新的核心算法架构 Fiber，由此对于新老生命周期做了一些改动。**React 16** 版本之前的生命周期如下：
 
-![react lifecycle](../assets/9724718-c473742207bd71ea.png "react lifecycle")
+![react lifecycle](../assets/20190926001952.png "react lifecycle")
 
 另外还有一个有意思的图放在这里做一个比较。
 
