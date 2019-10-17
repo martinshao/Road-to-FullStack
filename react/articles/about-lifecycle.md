@@ -20,15 +20,15 @@ React 2013年推出至今（2019年）已经有6年时间，这期间 React 的�
 
 下面是生命周期对应的钩子函数：
 
-* constructor()
-* componentWillMount()
-* componentDidMount()
-* componentWillUnmount()
-* componentWillReceiveProps(nextProps)
-* shouldComponentUpdate(nextProps, nextState)
-* componentWillUpdate(nextProps, nextState)
-* componentDidUpdate(prevProps, prevState)
-* render()
+* `constructor()`
+* `componentWillMount()`
+* `componentDidMount()`
+* `componentWillUnmount()`
+* `componentWillReceiveProps(nextProps)`
+* `shouldComponentUpdate(nextProps, nextState)`
+* `componentWillUpdate(nextProps, nextState)`
+* `componentDidUpdate(prevProps, prevState)`
+* `render()`
 
 首先我们研究一下钩子函数具体执行顺序：
 
