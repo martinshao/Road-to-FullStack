@@ -25,8 +25,10 @@
 2. 认识React组件基础篇——无状态组件和有状态组件
 3. React组件设计技巧——展示型组件和容器型组件
 4. React组件设计技巧——木偶组件和聪明组件
-4. React组件设计技巧——类组件和纯组件
 5. React组件设计技巧——高阶组件和函数子组件
+6. React组件性能优化——PureComponent
+7. React组件新能优化——Memo组件
+8. React组件新能优化——
 
 ## React黑魔法Hooks
 
