@@ -48,27 +48,28 @@ React 2013年推出至今（2019年）已经有6年时间，这期间 React 的�
 当组件的 props 或 state 发生变化时会触发更新。组件更新的生命周期调用顺序如下：
 ![](../assets/lifecycle169render.png)
 ![](../assets/lifecycle169update.png)
+
 挂载:
 
-constructor()
-static getDerivedStateFromProps(props, state)
-render()
-componentDidMount()
+* constructor()
+* static getDerivedStateFromProps(props, state)
+* render()
+* componentDidMount()
 
 更新:
 
-static getDerivedStateFromProps(props, state)
-shouldComponentUpdate(nextProps, nextState)
-render()
-getSnapshotBeforeUpdate(prevProps, prevState)
-componentDidUpdate(prevProps, prevState, snapshot)
+* static getDerivedStateFromProps(props, state)
+* shouldComponentUpdate(nextProps, nextState)
+* render()
+* getSnapshotBeforeUpdate(prevProps, prevState)
+* componentDidUpdate(prevProps, prevState, snapshot)
 
 卸载:
-componentWillUnmount()
+* componentWillUnmount()
 
 错误处理:
-static getDerivedStateFromError(props, state)
-componentDidCatch()
+* static getDerivedStateFromError(props, state)
+* componentDidCatch()
 
 
 ## 官方升级规划
