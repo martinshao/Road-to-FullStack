@@ -20,15 +20,15 @@ React 2013年推出至今（2019年）已经有6年时间，这期间 React 的�
 
 下面是生命周期对应的钩子函数：
 
-* constructor
-* componentWillMount
-* componentDidMount
-* componentWillUnmount
-* componentWillReceiveProps
-* shouldComponentUpdate
-* componentWillUpdate
-* componentDidUpdate
-* render
+* constructor()
+* componentWillMount()
+* componentDidMount()
+* componentWillUnmount()
+* componentWillReceiveProps(nextProps)
+* shouldComponentUpdate(nextProps, nextState)
+* componentWillUpdate(nextProps, nextState)
+* componentDidUpdate(prevProps, prevState)
+* render()
 
 首先我们研究一下钩子函数具体执行顺序：
 
@@ -42,13 +42,34 @@ React 2013年推出至今（2019年）已经有6年时间，这期间 React 的�
 
 ```
 
-当组件的 props 或 state 发生变化时会触发更新。组件更新的生命周期调用顺序如下：
+![](../assets/lifecycle168render.png)
+![](../assets/lifecycle168update.png)
 
-static getDerivedStateFromProps()
-shouldComponentUpdate()
+当组件的 props 或 state 发生变化时会触发更新。组件更新的生命周期调用顺序如下：
+![](../assets/lifecycle169render.png)
+![](../assets/lifecycle169update.png)
+挂载:
+
+constructor()
+static getDerivedStateFromProps(props, state)
 render()
-getSnapshotBeforeUpdate()
-componentDidUpdate()
+componentDidMount()
+
+更新:
+
+static getDerivedStateFromProps(props, state)
+shouldComponentUpdate(nextProps, nextState)
+render()
+getSnapshotBeforeUpdate(prevProps, prevState)
+componentDidUpdate(prevProps, prevState, snapshot)
+
+卸载:
+componentWillUnmount()
+
+错误处理:
+static getDerivedStateFromError(props, state)
+componentDidCatch()
+
 
 ## 官方升级规划
 
