@@ -10,7 +10,7 @@ React近年版本升级变化
 
 React 2013年推出至今（2019年）已经有6年时间，这期间 React 的生命周期发生了巨大的变化。一方面研究生命周期产生了那些变化，原因是什么？解决了什么问题？另外一方面也是对React生命周期更深入的理解，以及如何更好的使用。
 
-首先，React推出至今在我的认知里发生过一次大改动和一次小改动。React 16 版本由于使用了全新的核心算法架构Fiber，由此对于新老生命周期做了一些改动。React 16 版本之前的生命周期如下：
+首先，React 推出至今在我的认知里发生过一次大改动和一次小改动。**React 16** 版本由于使用了全新的核心算法架构 Fiber，由此对于新老生命周期做了一些改动。**React 16** 版本之前的生命周期如下：
 
 ![react lifecycle](../assets/9724718-c473742207bd71ea.png "react lifecycle")
 
@@ -34,7 +34,7 @@ React 2013年推出至今（2019年）已经有6年时间，这期间 React 的�
 
 ![hooks function sort](../assets/3703585223-5a90fadf9d735.png "hooks sort")
 
-这张图详细的给出了钩子函数的执行顺序，另外一个细节就是 setState 方法能够执行的钩子函数也给明确的指出来了。
+这张图详细的给出了钩子函数的执行顺序，另外一个细节就是 `setState` 方法能够执行的钩子函数也给明确的指出来了。
 
 为了更加生动的显示的钩子函数的执行顺序，给出了这样一个示例代码：
 
@@ -51,25 +51,25 @@ React 2013年推出至今（2019年）已经有6年时间，这期间 React 的�
 
 挂载:
 
-* constructor()
-* static getDerivedStateFromProps(props, state)
-* render()
-* componentDidMount()
+* `constructor()`
+* `static getDerivedStateFromProps(props, state)`
+* `render()`
+* `componentDidMount()`
 
 更新:
 
-* static getDerivedStateFromProps(props, state)
-* shouldComponentUpdate(nextProps, nextState)
-* render()
-* getSnapshotBeforeUpdate(prevProps, prevState)
-* componentDidUpdate(prevProps, prevState, snapshot)
+* `static getDerivedStateFromProps(props, state)`
+* `shouldComponentUpdate(nextProps, nextState)`
+* `render()`
+* `getSnapshotBeforeUpdate(prevProps, prevState)`
+* `componentDidUpdate(prevProps, prevState, snapshot)`
 
 卸载:
-* componentWillUnmount()
+* `componentWillUnmount()`
 
 错误处理:
-* static getDerivedStateFromError(props, state)
-* componentDidCatch()
+* `static getDerivedStateFromError(props, state)`
+* `componentDidCatch()`
 
 
 ## 官方升级规划
