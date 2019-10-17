@@ -45,8 +45,7 @@ React 2013年推出至今（2019年）已经有6年时间，这期间 React 的�
 ![](../assets/lifecycle168.png)
 
 当组件的 props 或 state 发生变化时会触发更新。组件更新的生命周期调用顺序如下：
-![](../assets/lifecycle169render.png)
-![](../assets/lifecycle169update.png)
+![](../assets/lifecycle169.png)
 
 挂载:
 
