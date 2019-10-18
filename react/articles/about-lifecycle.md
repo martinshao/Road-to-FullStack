@@ -14,7 +14,7 @@ React 2013年推出至今（2019年）已经有6年时间，这期间 React 的�
 
 ![react lifecycle](../assets/20191017194429.png "react lifecycle")
 
-另外还有一个有意思的图放在这里做一个比较。这里对比的是早先 `createClass` 新建组件的生命周期钩子函数和现在 `ES6 Classes` 方式新建组件的生命周期钩子函数的对比，可以看出虽然不尽相同，但是大多数还是保持一直，并且大多数生命周期的一直沿用至今，知道 **React 16.X** 版本的出现
+另外还有一个有意思的图放在这里做一个比较。这里对比的是早先 `createClass` 新建组件的生命周期钩子函数和现在 `ES6 Classes` 方式新建组件的生命周期钩子函数的对比，可以看出虽然不尽相同，但是大多数还是保持一致，并且大多数生命周期的一直沿用至今，直到 **React 16.X** 版本的出现
 
 ![class createClass](../assets/20191007165935.png "class createClass")
 
@@ -34,7 +34,18 @@ React 2013年推出至今（2019年）已经有6年时间，这期间 React 的�
 
 ![hooks function sort](../assets/3703585223-5a90fadf9d735.png "hooks sort")
 
-这张图详细的给出了钩子函数的执行顺序，另外一个细节就是 `setState` 方法能够执行的钩子函数也给明确的指出来了。
+这张图详细的给出了钩子函数的执行顺序，另外一个细节就是 `setState` 方法能够执行的钩子函数也给明确的指出来了。以下来自于《深入React技术栈》总结
+
+* 在 componentWillMount 中执行 setState 是无意义的，应该将这里的 setState 放到初始化 this.state 的地方去（如 constructor）直接作为 state 的初始值。原因是组件只挂载一次，在 componentWillMount 里 setState 会但是仅会更新 state 一次，而且会和 constructor 里的初始化 state 合并执行，因此这是无意义的 setState。
+* 在 componentDidMount 中执行 setState 会导致组件在初始化的时候就触发了更新，渲染了两遍，应该尽量避免。有一些场景，比如在组件 DOM 渲染完成后获得DOM元素位置或者宽高等等设置为 state，会不得在 componentDidMount 之后 setState，但是除了这些必要的时候，都应该尽量避免在 componentDidMount 里 setState。
+* 在 componentWillUnmount 中执行 setState 不会更新 state，是不生效而且无意义的。
+* 禁止在 shouldComponentUpdate 和 componentWillUpdate 中调用 setState，这会造成循环调用，直至耗光浏览器内存后崩溃。了解了生命周期之后，这条很好理解。在 shouldComponentUpdate 或者 componentWillUpdate 里调用 setState 会再次触发这两个函数，然后在两个函数又触发了 setState，然后再次触发这两个函数…… 这样就进入了一个不停 setState 然后不停触发组件更新的死循环里，会导致浏览器内存耗光然后崩溃。
+* 在 componentDidUpdate 中执行 setState 同样会导致组件刚刚完成更新又要再更新，进入死循环。但是在某些特殊情况下，比如说 state 或者 props 变化触发了 DOM 变化，需要重新获取 DOM 元素宽高时然后更新某个 state 的时候，就不得不在这个函数里使用 setState 了。此时一定要给 setState 设置一个前提条件（ if (aaa) { setState(bbb) } ），以避免出现循环渲染的问题。 因此，如非必须，应该尽量避免在本函数里 setState。
+* 在 componentWillReceiveProps 中可以 setState，不会造成二次渲染。由于只有 props 的变化才会触发 componentWillReceiveProps 事件，因为在这个事件里 setState 不会造成不停触发组件更新的死循环，可以放心在这个函数里 setState。
+
+生命周期函数里 setState 的时机可以总结为以下表格：
+
+![](../assets/WX20180507-180427.jpg)
 
 为了更加生动的显示的钩子函数的执行顺序，给出了这样一个示例代码：
 
