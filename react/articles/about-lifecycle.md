@@ -181,7 +181,7 @@ class Counter extends React.Component {
 3. super中是否传入props与注意事项;
 4. state初始化位置和注意事项;
 
-*1. 是否需要constructor与不用的影响* constructor 并不是React提出的，这是ES6对类的默认方法，通过 new 命令生成对象实例时自动调用该方法。并且，该方法是类中必须有的，如果没有显示定义，则会默认添加空的constructor()方法。所以有时候我们可以不用在类组件中调用一次constructor，这对于后面使用设置使用 state 和 props 完全没有任何影响。
+*1. 是否需要constructor与不用的影响*: constructor 并不是React提出的，这是ES6对类的默认方法，通过 new 命令生成对象实例时自动调用该方法。并且，该方法是类中必须有的，如果没有显示定义，则会默认添加空的constructor()方法。所以有时候我们可以不用在类组件中调用一次constructor，这对于后面使用设置使用 state 和 props 完全没有任何影响。
 
 ``` jsx
 import React from 'react'
@@ -205,7 +205,7 @@ class MyClass extends React.Component {
 ReactDOM.render(<MyClass title={"标题"} />, document.getElementById('root'));
 ```
 
-*2. constructor是否要调用super* 上面的例子我们知道，我们可以不用自己调用constructor，而是把这个工作交给组件。但是换句话说，如果你一旦调用了constructor 也就必须要调用super。关于这一点还是因为 ES6 的特性导致，在ES6中使用class实现继承，子类必须在constructor方法中调用super方法，否则新建实例时会报错(如果不调用 super 报错： `ReferenceError: this hasn't been initialised - super() hasn't been called`)。这是因为子类没有自己的this对象，而是继承父类的this对象，然后对其进行加工。如果不调用super方法，子类就得不到this对象。我们React组件一般都是继承 React.component ，存在这样的继承关系，就意味着在自调用constructor时必须声明super。
+*2. constructor是否要调用super*: 上面的例子我们知道，我们可以不用自己调用constructor，而是把这个工作交给组件。但是换句话说，如果你一旦调用了constructor 也就必须要调用super。关于这一点还是因为 ES6 的特性导致，在ES6中使用class实现继承，子类必须在constructor方法中调用super方法，否则新建实例时会报错(如果不调用 super 报错： `ReferenceError: this hasn't been initialised - super() hasn't been called`)。这是因为子类没有自己的this对象，而是继承父类的this对象，然后对其进行加工。如果不调用super方法，子类就得不到this对象。我们React组件一般都是继承 React.component ，存在这样的继承关系，就意味着在自调用constructor时必须声明super。
 
 > 建立class时，当且仅当“使用了extends关键字并指定了constructor函数”，super关键字必须以super([arg1[, arg2...  argN]])的形式使用一次。此时super([arg1[, arg2...  argN]])相当于创建了一个对象，且以该对象为context调用extends关键字指示的函数（以new的形式），随后这个对象成为constructor函数的context。因此super([arg1[, arg2...  argN]])必须出现在constructor函数内的第一个this关键字之前，否则会报“this is not defined”的ReferenceError。亦可以super . IdentifierName的形式出现（这就与是否使用了extends关键字无关了）。super.IdentifierName作为getter使用时，表示函数B的prototype属性对象的[[prototype]]；super.IdentifierName作为setter使用时，super表示this。
 
@@ -244,7 +244,7 @@ function Sub() {
 }
 ```
 
-*3. super中是否传入props与注意事项* 在constructor中必须要调用super在上面我们已经说明，那么传入 props 又是什么情况？
+*3. super中是否传入props与注意事项*: 在constructor中必须要调用super在上面我们已经说明，那么传入 props 又是什么情况？
 
 ``` jsx
 class MyClass extends React.component{
@@ -263,7 +263,7 @@ class MyClass extends React.component{
 
 上面代码就是答案，如果我们想在 constructor 中拿到 props 的话就必须转入 props。除此之外，在组件其他地方React会自动为你设置好props属性。
 
-*4. state初始化位置和注意事项* 一般认为初始化state状态的位置有两种：
+*4. state初始化位置和注意事项*: 一般认为初始化state状态的位置有两种：
 1. 一种是作为类组件的属性声明在类里面；
 2. 声明在构造函数里面，声明在这里面的好处是可以制造 派生状态(derived state)。
 
