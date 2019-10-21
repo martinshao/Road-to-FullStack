@@ -72,11 +72,11 @@
 
 
 [31]: https://github.com/Martin-Shao/Road-to-FullStack/blob/master/react/articles/component1.md
-[32]: 
-[33]: 
-[34]: 
-[35]: 
-[36]: 
-[37]: 
-[38]: 
-[39]: 
+[32]: https://github.com/Martin-Shao/Road-to-FullStack/blob/master/react/articles/component2.md
+[33]: https://github.com/Martin-Shao/Road-to-FullStack/blob/master/react/articles/component3.md
+[34]: https://github.com/Martin-Shao/Road-to-FullStack/blob/master/react/articles/component4.md
+[35]: https://github.com/Martin-Shao/Road-to-FullStack/blob/master/react/articles/component5.md
+[36]: https://github.com/Martin-Shao/Road-to-FullStack/blob/master/react/articles/component6.md
+[37]: https://github.com/Martin-Shao/Road-to-FullStack/blob/master/react/articles/component7.md
+[38]: https://github.com/Martin-Shao/Road-to-FullStack/blob/master/react/articles/component8.md
+[39]: https://github.com/Martin-Shao/Road-to-FullStack/blob/master/react/articles/component9.md
