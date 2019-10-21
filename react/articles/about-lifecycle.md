@@ -367,7 +367,7 @@ class Test extends React.Component {
 ```
 ![](../assets/subtest.png)
 
-这回铁证如山，不容置疑了。这里就会造成很大的性能问题，但是React怎么可能会没有意识到这点，React把是否更新的权利交还给开发手里，开发通过某些生命周期人为控制是否重新渲染组件。(当然优化手段肯定不止这个，但这里主要说的是生命周期钩子)
+没有导致state的值发生变化的setState一样会导致重渲染。这回铁证如山，不容置疑了。这里就会造成很大的性能问题，但是React怎么可能会没有意识到这点，React把是否更新的权利交还给开发手里，开发通过某些生命周期人为控制是否重新渲染组件。(当然优化手段肯定不止这个，但这里主要说的是生命周期钩子)
 
 这个生命周期就是 `shouldComponentUpdate()`
 
@@ -377,10 +377,10 @@ class Test extends React.Component {
 在接收到新props或state时，或者说在componentWillReceiveProps(nextProps)后触发，在接收新的props或state时确定是否发生重新渲染，默认情况返回true，表示会发生重新渲染
 
 注意
-1 这个方法在首次渲染时或者forceUpdate()时不会触发;
-2 这个方法如果返回false, 那么props或state发生改变的时候会阻止子组件发生重新渲染;
-3 目前，如果shouldComponentUpdate(nextProps, nextState)返回false, 那么componentWillUpdate(nextProps, nextState), render(), componentDidUpdate()都不会被触发;
-4 Take care: 在未来，React可能把shouldComponentUpdate()当做一个小提示(hint)而不是一个指令(strict directive)，并且它返回false仍然可能触发组件重新渲染(re-render);
+1. 这个方法在首次渲染时或者forceUpdate()时不会触发;
+2. 这个方法如果返回false, 那么props或state发生改变的时候会阻止子组件发生重新渲染;
+3. 目前，如果shouldComponentUpdate(nextProps, nextState)返回false, 那么componentWillUpdate(nextProps, nextState), render(), componentDidUpdate()都不会被触发;
+4. Take care: 在未来，React可能把shouldComponentUpdate()当做一个小提示(hint)而不是一个指令(strict directive)，并且它返回false仍然可能触发组件重新渲染(re-render);
 Good Idea
 在React 15.3以后, React.PureComponent已经支持使用，个人推荐，它代替了(或者说合并了)pure-render-mixin，实现了shallowCompare()。 扩展阅读
 
@@ -405,10 +405,10 @@ Good Idea
 
 在组件卸载(unmounted)或销毁(destroyed)之前。在卸载组件时候不能设置 State。这个方法可以让你处理一些必要的清理操作：
 
-1、断开网络请求
-2、清空计时器（setTimeout setInterval）
-3、删除在componentDidMount或其他地方添加的事件监听
-4、清理在componentDidMount中创建的 DOM 元素
+1. 断开网络请求
+2. 清空计时器（setTimeout setInterval）
+3. 删除在componentDidMount或其他地方添加的事件监听
+4. 清理在componentDidMount中创建的 DOM 元素
 
 ## 169版本生命周期研究
 
