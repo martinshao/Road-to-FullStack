@@ -317,13 +317,65 @@ class MyClass extends React.Component {
 
 #### `shouldComponentUpdate(nextProps, nextState)`
 
+这个生命周期钩子也是可以大作文章的一个，它与优化react渲染性能之间有着紧密的关系，既然如此，那就让我在这里小小讨论以下如何优化react性能。背靠着Virtual DOM的大靠山，如果想在考虑性能方便的问题，我们可以考虑从react渲染维度下手。与React渲染息息相关的就是生命周期。在如何使用生命周期优化性能之前，先让我们看一些关于React渲染有意思的细节：
+
+1. 类组件中进行setState操作但是不改变state，会引起重新渲染！
+2. 当父组件进行重新渲染操作时，即使子组件的props或state没有做出任何改变，也会同样进行重新渲染。
+
+上面两个看起来让人有点伤感情的事情确是事实。
+
+``` jsx
+class SubTest extends React.Component {
+  componentWillUpdate(nextProps, nextState) {
+    console.info('---SubTest---componentWillUpdate')
+  }
+  componentDidUpdate(prevProps, prevState) {
+    console.info('---SubTest---componentDidUpdate')
+  }
+  render() {
+    console.info('---SubTest---render');
+    return (
+      <div>SubTest</div>
+    )
+  }
+}
+
+class Test extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      count: 1
+    }
+  }
+  componentWillUpdate(nextProps, nextState) {
+    console.info('---Test------componentWillUpdate')
+  }
+  componentDidUpdate(prevProps, prevState) {
+    console.info('---Test------componentDidUpdate')
+  }
+  render() {
+    console.info('---Test------render')
+    return (
+      <div>
+        <SubTest />
+        {this.state.count}
+        <button onClick={() => this.setState({ count: 1 })}>Click Me</button>
+      </div>
+    )
+  }
+}
+```
+![](../assets/subtest.png)
+
+这回铁证如山，不容置疑了。这里就会造成很大的性能问题，但是React怎么可能会没有意识到这点，React把是否更新的权利交还给开发手里，开发通过某些生命周期人为控制是否重新渲染组件。(当然优化手段肯定不止这个，但这里主要说的是生命周期钩子)
+
+这个生命周期就是 `shouldComponentUpdate()`
+
 > shouldComponentUpdate() is invoked before rendering when new props or state are being received.
 
-当父组件进行重新渲染操作时，即使子组件的props或state没有做出任何改变，也会同样进行重新渲染。
+上面这句话我们知道 `shouldComponentUpdate()`是在render之前执行的，
+在接收到新props或state时，或者说在componentWillReceiveProps(nextProps)后触发，在接收新的props或state时确定是否发生重新渲染，默认情况返回true，表示会发生重新渲染
 
-在接收到新props或state时，或者说在componentWillReceiveProps(nextProps)后触发
-解释
-在接收新的props或state时确定是否发生重新渲染，默认情况返回true，表示会发生重新渲染
 注意
 1 这个方法在首次渲染时或者forceUpdate()时不会触发;
 2 这个方法如果返回false, 那么props或state发生改变的时候会阻止子组件发生重新渲染;
