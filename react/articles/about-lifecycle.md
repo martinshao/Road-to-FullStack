@@ -373,15 +373,20 @@ class Test extends React.Component {
 
 > shouldComponentUpdate() is invoked before rendering when new props or state are being received.
 
-上面这句话我们知道 `shouldComponentUpdate()`是在render之前执行的，
-在接收到新props或state时，或者说在componentWillReceiveProps(nextProps)后触发，在接收新的props或state时确定是否发生重新渲染，默认情况返回true，表示会发生重新渲染
+官方对于 `shouldComponentUpdate()` 给的解释是：当接收到新的 `props` 或 `state` 会在 `render` 函数之前被调用。更加详细的解释是： `shouldComponentUpdate(nextProps, nextState)` 钩子函数接受两个参数：`nextProps` 和 `nextState` ，分别表示下一个 `props` 和下一个 `state` 的值。并且，当函数返回 `false` 时候，会阻止接下来的 `render()` 函数的调用，阻止组件重渲染，而返回 `true` 时，组件照常重渲染。
+
+这样我们就可以将变化前后的 props 和 state 进行比较， 用以决定是否对组件进行渲染。
+
+上面这句话我们知道 `shouldComponentUpdate()`是在render之前执行的，在接收到新props或state时，或者说在，在接收新的props或state时确定是否发生重新渲染，默认情况返回true，表示会发生重新渲染。
 
 注意
-1. 这个方法在首次渲染时或者forceUpdate()时不会触发;
-2. 这个方法如果返回false, 那么props或state发生改变的时候会阻止子组件发生重新渲染;
-3. 目前，如果shouldComponentUpdate(nextProps, nextState)返回false, 那么componentWillUpdate(nextProps, nextState), render(), componentDidUpdate()都不会被触发;
+1. 这个方法在首次渲染时或者 `forceUpdate()` 时不会触发;
+2. 在 `componentWillReceiveProps(nextProps)` 后触发;
+2. 这个方法如果返回 `false` , 那么 `props` 或 `state` 发生改变的时候会阻止子组件发生重新渲染;
+3. 目前，如果 `shouldComponentUpdate(nextProps, nextState)` 返回 `false` , 那么 `componentWillUpdate(nextProps, nextState)` , `render()`, `componentDidUpdate()` 都不会被触发;
 4. Take care: 在未来，React可能把shouldComponentUpdate()当做一个小提示(hint)而不是一个指令(strict directive)，并且它返回false仍然可能触发组件重新渲染(re-render);
-Good Idea
+
+Good Idea  
 在React 15.3以后, React.PureComponent已经支持使用，个人推荐，它代替了(或者说合并了)pure-render-mixin，实现了shallowCompare()。 扩展阅读
 
 #### `componentWillUpdate(nextProps, nextState)`
@@ -391,7 +396,6 @@ Good Idea
 2. 千万不要在这个函数中调用 `this.setState()` 方法;
 3. 如果确实需要响应 `props` 的改变，那么你可以在 `componentWillReceiveProps(nextProps)` 中做响应操作;
 4. 如果 `shouldComponentUpdate(nextProps, nextState)` 返回false，那么 `componentWillUpdate()` 不会被触发;
-
 
 #### `componentDidUpdate(prevProps, prevState)`
 
