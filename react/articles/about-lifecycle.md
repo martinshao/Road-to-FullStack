@@ -306,6 +306,15 @@ class MyClass extends React.Component {
 
 #### `componentWillReceiveProps(nextProps)`
 
+在介绍这个生命周期之前，让我先引出一个概念：派生状态(derived state)
+我们知道 `React` 最重要的数据流就是 `state` 和 `props` ，子组件接受父组件的数据即为 `props` ，那么有时候会有这样的操作，将接受的 `props` 转化为 `state` 。 `this.state.xxx = this.props.xxx` ，这也是一种反模式 `(anti-pattern)` ，我们常说React遵从单一数据流，当时如果有了派生状态，那意味这， `props` 的改变和 `setState` 都是改变指定的状态。
+
+⚠️：有意思的是，React为了避免这种状况，在挂载时允许 `this.state.xxx = this.props.xxx` 这样的赋值情况，在之后的更新阶段， `props` 的变化再也不能引起 `state` 的改变。
+
+反模式不是不能用，不论模式反模式，只要能够更好的实现业务就是好模式，那么如果解决派生状态无法更新的问题，componentWillReceiveProps()应运而生。这里也不得不说React框架设计的细节之处环环相扣。
+
+UNSAFE_componentWillReceiveProps() 会在已挂载的组件接收新的 props 之前被调用。如果你需要更新状态以响应 prop 更改（例如，重置它），你可以比较 this.props 和 nextProps 并在此方法中使用 this.setState() 执行 state 转换。
+
 执行场景
 在已经挂在的组件(mounted component)接收到新props时触发;
 简单的说是在除了第一次生命周期(componentWillMount -> render -> componentDidMount)之后的生命周期中出发;
