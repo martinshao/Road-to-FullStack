@@ -10,7 +10,11 @@ React近年版本升级变化
 
 React 2013年推出至今（2019年）已经有6年时间，这期间 React 的生命周期发生了巨大的变化。一方面研究生命周期产生了那些变化，原因是什么？解决了什么问题？另外一方面也是对React生命周期更深入的理解，以及如何更好的使用。
 
-首先，React 推出至今在我的认知里发生过一次大改动和一次小改动。**React 16** 版本由于使用了全新的核心算法架构 Fiber，由此对于新老生命周期做了一些改动。**React 16** 版本之前的生命周期如下：
+首先，React 推出至今在我的认知里发生过一次大改动和一次小改动。**React 16** 版本由于使用了全新的核心算法架构 Fiber，由此对于新老生命周期做了一些改动。
+
+## 16.8各生命周期讲解与注意事项
+
+**React 16.8** 版本之前的生命周期如下：
 
 ![react lifecycle](../assets/20191017194429.png "react lifecycle")
 
@@ -170,8 +174,6 @@ class Counter extends React.Component {
 
 ![](../assets/lifecycle168.png)
 
-## 各生命周期讲解与注意事项
-
 其实每个生命周期钩子都很重要，但这其中还是有主次关注的层序：constructor()、shouldComponentUpdate(nextProps, nextState)、componentWillReceiveProps(nextProps)
 
 #### ✨`constructor`
@@ -323,6 +325,15 @@ componentWillReceiveProps() 会在已挂载的组件接收新的 props 之前被
 注意
 1. React可能会在porps传入时即使没有发生改变的时候也发生重新渲染, 所以如果你想自己处理改变，请确保比较props当前值和下一次值; 这可能造成组件重新渲染;
 2. 如果你只是调用this.setState()而不是从外部传入props, 那么不会触发componentWillReceiveProps(nextProps)函数；这就意味着: this.setState()方法不会触发componentWillReceiveProps(), props的改变或者props没有改变才会触发这个方法;
+
+注意:
+
+使用此生命周期方法通常会出现 bug 和不一致性：
+
+* 如果你需要执行副作用（例如，数据提取或动画）以响应 props 中的更改，请改用 componentDidUpdate 生命周期。
+* 如果你使用 componentWillReceiveProps 仅在 prop 更改时重新计算某些数据，请使用 memoization helper 代替。
+* 如果你使用 componentWillReceiveProps 是为了在 prop 更改时“重置”某些 state，请考虑使组件完全受控或使用 key 使组件完全不受控 代替。
+*对于其他使用场景，[请遵循此博客文章中有关派生状态的建议](https://zh-hans.reactjs.org/blog/2018/06/07/you-probably-dont-need-derived-state.html)。
 
 #### ✨`shouldComponentUpdate(nextProps, nextState)`
 

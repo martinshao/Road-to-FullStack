@@ -1,6 +1,6 @@
 # React 从入门到精通
 
-## React系列总结文章大纲
+## 1-React系列总结文章大纲
 
 * 认识React ，已经React全家桶成员，还有很多衍生框架
 * React生命周期的变更，以及变更的原因
@@ -11,14 +11,14 @@
 * React事件机制
 * React相关原理解析
 
-## React全家桶好用的插件
+## 2-React全家桶好用的插件
 
 * `prop-types`: 类型检查插件
 * `classnames`: 样式处理插件
 * `react-css-module`: 样式处理插件
 * `react-powerplug`: 基于 `render props` 的插件库，想更加深刻理解 `render props` 可以看下源码
 
-## React组件类型一网打尽系列
+## 3-React组件类型一网打尽系列
 
 1. 认识React组件基础篇——类组件&函数组件
 1. 认识React组件基础篇——受控组件&非受控组件
@@ -30,14 +30,14 @@
 7. React组件新能优化——Memo组件
 8. React组件新能优化——
 
-## React黑魔法Hooks
+## 4-React黑魔法Hooks
 
 1. hooks介绍与基本应用
 1. hooks使用实践及注意事项
 1. hooks造轮子之Redux实现
 1. hooks造轮子之……
 
-## React原理深度解析系列
+## 5-React原理深度解析系列
 
 1. React原理之 JSX转换
 2. React原理之 FiberRoot构建过程（未完成）
@@ -45,7 +45,7 @@
 4. React 原理之Fiber更新过程
 5. React 原理之React hooks
 
-## React全家桶
+## 6-React全家桶
 1. Redux介绍与原理解析
 1. react-redux源码分析
 1. Redux中间件:redux-thunk、redux-saga
@@ -54,18 +54,18 @@
 1. React路由管理与react-router
 1. react-router原理与源码解析
 
-## React周边--好用的项目收集
+## 7-React周边--好用的项目收集
 
 * [react-admin react后台管理框架][1]
 
 [1]: https://github.com/yezihaohao/react-admin
 
-## React造轮子系列
+## 8-React造轮子系列
 
 
-## React 组件设计原则
+## 9-React 组件设计原则
 
-### 参考资料
+## 10-参考资料
 
 * [7 Architectural Attributes of a Reliable React Component](https://dmitripavlutin.com/7-architectural-attributes-of-a-reliable-react-component)
 8 [可靠React组件设计的7个准则之SRP](https://juejin.im/post/5d4acb28e51d45620771f082)
