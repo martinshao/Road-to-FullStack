@@ -174,7 +174,7 @@ class Counter extends React.Component {
 
 其实每个生命周期钩子都很重要，但这其中还是有主次关注的层序：constructor()、shouldComponentUpdate(nextProps, nextState)、componentWillReceiveProps(nextProps)
 
-#### constructor
+#### ✨`constructor`
 
 构造器的问题涉及到四个比较值得讨论的问题：
 
@@ -288,23 +288,23 @@ class MyClass extends React.Component {
 }
 ```
 
-#### `componentWillMount()`
+#### ✨`componentWillMount()`
 
 见名知意 `componentWillMount` 是组件即将渲染之前执行的生命周期钩子，这个钩子没有什么特别值得注意的，如果有的话就是以下几点：
 1. 这个方法内调用 setState 不会发生重新渲染(re-render)；
 2. 这个服务器端渲染唯一调用的钩子函数
 3. 初次渲染组件时候执行，更新组件渲染不会执行
 
-#### `render()`
+#### ✨`render()`
 
 1 在componentWillMount()方法之后
 2 在componentWillReceive(nextProps, nextState)方法之后
 
-#### `componentDidMount()`
+#### ✨`componentDidMount()`
 
 见名知意 `componentDidMount` 钩子是在组件挂载之后执行（在render钩子执行之后理解执行），并且也是在初次渲染时候执行，更新组件渲染时不会执行。
 
-#### `componentWillReceiveProps(nextProps)`
+#### ✨`componentWillReceiveProps(nextProps)`
 
 在介绍这个生命周期之前，让我先引出一个概念：派生状态(derived state)
 我们知道 `React` 最重要的数据流就是 `state` 和 `props` ，子组件接受父组件的数据即为 `props` ，那么有时候会有这样的操作，将接受的 `props` 转化为 `state` 。 `this.state.xxx = this.props.xxx` ，这也是一种反模式 `(anti-pattern)` ，我们常说React遵从单一数据流，当时如果有了派生状态，那意味这， `props` 的改变和 `setState` 都是改变指定的状态。
@@ -313,18 +313,18 @@ class MyClass extends React.Component {
 
 反模式不是不能用，不论模式反模式，只要能够更好的实现业务就是好模式，那么如果解决派生状态无法更新的问题，componentWillReceiveProps()应运而生。这里也不得不说React框架设计的细节之处环环相扣。
 
-UNSAFE_componentWillReceiveProps() 会在已挂载的组件接收新的 props 之前被调用。如果你需要更新状态以响应 prop 更改（例如，重置它），你可以比较 this.props 和 nextProps 并在此方法中使用 this.setState() 执行 state 转换。
+componentWillReceiveProps() 会在已挂载的组件接收新的 props 之前被调用。如果你需要更新状态以响应 prop 更改（例如，重置它），可以比较 this.props 和 nextProps 并在此方法中使用 this.setState() 执行 state 转换。
 
 执行场景
 在已经挂在的组件(mounted component)接收到新props时触发;
 简单的说是在除了第一次生命周期(componentWillMount -> render -> componentDidMount)之后的生命周期中出发;
 解释
-1 如果你需要在props发生变化(或者说新传入的props)来更新state，你可能需要比较this.props和nextProps, 然后使用this.setState()方法来改变this.state;
+1. 如果你需要在props发生变化(或者说新传入的props)来更新state，你可能需要比较this.props和nextProps, 然后使用this.setState()方法来改变this.state;
 注意
-1 React可能会在porps传入时即使没有发生改变的时候也发生重新渲染, 所以如果你想自己处理改变，请确保比较props当前值和下一次值; 这可能造成组件重新渲染;
-2 如果你只是调用this.setState()而不是从外部传入props, 那么不会触发componentWillReceiveProps(nextProps)函数；这就意味着: this.setState()方法不会触发componentWillReceiveProps(), props的改变或者props没有改变才会触发这个方法;
+1. React可能会在porps传入时即使没有发生改变的时候也发生重新渲染, 所以如果你想自己处理改变，请确保比较props当前值和下一次值; 这可能造成组件重新渲染;
+2. 如果你只是调用this.setState()而不是从外部传入props, 那么不会触发componentWillReceiveProps(nextProps)函数；这就意味着: this.setState()方法不会触发componentWillReceiveProps(), props的改变或者props没有改变才会触发这个方法;
 
-#### `shouldComponentUpdate(nextProps, nextState)`
+#### ✨`shouldComponentUpdate(nextProps, nextState)`
 
 这个生命周期钩子也是可以大作文章的一个，它与优化react渲染性能之间有着紧密的关系，既然如此，那就让我在这里小小讨论以下如何优化react性能。背靠着Virtual DOM的大靠山，如果想在考虑性能方便的问题，我们可以考虑从react渲染维度下手。与React渲染息息相关的就是生命周期。在如何使用生命周期优化性能之前，先让我们看一些关于React渲染有意思的细节：
 
@@ -398,7 +398,7 @@ class Test extends React.Component {
 Good Idea  
 在React 15.3以后, React.PureComponent已经支持使用，个人推荐，它代替了(或者说合并了)pure-render-mixin，实现了shallowCompare()。 扩展阅读
 
-#### `componentWillUpdate(nextProps, nextState)`
+#### ✨`componentWillUpdate(nextProps, nextState)`
 
 在props或state发生改变或者 `shouldComponentUpdate(nextProps, nextState)` 触发后, 在render()之前，注意以下的几点：
 1. 这个方法在组件初始化时不会被调用;
@@ -406,7 +406,7 @@ Good Idea
 3. 如果确实需要响应 `props` 的改变，那么你可以在 `componentWillReceiveProps(nextProps)` 中做响应操作;
 4. 如果 `shouldComponentUpdate(nextProps, nextState)` 返回false，那么 `componentWillUpdate()` 不会被触发;
 
-#### `componentDidUpdate(prevProps, prevState)`
+#### ✨`componentDidUpdate(prevProps, prevState)`
 
 在发生更新或componentWillUpdate(nextProps, nextState)后，该钩子需要注意的以下几点：
 1. 该方法不会再组件初始化时触发;
@@ -414,7 +414,7 @@ Good Idea
 3. 只要你比较了this.props和nextProps，你想要发出网络请求(nextwork requests)时就可以发出, 当然你也可以不发出网络请求;
 4. 如果shouldComponentUpdate(nextProps, nextState)返回false, 那么componentDidUpdate(prevProps, prevState)不会被触发;
 
-#### `componentWillUnmount()`
+#### ✨`componentWillUnmount()`
 
 在组件卸载(unmounted)或销毁(destroyed)之前。在卸载组件时候不能设置 State。这个方法可以让你处理一些必要的清理操作：
 
