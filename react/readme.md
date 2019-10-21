@@ -20,15 +20,15 @@
 
 ## 3-React组件类型一网打尽系列
 
-1. 认识React组件基础篇——类组件&函数组件
-1. 认识React组件基础篇——受控组件&非受控组件
-2. 认识React组件基础篇——无状态组件和有状态组件
-3. React组件设计技巧——展示型组件和容器型组件
-4. React组件设计技巧——木偶组件和聪明组件
-5. React组件设计技巧——高阶组件和函数子组件
-6. React组件性能优化——PureComponent
-7. React组件新能优化——Memo组件
-8. React组件新能优化——
+1. [认识React组件基础篇——类组件&函数组件][31]
+1. [认识React组件基础篇——受控组件&非受控组件][32]
+2. [认识React组件基础篇——无状态组件和有状态组件][33]
+3. [React组件设计技巧——展示型组件和容器型组件][34]
+4. [React组件设计技巧——木偶组件和聪明组件][35]
+5. [React组件设计技巧——高阶组件和函数子组件][36]
+6. [React组件性能优化——PureComponent][37]
+7. [React组件新能优化——Memo组件][38]
+8. [React组件新能优化——][39]
 
 ## 4-React黑魔法Hooks
 
@@ -69,3 +69,14 @@
 
 * [7 Architectural Attributes of a Reliable React Component](https://dmitripavlutin.com/7-architectural-attributes-of-a-reliable-react-component)
 8 [可靠React组件设计的7个准则之SRP](https://juejin.im/post/5d4acb28e51d45620771f082)
+
+
+[31]: https://github.com/Martin-Shao/Road-to-FullStack/blob/master/react/articles/component1.md
+[32]: 
+[33]: 
+[34]: 
+[35]: 
+[36]: 
+[37]: 
+[38]: 
+[39]: 

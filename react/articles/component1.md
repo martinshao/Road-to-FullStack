@@ -21,9 +21,9 @@
 
 ![react](../assets/20191007211702.png "react")
 
-如果用 `E=mc²` 揭示质能关系的本质的话，我觉得 `UI=f(data)` 能够揭示React作为一个视图层框架的本质。用 `React` 构建视图这句话就已经能说明很多问题，以往的开发我们用 `JQuery` 操纵dom或者模板拼凑页面，但到了 `React` ，我们用函数和JSX利器，真正地完成了从 `JS -> DOM` 的转变。
+如果用 `E=mc²` 揭示质能关系的本质的话，我觉得 `UI=f(data)` 能够揭示React作为一个视图层框架的本质。用React构建视图这句话就已经能说明很多问题，以往的开发我们用 `JQuery` 操纵dom或者模板拼凑页面，但到了React ，我们用函数和JSX利器，真正地完成了从 `JS -> DOM` 的转变。
 
-如何使用 `React` 作为工具构建页面，预期说前端开发每天使用React写js，不如形象点的说是在写组件，通过组件层层嵌套或者组合构成完整页面，或应用。 `React` 从2013年推出发展至今（2019年），声明组件的方式也发生了不小的变化，这里先简单的介绍一下 `React` 组件的发展历程。
+如何使用React作为工具构建页面，与其说前端开发每天使用React写js，不如形象点的说是在写组件，通过组件层层嵌套或者组合构成完整页面，或应用。React从2013年推出发展至今（2019年），声明组件的方式也发生了不小的变化，这里先简单的介绍一下React组件的发展历程。
 
 从 `React component` 的发展历程上来看，它主要是经历了一下三个阶段：
 
@@ -31,7 +31,7 @@
 > 2. Class Component
 > 3. Function Component
 
-这个三个阶段也是 `React` 的组件不断走向轻量级的一个过程。其中 `Class Component` 完全替代了 `createClass Component` 成为了现在我们开发 `React` 组件的主流，而 `Function Component` 也在 `Hooks` 推出后摩拳擦掌，准备大干一场。下面就让我们去看看三者的具体情况吧。
+这个三个阶段也是React的组件不断走向轻量级的一个过程。其中 `Class Component` 完全替代了 `createClass Component` 成为了现在我们开发React组件的主流，而 `Function Component` 也在 `Hooks` 推出后摩拳擦掌，准备大干一场。下面就让我们去看看三者的具体情况吧。
 
 需要格外说明的是，这篇文章着重对于 `React component` 发展的历史和组件的分类做一个阐述，具体深入到组件设计和使用方方面面的细节，都将在另外的文章给出答案。
 
@@ -76,9 +76,9 @@ const MyComponent = React.createClass({
 })
 ```
 
-在**0.14**版本发布之后，React迎来了 `Class component` 和 `Function class` ，直到如今 `Class component` 也是大多数组件的声明方式。顺理成章的，`React.createClass` 渐渐被淘汰，直到被遗弃在历史的垃圾堆里。**15.5版本**之后，React把 `createClass` 分离成独立的包 `create-react-class`，到**16版本**之后，就已经彻底删除该方法。
+在**0.14**版本发布之后，React迎来了 `Class component` 和 `Function class` ，直到如今 `Class component` 也是大多数组件的声明方式。顺理成章的，`React.createClass` 渐渐被淘汰，直到 **react 15.5版本** 不再为 React 官方所推介，并且让大家使用 `class component` 来代替它。而且在 **react 16版本** 发布后， `createClass` 更是被废弃，当我们使用它的时候，会提示报错，也就是说，在 React 团队看来 `createClass` 已经完全没有存在的必要了。**15.5版本**之后，React把 `createClass` 分离成独立的包 `create-react-class`，到**16版本**之后，就已经彻底删除该方法。
 
-实际上，从17年开始，createClass就渐渐销声匿迹了，这里简单介绍，让大家感受一下 React 组件声明方式的发展历程。
+实际上，从17年开始，createClass就渐渐销声匿迹了，这里简单介绍，让大家感受一下React组件声明方式的发展历程。
 
 ``` js
 // 15.4 以前
@@ -134,18 +134,12 @@ Component.propTypes = {
 };
 ```
 
-`React.createClass` 的语法并不复杂，它通过 `createClass` 来创建一个组件，并通过 `propTypes` 和 `getDefaultProps` 来获取props，通过 `getInitialState()` 方法返回一个包含初始值的对象，虽然从现在看来还是有点麻烦，但总体上来看代码也比较清晰，跟现在的 `Class Component` 差别并不是太大。但 `React.createClass` 自从 **react 15.5版本** 就不再为 React 官方所推介，而是想让大家的使用 `class component` 来代替它。而且在 **react 16版本** 发布后， `createClass` 更是被废弃，当我们使用它的时候，会提示报错，也就是说，在 React 团队看来 `createClass` 已经完全没有存在的必要了。
+`React.createClass` 的语法并不复杂，它通过 `createClass` 来创建一个组件，并通过 `propTypes` 和 `getDefaultProps` 来获取props，通过 `getInitialState()` 方法返回一个包含初始值的对象，虽然从现在看来还是有点麻烦，但总体上来看代码也比较清晰，跟现在的 `Class Component` 差别并不是太大。
 
-其实 `Class Component` 完全替代 `React.createClass` 并不是说 `React.createClass` 有多坏，相反它还有一些 `class Component` 所没有的特性。它的废弃是由于ES6的出现，新增了 class 这一语法糖，让我们在 JavaScript 的开发中可以直接使用 `extends` 来扩展我们的对象，因此为了与标准的ES6接轨，原有的只在 React 中使用的 `createClass` 自然而然也成为了被抛弃的对象。但 `class Component` 在刚出现的时候也仍然存在的不小的争议，因为这两者还是存在一定的差别的，比如当时在Stack Overflow便出现了关于这两者的讨论，感兴趣的朋友可以去看看：
-
-> [React.Component vs React.createClass [stackoverflow]][102]
+其实 `Class Component` 完全替代 `React.createClass` 并不是说 `React.createClass` 有多坏，相反它还有一些 `class Component` 所没有的特性。它的废弃是由于ES6的出现，新增了 `class` 这一语法糖，让我们在 `JavaScript` 的开发中可以直接使用 `extends` 来扩展我们的对象，因此为了与标准的ES6接轨，原有的只在React中使用的 `createClass` 自然而然也成为了被抛弃的对象。
 
 为了更好的展示 `createClass` 与 `Class component` 组件之间的区别，图示如下：
 ![createClass and class component](../assets/20191007165935.png 'createClass')
-
-## 首先是分类
-
-react的组件类型是五花八门，暂时也没有一个定性的标准去划分不同的组件，笔者只是针对现有出现的组件做一些介绍。
 
 ## Class component & Function component
 
@@ -197,7 +191,7 @@ class App extends Component {
 export default App;
 ```
 
-16.8版本之后的React取消了componentWillMount，componentWillReceiveProps，componentWillUpdate，取而代之的是getDerivedStateFromProps，getSnapshotBeforeUpdate，这前后之间的具体区别则是另外一篇文章的事情了。
+16.8版本之后的React取消了 `componentWillMount` ， `componentWillReceiveProps` ， `componentWillUpdate` ，取而代之的是 `getDerivedStateFromProps` ， `getSnapshotBeforeUpdate` ，这前后之间的具体区别则是另外一篇文章的事情了。
 
 ``` js
 import React from 'react'
@@ -247,7 +241,7 @@ export default class App extends React.Component {
 export default App;
 ```
 
-而在2019年的今年，随着 react 最新的一个大版本中，给我们带来了 Hooks：[React v16.8: The One With Hooks][101]，从而将 Function component 的能力提高了一大截，成功的拥有了可以与 Class component 抗衡的能力。但话说回来，虽然 `Hooks` 看起来很美好，最近也有不少文章都讲解了Hooks这一“黑魔法”，但技术的不断演进，本身就是一个解决以往所存在问题的过程，因此我个人认为着眼于现在，回望过去，去看一看 react component 的发展之路，去看看 Class component 以及 Function component 为什么会出现以及它们出现的意义，所要解决的问题，也对于我们全面了解 react 是很有帮助的。
+而在2019年的今年，随着React最新的一个大版本中，给我们带来了 Hooks：[React v16.8: The One With Hooks][101]，从而将 `Function component` 的能力提高了一大截，成功的拥有了可以与 `Class component` 抗衡的能力。但话说回来，虽然 `Hooks` 看起来很美好，最近也有不少文章都讲解了Hooks这一“黑魔法”，但技术的不断演进，本身就是一个解决以往所存在问题的过程，因此我个人认为着眼于现在，回望过去，去看一看 `react component` 的发展之路，去看看 `Class component` 以及 `Function component` 为什么会出现以及它们出现的意义，所要解决的问题，也对于我们全面了解React是很有帮助的。
 
 在hooks出现之前，函数组件是不支持state，使用无状态的函数构建的组件称为无状态组件，这种构建方式是0.14版本之后新增的，并且官方也十分推崇。
 
@@ -322,37 +316,6 @@ class Welcome extends React.Component {
 * 不需要显示声明this关键字，在ES6的类声明中往往需要将函数的this关键字绑定到当前作用域，而因为函数式声明的特性，我们不需要再强制绑定。
 * 更佳的性能表现:因为函数式组件中并不需要进行生命周期的管理与状态管理，因此React并不需要进行某些特定的检查或者内存分配，从而保证了更好地性能表现。
 * 16.8版本之前不能进行状态管理，之后hooks提供的 useState useEffects 让函数组件也有了维护state处理副作用的能力。
-
-## 受控组件和非受控组件
-
-## Smart组件和Dumb组件
-
-## PureComponent
-
-解决React组件渲染性能优化的问题。重点是在 `shouldComponentUpdate` 这个生命上面。
-
-## 高阶组件
-
-## `Portals` 、 `Suspense` 、 `Memo`
-
-关键词：  
-`wrapped functions` 、 `memoization` 、
-
-关键词：
-
-父子组件、mixin、继承、函数式编程、Higher-order function、compose、curry等等
-
-> 重点
-> 组件是将 props 转换为 UI，而高阶组件是将组件转换为另一个组件。
->
-> 1. 使用 HOC 解决横切关注点问题
-> 2. 不要改变原始组件。使用组合。
-> 3. 约定：将不相关的 props 传递给被包裹的组件。
-> 4. 约定：最大化可组合性。
-> 5. 约定：包装显示名称以便轻松调试。
-> 6. 不要在 render 方法中使用 HOC。
-> 7. 务必复制静态方法
-> 8. Refs 不会被传递
 
 ## 参考资料
 
