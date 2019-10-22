@@ -487,6 +487,8 @@ getDerivedStateFromProps只为了一个目的存在。它使得一个组件能�
 
 * [正确掌握 React 生命周期 (Lifecycle)][1]
 * [从componentWillReceiveProps说起][2]
+* [浅析 React v16.3 新生命周期函数][3]
 
 [1]: https://juejin.im/entry/587de1b32f301e0057a28897
 [2]: http://www.ayqy.net/blog/%E4%BB%8Ecomponentwillreceiveprops%E8%AF%B4%E8%B5%B7/
+[3]: https://github.com/fi3ework/blog/issues/37

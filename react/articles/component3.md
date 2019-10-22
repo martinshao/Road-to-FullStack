@@ -2,6 +2,9 @@
 
 ## 概念辨析
 
+
+无状态组件(Stateless Component )和有状态组件(Stateful Component)，划分依据是根据组件内部是否维护state。无状态组件内部不使用state，只根据外部组件传入的props返回待渲染的React元素。有状态组件内部使用state，维护自身状态的变化，有状态组件根据外部组件传入的props和自身的state，共同决定最终返回的React 元素。
+
 以是否有自身状态需要维护，React中的组件可以分为无状态组件（Stateless Component）和有状态组件（Stateful Component）两类。这个组件分类还是很容易理解，但还是需要注意的一点如下：
 
 ```js

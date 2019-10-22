@@ -72,7 +72,7 @@
 ## 11-参考资料
 
 * [7 Architectural Attributes of a Reliable React Component](https://dmitripavlutin.com/7-architectural-attributes-of-a-reliable-react-component)
-8 [可靠React组件设计的7个准则之SRP](https://juejin.im/post/5d4acb28e51d45620771f082)
+* [可靠React组件设计的7个准则之SRP](https://juejin.im/post/5d4acb28e51d45620771f082)
 
 
 [31]: https://github.com/Martin-Shao/Road-to-FullStack/blob/master/react/articles/component1.md

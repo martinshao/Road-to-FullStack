@@ -143,7 +143,7 @@ Component.propTypes = {
 
 ## Class component & Function component
 
-上文提过，在React**0.14**版本发布之后， `Class component` 和 `Function component` 便成为主流的组件声明方式。这其中`Class component` 更是主流的主流。一般模版如下，值得一提的是，React的生命周期也在16版本发生了重大变化。在之前之前，推荐的`class component` 的模版如下：
+上文提过，在React**0.14**版本发布之后， `Class component` 和 `Function component` 便成为主流的组件声明方式。这其中`Class component` 更是主流的主流。一般模版如下，值得一提的是，React的生命周期也在16版本发生了重大变化。在这之前，推荐的`class component` 的模版如下：
 
 ``` js
 import PropTypes from 'prop-types';
@@ -241,11 +241,13 @@ export default class App extends React.Component {
 export default App;
 ```
 
-而在2019年的今年，随着React最新的一个大版本中，给我们带来了 Hooks：[React v16.8: The One With Hooks][101]，从而将 `Function component` 的能力提高了一大截，成功的拥有了可以与 `Class component` 抗衡的能力。但话说回来，虽然 `Hooks` 看起来很美好，最近也有不少文章都讲解了Hooks这一“黑魔法”，但技术的不断演进，本身就是一个解决以往所存在问题的过程，因此我个人认为着眼于现在，回望过去，去看一看 `react component` 的发展之路，去看看 `Class component` 以及 `Function component` 为什么会出现以及它们出现的意义，所要解决的问题，也对于我们全面了解React是很有帮助的。
+而在2019年的今年，随着React最新的一个大版本中，给我们带来了 Hooks：[React v16.8: The One With Hooks][101]，从而将 `Function component` 的能力提高了一大截，成功的拥有了可以与 `Class component` 抗衡的能力。
 
-在hooks出现之前，函数组件是不支持state，使用无状态的函数构建的组件称为无状态组件，这种构建方式是0.14版本之后新增的，并且官方也十分推崇。
+正如当初的 `createClass` 被遗忘在历史中一样，技术的演进本身就是一个新技术不断涌现，就技术不断被淘汰的过程，`Function component` 被增强早已命中注定。在前端开发越来越火热的今天，人们对于JavaScript这门语言的关注越来越多，`class component` 和 `Function component` 的存在，我觉得也正是JavaScript对于 **面向对象** 和 **函数式** 两种编程范式支持的一种体现，并且在越来越强调函数式编程的今天，增强 `Function component` 似乎就变成了一件水到渠成的事情了，因为我们不可能接受一个无法拥有自身状态（state）存在的组件。
 
-无状态组件只传入props和context两个参数；也就是说，它不存在state，也没有生命周期方法，组件本身即上面两种React组件构建方法种的render方法。不过，像propTypes和defaultProps还是可以通过向方法设置静态属性来实现的。
+在hooks出现之前，函数组件是不支持state，使用无状态的函数构建的组件称为无状态组件，这种构建方式是0.14版本之后新增的，并且官方也十分推崇。因为函数式编程的优越性在函数式组件上也得到了充分的体现。
+
+无状态组件只传入props和context两个参数；也就是说，它不存在state，也没有生命周期方法，组件本身即上面两种React组件构建方法种的render方法。propTypes和defaultProps还是可以通过向方法设置静态属性来实现的。
 
 这是一个函数式组件(Functional Component), 它和类组件(Class Component)最关键的区别就是: 函数式组件没有state和一系列的钩子函数,这也是函数式组件经常被用作无状态组件的原因
 ``` js

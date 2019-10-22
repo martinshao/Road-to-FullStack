@@ -6,8 +6,8 @@
 
 那这些跟我们今天谈到的性能优化又有什么关系呢？从以往的经验与实践中，我们都知道影响网页性能最大的因素是浏览器的重绘（reflow）和重排版（repaint）。React背后的Virtual Dom就是尽可能地减少浏览器的重绘和重排版。
 
+谷歌浏览器渲染页面流程  
 ![](../assets/chrome-rendering-process-eg.png)
-![](../assets/firefox-rendering-process-eg.jpeg)
 
 对于性能优化这个主题，我们往往会基于“不信任”的前提，即我们需要提高 React Virtual Dom 的效率。从 React 的渲染过程来看，如何防止不必要的渲染可能是最需要去解决的问题。
 
@@ -19,13 +19,14 @@ React决定视图是否渲染包含两个方面，一个是对状态的管理，
 通过改变 props 驱动视图（redux 或者 修改父子组件传递 props ）。
 
 一直对React组件的生命周期理解的不够深刻，例如在React官网中，有这样一句话来描述shouldComponentUpdate()方法：
+
 > shouldComponentUpdate() is invoked before rendering when new props or state are being received.
 
 我对这句话的理解是：shouldComponentUpdate()只有在props或state更新的时候才会被调用。于是很自然的，我一直默认这样一种场景：当父组件进行重新渲染(re-render)操作的时候，如果子组件的props或state没有改变，那么子组件就不会调用shouldComponentUpdate()，进而也不会调用render()方法。但是，事实是这样的吗？
 
 ​ 我们建立这样一个场景：父组件能够周期性的进行渲染，子组件接收父组件传递的一个props，但并不曾改变它，即验证该场景下shouldComponentUpdate()是否会被调用。父组件的render()方法如下：
 
-
+React15.3中新加了一个 PureComponent 类，顾名思义， pure 是纯的意思，PureComponent 也就是纯组件，取代其前身 PureRenderMixin ,PureComponent 是优化 React 应用程序最重要的方法之一，易于实施，只要把继承类从 Component 换成 PureComponent 即可，可以减少不必要的 render 操作的次数，从而提高性能，而且可以少写 shouldComponentUpdate 函数，节省了点代码。
 
 ## 参考资料
 
