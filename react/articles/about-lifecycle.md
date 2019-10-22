@@ -333,7 +333,7 @@ componentWillReceiveProps() 会在已挂载的组件接收新的 props 之前被
 * 如果你需要执行副作用（例如，数据提取或动画）以响应 props 中的更改，请改用 componentDidUpdate 生命周期。
 * 如果你使用 componentWillReceiveProps 仅在 prop 更改时重新计算某些数据，请使用 memoization helper 代替。
 * 如果你使用 componentWillReceiveProps 是为了在 prop 更改时“重置”某些 state，请考虑使组件完全受控或使用 key 使组件完全不受控 代替。
-*对于其他使用场景，[请遵循此博客文章中有关派生状态的建议](https://zh-hans.reactjs.org/blog/2018/06/07/you-probably-dont-need-derived-state.html)。
+* 对于其他使用场景，[请遵循此博客文章中有关派生状态的建议](https://zh-hans.reactjs.org/blog/2018/06/07/you-probably-dont-need-derived-state.html)。
 
 #### ✨`shouldComponentUpdate(nextProps, nextState)`
 
@@ -488,7 +488,9 @@ getDerivedStateFromProps只为了一个目的存在。它使得一个组件能�
 * [正确掌握 React 生命周期 (Lifecycle)][1]
 * [从componentWillReceiveProps说起][2]
 * [浅析 React v16.3 新生命周期函数][3]
+* [你可能不需要使用派生 state][4]
 
 [1]: https://juejin.im/entry/587de1b32f301e0057a28897
 [2]: http://www.ayqy.net/blog/%E4%BB%8Ecomponentwillreceiveprops%E8%AF%B4%E8%B5%B7/
 [3]: https://github.com/fi3ework/blog/issues/37
+[4]: https://zh-hans.reactjs.org/blog/2018/06/07/you-probably-dont-need-derived-state.html

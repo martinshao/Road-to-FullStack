@@ -35,9 +35,11 @@ React15.3中新加了一个 PureComponent 类，顾名思义， pure 是纯的�
 * [重排重绘，看这一篇就够了][3]
 * [聊一聊 React 中更新 ui 视图的几种方式][5]
 * [重排与重绘][4]
+* [React PureComponent 使用指南][5]
 
 [1]: https://juejin.im/post/5c8edf626fb9a0710d65c7fc
 [2]: https://github.com/amfe/article/issues/47
 [3]: https://juejin.im/entry/582f16fca22b9d006b7afd89
 [5]: https://juejin.im/post/5bb9c932f265da0aca332226
 [4]: https://imweb.io/topic/5c2206a7611a25cc7bf1d848
+[5]: https://juejin.im/entry/5934c9bc570c35005b556e1a
