@@ -30,14 +30,18 @@
 7. [React组件新能优化——Memo组件][38]
 8. [React组件新能优化——][39]
 
-## 4-React黑魔法Hooks
+## 4-React基础知识详解系列
+
+1. [React生命周期大总结(含新旧版本对比)][41]
+
+## 5-React黑魔法Hooks
 
 1. hooks介绍与基本应用
 1. hooks使用实践及注意事项
 1. hooks造轮子之Redux实现
 1. hooks造轮子之……
 
-## 5-React原理深度解析系列
+## 6-React原理深度解析系列
 
 1. React原理之 JSX转换
 2. React原理之 FiberRoot构建过程（未完成）
@@ -45,7 +49,7 @@
 4. React 原理之Fiber更新过程
 5. React 原理之React hooks
 
-## 6-React全家桶
+## 7-React全家桶
 1. Redux介绍与原理解析
 1. react-redux源码分析
 1. Redux中间件:redux-thunk、redux-saga
@@ -54,18 +58,18 @@
 1. React路由管理与react-router
 1. react-router原理与源码解析
 
-## 7-React周边--好用的项目收集
+## 8-React周边--好用的项目收集
 
 * [react-admin react后台管理框架][1]
 
 [1]: https://github.com/yezihaohao/react-admin
 
-## 8-React造轮子系列
+## 9-React造轮子系列
 
 
-## 9-React 组件设计原则
+## 10-React 组件设计原则
 
-## 10-参考资料
+## 11-参考资料
 
 * [7 Architectural Attributes of a Reliable React Component](https://dmitripavlutin.com/7-architectural-attributes-of-a-reliable-react-component)
 8 [可靠React组件设计的7个准则之SRP](https://juejin.im/post/5d4acb28e51d45620771f082)
@@ -80,3 +84,5 @@
 [37]: https://github.com/Martin-Shao/Road-to-FullStack/blob/master/react/articles/component7.md
 [38]: https://github.com/Martin-Shao/Road-to-FullStack/blob/master/react/articles/component8.md
 [39]: https://github.com/Martin-Shao/Road-to-FullStack/blob/master/react/articles/component9.md
+
+[41]: https://github.com/Martin-Shao/Road-to-FullStack/blob/master/react/articles/about-lifecycle.md
