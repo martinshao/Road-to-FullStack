@@ -28,7 +28,7 @@
 5. [React组件设计技巧——高阶组件和函数子组件][36]
 6. [React组件性能优化——PureComponent][37]
 7. [React组件新能优化——Memo组件][38]
-8. [React组件新能优化——][39]
+8. [React组件新能优化——lazy和suspense][39]
 
 ## 4-React基础知识详解系列
 
