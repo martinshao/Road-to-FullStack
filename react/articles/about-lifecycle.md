@@ -461,6 +461,11 @@ Good Idea
 * `static getDerivedStateFromError(props, state)`
 * `componentDidCatch()`
 
+新增生命周期介绍
+
+#### ✨getDerivedStateFromProps()
+
+#### ✨getSnapshotBeforeUpdate()
 
 ## 官方升级规划
 
@@ -474,14 +479,6 @@ React遵循语义版本控制, 所以这种改变将是渐进的。我们目前�
 请注意，如果您是React应用程序开发人员，那么您不必对遗留方法进行任何操作。即将发布的16.3版本的主要目的是让开源项目维护人员在任何弃用警告之前更新其库。这些警告将在未来的16.x版本发布之前不会启用。
 
 我们在Facebook上维护了超过50,000个React组件，我们不打算立即重写它们。我们知道迁移需要时间。我们将采用逐步迁移路径以及React社区中的所有人。
-
-## 派生状态（Derived State）和componentWillReceiveProps、getDerivedStateFromProps
-
-* 什么是派生状态
-* 什么时候使用派生状态
-* 使用派生状态的常见bug
-
-getDerivedStateFromProps只为了一个目的存在。它使得一个组件能够响应props的变化来更新自己内部的state。比如我们之前提到的根据变化的offset属性记录目前的滚动方向或者根据source属性加载额外的数据。
 
 ## 参考资料
 
