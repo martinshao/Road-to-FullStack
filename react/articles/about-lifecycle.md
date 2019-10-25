@@ -308,6 +308,12 @@ class MyClass extends React.Component {
 
 #### ✨`componentWillReceiveProps(nextProps)`
 
+* 什么是派生状态
+* 什么时候使用派生状态
+* 使用派生状态的常见bug
+
+getDerivedStateFromProps只为了一个目的存在。它使得一个组件能够响应props的变化来更新自己内部的state。比如我们之前提到的根据变化的offset属性记录目前的滚动方向或者根据source属性加载额外的数据。
+
 在介绍这个生命周期之前，让我先引出一个概念：派生状态(derived state)
 我们知道 `React` 最重要的数据流就是 `state` 和 `props` ，子组件接受父组件的数据即为 `props` ，那么有时候会有这样的操作，将接受的 `props` 转化为 `state` 。 `this.state.xxx = this.props.xxx` ，这也是一种反模式 `(anti-pattern)` ，我们常说React遵从单一数据流，当时如果有了派生状态，那意味这， `props` 的改变和 `setState` 都是改变指定的状态。
 
@@ -464,6 +470,18 @@ Good Idea
 新增生命周期介绍
 
 #### ✨getDerivedStateFromProps()
+
+派生state实践原则
+
+实现派生state有两种方式：
+* getDerivedStateFromProps：从props派生出部分state，其返回值会被merge到当前state（成功上位）
+* componentWillReceiveProps：在该生命周期函数里setState（惨遭废弃）
+
+实际应用中，在两种常见场景中容易出问题（被称为anti-pattern，即反模式）：
+* props变化时无条件更新state
+* 更新state中缓存的props
+
+`componentWillReceiveProps` 的时候，我们已经简单介绍过了 派生状态(derived state) 的情况，在16.9版本时候去掉了废弃掉了 `componentWillReceiveProps`，所以有了 `getDerivedStateFromProps` 。并且这样的更新换代也是对于解决  派生状态(derived state) 衍生出得问题有了更好的解决方案。
 
 ``` jsx
 class SubCounter extends React.Component {
