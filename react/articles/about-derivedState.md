@@ -8,6 +8,8 @@
 
 getDerivedStateFromProps只为了一个目的存在。它使得一个组件能够响应props的变化来更新自己内部的state。比如我们之前提到的根据变化的offset属性记录目前的滚动方向或者根据source属性加载额外的数据。
 
+
+
 ## 参考资料
 
 * [React v16.4.0：你可能并不需要派生状态（Derived State）][1]

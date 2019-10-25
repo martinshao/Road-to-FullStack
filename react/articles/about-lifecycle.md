@@ -174,7 +174,7 @@ class Counter extends React.Component {
 
 ![](../assets/lifecycle168.png)
 
-其实每个生命周期钩子都很重要，但这其中还是有主次关注的层序：constructor()、shouldComponentUpdate(nextProps, nextState)、componentWillReceiveProps(nextProps)
+其实每个生命周期钩子都很重要，但这其中还是有主次关注的层序：constructor()、shouldComponentUpdate(nextProps, nextState)、componentWillReceiveProps(nextProps)、componentDidMount()
 
 #### ✨`constructor`
 
@@ -308,10 +308,6 @@ class MyClass extends React.Component {
 
 #### ✨`componentWillReceiveProps(nextProps)`
 
-* 什么是派生状态
-* 什么时候使用派生状态
-* 使用派生状态的常见bug
-
 getDerivedStateFromProps只为了一个目的存在。它使得一个组件能够响应props的变化来更新自己内部的state。比如我们之前提到的根据变化的offset属性记录目前的滚动方向或者根据source属性加载额外的数据。
 
 在介绍这个生命周期之前，让我先引出一个概念：派生状态(derived state)
@@ -323,14 +319,10 @@ getDerivedStateFromProps只为了一个目的存在。它使得一个组件能�
 
 componentWillReceiveProps() 会在已挂载的组件接收新的 props 之前被调用。如果你需要更新状态以响应 prop 更改（例如，重置它），可以比较 this.props 和 nextProps 并在此方法中使用 this.setState() 执行 state 转换。
 
-执行场景
-在已经挂在的组件(mounted component)接收到新props时触发;
-简单的说是在除了第一次生命周期(componentWillMount -> render -> componentDidMount)之后的生命周期中出发;
-解释
-1. 如果你需要在props发生变化(或者说新传入的props)来更新state，你可能需要比较this.props和nextProps, 然后使用this.setState()方法来改变this.state;
-注意
-1. React可能会在porps传入时即使没有发生改变的时候也发生重新渲染, 所以如果你想自己处理改变，请确保比较props当前值和下一次值; 这可能造成组件重新渲染;
-2. 如果你只是调用this.setState()而不是从外部传入props, 那么不会触发componentWillReceiveProps(nextProps)函数；这就意味着: this.setState()方法不会触发componentWillReceiveProps(), props的改变或者props没有改变才会触发这个方法;
+1. 在已经挂在的组件(mounted component)接收到新props时触发;
+2. 如果你需要在props发生变化(或者说新传入的props)来更新state，你可能需要比较this.props和nextProps, 然后使用this.setState()方法来改变this.state;
+3. React可能会在porps传入时即使没有发生改变的时候也发生重新渲染, 所以如果你想自己处理改变，请确保比较props当前值和下一次值; 这可能造成组件重新渲染;
+4. 如果你只是调用this.setState()而不是从外部传入props, 那么不会触发componentWillReceiveProps(nextProps)函数；这就意味着: this.setState()方法不会触发componentWillReceiveProps(), props的改变或者props没有改变才会触发这个方法;
 
 注意:
 
@@ -481,7 +473,12 @@ Good Idea
 * props变化时无条件更新state
 * 更新state中缓存的props
 
-`componentWillReceiveProps` 的时候，我们已经简单介绍过了 派生状态(derived state) 的情况，在16.9版本时候去掉了废弃掉了 `componentWillReceiveProps`，所以有了 `getDerivedStateFromProps` 。并且这样的更新换代也是对于解决  派生状态(derived state) 衍生出得问题有了更好的解决方案。
+getDerivedStateFromProps被认为是用来替代componentWillReceiveProps的，应对state需要关联props变化的场景：
+> getDerivedStateFromProps exists for only one purpose. It enables a component to update its internal state as the result of changes in props.
+
+即允许props变化引发state变化（称之为derived state，即派生state），虽然多数时候并不需要把props值往state里塞，但在一些场景下是不可避免的，比如：
+* 记录当前滚动方向（recording the current scroll direction based on a changing offset prop）
+* 取props发请求（loading external data specified by a source prop）
 
 ``` jsx
 class SubCounter extends React.Component {
@@ -539,12 +536,6 @@ class Counter extends React.Component {
 * `getDerivedStateFromProps` 会在调用 `render` 方法之前调用，并且在初始挂载及后续更新时都会被调用，想知道具体执行时期看上图。
 * `getDerivedStateFromProps` 我以为该钩子主要为了解决派生状态的问题，接受两个参数，`nextProps, prevState`，它应返回一个对象来更新 `state` ，如果返回 `null` 则不更新任何内容。
 
-getDerivedStateFromProps被认为是用来替代componentWillReceiveProps的，应对state需要关联props变化的场景：
-> getDerivedStateFromProps exists for only one purpose. It enables a component to update its internal state as the result of changes in props.
-
-即允许props变化引发state变化（称之为derived state，即派生state），虽然多数时候并不需要把props值往state里塞，但在一些场景下是不可避免的，比如：
-* 记录当前滚动方向（recording the current scroll direction based on a changing offset prop）
-* 取props发请求（loading external data specified by a source prop）
 
 #### ✨getSnapshotBeforeUpdate()
 
