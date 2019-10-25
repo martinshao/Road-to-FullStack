@@ -465,7 +465,113 @@ Good Idea
 
 #### ✨getDerivedStateFromProps()
 
+``` jsx
+class SubCounter extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      number: this.props.number
+    }
+  }
+
+  static getDerivedStateFromProps(nextProps, prevState) {
+    // return prevState;
+    return null
+  }
+
+  render() {
+    return (
+      <p>{this.props.number}-{this.state.number}</p>
+    )
+  }
+}
+
+class Counter extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      number: 0
+    }
+  }
+  countUp = () => {
+    const { number } = this.state;
+    this.setState({ number: number + 1 });
+  }
+
+  countDown = () => {
+    const { number } = this.state;
+    this.setState({ number: number - 1 });
+  }
+
+  render() {
+    return (
+      <div className="container">
+        <p>{this.state.number}</p>
+        <button onClick={this.countUp}>+</button>
+        <button onClick={this.countDown}>-</button>
+        {this.state.number < 10 ? <SubCounter number={this.state.number} /> : null}
+      </div>
+    )
+  }
+}
+```
+
+* 注意⚠️ `getDerivedStateFromProps` 前面的关键字 `static` 意味这该钩子是一个静态方法，是通过class调用的，不是实例。
+* `getDerivedStateFromProps` 会在调用 `render` 方法之前调用，并且在初始挂载及后续更新时都会被调用，想知道具体执行时期看上图。
+* `getDerivedStateFromProps` 我以为该钩子主要为了解决派生状态的问题，接受两个参数，`nextProps, prevState`，它应返回一个对象来更新 `state` ，如果返回 `null` 则不更新任何内容。
+
+getDerivedStateFromProps被认为是用来替代componentWillReceiveProps的，应对state需要关联props变化的场景：
+> getDerivedStateFromProps exists for only one purpose. It enables a component to update its internal state as the result of changes in props.
+
+即允许props变化引发state变化（称之为derived state，即派生state），虽然多数时候并不需要把props值往state里塞，但在一些场景下是不可避免的，比如：
+* 记录当前滚动方向（recording the current scroll direction based on a changing offset prop）
+* 取props发请求（loading external data specified by a source prop）
+
 #### ✨getSnapshotBeforeUpdate()
+
+``` jsx
+class ScrollingList extends React.Component {
+  constructor(props) {
+    super(props);
+    this.listRef = React.createRef();
+  }
+
+  getSnapshotBeforeUpdate(prevProps, prevState) {
+    // 我们是否在 list 中添加新的 items ？
+    // 捕获滚动​​位置以便我们稍后调整滚动位置。
+    if (prevProps.list.length < this.props.list.length) {
+      const list = this.listRef.current;
+      return list.scrollHeight - list.scrollTop;
+    }
+    return null;
+  }
+
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    // 如果我们 snapshot 有值，说明我们刚刚添加了新的 items，
+    // 调整滚动位置使得这些新 items 不会将旧的 items 推出视图。
+    //（这里的 snapshot 是 getSnapshotBeforeUpdate 的返回值）
+    if (snapshot !== null) {
+      const list = this.listRef.current;
+      list.scrollTop = list.scrollHeight - snapshot;
+    }
+  }
+
+  render() {
+    return (
+      <div ref={this.listRef}>{/* ...contents... */}</div>
+    );
+  }
+}
+```
+
+getSnapshotBeforeUpdate() 在最近一次渲染输出（提交到 DOM 节点）之前调用。它使得组件能在发生更改之前从 DOM 中捕获一些信息（例如，滚动位置）。此生命周期的任何返回值将作为参数传递给 componentDidUpdate()。
+
+此用法并不常见，但它可能出现在 UI 处理中，如需要以特殊方式处理滚动位置的聊天线程等。
+
+应返回 snapshot 的值（或 null）。
+
+在上述示例中，重点是从 getSnapshotBeforeUpdate 读取 scrollHeight 属性，因为 “render” 阶段生命周期（如 render）和 “commit” 阶段生命周期（如 getSnapshotBeforeUpdate 和 componentDidUpdate）之间可能存在延迟。
 
 ## 官方升级规划
 
