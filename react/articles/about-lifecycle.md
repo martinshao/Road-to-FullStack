@@ -301,12 +301,14 @@ class MyClass extends React.Component {
 
 #### ✨`render()`
 
-1 在componentWillMount()方法之后
-2 在componentWillReceive(nextProps, nextState)方法之后
+1. render()函数应该纯净，其不应该改变组件的状态，每次调用都应返回相同的结果，同时不直接和浏览器交互。
+2. 在`componentWillMount()`、`componentWillReceive(nextProps, nextState)`方法之后
+3. 若 `shouldComponentUpdate()` 返回false，`render()`函数将不会被调用。
 
 #### ✨`componentDidMount()`
 
-见名知意 `componentDidMount` 钩子是在组件挂载之后执行（在render钩子执行之后理解执行），并且也是在初次渲染时候执行，更新组件渲染时不会执行。
+1. `componentDidMount` 钩子是在组件挂载之后执行（在render钩子执行之后理解执行），并且也是在初次渲染时候执行，更新组件渲染时不会执行。
+2. 若你需要从远端加载数据，这是一个适合实现网络请求的地方。在该方法里设置状态将会触发重渲。
 
 #### ✨`componentWillReceiveProps(nextProps)`
 
@@ -598,22 +600,18 @@ React遵循语义版本控制, 所以这种改变将是渐进的。我们目前�
 我们在Facebook上维护了超过50,000个React组件，我们不打算立即重写它们。我们知道迁移需要时间。我们将采用逐步迁移路径以及React社区中的所有人。
 
 ## 从传统生命周期迁移
+
 如果您想开始使用React 16.3中引入的新组件API（或者如果您是维护人员提前更新库），以下是一些示例，我们希望这些示例可以帮助您开始考虑组件的变化。随着时间的推移，我们计划在文档中添加额外的“配方”，以展示如何以避免有问题的生命周期的方式执行常见任务。
 
 在开始之前，我们将简要概述为16.3版计划的生命周期更改：
 
-We are adding the following lifecycle aliases: UNSAFE_componentWillMount, UNSAFE_componentWillReceiveProps, and UNSAFE_componentWillUpdate. (Both the old lifecycle names and the new aliases will be supported.)
+> We are adding the following lifecycle aliases: UNSAFE_componentWillMount, UNSAFE_componentWillReceiveProps, and UNSAFE_componentWillUpdate. (Both the old lifecycle names and the new aliases will be supported.)
 We are introducing two new lifecycles, static getDerivedStateFromProps and getSnapshotBeforeUpdate.
 
-我们正在添加以下生命周期别名：
-
-(1) UNSAFE_componentWillMount，
-
-(2) UNSAFE_componentWillReceiveProps
-
-(3) UNSAFE_componentWillUpdate。 （旧的生命周期名称和新的别名都将受支持。）
-
-我们介绍了两个新的生命周期，分别是getDerivedStateFromProps和getSnapshotBeforeUpdate。
+我们正在添加以下生命周期别名（旧的生命周期名称和新的别名都将受支持。）：
+1. UNSAFE_componentWillMount，
+2. UNSAFE_componentWillReceiveProps
+3. UNSAFE_componentWillUpdate。
 
 ## 参考资料
 
