@@ -597,14 +597,51 @@ React遵循语义版本控制, 所以这种改变将是渐进的。我们目前�
 
 我们在Facebook上维护了超过50,000个React组件，我们不打算立即重写它们。我们知道迁移需要时间。我们将采用逐步迁移路径以及React社区中的所有人。
 
+## 从传统生命周期迁移
+如果您想开始使用React 16.3中引入的新组件API（或者如果您是维护人员提前更新库），以下是一些示例，我们希望这些示例可以帮助您开始考虑组件的变化。随着时间的推移，我们计划在文档中添加额外的“配方”，以展示如何以避免有问题的生命周期的方式执行常见任务。
+
+在开始之前，我们将简要概述为16.3版计划的生命周期更改：
+
+We are adding the following lifecycle aliases: UNSAFE_componentWillMount, UNSAFE_componentWillReceiveProps, and UNSAFE_componentWillUpdate. (Both the old lifecycle names and the new aliases will be supported.)
+We are introducing two new lifecycles, static getDerivedStateFromProps and getSnapshotBeforeUpdate.
+
+我们正在添加以下生命周期别名：
+
+(1) UNSAFE_componentWillMount，
+
+(2) UNSAFE_componentWillReceiveProps
+
+(3) UNSAFE_componentWillUpdate。 （旧的生命周期名称和新的别名都将受支持。）
+
+我们介绍了两个新的生命周期，分别是getDerivedStateFromProps和getSnapshotBeforeUpdate。
+
 ## 参考资料
 
 * [正确掌握 React 生命周期 (Lifecycle)][1]
 * [从componentWillReceiveProps说起][2]
 * [浅析 React v16.3 新生命周期函数][3]
 * [你可能不需要使用派生 state][4]
+* [ReactV16.3即将更改的生命周期][5]
+* [ReactJs 的各个版本生命周期、API变化][6]
+* [React生命周期][7]
+* [聊聊React v16.3的UNSAFE类生命周期][8]
+* [React组件的生命周期（16.3以前）和setState API小结][9]
+* [React v16.3 版本新生命周期函数浅析及升级方案][10]
+* [关于React v16.3 新生命周期][11]
+* [理解React组件的生命周期][12]
+* [react生命周期（旧）][13]
 
 [1]: https://juejin.im/entry/587de1b32f301e0057a28897
 [2]: http://www.ayqy.net/blog/%E4%BB%8Ecomponentwillreceiveprops%E8%AF%B4%E8%B5%B7/
 [3]: https://github.com/fi3ework/blog/issues/37
 [4]: https://zh-hans.reactjs.org/blog/2018/06/07/you-probably-dont-need-derived-state.html
+[5]: https://www.zcfy.cc/article/update-on-async-rendering
+[6]: https://juejin.im/post/5c2cc0826fb9a049db733e79
+[7]: https://www.cnblogs.com/Darlietoothpaste/p/10054254.html
+[8]: https://juejin.im/post/5b97abcaf265da0afa3dcb2e
+[9]: https://www.jianshu.com/p/9278c4835c55
+[10]: https://juejin.im/post/5ae6cd96f265da0b9c106931
+[11]: https://juejin.im/post/5aca20c96fb9a028d700e1ce
+[12]: https://segmentfault.com/a/1190000013354181
+[13]: https://www.jianshu.com/p/5f8d59611cbc
+
