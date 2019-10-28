@@ -1,5 +1,7 @@
 # React生命周期大总结(含新旧版本对比)
 
+![](../assets/Artboard-2.png)
+
 React近年版本升级变化
 
 * **react 16.X** 引入了Fiber，全新的核心算法—— `reconciliation`
