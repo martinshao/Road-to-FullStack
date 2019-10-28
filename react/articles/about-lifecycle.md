@@ -10,9 +10,9 @@ React近年版本升级变化
 * **react 16.9** 为 `componentWillMount` ， `componentWillReceiveProps` 和 `componentWillUpdate` 启用弃用警告。
 * **react 17.X**（未来）删除 `componentWillMount` ， `componentWillReceiveProps` 和 `componentWillUpdate` 。
 
-React 2013年推出至今（2019年）已经有6年时间，这期间 React 的生命周期发生了巨大的变化。一方面研究生命周期产生了那些变化，原因是什么？解决了什么问题？另外一方面也是对React生命周期更深入的理解，以及如何更好的使用。
+React 2013年推出至今（2019年）已经有6年时间，这期间 React 的生命周期发生了巨大的变化。本文一方面研究生命周期产生了那些变化，原因是什么？解决了什么问题？另外一方面也是对React生命周期更深入的理解，以及如何更好的使用。
 
-首先，React 推出至今在我的认知里发生过一次大改动和一次小改动。**React 16** 版本由于使用了全新的核心算法架构 Fiber，由此对于新老生命周期做了一些改动。
+首先，由于 **React 16** 版本使用了全新的核心算法架构 **Fiber** ，由此引发React生命周期的一些改动。
 
 ## 16.8各生命周期讲解与注意事项
 
@@ -26,15 +26,21 @@ React 2013年推出至今（2019年）已经有6年时间，这期间 React 的�
 
 16.8 版本之前的生命周期钩子函数研究一下，下面是生命周期对应的钩子函数：
 
+挂载：
 * `constructor()`
 * `componentWillMount()`
+* `render()`
 * `componentDidMount()`
-* `componentWillUnmount()`
+
+更新：
 * `componentWillReceiveProps(nextProps)`
 * `shouldComponentUpdate(nextProps, nextState)`
 * `componentWillUpdate(nextProps, nextState)`
-* `componentDidUpdate(prevProps, prevState)`
 * `render()`
+* `componentDidUpdate(prevProps, prevState)`
+
+卸载：
+* `componentWillUnmount()`
 
 首先我们研究一下钩子函数具体执行顺序：
 
