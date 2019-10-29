@@ -1,5 +1,7 @@
 # React组件设计技巧——木偶组件和聪明组件
 
+![](../assets/component.jpeg)
+
 ![](../assets/smart-dumb.png)
 
 你要是把你的组件分成两大类。。你将会发现，这样的话你更容易思考你的组件该怎么写。。而你的组件写出来也更容易复用。我把这两大类称作 Smart和 Dumb，但是我也听说他们被称为Fat 和 Skinny, Stateful 和 Pure, Screens 和 Components等。虽然叫法不同，但核心思想都差不多
