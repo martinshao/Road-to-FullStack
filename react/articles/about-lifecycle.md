@@ -10,9 +10,31 @@ React近年版本升级变化
 * **react 16.9** 为 `componentWillMount` ， `componentWillReceiveProps` 和 `componentWillUpdate` 启用弃用警告。
 * **react 17.X**（未来）删除 `componentWillMount` ， `componentWillReceiveProps` 和 `componentWillUpdate` 。
 
+废弃的生命周期：
+
+* componentWillMount
+* componentWillReceiveProps
+* componentWillUpdate
+* 
+新增的生命周期：
+
+* getDerivedStateFromProps
+* getSnapshotBeforeUpdate
+
+变更的生命周期：
+
+* componentDidUpdate 增加第三个参数 snapshot
+
 React 2013年推出至今（2019年）已经有6年时间，这期间 React 的生命周期发生了巨大的变化。本文一方面研究生命周期产生了那些变化，原因是什么？解决了什么问题？另外一方面也是对React生命周期更深入的理解，以及如何更好的使用。
 
-首先，由于 **React 16** 版本使用了全新的核心算法架构 **Fiber** ，由此引发React生命周期的一些改动。
+生命周期函数的更改是因为 **React 16** 采用了 **Fiber** 架构，在新的 **Fiber** 架构中，组件的更新分为了两个阶段：
+
+Reconciliation Phase：这个阶段决定究竟哪些组件会被更新。
+Commit Phase：这个阶段是 React 开始执行更新（比如插入，移动，删除节点）。
+
+commit phase 的执行很快，但是真实 DOM 的更新很慢，所以 React 在更新的时候会暂停再恢复组件的更新以免长时间的阻塞浏览器，这就意味着 render phase 可能会被执行多次（因为有可能被打断再重新执行）。
+
+这些生命周期都属于 render phase，上面已经说了，render phase 可能被多次执行，所以要避免在 render phase 中的生命周期函数中引入副作用。但是 16.3 之前的生命周期很容易引入副作用，所以 16.3 之后引入新的生命周期来限制开发者引入副作用。
 
 ## 16.X各生命周期讲解与注意事项
 
@@ -478,7 +500,13 @@ Good Idea
 
 #### ✨getDerivedStateFromProps()
 
-派生state实践原则
+这个新生命周期函数见名知意，是从 属性（props）中获取派生状态（derived state），并且显而易见的是为了取代 componentWillReceiveProps 而造出来的。虽然 `getDerivedStateFromProps()` 是对标 `componentWillReceiveProps()` 的存在，但事实上却又远不止如此。上面我们曾经介绍过 `componentWillReceiveProps()` 这个钩子，该钩子的存在主要为了解决派生状态的问题，但其实该函数作为 React 16.3 版本之前的“大杂烩”周期，干着各种脏活累活，这明显违背框架设计中 函数职责单一 的原则。
+
+##### 1. 保持 `getDerivedStateFromProps()` 的纯净。
+
+上面说了 `componentWillReceiveProps()` 虽然主要为了解决派生状态，但是大多数时候，框架无法阻止开发者在 componentWillReceiveProps 中引入副作用（事实上 componentWillReceiveProps 是开发者最喜欢引入副作用的生命周期），再加上 Fiber 架构导致组件的更新被随时打断再重来， componentWillReceiveProps 可能会被执行多次，所以会造成不良的后果。所以只能将这个 API 拆成在 Reconciliation Phase 中的纯函数 getDerivedStateFromProps 和在 commit phase 中的 componentDidUpdate 来让组件更好预测和维护。
+
+##### 2. 派生state实践原则
 
 实现派生state有两种方式：
 * getDerivedStateFromProps：从props派生出部分state，其返回值会被merge到当前state（成功上位）
@@ -547,9 +575,25 @@ class Counter extends React.Component {
 }
 ```
 
+[这篇文章](https://zhuanlan.zhihu.com/p/36062486) 中一针见血得指出：
+
+> React 团队试图通过框架级别的 API 来约束或者说帮助开发者写出可维护性更佳的 JavaScript 代码
+
+框架最大的特点就是“限制”，通过这么一个限制重重的静态生命周期不让你调用实例方法，就给你 `props` 和 `prevState` 让你来 `derived state`，甚至连这个生命周期的都是一反常态的用一个具体的行为而不是用一个更新过程的时间节点来命名，就是让开发者只做 `derived state` 这个行为，并且通过返回值来更新 `state` 可以保证只更新一次 `state`（以前的 `componentWillReceiveProps` 是通过 `batchUpdate` 来保证只更新一次）。
+
+不过官方并不推荐使用 `getDerivedStateFromProps`，倒不是 `getDerivedStateFromProps` 这个 API 带来的问题，而是 `derived state` 带来的问题，之前的 `componentWillReceiveProps` 也有这个问题。
+
+`derived state` 会造成不只一个 `source of truth`，我们都知道，`React` 的哲学是 `view = f(data)`，但是当有两个 `data` 去表征同一个参数造成 `view` 的修改时就有麻烦了，所以在使用 `getDerivedStateFromProps` 之前一定要想好是否可以直接使用 `props`。
+
+`getDerivedStateFromProps` 作为一个静态函数是不能访问实例属性的，如果需要通过实例方法和 `state` 或者 `props` 来计算一个值在 `render` 周期中使用的 `state`，那么最好的方法是直接在 `render` 中计算出这个值然后直接使用，因为这会是一个纯函数的操作。这从侧面反映出来，这次生命周期的升级通过添加限制在一定程度上规范了生命周期的使用。
+
+总结以下：
+
 * 注意⚠️ `getDerivedStateFromProps` 前面的关键字 `static` 意味这该钩子是一个静态方法，是通过class调用的，不是实例。
 * `getDerivedStateFromProps` 会在调用 `render` 方法之前调用，并且在初始挂载及后续更新时都会被调用，想知道具体执行时期看上图。
 * `getDerivedStateFromProps` 我以为该钩子主要为了解决派生状态的问题，接受两个参数，`nextProps, prevState`，它应返回一个对象来更新 `state` ，如果返回 `null` 则不更新任何内容。
+* 无副作用 —— 因为是处于 Fiber 的 render 阶段，所以有可能会被多次执行。所以 API 被设计为了静态函数，无法访问到实例的方法，也没有 ref 来操作 DOM，这就避免了实例方法带来副作用的可能性。但是依旧可以从 props 中获得方法触发副作用，所以在执行可能触发副作用的函数前要三思。
+* 只用来更新 state —— 其实看名字也可以知道，这个生命周期唯一的作用就是从 nextProps 和 prevState 中衍生出一个新的 state。
 
 
 #### ✨getSnapshotBeforeUpdate()
