@@ -1,5 +1,10 @@
 # React组件设计技巧——木偶组件和聪明组件
 
+
+![](../assets/ui-tree.png)
+
+
+
 ![](../assets/component.jpeg)
 
 ![](../assets/smart-dumb.png)
@@ -46,9 +51,10 @@ FollowedUserList.
 * [组件化开发中的智能组件与木偶组件][2]
 * [React（四）：Smart组件与Dumb组件][3]
 * [［译］Smart and Dumb Components][4]
+* [React Components – Props and States in ReactJS with Examples][5]
 
 [1]: http://huziketang.mangojuice.top/books/react/lesson43
 [2]: https://juejin.im/entry/579ec0efc4c971005ade40ad
 [3]: https://blog.csdn.net/u012131835/article/details/83823977
 [4]: https://segmentfault.com/a/1190000004111786
-
+[5]: https://www.edureka.co/blog/react-components/
