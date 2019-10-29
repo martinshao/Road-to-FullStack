@@ -323,7 +323,6 @@ class Welcome extends React.Component {
 
 * [新手学习 react 迷惑的点(一)][1]
 * [新手学习 react 迷惑的点(二)][2]
-* [［译］Smart and Dumb Components][3]
 * [React（四）：Smart组件与Dumb组件][4]
 * [React 中的各种组件][5]
 * [React 组件模式-有状态组件......][6]
@@ -338,7 +337,6 @@ class Welcome extends React.Component {
 
 [1]: https://juejin.im/post/5d6be5c95188255aee7aa4e0
 [2]: https://juejin.im/post/5d6f127bf265da03cf7aab6d
-[3]: https://segmentfault.com/a/1190000004111786
 [4]: https://blog.csdn.net/u012131835/article/details/83823977
 [5]: https://zhuanlan.zhihu.com/p/30659051
 [6]: https://www.html.cn/archives/9458
