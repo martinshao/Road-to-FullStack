@@ -21,40 +21,35 @@
 
 但遗憾的是，真正好的框架也只有在真正努力好好使用它的开发手中，才能发挥出最大的价值。如何发挥出最大的价值，React框架已经把开发过程约束在组件化的体系之中，如何设计出更好的组件就是对于React最大使用价值的发挥。
 
-
-
 ![](../assets/component.jpeg)
 
 ![](../assets/smart-dumb.png)
 
-你要是把你的组件分成两大类。。你将会发现，这样的话你更容易思考你的组件该怎么写。。而你的组件写出来也更容易复用。我把这两大类称作 Smart和 Dumb，但是我也听说他们被称为Fat 和 Skinny, Stateful 和 Pure, Screens 和 Components等。虽然叫法不同，但核心思想都差不多。
+再回到我们今天的话题：聪明组件和木偶组件。
 
-Dumb components:
--它必须能独立运作。。不能依赖依赖这个app的actions 或者 stores 部分
+虽然组件化时代已经到来，但是仍然阻止不了散发怪味道的代码，软件开发没有银弹，React、VUE也不可能是银弹。一个页面就是一个大组件的做法，在世间还是屡见不鲜的。为了写出更优秀的代码，我们不妨把那些体积庞大的组件合理拆分，然后思考以下这个拆分的过程。
 
-可以允许有this.props.children,这样的话有助于这个组件有修改弹性
+为什么要把组件拆分成聪明组件和木偶组件？一个既定的事实是，前端的交互实质是对数据的操作，只不过这是一个可视化的过程，复杂的业务逻辑就避免不了使用 `redux` `react-redux`等工具对数据进行管理，也避免使用axios发送请求，更避免不了要处理复杂的数据结构，或是按照业务逻辑处理数据。一方面我们需要组件完成这些工作（比如说：聪明组件）。另一方面，有些可能只需要展示或者完成一些简单的交互操作的部分，我们不妨抽离成单独的组件，使其具有更好的可测试性、可组合性、复用性（比如说：木偶组件）。
 
-接受数据和数据的改变只能通过props來处理,不必也不能用state。
+到这里，我们把组件分成两大类，经过这样的分类，我们就更容易思考组件该怎么写。我把这两大类称作 Smart和 Dumb，但是我也听说他们被称为Fat 和 Skinny, Stateful 和 Pure, Screens 和 Components等。虽然叫法不同，但核心思想都差不多。
 
-组件的外观能用一个css來维护(这样才更容易重用，类似支付宝的ant)
+**Dumb components:**
 
-很少用到state,(一般呈现动画的时候可能会用到。。比如控制下拉框的展开或者收起)
+⚠️它必须能独立运作，不能依赖依赖这个app的actions 或者 stores 部分
+* 可以允许有this.props.children,这样的话有助于这个组件有修改弹性
+* 接受数据和数据的改变只能通过props來处理,不必也不能用state。
+* 组件的外观能用一个css來维护(这样才更容易重用，类似支付宝的ant)
+* 很少用到state,(一般呈现动画的时候可能会用到，比如控制下拉框的展开或者收起)
+* 也许会用到其他的dumb components
+* 比如说: Page, Sidebar, Story, UserInfo, List,像这些都是dumb components.
 
-也许会用到其他的dumb components
+**smart components:**
 
-比如说: Page, Sidebar, Story, UserInfo, List,像这些都是dumb components.
-
-smart components:
-一定包含至少一个Smart 或者 Dumb的元件，（这肯定啊。。不然他干的啥）
-
-负责把从flux(or redux等)接收到的state传给dumb component
-
-负责call action,并把它的callback传給dumb component
-
-它应该只有结构没有外观（这样的话。。改个样式只需要改dumb 组件 就好了。。他写着。。他写那里 不然很累啊）
-
-比如说: UserPage, FollowersSidebar, StoryContainer,
-FollowedUserList.
+* 一定包含至少一个Smart 或者 Dumb的元件，（木偶组件肯定是依附聪明组件生存的）
+* 负责把从flux(or redux、Mobx等)接收到的state传给dumb component
+* 负责call action,并把它的callback传給dumb component
+* 它应该只有结构没有外观（改个样式只需要改dumb组件就好了，否则维护多个样式表很麻烦。）
+* 比如说: UserPage, FollowersSidebar, StoryContainer,FollowedUserList.
 
 这样做的好处
 有助理你分离关注点，这样的话更有助于理解你的app的业务逻辑 和 它的ui
