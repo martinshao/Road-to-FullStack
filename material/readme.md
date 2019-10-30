@@ -15,6 +15,8 @@
 * [从零开始学 ReactJS（ReactJS 101）][11]
 * [1. reactjs][12]
 * [React Tutorial for Beginners][13]
+* [THE BASICS OF REACT & REDUX [DIAGRAM]][14]
+* [N-book][15]
 
 [1]: https://juejin.im/post/5c0098f66fb9a049dd80019e#heading-9
 [2]: https://yhlben.github.io/blog/
@@ -29,3 +31,5 @@
 [11]: https://wizardforcel.gitbooks.io/reactjs101/
 [12]: http://i5ting.github.io/reactjs-getting-start/#1
 [13]: https://ihatetomatoes.net/react-tutorial-for-beginners/
+[14]: https://itgroove.net/studios/react-redux/
+[15]: https://nirodu.com/n-book/
