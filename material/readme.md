@@ -17,6 +17,8 @@
 * [React Tutorial for Beginners][13]
 * [THE BASICS OF REACT & REDUX [DIAGRAM]][14]
 * [N-book][15]
+* [使用 React Hooks 重构你的小程序][16]
+* [对 React 状态管理的理解及方案对比][17]
 
 [1]: https://juejin.im/post/5c0098f66fb9a049dd80019e#heading-9
 [2]: https://yhlben.github.io/blog/
@@ -33,3 +35,5 @@
 [13]: https://ihatetomatoes.net/react-tutorial-for-beginners/
 [14]: https://itgroove.net/studios/react-redux/
 [15]: https://nirodu.com/n-book/
+[16]: https://aotu.io/notes/2019/07/10/taro-hooks/index.html
+[17]: https://github.com/sunyongjian/blog/issues/36
