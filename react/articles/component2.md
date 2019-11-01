@@ -8,7 +8,7 @@
 
 ![form_sample_form](../assets/form_sample_form.png "form_sample_form")
 
-``` js
+``` html
 <form>
   <p><label>姓名：<input></label></p>
   <p><label>电话：<input type="tel"></label></p>
@@ -49,7 +49,7 @@
 
 既然React和原生表单有数据控制权的冲突，那么让我们看看React是如何解决这个问题的。
 
-``` js
+``` jsx
 import React, { Component } from 'react';
 
 class App extends Component {
@@ -106,7 +106,7 @@ class App extends Component {
 
 React 自己控制表单的数据产生了受控组件，那是否有非受控组件，答案是有的。
 
-``` js
+``` jsx
 class NameForm extends React.Component {
   constructor(props) {
     super(props);
