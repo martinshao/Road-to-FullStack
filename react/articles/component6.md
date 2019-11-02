@@ -113,6 +113,34 @@ class MouseTracker extends React.Component {
 }
 ```
 
+
+## 高阶函数
+
+在介绍高阶组件之前，先让我简单的介绍一下高阶函数(Higher-order function)。JavaScript其实一个蛮强大的语言，目前的状况是JavaScript既能支持 OOP 编程，也能支持 FP 编程。高阶函数就是函数式编程中一个比较的概念。JavaScript 语言能够实现高阶函数的基础是：函数即对象。JavaScript的函数其实都指向某个变量。既然变量可以指向函数，函数的参数能接收变量，那么一个函数就可以接收另一个函数作为参数，这种函数就称之为高阶函数。
+
+那么 JavaScript 函数具备以下性质：
+
+* 函数可以作为参数被传递；
+* 函数可以作为返回值输出。
+
+一个最简单的高阶函数：
+
+``` js
+function add(x, y, f) {
+  return f(x) + f(y);
+}
+```
+
+当我们调用add(-5, 6, Math.abs)时，参数x，y和f分别接收-5，6和函数Math.abs，根据函数定义，我们可以推导计算过程为：
+
+``` js
+x = -5;
+y = 6;
+f = Math.abs;
+f(x) + f(y) ==> Math.abs(-5) + Math.abs(6) ==> 11;
+return 11;
+```
+
 ## 高阶组件(HOC -> High-Order Components)
 
 高阶组件（HOC）是 React 中用于复用组件逻辑的一种高级技巧。HOC 自身不是 React API 的一部分，它是一种基于 React 的组合特性而形成的设计模式。具体而言，高阶组件是参数为组件，返回值为新组件的函数。
