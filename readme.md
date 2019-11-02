@@ -9,7 +9,7 @@
 
 | Ⅰ | Ⅱ | Ⅲ | Ⅳ | Ⅴ | Ⅵ | Ⅶ | Ⅷ | Ⅸ | Ⅹ |
 | :-:| :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
-| JavaScript<br>![js][1] | CSS<br>![js][2] | HTML<br>![js][3] | Webpack<br>![js][4] | NodeJs<br>![js][5] | Typescript<br>![js][6] | Vue<br>![js][7] | React<br>![js][8] | Angular<br>![js][9] | Tools<br>![js][10] |
+| JavaScript<br>![js][1] | CSS<br>![js][2] | HTML<br>![js][3] | Webpack<br>![js][4] | NodeJs<br>![js][5] | Typescript<br>![js][6] | Vue<br>![js][7] | React<br>![js][8] | Angular<br>![js][9] | Test<br>![js][10] |
 
 ## 后端体系
 
@@ -26,17 +26,19 @@
 [7]: https://img.alicdn.com/tfs/TB1.a71loT1gK0jSZFrXXcNCXXa-32-32.svg
 [8]: https://img.alicdn.com/tfs/TB1tRI0loY1gK0jSZFMXXaWcVXa-32-32.svg
 [9]: https://img.alicdn.com/tfs/TB1On.1lkL0gK0jSZFAXXcA9pXa-32-32.svg
-[10]: https://img.alicdn.com/tfs/TB1YT.1lkL0gK0jSZFAXXcA9pXa-32-32.svg
+[10]: https://img.alicdn.com/tfs/TB1ktg4li_1gK0jSZFqXXcpaXXa-32-32.svg
 
 ## 前端知识体系详细梳理
 
-** 各部分课程详细笔记
+* [JavaScript基础与精粹深入探索][63]
+* [前端最最基础之——你不知道的html][61]
+* [CSS基础与高级——神奇的世界][62]
+* [世界第一好用前端框架VUE——全面解析][]
+* [世界第一好玩前端框架React——全面解析][]
 
-* [你不知道的html][61]
-* [CSS基础与高级][62]
-* [JavaScript基础与精粹][63]
+
 * [JavaScript与QA测试工程师][66]
-* [PHP与MySQL入门到实践][65] *未完成*
+* [PHP与MySQL入门到实践][65]
 * [JavaScript函数式编程超指南][67]
 * [NodeJs开发实践与Web框架][68]
 * [前端工程化与构建工具选型][69]
