@@ -23,7 +23,7 @@
 [4]: ./css/_assets/webpack.svg
 [5]: ./css/_assets/nodejs.svg
 [6]: ./css/_assets/typescript.svg
-[7]: ./css/_assets/vue.svg
+[7]: https://img.alicdn.com/tfs/TB1KQs1lkL0gK0jSZFAXXcA9pXa-32-32.svg
 [8]: ./css/_assets/react.svg
 [9]: ./css/_assets/angular.png
 [10]: ./css/_assets/tools.svg
