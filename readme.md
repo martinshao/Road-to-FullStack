@@ -17,16 +17,16 @@
 | :--------: | :---------: | :---------: | :---------: | :---------: | :---------:| :---------: | :-------: | :-------:| :------:|
 | 算法[:pencil2:](#pencil2-算法) | 操作系统[:computer:](#computer-操作系统)|网络[:cloud:](#cloud-网络) | 面向对象[:couple:](#couple-面向对象) |数据库[:floppy_disk:](#floppy_disk-数据库)| Java [:coffee:](#coffee-java)| 系统设计[:bulb:](#bulb-系统设计)| 工具[:hammer:](#hammer-工具)| 编码实践[:speak_no_evil:](#speak_no_evil-编码实践)| 后记[:memo:](#memo-后记) |
 
-[1]: ./css/_assets/js.svg
-[2]: ./css/_assets/css.svg
-[3]: ./css/_assets/html5.svg
-[4]: ./css/_assets/webpack.svg
-[5]: ./css/_assets/nodejs.svg
-[6]: ./css/_assets/typescript.svg
-[7]: https://img.alicdn.com/tfs/TB1KQs1lkL0gK0jSZFAXXcA9pXa-32-32.svg
-[8]: ./css/_assets/react.svg
-[9]: ./css/_assets/angular.png
-[10]: ./css/_assets/tools.svg
+[1]: https://img.alicdn.com/tfs/TB1Jzk0loH1gK0jSZSyXXXtlpXa-32-32.svg
+[2]: https://img.alicdn.com/tfs/TB1RT.1lkL0gK0jSZFAXXcA9pXa-32-32.svg
+[3]: https://img.alicdn.com/tfs/TB1M_.1lkL0gK0jSZFAXXcA9pXa-32-32.svg
+[4]: https://img.alicdn.com/tfs/TB1Ra34lhv1gK0jSZFFXXb0sXXa-32-32.svg
+[5]: https://img.alicdn.com/tfs/TB1E0o0leL2gK0jSZPhXXahvXXa-32-32.svg
+[6]: https://img.alicdn.com/tfs/TB1_G71loT1gK0jSZFrXXcNCXXa-32-32.svg
+[7]: https://img.alicdn.com/tfs/TB1.a71loT1gK0jSZFrXXcNCXXa-32-32.svg
+[8]: https://img.alicdn.com/tfs/TB1tRI0loY1gK0jSZFMXXaWcVXa-32-32.svg
+[9]: https://img.alicdn.com/tfs/TB1On.1lkL0gK0jSZFAXXcA9pXa-32-32.svg
+[10]: https://img.alicdn.com/tfs/TB1YT.1lkL0gK0jSZFAXXcA9pXa-32-32.svg
 
 ## 前端知识体系详细梳理
 
