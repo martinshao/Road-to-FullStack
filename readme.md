@@ -1,6 +1,6 @@
 # 通往全栈之路
 
-![base is important as Sun](./javascript/_assets/road.jpg "galaxy.jpg")
+![base is important as Sun](https://img.alicdn.com/tfs/TB1wFk0lhz1gK0jSZSgXXavwpXa-1080-390.jpg "galaxy.jpg")
 
 整理分享一些我在全栈之路上前进的一些知识和心得体会。
 首先，这条道路是异常艰辛，抛开前端现在发展火热的趋势，依旧有部分公司对于前端的认知不够。
