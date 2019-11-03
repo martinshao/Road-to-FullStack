@@ -45,6 +45,10 @@ return 11;
 
 高阶组件（HOC）是 React 中用于复用组件逻辑的一种高级技巧。HOC 自身不是 React API 的一部分，它是一种基于 React 的组合特性而形成的设计模式。具体而言，高阶组件是参数为组件，返回值为新组件的函数。
 
+``` haskell
+hocFactory :: W: React.Component => E: React.Component;
+```
+
 ``` js
 const EnhancedComponent = higherOrderComponent(WrappedComponent);
 
@@ -172,6 +176,10 @@ class MouseTracker extends React.Component {
 
 ## 函数子组件(FaCC -> Functions as Child Components)
 
+重要的是要记住，render prop 是因为模式才被称为 render prop ，你不一定要用名为 render 的 prop 来使用这种模式。事实上， 任何被用于告知组件需要渲染什么内容的函数 prop 在技术上都可以被称为 “render prop”。
+
+函数子组件本质上了属性渲染没有什么区别，换句话说，函数子组件的本质就是属性渲染。
+
 在介绍函数子组件之前，首先让我们回顾一个神奇的属性 `props.children`
 
 > 包含在开始和结束标签之间的 JSX 表达式内容将作为特定属性 `props.children` 传递给外层组件。有几种不同的方法来传递子元素：
@@ -277,5 +285,5 @@ const HeadWithClass = (props) => (
 * [高阶组件](https://zh-hans.reactjs.org/docs/higher-order-components.html) —— 官方对于高阶组件的讲解
 * [Functional Mixins](https://medium.com/javascript-scene/functional-mixins-composing-software-ffb66d5e731c)
 * [JavaScript 中的 Mixin 模式](https://zh.javascript.info/mixins)
-* []()
-* []()
+* [Stanko/react-ratio](https://github.com/Stanko/react-ratio)
+* [函数作为子组件(Function as Child Components)](https://www.html.cn/archives/9471)
