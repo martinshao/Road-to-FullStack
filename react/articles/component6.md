@@ -145,6 +145,14 @@ return 11;
 
 ``` js
 const EnhancedComponent = higherOrderComponent(WrappedComponent);
+
+const HOCFactory = (Component) => {
+  return class HOC extends React.Component {
+    render(){
+      return <Component {...this.props} />
+    }
+  }
+}
 ```
 
 ``` js
@@ -168,13 +176,13 @@ export default HOC(WrappedComponent)
 > 包含在开始和结束标签之间的 JSX 表达式内容将作为特定属性 `props.children` 传递给外层组件。有几种不同的方法来传递子元素：
 > * 字符串字面量
 > * JSX 子元素
-> * JavaScript 表达式作为子元素
+> * `JavaScript` 表达式作为子元素
 > * 函数作为子元素
 
 具体形式我大致展示一下：
 
 #### 字符串字面量:
-``` html
+``` jsx
 <MyComponent>Hello world!</MyComponent>
 ```
 
