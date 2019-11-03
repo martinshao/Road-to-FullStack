@@ -255,8 +255,6 @@ const HeadWithClass = (props) => (
 * [了解AOP][10]
 * [我想要 AOP — 使用 AOP 分离关注点][11]
 * [JSX In Depth][12]
-* [React's Render Props Pattern][13]
-* [React Render Props][14]
 
 [1]: https://juejin.im/post/5bd2fbfef265da0aca335198
 [2]: http://www.alloyteam.com/2013/08/yong-aop-gai-shan-javascript-dai-ma/
@@ -270,8 +268,6 @@ const HeadWithClass = (props) => (
 [10]: http://www.uml.org.cn/mxdx/mxdx15.htm
 [11]: https://keelii.com/2019/07/06/i-want-my-aop-cn/
 [12]: https://reactjs.org/docs/jsx-in-depth.html#functions-as-children
-[13]: https://www.robinwieruch.de/react-render-props-pattern
-[14]: https://www.robinwieruch.de/react-render-props
 
 
 * [深入理解 React 高阶组件（Higher Order Component，简称：HOC）](https://www.html.cn/archives/9462) —— 高阶组件讲解很全面
