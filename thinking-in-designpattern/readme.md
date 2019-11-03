@@ -143,8 +143,10 @@ public class UserManager
 * [Java设计模式：23种设计模式全面解析（超级详细）][1]
 * [菜鸟——设计模式][3]
 * [面向对象之七大基本原则（javaScript）][4]
+* [极客学院——设计模式][5]
 
 [2]: https://design-patterns.readthedocs.io/zh_CN/latest/
 [1]: http://c.biancheng.net/design_pattern/
 [3]: https://www.runoob.com/design-pattern/design-pattern-tutorial.html
 [4]: https://segmentfault.com/a/1190000020319171
+[5]: http://wiki.jikexueyuan.com/project/javascript-design-patterns/

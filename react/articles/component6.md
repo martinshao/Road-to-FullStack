@@ -16,7 +16,7 @@
 
 术语 “render prop” 是指一种在 React 组件之间使用一个值为函数的 prop 共享代码的简单技术。
 
-
+**具有 render prop 的组件接受一个函数，该函数返回一个 React 元素并调用它而不是实现自己的渲染逻辑。**
 
 ``` js
 // render props
@@ -33,8 +33,6 @@ const App = () => (
 我们还是拿React官方文档的例子进行说明如何使用 `render prop` 对于组件进行优化。
 
 下面这个组件实现的功能是将鼠标移动的具体位置在页面上显示出来，这个主要的业务逻辑其实就是根据事件不断更新鼠标位置的x轴，y轴状态。
-
-
 
 ``` js
 class MouseTracker extends React.Component {
@@ -112,7 +110,6 @@ class MouseTracker extends React.Component {
   }
 }
 ```
-
 
 ## 高阶函数
 ![](https://img.alicdn.com/tfs/TB1zwk4laL7gK0jSZFBXXXZZpXa-1280-710.jpg)
@@ -251,6 +248,7 @@ const HeadWithClass = (props) => (
 * [我想要 AOP — 使用 AOP 分离关注点][11]
 * [JSX In Depth][12]
 * [React's Render Props Pattern][13]
+* [React Render Props][14]
 
 [1]: https://juejin.im/post/5bd2fbfef265da0aca335198
 [2]: http://www.alloyteam.com/2013/08/yong-aop-gai-shan-javascript-dai-ma/
@@ -265,3 +263,15 @@ const HeadWithClass = (props) => (
 [11]: https://keelii.com/2019/07/06/i-want-my-aop-cn/
 [12]: https://reactjs.org/docs/jsx-in-depth.html#functions-as-children
 [13]: https://www.robinwieruch.de/react-render-props-pattern
+[14]: https://www.robinwieruch.de/react-render-props
+
+
+* [深入理解 React 高阶组件（Higher Order Component，简称：HOC）](https://www.html.cn/archives/9462) —— 高阶组件讲解很全面
+* [React组件间逻辑复用](http://www.ayqy.net/blog/react%E7%BB%84%E4%BB%B6%E9%97%B4%E9%80%BB%E8%BE%91%E5%A4%8D%E7%94%A8/)
+* [React Render Props](https://www.robinwieruch.de/react-render-props) —— 属性渲染讲解的很详细
+* [Render Props](https://zh-hans.reactjs.org/docs/render-props.html) —— 官方对于属性渲染的讲解
+* [高阶组件](https://zh-hans.reactjs.org/docs/higher-order-components.html) —— 官方对于高阶组件的讲解
+* [Functional Mixins](https://medium.com/javascript-scene/functional-mixins-composing-software-ffb66d5e731c)
+* [JavaScript 中的 Mixin 模式](https://zh.javascript.info/mixins)
+* []()
+* []()

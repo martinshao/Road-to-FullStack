@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    const chocolate = {
+      hasChocolate: () => true
+    };
+    const caramelSwirl = {
+      hasCaramelSwirl: () => true
+    };
+    const pecans = {
+      hasPecans: () => true
+    };
+    const iceCream = Object.assign({}, chocolate, caramelSwirl, pecans);
+    /*
+    // or, if your environment supports object spread...
+    const iceCream = {...chocolate, ...caramelSwirl, ...pecans};
+    */
+    console.log(`
+  hasChocolate: ${ iceCream.hasChocolate()}
+  hasCaramelSwirl: ${ iceCream.hasCaramelSwirl()}
+  hasPecans: ${ iceCream.hasPecans()}
+`);
+
+    // Base object factory
+    function base(spec) {
+      var that = {}; // Create an empty object
+      that.name = spec.name; // Add it a "name" property
+      return that; // Return the object
+    }
+    // Construct a child object, inheriting from "base"
+    function child(spec) {
+      // Create the object through the "base" constructor
+      var that = base(spec);
+      that.sayHello = function () { // Augment that object
+        return 'Hello, I\'m ' + that.name;
+      };
+      return that; // Return it
+    }
+    // Usage
+    var result = child({ name: 'a functional object' });
+    console.log(result.sayHello()); // "Hello, I'm a functional object"
+
+    const flying = o => {
+      let isFlying = false;
+      return Object.assign({}, o, {
+        fly() {
+          isFlying = true;
+          return this;
+        },
+        isFlying: () => isFlying,
+        land() {
+          isFlying = false;
+          return this;
+        }
+      });
+    };
+    const bird = flying({});
+    console.log(bird.isFlying()); // false
+    console.log(bird.fly().isFlying()); // true
+
+    const quacking = quack => o => Object.assign({}, o, {
+      quack: () => quack
+    });
+    const quacker = quacking('Quack!')({});
+    console.log(quacker.quack()); // 'Quack!'
+
+    if (!Function.prototype.binds) {
+      Function.prototype.binds = function (oThis) {
+        if (typeof this !== 'function') {
+          throw new TypeError('Function.prototype.bind - what is trying to be bound is not callable');
+        }
+
+        var aArgs = Array.prototype.slice.call(arguments, 1),
+          fToBind = this,
+          fNOP = function () { },
+          fBound = function () {
+            return fToBind.apply(this instanceof fBound
+              ? this
+              : oThis,
+              aArgs.concat(Array.prototype.slice.call(arguments)));
+          };
+
+        if (this.prototype) {
+          fNOP.prototype = this.prototype;
+        }
+        fBound.prototype = new fNOP();
+
+        return fBound;
+      };
+    }
+
+    function Product(name, price) {
+      this.name = name;
+      this.price = price;
+    }
+
+    // Product.binds.call({})
+    // new Product.binds();
+
+    // Function.prototype.bind.call({})
+
+    function Food(name, price) {
+      Product.call(this, name, price);
+      this.category = 'food';
+    }
+
+    console.log(new Food('cheese', 5));
+    // expected output: "cheese"
+
+    function greet() {
+      var reply = [this.animal, 'typically sleep between', this.sleepDuration].join(' ');
+      console.log(reply);
+    }
+
+    var obj = {
+      animal: 'cats', sleepDuration: '12 and 16 hours'
+    };
+
+    greet.call(obj);  // cats typically sleep between 12 and 16 hours
+
+    var sData = 'Wisen';
+
+    function display() {
+      console.log('sData value is %s ', this.sData);
+    }
+
+    display.call();
+
+    // var nonFunctions = [true, false, [], {}, 42, 'foo', NaN, /a/g];
+    // for (var i = 0; i < nonFunctions.length; ++i) {
+    //   Function.prototype.binds.call(nonFunctions[i]);
+    // }
+  </script>
+</body>
+
+</html>

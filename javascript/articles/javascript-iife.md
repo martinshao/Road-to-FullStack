@@ -248,3 +248,6 @@ counter.increment(); // 5
 counter.i; // undefined i并不是counter的属性
 i; // ReferenceError: i is not defined (函数内部的是局部变量)
 ```
+
+
+[JavaScript：立即执行函数表达式（IIFE）](https://segmentfault.com/a/1190000003985390)
