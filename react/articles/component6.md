@@ -176,6 +176,8 @@ class MouseTracker extends React.Component {
 
 ## 函数子组件(FaCC -> Functions as Child Components)
 
+![](../assets/facc.png)
+
 重要的是要记住，render prop 是因为模式才被称为 render prop ，你不一定要用名为 render 的 prop 来使用这种模式。事实上， 任何被用于告知组件需要渲染什么内容的函数 prop 在技术上都可以被称为 “render prop”。
 
 函数子组件本质上了属性渲染没有什么区别，换句话说，函数子组件的本质就是属性渲染。
@@ -287,3 +289,8 @@ const HeadWithClass = (props) => (
 * [JavaScript 中的 Mixin 模式](https://zh.javascript.info/mixins)
 * [Stanko/react-ratio](https://github.com/Stanko/react-ratio)
 * [函数作为子组件(Function as Child Components)](https://www.html.cn/archives/9471)
+* [React Render Props in TypeScript](https://medium.com/@jrwebdev/react-render-props-in-typescript-b561b00bc67c)
+* [React Hooks in TypeScript](https://medium.com/@jrwebdev/react-hooks-in-typescript-88fce7001d0d)
+* []()
+* []()
+* []()
