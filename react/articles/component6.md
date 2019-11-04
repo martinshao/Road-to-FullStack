@@ -246,7 +246,7 @@ const HeadWithClass = (props) => (
 )
 ```
 
-让我们实现一个简单的例子，看看 FaCC 是如何发挥威力的。现在我们要写金额展示组件，并且要有增加删除的功能。这里我们用一个 amount 状态直接抽象成金额。
+让我们实现一个简单的例子，看看 FaCC 是如何发挥威力的。现在我们要写金额展示组件，并且要有增加删除的功能。这里我们用一个 amount 状态直接抽象成金额，货币的单位是美元。
 
 ``` jsx
 const App = () => <Amount />;
@@ -325,7 +325,11 @@ class Amount extends Component {
 }
 ```
 
-首先这样写也是完全没有问题的，但是在复用金额这个属性的时候，我们对组件进行扩展，引入更多的货币类型，我们就不得不对 render() 函数进行改造，而这是我们不愿意看到。为了解耦，使货币组件和提供数据的金额组件解耦，我们作出如下改造：
+让我们先分析上面的代码有些什么问题。首先这么写完全没有问题，优点十分明显：实现简单，理解简单。
+
+但是我们忽略了一些事情：上述的写法将货币组件与金额组件的渲染紧紧关联在了一起，这意味这在修改渲染结果的时候就要修改金额组件的 render() 函数。这个是实现更好组件设计显而易见的缺陷。例如：当我们要对组件进行扩展，引入更多不同汇率的不同货币类型，我们就不得不对 render() 函数进行改造。而这是我们不愿意看到。
+
+我们更希望金额和货币是松耦合的关系，这样能够更容易扩展，更容易将金额属性复用。为了解耦，使货币组件和提供数据的金额组件解耦，我们作出如下改造：
 
 ``` jsx
 const App = () => (
@@ -337,7 +341,7 @@ const App = () => (
 );
 ```
 
-我们定下的大体思路是 props.children 属性来决定具体渲染的内容，上面的代码解决了这个问题，但是 amount 属性并没有接收到，所以我们接着改造：
+相比较简单把货币组件当作是金额组件子组件的方式，我们采取了组合组件(composition component)的方式。但是 amount 属性并没有接收到，所以我们接着改造：
 
 ``` jsx
 class App extends Component {
@@ -380,7 +384,7 @@ const Amount = ({ amount, onIncrement, onDecrement }) => (
 );
 ```
 
-这一步我们对于状态和行为进行了提升，这样做虽然解决了状态和行为共享的问题，但是却违背了我们当初把金额封装到 Amount 组件里面这个初衷，虽然这样做显示不是我们想要的，还要继续对代码进行改造：
+这一步叫做**状态提升(lifting state)**，我们对于状态和行为进行了提升，放在了父组件中，这样做虽然解决了状态和行为共享的问题，但是却违背了我们当初把金额封装到 Amount 组件里面这个初衷，这样做显示不是我们想要的，还要继续对代码进行改造：
 
 ``` jsx
 class Amount extends Component {
@@ -420,10 +424,14 @@ const App = () => (
 );
 ```
 
+这一步我们终于运用到了我们的神奇属性 props.children ，利用这个神奇属性，我们成功的将状态和行为封装在金额组件内部，同时解决金额组件和货币组件解耦的问题，金额组件中的 {this.props.children} 成功的将渲染货币组件的权利交了出去。
+
+到了这一步，细心的小伙伴已经发现了这其实就是 props render 模式，同时我们体会到 props render 是对简单的 component composition 模式的增强。但是等等，我们状态 amount 还没有能够被复用。到了这一步，函数子组件终于揭开神秘面纱，我们用包裹了组件的函数作为 props children 传递给金额组件，而不是将货币组件红果果的送给金额组件，那么接下里传递 amount 属性给金额组件就变得很简单：
+
 ``` jsx
 const App = () => (
   <Amount>
-    {() => (
+    {amount => (
       <div>
         <Pound amount={amount} />
         <Euro amount={amount} />
@@ -431,6 +439,167 @@ const App = () => (
     )}
   </Amount>
 );
+class Amount extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      amount: 0,
+    };
+  }
+  onIncrement = () => {
+    this.setState(state => ({ amount: state.amount + 1 }));
+  };
+  onDecrement = () => {
+    this.setState(state => ({ amount: state.amount - 1 }));
+  };
+  render() {
+    return (
+      <div>
+        <span>US Dollar: {this.state.amount} </span>
+        <button type="button" onClick={this.onIncrement}>
+          +
+        </button>
+        <button type="button" onClick={this.onDecrement}>
+          -
+        </button>
+        {this.props.children(this.state.amount)}
+      </div>
+    );
+  }
+}
+```
+
+到这里我们就算实现了一个经典的 函数子组件 设计模式了。上述代码没有立即将货币组件直接交给金额组件渲染，取而代之的是将组件作为函数传递给金额组件，这样就解决了一个关键性问题：属性传递。我们利用函数参数成功传递了 amount 状态。到这里我们算是完成 函数子组件 式改造了，该模式的优越性也体现了出来，当我们对于渲染内容进行修改时，我们不必要深入到金额组件修改 render() 函数了。
+
+``` jsx
+const App = () => (
+  <Amount>
+    {amount => (
+      <div>
+        <h1>My Currency Converter</h1>
+        <Pound amount={amount} />
+        <Euro amount={amount} />
+      </div>
+    )}
+  </Amount>
+);
+```
+
+文章前面曾经提到过 函数子组件 本质上就是属性渲染(props render)：
+
+``` jsx
+const App = () => (
+  <Amount
+    render={amount => (
+      <div>
+        <Pound amount={amount} />
+        <Euro amount={amount} />
+      </div>
+    )}
+  />
+);
+class Amount extends Component {
+  ...
+  render() {
+    return (
+      <div>
+        <span>US Dollar: {this.state.amount} </span>
+        <button type="button" onClick={this.onIncrement}>
+          +
+        </button>
+        <button type="button" onClick={this.onDecrement}>
+          -
+        </button>
+        {this.props.render(this.state.amount)}
+      </div>
+    );
+  }
+}
+```
+
+使用是 VUE 的同学肯定知道 slot 插槽这个东西，在React其实也有，将 props render 与 slot 结合在一起。插槽的作用是内容分发，将要渲染的内容分发在父组件相应的位置。
+
+``` jsx
+const App = () => (
+  <Amount
+    renderAmountOne={amount => (
+      <div>
+        <h2>My one Amount</h2>
+        <Pound amount={amount} />
+        <Euro amount={amount} />
+      </div>
+    )}
+    renderAmountTwo={amount => (
+      <div>
+        <h2>My other Amount</h2>
+        <Pound amount={amount} />
+        <Euro amount={amount} />
+      </div>
+    )}
+  />
+);
+class Amount extends Component {
+  ...
+  render() {
+    return (
+      <div>
+        <span>US Dollar: {this.state.amount} </span>
+        {this.props.renderAmountTwo(this.state.amount)}
+        <button type="button" onClick={this.onIncrement}>
+          +
+        </button>
+        <button type="button" onClick={this.onDecrement}>
+          -
+        </button>
+        {this.props.renderAmountOne(this.state.amount)}
+      </div>
+    );
+  }
+}
+```
+
+### FaCC to HOC
+
+``` jsx
+const withAmount = currencyComponents =>
+  class Amount extends Component {
+    constructor(props) {
+      super(props);
+      this.state = {
+        amount: 0,
+      };
+    }
+    onIncrement = () => {
+      this.setState(state => ({ amount: state.amount + 1 }));
+    };
+    onDecrement = () => {
+      this.setState(state => ({ amount: state.amount - 1 }));
+    };
+    render() {
+      return (
+        <div>
+          <span>US Dollar: {this.state.amount} </span>
+          <button type="button" onClick={this.onIncrement}>
+            +
+          </button>
+          <button type="button" onClick={this.onDecrement}>
+            -
+          </button>
+          {currencyComponents.map(CurrencyComponent => (
+            <CurrencyComponent amount={this.state.amount} />
+          ))}
+        </div>
+      );
+    }
+  };
+```
+
+``` jsx
+const Euro = ({ amount }) => <p>Euro: {amount * 0.86}</p>;
+const Pound = ({ amount }) => <p>Pound: {amount * 0.76}</p>;
+const CurrenciesWithAmount = withAmount([Euro, Pound]);
+
+const App = () => <CurrenciesWithAmount />;
 ```
 
 
@@ -485,4 +654,9 @@ const App = () => (
 * [React Hooks in TypeScript](https://medium.com/@jrwebdev/react-hooks-in-typescript-88fce7001d0d)
 * [React组件Render Props VS HOC 设计模式](https://www.jianshu.com/p/ff6b3008820a)
 * [[译] 使用 Render props 吧！](https://juejin.im/post/5a3087746fb9a0450c4963a5)
+* [How to pass props to components in React](https://www.robinwieruch.de/react-pass-props-to-component)
+* [如何向带有插槽的 React 组件传递多个 Children](https://juejin.im/post/5b72935a6fb9a009724b3e4e)
+* []()
+* []()
+* []()
 * []()
