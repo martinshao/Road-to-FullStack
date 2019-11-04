@@ -1,6 +1,6 @@
 # React组件设计技巧——高阶组件和函数子组件
 
-![](../assets/hoc-facc.png)
+![](https://img.alicdn.com/tfs/TB1KsMClBr0gK0jSZFnXXbRRXXa-1200-630.png)
 
 本篇是关于React组件系统文章的最后，往后会有部分的补充文章。本篇文章将介绍一些实用的组件设计技巧，无论是在最初设计还是重构阶段，能够一定程度优化代码。正如关键字所提到的那样，我们希望一些组件**更加健壮**，**更可复用**，另外一方面能够解决**功能增强**，**横切关注点**问题。我觉得成为一个好的React开发，要能够对组件有着一定深度的认识和理解，并且能够设计出优雅的组件，下面这些组件设计技巧应该能够信手拈来。
 
@@ -14,7 +14,7 @@
 
 
 ## 高阶函数
-![](https://img.alicdn.com/tfs/TB1zwk4laL7gK0jSZFBXXXZZpXa-1280-710.jpg)
+![](https://img.alicdn.com/tfs/TB1TuIylrr1gK0jSZR0XXbP8XXa-1280-403.jpg)
 
 在介绍高阶组件之前，先让我简单的介绍一下高阶函数 `(Higher-order function)` 。JavaScript其实一个蛮强大的语言，目前的状况是JavaScript既能支持 `OOP` 编程，也能支持 `FP` 编程。高阶函数就是函数式编程中一个较为重要的概念。JavaScript 语言能够实现高阶函数的基础是：函数即对象。JavaScript的函数其实都指向某个变量。既然变量可以指向函数，函数的参数能接收变量，那么一个函数就可以接收另一个函数作为参数，这种函数就称之为高阶函数。
 
