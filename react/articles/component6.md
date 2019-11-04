@@ -43,35 +43,32 @@ return 11;
 
 ## 高阶组件(HOC -> High-Order Components)
 
-高阶组件（HOC）是 React 中用于复用组件逻辑的一种高级技巧。HOC 自身不是 React API 的一部分，它是一种基于 React 的组合特性而形成的设计模式。具体而言，高阶组件是参数为组件，返回值为新组件的函数。
+> 官方解读
+> 
+> 高阶组件（HOC）是 React 中用于复用组件逻辑的一种高级技巧。HOC 自身不是 React API 的一部分，它是一种基于 React 的组合特性而形成的设计模式。具体而言，高阶组件是参数为组件，返回值为新组件的函数。
+
+可以理解为高阶组件是一种组件的设计模式。正如上面提到的高阶函数那样，高阶组件的定义同样很简单，一个组件作为参数传入工厂函数，然后返回一个经过包装的组件。
 
 ``` haskell
+// haskell 语言描述
+
 hocFactory :: W: React.Component => E: React.Component;
 ```
 
 ``` js
+// 形式一
 const EnhancedComponent = higherOrderComponent(WrappedComponent);
 
+// 形式二
 const HOCFactory = (Component) => {
-  return class HOC extends React.Component {
+  return class WrapperComponent extends React.Component {
     render(){
       return <Component {...this.props} />
     }
   }
 }
-```
 
-``` js
-import React, { Component } from 'React';
-//高阶组件定义
-const HOC = (WrappedComponent) =>
-  class WrapperComponent extends Component {
-    render() {
-      return <WrappedComponent {...this.props} />;
-    }
-}
-
-//高阶组件使用
+// 使用
 export default HOC(WrappedComponent)
 ```
 
@@ -176,13 +173,20 @@ class MouseTracker extends React.Component {
 
 ## 函数子组件(FaCC -> Functions as Child Components)
 
+* Just render them within the Component
+* Lifting State
+* Component composition with children prop
+* RENDER PROP COMPONENT
+* RENDER PROP COMPONENT ALTERNATIVE: HIGHER-ORDER COMPONENT
+* 
+
 ![](../assets/facc.png)
 
-重要的是要记住，render prop 是因为模式才被称为 render prop ，你不一定要用名为 render 的 prop 来使用这种模式。事实上， 任何被用于告知组件需要渲染什么内容的函数 prop 在技术上都可以被称为 “render prop”。
+重要的是要记住，`render prop` 是因为模式才被称为 `render prop` ，你不一定要用名为 `render` 的 `prop` 来使用这种模式。事实上， 任何被用于告知组件需要渲染什么内容的函数 `prop` 在技术上都可以被称为 “render prop”。
 
-函数子组件本质上了属性渲染没有什么区别，换句话说，函数子组件的本质就是属性渲染。
+函数子组件本质上了属性渲染没有什么区别，换句话说，函数子组件的本质就是属性渲染。在上文中，我们借助 `render` 属性帮助我们渲染(是属性而不是React的render函数)，这么做虽然简单易懂，但是容易让人产生混淆和困惑，借助 `props.children` 这个神奇的属性，我们就可以少点顾虑的大展拳脚。
 
-在介绍函数子组件之前，首先让我们回顾一个神奇的属性 `props.children`
+那么神奇属性 `props.children` 和 `FaCC`(函数子组件)又有什么关系呢？看完下文你就明白了。
 
 > 包含在开始和结束标签之间的 JSX 表达式内容将作为特定属性 `props.children` 传递给外层组件。有几种不同的方法来传递子元素：
 > * 字符串字面量
@@ -229,7 +233,7 @@ function ListOfTenThings() {
 }
 ```
 
-而我们今天所要介绍的 `FaCC` 组件设计模式，就是基于最终一种 **函数作为子元素** 。在学习过HOC之后，知道高阶组件是对于原有组件的一种功能增强，亦可以说是对于某种业务逻辑的复用，那么现在HOC能够完成的功能，FaCC 基本也能够完成。
+看到这里是不是恍然大悟了。我们今天所要介绍的 `FaCC` 组件设计模式，就是基于最终一种 **函数作为子元素** 。在学习过HOC之后，知道高阶组件是对于原有组件的一种功能增强，亦可以说是对于某种业务逻辑的复用，那么现在HOC能够完成的功能，FaCC 基本也能够完成。跟HOC一样，FaCC也不是React API，准确的说是一种组件的设计模式。
 
 ``` jsx
 const ClassNameWrapper = ({ children }) => children('demo-class')
@@ -241,6 +245,194 @@ const HeadWithClass = (props) => (
   </ClassNameWrapper>
 )
 ```
+
+让我们实现一个简单的例子，看看 FaCC 是如何发挥威力的。现在我们要写金额展示组件，并且要有增加删除的功能。这里我们用一个 amount 状态直接抽象成金额。
+
+``` jsx
+const App = () => <Amount />;
+class Amount extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      amount: 0,
+    };
+  }
+  onIncrement = () => {
+    this.setState(state => ({ amount: state.amount + 1 }));
+  };
+  onDecrement = () => {
+    this.setState(state => ({ amount: state.amount - 1 }));
+  };
+  render() {
+    return (
+      <div>
+        <span>US Dollar: {this.state.amount} </span>
+        <button type="button" onClick={this.onIncrement}>
+          +
+        </button>
+        <button type="button" onClick={this.onDecrement}>
+          -
+        </button>
+      </div>
+    );
+  }
+}
+```
+
+接下来我们需要增加一个功能，要在页面展示其他货币类型的金额，并且要把汇率考虑进去。最简单的形式，有的同学可能直接在代码中这么写：
+
+``` jsx
+render() {
+  return (
+    <div>
+      <span>US Dollar: {this.state.amount} </span>
+      <button type="button" onClick={this.onIncrement}>
+        +
+      </button>
+      <button type="button" onClick={this.onDecrement}>
+        -
+      </button>
+      <p>Euro: {this.state.amount * 0.86}</p>
+      <p>Pound: {this.state.amount * 0.76}</p>
+    </div>
+  );
+}
+```
+
+这样写看似简洁正确，但是违背了我们对于组件细粒度拆分的原则，更好的拆分组件有利于后面更好的重构，接下来我们进行组件拆分：
+
+``` jsx
+const Euro = ({ amount }) => <p>Euro: {amount * 0.86}</p>;
+const Pound = ({ amount }) => <p>Pound: {amount * 0.76}</p>;
+
+class Amount extends Component {
+  ...
+  render() {
+    return (
+      <div>
+        <span>US Dollar: {this.state.amount} </span>
+        <button type="button" onClick={this.onIncrement}>
+          +
+        </button>
+        <button type="button" onClick={this.onDecrement}>
+          -
+        </button>
+        <Euro amount={this.state.amount} />
+        <Pound amount={this.state.amount} />
+      </div>
+    );
+  }
+}
+```
+
+首先这样写也是完全没有问题的，但是在复用金额这个属性的时候，我们对组件进行扩展，引入更多的货币类型，我们就不得不对 render() 函数进行改造，而这是我们不愿意看到。为了解耦，使货币组件和提供数据的金额组件解耦，我们作出如下改造：
+
+``` jsx
+const App = () => (
+  <div>
+    <Amount />
+    <Euro amount={amount} />
+    <Pound amount={amount} />
+  </div>
+);
+```
+
+我们定下的大体思路是 props.children 属性来决定具体渲染的内容，上面的代码解决了这个问题，但是 amount 属性并没有接收到，所以我们接着改造：
+
+``` jsx
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      amount: 0,
+    };
+  }
+  onIncrement = () => {
+    this.setState(state => ({ amount: state.amount + 1 }));
+  };
+  onDecrement = () => {
+    this.setState(state => ({ amount: state.amount - 1 }));
+  };
+  render() {
+    return (
+      <div>
+        <Amount
+          amount={this.state.amount}
+          onIncrement={this.onIncrement}
+          onDecrement={this.onDecrement}
+        />
+        <Euro amount={this.state.amount} />
+        <Pound amount={this.state.amount} />
+      </div>
+    );
+  }
+}
+const Amount = ({ amount, onIncrement, onDecrement }) => (
+  <div>
+    <span>US Dollar: {amount} </span>
+    <button type="button" onClick={onIncrement}>
+      +
+    </button>
+    <button type="button" onClick={onDecrement}>
+      -
+    </button>
+  </div>
+);
+```
+
+这一步我们对于状态和行为进行了提升，这样做虽然解决了状态和行为共享的问题，但是却违背了我们当初把金额封装到 Amount 组件里面这个初衷，虽然这样做显示不是我们想要的，还要继续对代码进行改造：
+
+``` jsx
+class Amount extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      amount: 0,
+    };
+  }
+  onIncrement = () => {
+    this.setState(state => ({ amount: state.amount + 1 }));
+  };
+  onDecrement = () => {
+    this.setState(state => ({ amount: state.amount - 1 }));
+  };
+  render() {
+    return (
+      <div>
+        <span>US Dollar: {this.state.amount} </span>
+        <button type="button" onClick={this.onIncrement}>
+          +
+        </button>
+        <button type="button" onClick={this.onDecrement}>
+          -
+        </button>
+        {this.props.children}
+      </div>
+    );
+  }
+}
+
+const App = () => (
+  <Amount>
+    <Pound amount={amount} />
+    <Euro amount={amount} />
+  </Amount>
+);
+```
+
+``` jsx
+const App = () => (
+  <Amount>
+    {() => (
+      <div>
+        <Pound amount={amount} />
+        <Euro amount={amount} />
+      </div>
+    )}
+  </Amount>
+);
+```
+
 
 > 1. 使用 HOC 解决横切关注点问题
 > 2. 不要改变原始组件。使用组合。
@@ -291,6 +483,6 @@ const HeadWithClass = (props) => (
 * [函数作为子组件(Function as Child Components)](https://www.html.cn/archives/9471)
 * [React Render Props in TypeScript](https://medium.com/@jrwebdev/react-render-props-in-typescript-b561b00bc67c)
 * [React Hooks in TypeScript](https://medium.com/@jrwebdev/react-hooks-in-typescript-88fce7001d0d)
-* []()
-* []()
+* [React组件Render Props VS HOC 设计模式](https://www.jianshu.com/p/ff6b3008820a)
+* [[译] 使用 Render props 吧！](https://juejin.im/post/5a3087746fb9a0450c4963a5)
 * []()
