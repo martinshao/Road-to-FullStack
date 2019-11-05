@@ -43,6 +43,11 @@ return 11;
 
 ## 高阶组件(HOC -> High-Order Components)
 
+Mixin带来的一些问题,总结下来主要是以下几点:
+
+* 破坏组件封装性: Mixin可能会引入不可见的属性。例如在渲染组件中使用Mixin方法，给组件带来了不可见的属性(props)和状态(state)。并且Mixin可能会相互依赖，相互耦合，不利于代码维护。
+* 不同的Mixin中的方法可能会相互冲突
+
 > 官方解读
 > 
 > 高阶组件（HOC）是 React 中用于复用组件逻辑的一种高级技巧。HOC 自身不是 React API 的一部分，它是一种基于 React 的组合特性而形成的设计模式。具体而言，高阶组件是参数为组件，返回值为新组件的函数。
@@ -71,6 +76,95 @@ const HOCFactory = (Component) => {
 // 使用
 export default HOC(WrappedComponent)
 ```
+
+### HOC实现：
+
+1. 属性代理(Props Proxy)
+2. 反向继承(Inheritance Inversion)
+
+### HOC功能：
+
+* 代码重用，逻辑和引导抽象
+* 渲染劫持（Render Highjacking）
+* state(状态)抽象和操作
+* props(属性)操作
+
+#### 属性代理
+
+``` jsx
+import React, { Component } from 'React';
+//高阶组件定义
+const HOC = (WrappedComponent) =>
+  class WrapperComponent extends Component {
+    render() {
+      return <WrappedComponent {...this.props} />;
+    }
+}
+//普通的组件
+class WrappedComponent extends Component{
+  render(){
+    //....
+  }
+}
+
+//高阶组件使用
+export default HOC(WrappedComponent)
+```
+
+#### 操作props
+
+``` jsx
+const HOC = (WrappedComponent) =>
+  class WrapperComponent extends Component {
+    render() {
+      const newProps = {
+        name: 'HOC'
+      }
+      return <WrappedComponent
+        {...this.props}
+        {...newProps}
+      />;
+    }
+  }
+```
+
+#### 获得refs的引用
+
+``` jsx
+import React, { Component } from 'React';
+　
+const HOC = (WrappedComponent) =>
+  class wrapperComponent extends Component {
+    storeRef(ref) {
+      this.ref = ref;
+    }
+    render() {
+      return <WrappedComponent
+        {...this.props}
+        ref = {::this.storeRef}
+      />;
+    }
+  }
+```
+
+#### 反向继承
+
+``` jsx
+const HOC = (WrappedComponent) =>
+  class extends WrappedComponent {
+    render() {
+      return super.render();
+    }
+  }
+```
+
+#### 渲染劫持
+
+``` jsx
+
+```
+
+
 
 ## 属性渲染(Render Props)
 
