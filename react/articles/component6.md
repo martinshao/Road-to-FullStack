@@ -77,7 +77,7 @@ const HOCFactory = (Component) => {
 export default HOC(WrappedComponent)
 ```
 
-![](https://img.alicdn.com/tfs/TB1OQLtlG61gK0jSZFlXXXDKFXa-2049-668.png)
+![](https://img.alicdn.com/tfs/TB1DpHqlHr1gK0jSZFDXXb9yVXa-2189-700.png)
 
 ### HOC实现：
 
