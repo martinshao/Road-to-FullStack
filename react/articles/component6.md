@@ -339,7 +339,6 @@ class MouseTracker extends React.Component {
 * Component composition with children prop
 * RENDER PROP COMPONENT
 * RENDER PROP COMPONENT ALTERNATIVE: HIGHER-ORDER COMPONENT
-* 
 
 ![](../assets/facc.png)
 
