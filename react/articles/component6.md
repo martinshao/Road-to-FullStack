@@ -91,6 +91,19 @@ export default HOC(WrappedComponent)
 * state(状态)抽象和操作
 * props(属性)操作
 
+### 原则：
+
+* 不要改变原始组件。使用组合。
+* 约定：将不相关的 props 传递给被包裹的组件
+* 约定：最大化可组合性
+* 约定：包装显示名称以便轻松调试
+
+### 注意事项
+
+* 不要在 render 方法中使用 HOC
+* 务必复制静态方法
+* Refs 不会被传递
+
 #### 属性代理
 
 ``` jsx
@@ -163,9 +176,61 @@ const HOC = (WrappedComponent) =>
 #### 渲染劫持
 
 ``` jsx
-
+const HOC = (WrappedComponent) =>
+  class extends WrappedComponent {
+    render() {
+      if (this.props.isRender) {
+        return super.render();
+      } else {
+        return null;
+      }
+    }
+  }
 ```
 
+``` jsx
+//例子来源于《深入React技术栈》
+
+const HOC = (WrappedComponent) =>
+  class extends WrappedComponent {
+    render() {
+      const elementsTree = super.render();
+      let newProps = {};
+      if (elementsTree && elementsTree.type === 'input') {
+        newProps = {value: 'may the force be with you'};
+      }
+      const props = Object.assign({}, elementsTree.props, newProps);
+      const newElementsTree = React.cloneElement(elementsTree, props, elementsTree.props.children);
+      return newElementsTree;
+  }
+}
+class WrappedComponent extends Component{
+  render(){
+    return(
+      <input value={'Hello World'} />
+    )
+  }
+}
+export default HOC(WrappedComponent)
+//实际显示的效果是input的值为"may the force be with you"
+```
+
+#### 操作 props 和 state
+
+``` jsx
+const HOCFactoryFactory = (...params) => {
+  // 可以做一些改变 params 的事
+  return (WrappedComponent) => {
+    return class HOC extends Component {
+      render() {
+        return <WrappedComponent {...this.props} />;
+      }
+    }
+  }
+}
+
+HOCFactoryFactory(params)(WrappedComponent)
+```
 
 
 ## 属性渲染(Render Props)
