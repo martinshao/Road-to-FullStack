@@ -1,6 +1,6 @@
 # JavaScript原型链深度剖析和应用
 
-## 原型链知识思维导图
+原型链知识思维导图
 
 ![prototype mind mapping](https://img.alicdn.com/tfs/TB1CaZJlKL2gK0jSZFmXXc7iXXa-821-364.svg "prototype mind mapping")
 
