@@ -2,7 +2,7 @@
 
 ## 原型链知识思维导图
 
-![alt text](./img/js-prototype.svg "Title")
+![prototype mind mapping](https://img.alicdn.com/tfs/TB1CaZJlKL2gK0jSZFmXXc7iXXa-821-364.svg "prototype mind mapping")
 
 ## 序言
 
@@ -28,7 +28,7 @@ console.info(Person);
 ```
 
 备注：chrome浏览器的控制台不好打印函数属性，Firefox是可以的，下图Firefox打印。  
-![alt text](./img/20190101163046.png "constructor function")
+![constructor function](https://img.alicdn.com/tfs/TB14VAKlHH1gK0jSZFwXXc7aXXa-406-137.png "constructor function")
 
 总结：  
 1. JavaScript中，凡是函数都会有 `prototype` 属性，该属性是一个指针，指针指向原型对象。
@@ -44,7 +44,7 @@ JavaScript中，**无论什么时候**，只要创建了一个新函数，就会
 在默认情况下，所有原型对象都会自动获得一个 `constructor` （构造函数）属性，这个属性是一个指向 `prototype` 属性所在函数的指针。
 构造函数、原型对象、实例之间关系图
 
-![alt text](./img/prototype-img.png "Title")
+![person prototype](https://img.alicdn.com/tfs/TB1Y7MFlQL0gK0jSZFtXXXQCXXa-1135-453.png "person prototype")
 
 函数的 prototype 属性指向了一个对象，这个对象正是调用该构造函数而创建的实例的原型，也就是这个例子中的 person1 和 person2 的原型。
 
@@ -63,7 +63,7 @@ function Person(name, age) {
 ```
 
 控制台可以看到清晰的结构  
-![alt text](./img/prototype-console.png "Title")
+![prototype console](https://img.alicdn.com/tfs/TB1XcsLlRr0gK0jSZFnXXbRRXXa-418-245.png "prototype console")
 
 创建了自定义的构造函数之后，其原型对象默认只会取得 `constructor` 属性；至于其他方法，则都是从 `Object` 继承而来的。当调用构造函数创建一个新实例后，该实例的内部将包含一个指针（内部属性），指向构造函数的原型对象。**ECMA-262**第5版中管这个指针叫 `[[Prototype]]` 。虽然在脚本中没有标准的方式访问 `[[Prototype]]` ，但Firefox、Safari和Chrome在每个对象上都支持一个属性 `__proto__` ；而在其他实现中，这个属性对脚本则是完全不可见的。不过，要明确的真正重要的一点就是，**这个连接存在于实例与构造函数的原型对象之间，而不是存在于实例与构造函数之间**。
 
@@ -78,10 +78,11 @@ console.info(Lily);
 ```
 
 Firefox浏览器中对于 `[[Prototype]]` 指针的实现是 `<prototype>` ，这里通过 `[[Prototype]]` 指针就可以找到构造函数原型对象，找到构造函数，那么实例化对象的构造函数就一目了然。  
-![alt text](./img/20190101172107.png "实例与构造函数关系")
+![alt text](https://img.alicdn.com/tfs/TB1x2gFlFT7gK0jSZFpXXaTkpXa-500-160.png "实例与构造函数关系")
 
-chrome浏览器对于 `[[Prototype]]` 指针的实现是 `__proto__` ，这里通过 `[[Prototype]]` 指针就可以找到构造函数原型对象，找到构造函数，那么实例化对象的构造函数就一目了然。  
-![alt text](./img/20190101172135.png "实例与构造函数关系")
+chrome浏览器对于 `[[Prototype]]` 指针的实现是 `__proto__` ，这里通过 `[[Prototype]]` 指针就可以找到构造函数原型对象，找到构造函数，那么实例化对象的构造函数就一目了然。 
+
+![alt text](https://img.alicdn.com/tfs/TB12XILlHj1gK0jSZFuXXcrHpXa-500-141.png "实例与构造函数关系")
 
 方法二：科学严谨代码法
 一种简单的判断方式是：我们知道实例的 `[[Prototype]]` 指针是指向构造函数原型对象的，所以有这样的代码；
@@ -96,9 +97,9 @@ console.info(person.__proto__.constructor === Person); // => true
 另外一种方法是利用Object对象函数的API，`isPrototypeOf()` 还有 `getPrototypeOf()` 。
 
 很遗憾chrome访问不到Object API  
-![chrome Object API](./img/20190101173728.png "chrome Object API")  
+![chrome Object API](https://img.alicdn.com/tfs/TB129ZGlRv0gK0jSZKbXXbK2FXa-500-40.png "chrome Object API")  
 FireFox提供了API  
-![Firefox Object API](./img/20190101173808.png "Firefox Object API")
+![Firefox Object API](https://img.alicdn.com/tfs/TB1aYoLlHj1gK0jSZFuXXcrHpXa-500-399.png "Firefox Object API")
 
 然后撸出这样的代码：
 
@@ -231,10 +232,10 @@ console.log( Function.prototype.__proto__ == Object.prototype);//true
 ```
 
 我们的chrome照例是不支持native code显示的。  
-![alt text](./img/20190101233923.png "text")  
+![alt text](https://img.alicdn.com/tfs/TB1eM.IlQY2gK0jSZFgXXc5OFXa-500-61.png "text")  
 Firefox展示的就比较清楚了  
-![alt text](./img/20190101234057.png "text")
-![alt text](./img/20190101234151.png "text")
+![alt text](https://img.alicdn.com/tfs/TB1qxUIlQY2gK0jSZFgXXc5OFXa-500-709.png "text")
+![alt text](https://img.alicdn.com/tfs/TB1egULlHj1gK0jSZFOXXc7GpXa-500-778.png "text")
 
 由此可见，Object继承自己，Funtion继承自己，Object和Function互相是继承对方，也就是说Object和Function都既是函数也是对象。这一点很特别。所有的函数都是对象，可是并不是所有的对象都是函数。证明如下：
 
@@ -309,7 +310,7 @@ QAQ：真心想要吐槽一句，如此复杂的数据类型设计，完完全�
 3. prototype是个真真实实，如假包换的对象。
 
 这张图可能很好的看到Function和Object的内在联系。  
-![alt text](./img/object-function1.jpg "Title")
+![alt text](https://img.alicdn.com/tfs/TB1NcgJlO_1gK0jSZFqXXcpaXXa-775-683.jpg "Title")
 
 * `Object` 是所有对象的爸爸，所有对象都可以通过 `__proto__` 找到它
 * `Function` 是所有函数的爸爸，所有函数都可以通过 `__proto__` 找到它
@@ -338,17 +339,17 @@ function Person(name, age) {
   console.info(person);
   console.info(person.prototype);
 ```
-![alt text](./img/20181218212309.png "Title")  
-![alt text](./img/20181218212401.png "Title")
+![alt text](https://img.alicdn.com/tfs/TB1dq7IlSf2gK0jSZFPXXXsopXa-270-111.png "Title")  
+![alt text](https://img.alicdn.com/tfs/TB1r.oLlRr0gK0jSZFnXXbRRXXa-480-305.png "Title")
 
 > 我们创建的每个函数都有一个 `prototype` (原型)属性，这个属性是一个指针，指向一个对象，而这个对象的用途是包含可以由特定类型的所有实例共享的属性和方法。 ——《JavaScript高级程序设计》
 
 正如图中展示的那样，Person函数天生就会有一个属性，prototype，这个属性是一个指针，指向原型对象（实例原型）  
-![alt text](./img/stage1.png "Title")  
+![](https://img.alicdn.com/tfs/TB1z0cIlSf2gK0jSZFPXXXsopXa-579-208.png)  
 
 在控制台运行 `var person = new Person("shaogucheng", 18);` 根据构造函数new出新的对象，这个其实就是面向对象中，根据模板实例化对象的过程（Person --> person）。
 
-![alt text](./img/stage2.png "Title")
+![]([./img/stage2.png](https://img.alicdn.com/tfs/TB1tpIMlRr0gK0jSZFnXXbRRXXa-576-290.png))
 
 > 这里要稍微介绍一下new的过程：
 > 1. 创建一个新对象；
@@ -360,23 +361,23 @@ function Person(name, age) {
 ![alt text](./img/20181217233505.png "Title")  
 这样，无论使用代码 `console.info(Person.prototype === person.__proto__);`  结果为 `true` 还是看日志中两者的结构，都能得出的结论。实例上的 `__proto__` 属性是指向实例原型，这大概也就是为什么原型对象也叫实例原型的原因吧。
 
-![alt text](./img/stage3.png "Title")
+![](https://img.alicdn.com/tfs/TB1EA3GlQL0gK0jSZFtXXXQCXXa-580-290.png)
 
 我们可以在控制台执行 `console.info(Person.prototype);` 根据打印的日志信息，可以直观看到原型对象，并且看到原型对象上的属性。在原型对象上有一个构造属性**constructor**,并且这个构造属性也是一个指针，指向构造函数本身，这样就可以得出上图中实例原型中的constructor属性指向构造函数本身的线。
-![alt text](./img/20181217225601.png "Title")  
+![]([./img/20181217225601.png](https://img.alicdn.com/tfs/TB1LbUHlUH1gK0jSZSyXXXtlpXa-1058-88.png))  
 
 构造函数的原型对象的原型又是谁呢？  
-![alt text](./img/stage4.png "Title")  
+![](https://img.alicdn.com/tfs/TB11pAGlFT7gK0jSZFpXXaTkpXa-590-477.png)  
 
 喜大普奔的是chrome浏览器支持显示 `__proto__` 属性，所以在控制台输入：`console.info(Person.prototype.__proto__);` 我们就能愉快的观察到Person构造函数的原型对象的原型是谁。
-![alt text](./img/20181217234302.png "Title")  
+![](https://img.alicdn.com/tfs/TB1RJAHlND1gK0jSZFsXXbldVXa-1257-396.png)  
 这样，真相就已经很明显了。
 
-![alt text](./img/stage5.png "Title")  
+![](https://img.alicdn.com/tfs/TB1KQ3GlQL0gK0jSZFtXXXQCXXa-590-525.png)  
 上图就已经很明显的给出了原型链的雏形。
 
 最后的最后我们祭出经典原型链图。  
-![alt text](./img/stage8.jpg "Title")
+![](https://img.alicdn.com/tfs/TB1RcEMlG61gK0jSZFlXXXDKFXa-618-781.jpg)
 
  the constructor property of an instance of a function object "specifies the function that creates an object's prototype". This is confusing, so Object.constructor is "the function that creates an object's prototype"? What object is "an object" exactly?
 
