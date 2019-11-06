@@ -143,20 +143,23 @@ const HOC = (WrappedComponent) =>
 
 React 框架十分灵活，会给开发流出足够的想象空间，正如上面代码展示的那样，我们对于属性的操作是多么毫无限制。但好的代码应该是有所限制的，React 框架本身不提供这种限制，我们采用 **约定** 的方式实现这种限制。这种约定将在高阶组件的介绍中出现好几次。我们要说的第一个约定就是：**将不相关的 props 传递给被包裹的组件**。
 
+> HOCs add features to a component. They shouldn’t drastically alter its contract. It’s expected that the component returned from a HOC has a similar interface to the wrapped component.
+
+> HOCs should pass through props that are unrelated to its specific concern. Most HOCs contain a render method that looks something like this:
+
 高阶组件在为子组件添加特性的同事，要保持子组件的接口不受影响。高阶组件应该返回一个兼容子组件接口的新组件。
 
 HOC 为组件添加特性。自身不应该大幅改变约定。HOC 返回的组件与原组件应保持类似的接口。HOC 应该透传与自身无关的 props。大多数 HOC 都应该包含一个类似于下面的 render 方法：
 
 ``` jsx
 render() {
-  // 过滤掉非此 HOC 额外的 props，且不要进行透传
+  // Filter out extra props that are specific to this HOC and shouldn't be passed through.
   const { extraProp, ...passThroughProps } = this.props;
 
-  // 将 props 注入到被包装的组件中。
-  // 通常为 state 的值或者实例方法。
+  // Inject props into the wrapped component. These are usually state values or instance methods.
   const injectedProp = someStateOrInstanceMethod;
 
-  // 将 props 传递给被包装组件
+  // Pass props to wrapped component.
   return (
     <WrappedComponent
       injectedProp={injectedProp}
