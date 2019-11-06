@@ -59,6 +59,8 @@
 
 ### Ⅰ 🌟 JavaScript基础与精粹深入探索
 
+![](https://img.alicdn.com/tfs/TB1r_ABlRr0gK0jSZFnXXbRRXXa-800-300.jpg)
+
 基础系列文章思路
 
 1. 对于变量的探讨
