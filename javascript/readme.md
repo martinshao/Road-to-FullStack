@@ -18,7 +18,6 @@
 3. 对于原型链和作用域链的探讨
 4. 对于关键API的探讨
 5. 对于JavaScript继承的探讨
-6. 对于JavaScript运行机制探讨
 
 ### 基础系列文章目录
 
@@ -26,11 +25,11 @@
 * JavaScript变量存储与内存空间 - 2
 * JavaScript内存机制与垃圾回收 - 3
 * JavaScript四种常见内存泄漏 - 4
-* JavaScript探究this奥秘之旅 - 5
+* [JavaScript探究this奥秘之旅][105]
 * JavaScript基础当我谈论变量时 - 6
 * JavaScript的模块化发展与现状 - 7
 * JavaScript面向对象编程范式简介 - 8
-* JavaScript深度理解原型链 - 9
+* [JavaScript原型链深度剖析和应用][109]
 * JavaScript深入之从作用域链理解闭包 - 10
 * JavaScript深入之闭包面试题解 - 11
 * 深入浅出图解作用域链和闭包 - 12
@@ -39,6 +38,8 @@
 * [JavaScript立即执行函数][115]
 
 [101]: https://github.com/Martin-Shao/Road-to-FullStack/blob/master/javascript/articles/js-variable-type.md
+[105]: https://github.com/Martin-Shao/Road-to-FullStack/blob/master/javascript/articles/about-this.md
+[109]: https://github.com/Martin-Shao/Road-to-FullStack/blob/master/javascript/articles/prototype-chain.md
 [105]: https://github.com/Martin-Shao/Road-to-FullStack/blob/master/javascript/articles/js-iife.md
 
 ----------------------------------------------------------------------------

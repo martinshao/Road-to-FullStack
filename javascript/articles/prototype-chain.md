@@ -1,4 +1,4 @@
-# JavaScript深度理解原型链
+# JavaScript原型链深度剖析和应用
 
 ## 原型链知识思维导图
 
