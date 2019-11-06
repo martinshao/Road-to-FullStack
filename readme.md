@@ -94,7 +94,7 @@
 [101]: https://github.com/Martin-Shao/Road-to-FullStack/blob/master/javascript/articles/js-variable-type.md
 [105]: https://github.com/Martin-Shao/Road-to-FullStack/blob/master/javascript/articles/about-this.md
 [109]: https://github.com/Martin-Shao/Road-to-FullStack/blob/master/javascript/articles/prototype-chain.md
-[105]: https://github.com/Martin-Shao/Road-to-FullStack/blob/master/javascript/articles/js-iife.md
+[115]: https://github.com/Martin-Shao/Road-to-FullStack/blob/master/javascript/articles/javascript-iife.md
 
 ----------------------------------------------------------------------------
 
