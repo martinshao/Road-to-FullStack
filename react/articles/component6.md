@@ -355,7 +355,7 @@ class MouseTracker extends React.Component {
 * RENDER PROP COMPONENT
 * RENDER PROP COMPONENT ALTERNATIVE: HIGHER-ORDER COMPONENT
 
-![](../assets/facc.png)
+![](https://img.alicdn.com/tfs/TB14lMllO_1gK0jSZFqXXcpaXXa-1200-450.png)
 
 重要的是要记住，`render prop` 是因为模式才被称为 `render prop` ，你不一定要用名为 `render` 的 `prop` 来使用这种模式。事实上， 任何被用于告知组件需要渲染什么内容的函数 `prop` 在技术上都可以被称为 “render prop”。
 
