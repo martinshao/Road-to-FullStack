@@ -57,7 +57,99 @@
 
 ## 前端知识精粹概览
 
-### 世界第一好玩前端框架React——全面解析
+### Ⅰ 🌟 JavaScript基础与精粹深入探索
+
+基础系列文章思路
+
+1. 对于变量的探讨
+2. 对于模块化发展历程的探讨
+3. 对于原型链和作用域链的探讨
+4. 对于关键API的探讨
+5. 对于JavaScript继承的探讨
+6. 对于JavaScript运行机制探讨
+
+#### 系列文章目录
+
+* JavaScript基础之变量类型
+* JavaScript变量存储与内存空间
+* JavaScript内存机制与垃圾回收
+* JavaScript四种常见内存泄漏
+* JavaScript探究this奥秘之旅
+* JavaScript基础当我谈论变量时
+* JavaScript的模块化详解
+* JavaScript面向对象编程范式简介
+* JavaScript深度理解原型链
+* JavaScript深入之从作用域链理解闭包
+* JavaScript深入之闭包面试题解
+* 深入浅出图解作用域链和闭包
+* 深度解析 new 原理及模拟实现
+* JavaScript继承方式详解
+
+----------------------------------------------------------------------------
+
+**JavaScript运行机制深入**
+
+运行机制系列文章的思路
+
+1. 了解JavaScript的内存管理，这是运行机制解析的铺垫工作
+2. 在了解JavaScript的内存管理中，认识（Stack）和（Heap）
+3. 分析Stack、Heap与Call Stack之间的关系和联系
+4. 正式进入JavaScript执行机制的分析，主要是调用栈、异步队列和事件循环等概念解析。
+5. JavaScript执行上下文分析基础文：分析VO、AO、GO和词法环境、变量环境的区别
+6. JavaScriptES3中VO、AO、GO详解执行过程
+7. JavaScript与ES5中词法环境详解过程
+8. 实战，执行上下文的实例应用举例：闭包
+
+#### 系列文章目录
+
+* [JavaScript执行机制深度解析——调用栈和执行上下文][121]
+* [JavaScript执行机制深度解析——执行上下文ES3规范和ES5规范][122]
+* [JavaScript执行机制深度解析——ES3规范和Scope、VO、AO][123]
+* [JavaScript执行机制深度解析——ES5规范和词法环境][124]
+* [JavaScript执行机制深度解析——变量对象解释闭包][125]
+* [JavaScript执行机制深度解析——理解函数执行过程][126]
+
+* JavaScript执行机制深度解析——调用栈、异步队列和事件循环
+* JavaScript执行机制深度解析——浏览器和NodeJs中Event Loop区别
+* JavaScript执行机制深度解析——NodeJs中Event Loop实例分析
+
+#### 补充目录
+
+* JavaScript执行机制深度解析——内存管理
+* [JavaScript执行机制深度解析——什么是栈帧？][128]
+* JavaScript执行机制深度解析——垃圾回收与四种常见内存泄露
+* JavaScript执行机制深度解析——Stack三个概念和Heap的解析
+
+[121]: https://github.com/Martin-Shao/Road-to-FullStack/blob/master/javascript/running-analysis/callstack-context.md
+[122]: https://github.com/Martin-Shao/Road-to-FullStack/blob/master/javascript/running-analysis/context-es3-es5.md
+[123]: https://github.com/Martin-Shao/Road-to-FullStack/blob/master/javascript/running-analysis/es3-vo-ao.md
+[124]: https://github.com/Martin-Shao/Road-to-FullStack/blob/master/javascript/running-analysis/es5-le-ve.md
+[128]: https://github.com/Martin-Shao/Road-to-FullStack/blob/master/javascript/articles/2019-4-21-1.md
+
+----------------------------------------------------------------------------
+
+#### ES6新特性学习与实践
+
+* ES6编程风格与精粹
+* ES6之Promise原理与实践
+* ES5实践ES6-promise A+规范
+* ES6的Async/Await原理
+* ES6深入之重新认识箭头函数的this
+
+----------------------------------------------------------------------------
+
+#### JavaScript编程小技巧
+
+* 如何善用函数式编程
+* 防抖/节流原理
+* JavaScript的AOP编程
+* JavaScript中立即执行函数详解
+* JavaScript中call 和 apply原理与实践
+* JavaScript中bind原理与实践
+* JavaScript解析赋值、浅拷贝和深拷贝的区别
+* JavaScript中的Mixin技巧
+
+### Ⅴ 🚀 世界第一好玩前端框架React——全面解析
 
 框架解析思路如下：
 * 认识React ，已经React全家桶成员，还有很多衍生框架

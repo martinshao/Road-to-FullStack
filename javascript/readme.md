@@ -11,13 +11,14 @@
 
 ## JavaScript基础中基础
 
-### 系列文章思路
+### 基础系列文章思路
 
 1. 对于变量的探讨
 2. 对于模块化发展历程的探讨
 3. 对于原型链和作用域链的探讨
 4. 对于关键API的探讨
 5. 对于JavaScript继承的探讨
+6. 对于JavaScript运行机制探讨
 
 ### 系列文章目录
 
@@ -98,3 +99,4 @@
 [22]: https://github.com/Martin-Shao/Road-to-FullStack/blob/master/javascript/running-analysis/context-es3-es5.md
 [23]: https://github.com/Martin-Shao/Road-to-FullStack/blob/master/javascript/running-analysis/es3-vo-ao.md
 [24]: https://github.com/Martin-Shao/Road-to-FullStack/blob/master/javascript/running-analysis/es5-le-ve.md
+[28]: https://github.com/Martin-Shao/Road-to-FullStack/blob/master/javascript/articles/2019-4-21-1.md
