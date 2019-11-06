@@ -22,9 +22,8 @@
 ### 基础系列文章目录
 
 * [JavaScript基础之变量类型][101]
-* JavaScript变量存储与内存空间 - 2
-* JavaScript内存机制与垃圾回收 - 3
-* JavaScript四种常见内存泄漏 - 4
+* [JavaScript内存管理与垃圾回收][102]
+* JavaScript四种常见内存泄漏 - 3
 * [JavaScript探究this奥秘之旅][105]
 * JavaScript基础当我谈论变量时 - 6
 * JavaScript的模块化发展与现状 - 7
@@ -38,6 +37,7 @@
 * [JavaScript立即执行函数][115]
 
 [101]: https://github.com/Martin-Shao/Road-to-FullStack/blob/master/javascript/articles/js-variable-type.md
+[102]: https://github.com/Martin-Shao/Road-to-FullStack/blob/master/javascript/running-analysis/mm-gc.md
 [105]: https://github.com/Martin-Shao/Road-to-FullStack/blob/master/javascript/articles/about-this.md
 [109]: https://github.com/Martin-Shao/Road-to-FullStack/blob/master/javascript/articles/prototype-chain.md
 [115]: https://github.com/Martin-Shao/Road-to-FullStack/blob/master/javascript/articles/javascript-iife.md
