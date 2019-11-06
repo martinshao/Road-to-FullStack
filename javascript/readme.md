@@ -20,22 +20,26 @@
 5. 对于JavaScript继承的探讨
 6. 对于JavaScript运行机制探讨
 
-### 系列文章目录
+### 基础系列文章目录
 
-* JavaScript基础之变量类型
-* JavaScript变量存储与内存空间
-* JavaScript内存机制与垃圾回收
-* JavaScript四种常见内存泄漏
-* JavaScript探究this奥秘之旅
-* JavaScript基础当我谈论变量时
-* JavaScript的模块化详解
-* JavaScript面向对象编程范式简介
-* JavaScript深度理解原型链
-* JavaScript深入之从作用域链理解闭包
-* JavaScript深入之闭包面试题解
-* 深入浅出图解作用域链和闭包
-* 深度解析 new 原理及模拟实现
-* JavaScript继承方式详解
+* [JavaScript基础之变量类型][101]
+* JavaScript变量存储与内存空间 - 2
+* JavaScript内存机制与垃圾回收 - 3
+* JavaScript四种常见内存泄漏 - 4
+* JavaScript探究this奥秘之旅 - 5
+* JavaScript基础当我谈论变量时 - 6
+* JavaScript的模块化发展与现状 - 7
+* JavaScript面向对象编程范式简介 - 8
+* JavaScript深度理解原型链 - 9
+* JavaScript深入之从作用域链理解闭包 - 10
+* JavaScript深入之闭包面试题解 - 11
+* 深入浅出图解作用域链和闭包 - 12
+* 深度解析 `new` 原理及模拟实现 - 13
+* JavaScript继承方式详解 - 14
+* [JavaScript立即执行函数][115]
+
+[101]: https://github.com/Martin-Shao/Road-to-FullStack/blob/master/javascript/articles/js-variable-type.md
+[105]: https://github.com/Martin-Shao/Road-to-FullStack/blob/master/javascript/articles/js-iife.md
 
 ----------------------------------------------------------------------------
 

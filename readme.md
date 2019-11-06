@@ -76,7 +76,7 @@
 * JavaScript四种常见内存泄漏
 * JavaScript探究this奥秘之旅
 * JavaScript基础当我谈论变量时
-* JavaScript的模块化详解
+* JavaScript的模块化发展与现状
 * JavaScript面向对象编程范式简介
 * JavaScript深度理解原型链
 * JavaScript深入之从作用域链理解闭包
