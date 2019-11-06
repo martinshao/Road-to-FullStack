@@ -52,6 +52,7 @@ return 11;
 > 官方解读
 > 
 > 高阶组件（HOC）是 React 中用于复用组件逻辑的一种高级技巧。HOC 自身不是 React API 的一部分，它是一种基于 React 的组合特性而形成的设计模式。具体而言，高阶组件是参数为组件，返回值为新组件的函数。
+> 组件是将 props 转换为 UI，而高阶组件是将组件转换为另一个组件。
 
 可以理解为高阶组件是一种组件的设计模式。正如上面提到的高阶函数那样，高阶组件的定义同样很简单，一个组件作为参数传入工厂函数，然后返回一个经过包装的组件。
 
@@ -92,7 +93,14 @@ const EnhancedComponent = higherOrderComponent(WrappedComponent);
 * 务必复制静态方法
 * Refs 不会被传递
 
-#### 属性代理
+#### 属性代理(Props Proxy)
+
+属性代理的高阶组件在形式上实现起来很简单，“属性代理”的命名也揭示了其本质，类似在属性上实现装饰者设计模式。
+
+* 操作 props(属性)
+* 通过 Refs 访问到组件实例
+* 提取 state(状态)
+* 用其他元素包裹 WrappedComponent
 
 ``` jsx
 import React, { Component } from 'React';
@@ -116,6 +124,8 @@ export default HOC(WrappedComponent)
 
 #### 操作props
 
+说好了是属性代理，意味这我们可以在 Wrapper 组件中对属性进行读取、添加、编辑、删除等操作，并且传给 WrappedComponent 的 props(属性)。
+
 ``` jsx
 const HOC = (WrappedComponent) =>
   class WrapperComponent extends Component {
@@ -130,6 +140,33 @@ const HOC = (WrappedComponent) =>
     }
   }
 ```
+
+React 框架十分灵活，会给开发流出足够的想象空间，正如上面代码展示的那样，我们对于属性的操作是多么毫无限制。但好的代码应该是有所限制的，React 框架本身不提供这种限制，我们采用 **约定** 的方式实现这种限制。这种约定将在高阶组件的介绍中出现好几次。我们要说的第一个约定就是：**将不相关的 props 传递给被包裹的组件**。
+
+高阶组件在为子组件添加特性的同事，要保持子组件的接口不受影响。高阶组件应该返回一个兼容子组件接口的新组件。
+
+HOC 为组件添加特性。自身不应该大幅改变约定。HOC 返回的组件与原组件应保持类似的接口。HOC 应该透传与自身无关的 props。大多数 HOC 都应该包含一个类似于下面的 render 方法：
+
+``` jsx
+render() {
+  // 过滤掉非此 HOC 额外的 props，且不要进行透传
+  const { extraProp, ...passThroughProps } = this.props;
+
+  // 将 props 注入到被包装的组件中。
+  // 通常为 state 的值或者实例方法。
+  const injectedProp = someStateOrInstanceMethod;
+
+  // 将 props 传递给被包装组件
+  return (
+    <WrappedComponent
+      injectedProp={injectedProp}
+      {...passThroughProps}
+    />
+  );
+}
+```
+
+这种约定保证了 HOC 的灵活性以及可复用性。
 
 #### 获得refs的引用
 
@@ -160,6 +197,53 @@ function refsHOC(WrappedComponent) {
     render() {
       const props = Object.assign({}, this.props, {ref: this.proc.bind(this)})
       return <WrappedComponent {...props}/>
+    }
+  }
+}
+```
+
+#### 抽象 state(状态)
+
+``` jsx
+function ppHOC(WrappedComponent) {
+  return class PP extends React.Component {
+    constructor(props) {
+      super(props)
+      this.state = {
+        name: ''
+      }
+      
+      this.onNameChange = this.onNameChange.bind(this)
+    }
+    onNameChange(event) {
+      this.setState({
+        name: event.target.value
+      })
+    }
+    render() {
+      const newProps = {
+        name: {
+          value: this.state.name,
+          onChange: this.onNameChange
+        }
+      }
+      return <WrappedComponent {...this.props} {...newProps}/>
+    }
+  }
+}
+```
+
+#### 用其他元素包裹 WrappedComponent
+
+``` jsx
+function ppHOC(WrappedComponent) {
+  return class PP extends React.Component {
+    render() {
+      return (
+        <div style={{display: 'block'}}>
+          <WrappedComponent {...this.props}/>
+        </div>
+      )
     }
   }
 }
@@ -793,7 +877,6 @@ const App = () => <CurrenciesWithAmount />;
 * [用AOP改善javascript代码][2]
 * [深入浅出 Javascript Decorators 和 AOP 编程][3]
 * [Mixins Considered Harmful][4]
-* [高阶组件][5]
 * [React中的函数子组件(FaCC)和高阶组件(HOC)][6]
 * [React 中的 Render Props][7]
 * [横切关注点的两种实现方法][8]
@@ -806,7 +889,6 @@ const App = () => <CurrenciesWithAmount />;
 [2]: http://www.alloyteam.com/2013/08/yong-aop-gai-shan-javascript-dai-ma/
 [3]: https://juejin.im/entry/5a12443951882512a860e93c
 [4]: https://zh-hans.reactjs.org/blog/2016/07/13/mixins-considered-harmful.html
-[5]: https://zh-hans.reactjs.org/docs/higher-order-components.html
 [6]: https://segmentfault.com/a/1190000016269347
 [7]: https://juejin.im/entry/5a151f4b518825296421555e
 [8]: https://blog.csdn.net/shendl/article/details/526362
@@ -831,7 +913,3 @@ const App = () => <CurrenciesWithAmount />;
 * [[译] 使用 Render props 吧！](https://juejin.im/post/5a3087746fb9a0450c4963a5)
 * [How to pass props to components in React](https://www.robinwieruch.de/react-pass-props-to-component)
 * [如何向带有插槽的 React 组件传递多个 Children](https://juejin.im/post/5b72935a6fb9a009724b3e4e)
-* []()
-* []()
-* []()
-* []()
