@@ -15,7 +15,7 @@ React近年版本升级变化
 * componentWillMount
 * componentWillReceiveProps
 * componentWillUpdate
-* 
+
 新增的生命周期：
 
 * getDerivedStateFromProps
