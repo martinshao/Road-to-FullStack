@@ -10,15 +10,21 @@
 * 增强(enhance): 具体指功能增强，一种特殊的代码复用技术，增强器可复用，对特定组件进行功能增强
 * 横切关注点(cross-cutting concerns): 直接的业务关注点，是直切关注点。而为直切关注点提供服务的，就是横切关注点。
 
-代码复用应该算是一个老生常谈的话题，只要提到代码优化，提高复用性是逃避不开的话题。前端从jQuery操作DOM到VUE或React等框架，一个最大的改变，就是页面组件化，那么如何实现组件的复用，如何实现高可复用性的组件就是前端开发的重要工作之一。React框架构成应用的基石是什么？是组件？那么React的组件就是代码复用的主要单元。如何更好地抽象业务逻辑并且实现复用。更具体地说，如何分享一个组件封装到其他需要相同 `state` 组件的状态或行为，是我们设计优雅组件所需要思考的。
+代码复用应该算是一个老生常谈的话题，只要提到代码优化，提高复用性是逃避不开的话题。前端从jQuery操作DOM到VUE或React等框架，一个最大的改变，就是页面组件化，那么如何实现高可复用性的组件就是前端开发的重要工作之一。React框架构成应用的基石是什么？是组件？那么React的组件就是代码复用的主要单元。如何更好地抽象业务逻辑并且实现复用。更具体地说，如何分享一个组件封装到其他需要相同 `state` 组件的状态或行为，是我们设计优雅组件所需要思考的。
 
+## Mixin所带来的问题
+
+Mixin带来的一些问题,总结下来主要是以下几点:
+
+* 破坏组件封装性: Mixin可能会引入不可见的属性。例如在渲染组件中使用Mixin方法，给组件带来了不可见的属性(props)和状态(state)。并且Mixin可能会相互依赖，相互耦合，不利于代码维护。
+* 不同的Mixin中的方法可能会相互冲突
 
 ## 高阶函数
 ![](https://img.alicdn.com/tfs/TB1TuIylrr1gK0jSZR0XXbP8XXa-1280-403.jpg)
 
-在介绍高阶组件之前，先让我简单的介绍一下高阶函数 `(Higher-order function)` 。JavaScript其实一个蛮强大的语言，目前的状况是JavaScript既能支持 `OOP` 编程，也能支持 `FP` 编程。高阶函数就是函数式编程中一个较为重要的概念。JavaScript 语言能够实现高阶函数的基础是：函数即对象。JavaScript的函数其实都指向某个变量。既然变量可以指向函数，函数的参数能接收变量，那么一个函数就可以接收另一个函数作为参数，这种函数就称之为高阶函数。
+在介绍高阶组件之前，先让我简单的介绍一下高阶函数 `(Higher-order function)` 。JavaScript其实一个蛮强大的语言，目前的状况是JavaScript既能支持 `OOP` 编程，也能支持 `FP` 编程。高阶函数就是函数式编程中一个较为重要的概念。JavaScript 语言能够实现高阶函数的基础是：函数即对象。JavaScript的函数其实都指向某个变量。既然变量可以指向函数，函数的参数能接收变量，那么一个函数就可以接收另一个函数作为参数，并且返回函数，这种函数就称之为高阶函数。
 
-那么 JavaScript 函数具备以下性质：
+总结 `JavaScript` 函数具备以下性质：
 
 * 函数可以作为参数被传递；
 * 函数可以作为返回值输出。
@@ -43,11 +49,6 @@ return 11;
 
 ## 高阶组件(HOC -> High-Order Components)
 
-Mixin带来的一些问题,总结下来主要是以下几点:
-
-* 破坏组件封装性: Mixin可能会引入不可见的属性。例如在渲染组件中使用Mixin方法，给组件带来了不可见的属性(props)和状态(state)。并且Mixin可能会相互依赖，相互耦合，不利于代码维护。
-* 不同的Mixin中的方法可能会相互冲突
-
 > 官方解读
 > 
 > 高阶组件（HOC）是 React 中用于复用组件逻辑的一种高级技巧。HOC 自身不是 React API 的一部分，它是一种基于 React 的组合特性而形成的设计模式。具体而言，高阶组件是参数为组件，返回值为新组件的函数。
@@ -61,20 +62,7 @@ hocFactory :: W: React.Component => E: React.Component;
 ```
 
 ``` js
-// 形式一
 const EnhancedComponent = higherOrderComponent(WrappedComponent);
-
-// 形式二
-const HOCFactory = (Component) => {
-  return class WrapperComponent extends React.Component {
-    render(){
-      return <Component {...this.props} />
-    }
-  }
-}
-
-// 使用
-export default HOC(WrappedComponent)
 ```
 
 ![](https://img.alicdn.com/tfs/TB1DpHqlHr1gK0jSZFDXXb9yVXa-2189-700.png)
