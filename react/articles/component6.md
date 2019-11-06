@@ -103,7 +103,6 @@ const EnhancedComponent = higherOrderComponent(WrappedComponent);
 * 用其他元素包裹 WrappedComponent
 
 ``` jsx
-import React, { Component } from 'React';
 //高阶组件定义
 const HOC = (WrappedComponent) =>
   class WrapperComponent extends Component {
@@ -174,8 +173,6 @@ render() {
 #### 获得refs的引用
 
 ``` jsx
-import React, { Component } from 'React';
-　
 const HOC = (WrappedComponent) =>
   class wrapperComponent extends Component {
     storeRef(ref) {
