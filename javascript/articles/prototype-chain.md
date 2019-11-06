@@ -358,7 +358,7 @@ function Person(name, age) {
 > 4. 返回新对象。
 
 为了更好的理解上图，我们在控制台输入 `console.info(person);` ,输出相关信息：
-![alt text](./img/20181217233505.png "Title")  
+![]([./img/20181217233505.png](https://img.alicdn.com/tfs/TB1JjMLlQT2gK0jSZPcXXcKkpXa-791-201.png))  
 这样，无论使用代码 `console.info(Person.prototype === person.__proto__);`  结果为 `true` 还是看日志中两者的结构，都能得出的结论。实例上的 `__proto__` 属性是指向实例原型，这大概也就是为什么原型对象也叫实例原型的原因吧。
 
 ![](https://img.alicdn.com/tfs/TB1EA3GlQL0gK0jSZFtXXXQCXXa-580-290.png)
