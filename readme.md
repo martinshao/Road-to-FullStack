@@ -1,5 +1,9 @@
 # 通往全栈之路
 
+![](https://img.shields.io/badge/font--end-progress-blue)
+![](https://img.shields.io/badge/JavaScript-progress-green)
+![](https://img.shields.io/badge/React-progress-green)
+
 ![base is important as Sun](https://img.alicdn.com/tfs/TB1wFk0lhz1gK0jSZSgXXavwpXa-1080-390.jpg "galaxy.jpg")
 
 整理分享一些我在全栈之路上前进的一些知识和心得体会。
@@ -157,6 +161,8 @@
 * JavaScript中的Mixin技巧
 
 ### Ⅴ 🚀 世界第一好玩前端框架React——全面解析
+
+![](https://img.alicdn.com/tfs/TB19Tp4lebviK0jSZFNXXaApXXa-1800-600.jpg)
 
 框架解析思路如下：
 * 认识React ，已经React全家桶成员，还有很多衍生框架
