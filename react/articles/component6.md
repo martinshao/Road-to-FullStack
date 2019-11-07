@@ -140,15 +140,18 @@ const HOC = (WrappedComponent) =>
   }
 ```
 
-React 框架十分灵活，会给开发流出足够的想象空间，正如上面代码展示的那样，我们对于属性的操作是多么毫无限制。但好的代码应该是有所限制的，React 框架本身不提供这种限制，我们采用 **约定** 的方式实现这种限制。这种约定将在高阶组件的介绍中出现好几次。我们要说的第一个约定就是：**将不相关的 props 传递给被包裹的组件**。
+React 框架十分灵活，会给开发流出足够的想象空间，正如上面代码展示的那样，我们对于属性的操作是多么毫无限制。但好的代码应该是有所限制的，React 框架本身不提供这种限制，我们采用 **约定** 的方式实现这种限制。这种约定将在高阶组件的介绍中出现好几次。我们要说的第一个约定就是：
+> **将不相关的 props 传递给被包裹的组件**。
 
 > HOCs add features to a component. They shouldn’t drastically alter its contract. It’s expected that the component returned from a HOC has a similar interface to the wrapped component.
 
 > HOCs should pass through props that are unrelated to its specific concern. Most HOCs contain a render method that looks something like this:
 
-高阶组件在为子组件添加特性的同事，要保持子组件的接口不受影响。高阶组件应该返回一个兼容子组件接口的新组件。
+总结： 
 
-HOC 为组件添加特性。自身不应该大幅改变约定。HOC 返回的组件与原组件应保持类似的接口。HOC 应该透传与自身无关的 props。大多数 HOC 都应该包含一个类似于下面的 render 方法：
+1. HOC 能够为子组件添加特性，这些特性可以是我们抽离出的可复用的代码逻辑；
+2. HOC 可以过滤出与自身相关的额外属性，“额外”一次针对原组件，HOC 可对 `extraProp` 进行处理；
+3. HOC 应该透传与自身无关的props，不大幅度改变子组件约定。这样做是削弱侵入性对于子组件的影响，确保高阶组件返回新组件最大兼容原子组件。
 
 ``` jsx
 render() {
@@ -168,7 +171,7 @@ render() {
 }
 ```
 
-这种约定保证了 HOC 的灵活性以及可复用性。
+`extraProp` 是HOC自身需要的，`passThroughProps`是与HOC无关需要透传的，`injectedProp` 是HOC为子组件添加的新特性。这种约定保证了 HOC 的灵活性以及可复用性。
 
 #### 获得refs的引用
 
