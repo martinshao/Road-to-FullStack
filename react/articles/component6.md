@@ -93,7 +93,7 @@ const EnhancedComponent = higherOrderComponent(WrappedComponent);
 * 务必复制静态方法
 * Refs 不会被传递
 
-#### 属性代理(Props Proxy)
+### 属性代理(Props Proxy)
 
 属性代理的高阶组件在形式上实现起来很简单，“属性代理”的命名也揭示了其本质，类似在属性上实现装饰者设计模式。
 
@@ -385,7 +385,7 @@ function ppHOC(WrappedComponent) {
 }
 ```
 
-#### 反向继承
+### 反向继承
 
 ``` jsx
 const HOC = (WrappedComponent) =>
