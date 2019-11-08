@@ -518,7 +518,6 @@ export function IIHOCDEBUGGER(WrappedComponent) {
 
 这个 HOC 用其他元素包裹着 WrappedComponent ，并且还显示了 WrappedComponent 的实例 props(属性) 和 state(状态) 。
 
-
 ## 5、属性渲染(Render Props)
 
 术语 “render prop” 是指一种在 React 组件之间使用一个值为函数的 prop 共享代码的简单技术。
@@ -619,12 +618,6 @@ class MouseTracker extends React.Component {
 ```
 
 ## 6、函数子组件(FaCC -> Functions as Child Components)
-
-* Just render them within the Component
-* Lifting State
-* Component composition with children prop
-* RENDER PROP COMPONENT
-* RENDER PROP COMPONENT ALTERNATIVE: HIGHER-ORDER COMPONENT
 
 ![](https://img.alicdn.com/tfs/TB14lMllO_1gK0jSZFqXXcpaXXa-1200-450.png)
 
