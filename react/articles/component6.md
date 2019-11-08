@@ -175,8 +175,12 @@ render() {
 
 #### 获得refs的引用
 
+您可以使用 `ref`(引用) 访问 `this` （ `WrappedComponent` 的实例），但是您需要 `WrappedComponent` 完成正常的初始渲染过程才能计算 `ref`(引用) ，这意味着您需要从 `HOC` 的 `render` 方法中返回 `WrappedComponent` 元素 ，让 `React` 执行它的一致性比较过程，然后您将获得 `WrappedComponent` 实例的引用。
+
+示例：在下面的示例中，我们将探索如何通过 `refs` 访问实例方法和 `WrappedComponent` 的实例本身
+
 ``` jsx
-const HOC = (WrappedComponent) =>
+const refsHOC = (WrappedComponent) =>
   class wrapperComponent extends Component {
     storeRef(ref) {
       this.ref = ref;
@@ -190,9 +194,55 @@ const HOC = (WrappedComponent) =>
   }
 ```
 
+上面代码有个点比较不太常见： `::` 双冒号运算符
+
+箭头函数可以绑定 `this` 对象，大大减少了显式绑定 `this` 对象的写法`（call、apply、bind）`。但是，箭头函数并不适用于所有场合，所以现在有一个提案，提出了“函数绑定”（function bind）运算符，用来取代 `call、apply、bind` 调用。
+
+函数绑定运算符是并排的两个冒号（::），双冒号左边是一个对象，右边是一个函数。该运算符会自动将左边的对象，作为上下文环境（即this对象），绑定到右边的函数上面。
+
+``` js
+foo::bar;
+// 等同于
+bar.bind(foo);
+
+foo::bar(...arguments);
+// 等同于
+bar.apply(foo, arguments);
+
+const hasOwnProperty = Object.prototype.hasOwnProperty;
+function hasOwn(obj, key) {
+  return obj::hasOwnProperty(key);
+}
+```
+
+如果双冒号左边为空，右边是一个对象的方法，则等于将该方法绑定在该对象上面。
+
+``` js
+var method = obj::obj.foo;
+// 等同于
+var method = ::obj.foo;
+
+let log = ::console.log;
+// 等同于
+var log = console.log.bind(console);
+```
+
+所以上述 `render()` 函数中写法的另外一种形式是：
+
+``` jsx
+render() {
+  return <WrappedComponent
+    {...this.props}
+    ref = {this.storeRef.bind(this)}
+  />;
+}
+```
+
+下面是另外一种常用的写法：
+
 ``` jsx
 function refsHOC(WrappedComponent) {
-  return class RefsHOC extends React.Component {
+  return class wrapperComponent extends Component {
     proc(wrappedComponentInstance) {
       wrappedComponentInstance.method()
     }
@@ -205,7 +255,75 @@ function refsHOC(WrappedComponent) {
 }
 ```
 
+渲染 `WrappedComponent` 时，将执行 `ref` 回调，然后您将获得对 `WrappedComponent` 实例的引用。这可以用于读取/添加实例 `props`(属性) 和调用实例方法。
+
+遗憾的是上面的写法已经过时：过时 API：String 类型的Refs。
+自React16更新之后，React.forwardRef API取代了之前 string 类型 Refs ，所以新的Ref和高阶组件新的实现方法如下：
+
+``` jsx
+// 高阶函数
+function logProps(WrappedComponent) {
+  class LogProps extends React.Component {
+    componentDidUpdate(prevProps) {
+      console.log('old props:', prevProps);
+      console.log('new props:', this.props);
+    }
+
+    render() {
+      const { forwardedRef, ...rest } = this.props;
+      return <WrappedComponent ref={forwardedRef} {...rest} />;
+    }
+  }
+
+  return React.forwardRef((props, ref) => {
+    return <LogProps {...props} forwardedRef={ref} />;
+  });
+}
+
+export default logProps;
+
+// 被包装组件
+const FancyBtn = React.forwardRef((props, ref) => (
+  <button ref={ref} className="FancyBtn" onClick={props.handleClick}>
+    {props.label}
+  </button>
+));
+
+export default logProps(FancyBtn);
+
+// 包装后的组件使用
+class CustomTextInput extends React.Component {
+  constructor(props) {
+    super(props);
+    this.fancyBtn = React.createRef();
+  }
+
+  componentDidMount() {
+    this.fancyBtn.current.focus();
+  }
+
+  render() {
+    return (
+      <div>
+        <FancyBtn
+          label="Click Me"
+          ref={this.fancyBtn}
+          handleClick={this.handleClick}/>
+      </div>
+    );
+  }
+}
+
+export default CustomTextInput;
+```
+
+对于 Refs 不是特别了解可以去官网了解一下：[转发 Refs](http://react.html.cn/docs/forwarding-refs.html)
+
 #### 抽象 state(状态)
+
+您可以通过向 WrappedComponent 提供 props(属性) 和回调来提取 state(状态)，非常类似于智能(Smart)组件如何处理非智能(Dumb)组件。有关更多信息，请参阅非智能(Dumb)和智能(Smart)组件。
+
+示例：在以下提取 state(状态)示例中，我们非常规地提取 name 输入字段的值和 onChange 处理程序。 我说的是非常规，因为这不是很常规，但你必须看到这一点。
 
 ``` jsx
 function ppHOC(WrappedComponent) {
