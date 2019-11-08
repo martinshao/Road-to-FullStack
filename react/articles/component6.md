@@ -916,3 +916,4 @@ const App = () => <CurrenciesWithAmount />;
 * [[译] 使用 Render props 吧！](https://juejin.im/post/5a3087746fb9a0450c4963a5)
 * [How to pass props to components in React](https://www.robinwieruch.de/react-pass-props-to-component)
 * [如何向带有插槽的 React 组件传递多个 Children](https://juejin.im/post/5b72935a6fb9a009724b3e4e)
+* [React Higher Order Components in depth](https://medium.com/@franleplant/react-higher-order-components-in-depth-cf9032ee6c3e)
