@@ -516,7 +516,7 @@ export function IIHOCDEBUGGER(WrappedComponent) {
 }
 ```
 
-这个 HOC 用其他元素包裹着 WrappedComponent ，并且还显示了 WrappedComponent 的实例 props(属性) 和 state(状态) 。Ryan Florence 和 Michael Jackson 教我了 JSON.stringify 技巧。您可以在 此处 查看调试器的完整实现。
+这个 HOC 用其他元素包裹着 WrappedComponent ，并且还显示了 WrappedComponent 的实例 props(属性) 和 state(状态) 。
 
 
 ## 5、属性渲染(Render Props)
