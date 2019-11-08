@@ -4,7 +4,7 @@
 
 本篇是关于React组件系统文章的最后，往后会有部分的补充文章。本篇文章将介绍一些实用的组件设计技巧，无论是在最初设计还是重构阶段，能够一定程度优化代码。正如关键字所提到的那样，我们希望一些组件**更加健壮**，**更可复用**，另外一方面能够解决**功能增强**，**横切关注点**问题。我觉得成为一个好的React开发，要能够对组件有着一定深度的认识和理解，并且能够设计出优雅的组件，下面这些组件设计技巧应该能够信手拈来。
 
-## 关键字
+## 1、关键字
 
 * 复用(multiplexing): 具体指代码复用，通常涉及到抽象，抽离，封装等概念
 * 增强(enhance): 具体指功能增强，一种特殊的代码复用技术，增强器可复用，对特定组件进行功能增强
@@ -12,14 +12,14 @@
 
 代码复用应该算是一个老生常谈的话题，只要提到代码优化，提高复用性是逃避不开的话题。前端从jQuery操作DOM到VUE或React等框架，一个最大的改变，就是页面组件化，那么如何实现高可复用性的组件就是前端开发的重要工作之一。React框架构成应用的基石是什么？是组件？那么React的组件就是代码复用的主要单元。如何更好地抽象业务逻辑并且实现复用。更具体地说，如何分享一个组件封装到其他需要相同 `state` 组件的状态或行为，是我们设计优雅组件所需要思考的。
 
-## Mixin所带来的问题
+## 2、Mixin所带来的问题
 
 Mixin带来的一些问题,总结下来主要是以下几点:
 
 * 破坏组件封装性: Mixin可能会引入不可见的属性。例如在渲染组件中使用Mixin方法，给组件带来了不可见的属性(props)和状态(state)。并且Mixin可能会相互依赖，相互耦合，不利于代码维护。
 * 不同的Mixin中的方法可能会相互冲突
 
-## 高阶函数
+## 3、高阶函数
 ![](https://img.alicdn.com/tfs/TB1TuIylrr1gK0jSZR0XXbP8XXa-1280-403.jpg)
 
 在介绍高阶组件之前，先让我简单的介绍一下高阶函数 `(Higher-order function)` 。JavaScript其实一个蛮强大的语言，目前的状况是JavaScript既能支持 `OOP` 编程，也能支持 `FP` 编程。高阶函数就是函数式编程中一个较为重要的概念。JavaScript 语言能够实现高阶函数的基础是：函数即对象。JavaScript的函数其实都指向某个变量。既然变量可以指向函数，函数的参数能接收变量，那么一个函数就可以接收另一个函数作为参数，并且返回函数，这种函数就称之为高阶函数。
@@ -47,7 +47,7 @@ f(x) + f(y) ==> Math.abs(-5) + Math.abs(6) ==> 11;
 return 11;
 ```
 
-## 高阶组件(HOC -> High-Order Components)
+## 4、高阶组件(HOC -> High-Order Components)
 
 > 官方解读
 > 
@@ -194,7 +194,7 @@ const refsHOC = (WrappedComponent) =>
   }
 ```
 
-上面代码有个点比较不太常见： `::` 双冒号运算符
+上面代码有个点比较不太常见： `::` 双冒号运算符，这是ES7的提案，还没有正式纳入到标准当中。
 
 箭头函数可以绑定 `this` 对象，大大减少了显式绑定 `this` 对象的写法`（call、apply、bind）`。但是，箭头函数并不适用于所有场合，所以现在有一个提案，提出了“函数绑定”（function bind）运算符，用来取代 `call、apply、bind` 调用。
 
@@ -257,8 +257,8 @@ function refsHOC(WrappedComponent) {
 
 渲染 `WrappedComponent` 时，将执行 `ref` 回调，然后您将获得对 `WrappedComponent` 实例的引用。这可以用于读取/添加实例 `props`(属性) 和调用实例方法。
 
-遗憾的是上面的写法已经过时：过时 API：String 类型的Refs。
-自React16更新之后，React.forwardRef API取代了之前 string 类型 Refs ，所以新的Ref和高阶组件新的实现方法如下：
+遗憾的是上面的写法已经过时： `String` 类型的 `Refs` 已经是过时的API。
+自React16更新之后，`React.forwardRef` API取代了之前 `String` 类型 `Refs` ，所以新的Ref和高阶组件新的实现方法如下：
 
 ``` jsx
 // 高阶函数
@@ -504,7 +504,7 @@ HOCFactoryFactory(params)(WrappedComponent)
 这个 HOC 用其他元素包裹着 WrappedComponent ，并且还显示了 WrappedComponent 的实例 props(属性) 和 state(状态) 。Ryan Florence 和 Michael Jackson 教我了 JSON.stringify 技巧。您可以在 此处 查看调试器的完整实现。
 
 
-## 属性渲染(Render Props)
+## 5、属性渲染(Render Props)
 
 术语 “render prop” 是指一种在 React 组件之间使用一个值为函数的 prop 共享代码的简单技术。
 
@@ -603,7 +603,7 @@ class MouseTracker extends React.Component {
 }
 ```
 
-## 函数子组件(FaCC -> Functions as Child Components)
+## 6、函数子组件(FaCC -> Functions as Child Components)
 
 * Just render them within the Component
 * Lifting State
