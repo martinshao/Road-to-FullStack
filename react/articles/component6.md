@@ -389,6 +389,8 @@ function ppHOC(WrappedComponent) {
 
 ### 4.3 反向继承
 
+Inheritance Inversion(反向继承)实现方式：
+
 ``` jsx
 const HOC = (WrappedComponent) =>
   class extends WrappedComponent {
@@ -456,21 +458,25 @@ const HOC = (WrappedComponent) =>
 ```
 
 ``` jsx
-//例子来源于《深入React技术栈》
-
-const HOC = (WrappedComponent) =>
+const iiHOC = (WrappedComponent) =>
   class extends WrappedComponent {
+    state = {
+      inputValue: 'may the force be with you'
+    }
     render() {
       const elementsTree = super.render();
-      let newProps = {};
       if (elementsTree && elementsTree.type === 'input') {
-        newProps = {value: 'may the force be with you'};
+        var newProps = {
+          value: this.state.inputValue,
+          onChange: (event) => {this.setState({inputValue: event.target.value})}
+        };
       }
       const props = Object.assign({}, elementsTree.props, newProps);
       const newElementsTree = React.cloneElement(elementsTree, props, elementsTree.props.children);
       return newElementsTree;
   }
 }
+
 class WrappedComponent extends Component{
   render(){
     return(
@@ -478,29 +484,33 @@ class WrappedComponent extends Component{
     )
   }
 }
-export default HOC(WrappedComponent)
+export default iiHOC(WrappedComponent)
 //实际显示的效果是input的值为"may the force be with you"
 ```
 
+运行的时候，我们就会发现原来的 input 非受控组件通过高阶组件变成了受控组件，拥有了双向数据绑定的特性。
+
 #### 4.3.2 操作 `props` 和 `state`
 
-HOC可以读取，编辑和删除 WrappedComponent 实例的状态，如果需要，还可以添加更多的 state(状态)。 请记住，您正在弄乱 WrappedComponent 的 state(状态)，这会导致您破坏一些东西。 大多数情况下，HOC 应限于读取或添加 state(状态) ，而添加 state(状态) 时应该被命名为不会弄乱 WrappedComponent 的 state(状态)。
+HOC 可以读取，编辑和删除 `WrappedComponent` 实例的状态，如果需要，还可以添加更多的 `state(状态)`。 请记住，您正在弄乱 `WrappedComponent` 的 `state(状态)`，这会导致您破坏一些东西。 大多数情况下，HOC 应限于读取或添加 `state(状态)` ，而添加 `state(状态)` 时应该被命名为不会弄乱 `WrappedComponent` 的 `state(状态)`。
 
-示例：通过访问 WrappedComponent 的 props(属性) 和 state(状态) 进行调试
+示例：通过访问 `WrappedComponent` 的 `props(属性)` 和 `state(状态)` 进行调试
 
 ``` jsx
-const HOCFactoryFactory = (...params) => {
-  // 可以做一些改变 params 的事
-  return (WrappedComponent) => {
-    return class HOC extends Component {
-      render() {
-        return <WrappedComponent {...this.props} />;
-      }
+export function IIHOCDEBUGGER(WrappedComponent) {
+  return class II extends WrappedComponent {
+    render() {
+      return (
+        <div>
+          <h2>HOC Debugger Component</h2>
+          <p>Props</p><pre>{JSON.stringify(this.props, null, 2)}</pre>
+          <p>State</p><pre>{JSON.stringify(this.state, null, 2)}</pre>
+          {super.render()}
+        </div>
+      )
     }
   }
 }
-
-HOCFactoryFactory(params)(WrappedComponent)
 ```
 
 这个 HOC 用其他元素包裹着 WrappedComponent ，并且还显示了 WrappedComponent 的实例 props(属性) 和 state(状态) 。Ryan Florence 和 Michael Jackson 教我了 JSON.stringify 技巧。您可以在 此处 查看调试器的完整实现。
