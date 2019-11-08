@@ -352,9 +352,24 @@ function ppHOC(WrappedComponent) {
     }
   }
 }
+
+class MyInput extends React.Component {
+  render() {
+    console.info(this.props);
+    return <input name="name" {...this.props.name}/>
+  }
+}
+
+export default ppHOC(MyInput);
 ```
 
+input 会自动成为 受控input。更多关于常规的双向绑定 HOC 请点击这个 链接
+
 #### 用其他元素包裹 WrappedComponent
+
+您可以将 WrappedComponent 与其他组件和元素包装在一起，以用于样式，布局或其他目的。 一些基本用法可以通过常规父组件来完成（参见附录B），但如前所述，但是你可以通过 HOC 获得更多灵活性。
+
+例子：为样式目的而包裹
 
 ``` jsx
 function ppHOC(WrappedComponent) {
@@ -380,6 +395,48 @@ const HOC = (WrappedComponent) =>
     }
   }
 ```
+
+如您所见，返回的HOC类（ Enhancer ）继承(extends) 了 WrappedComponent 。 它被称为 Inheritance Inversion(反向继承)，因为它不是用 WrappedComponent 来继承某些 Enhancer 类。而是被 Enhancer 被动继承。 通过这种方式，它们之间的关系似乎是 反向(inverse)。
+
+反向继承允许 HOC 通过 this 访问 WrappedComponent 实例，这意味着它可以访问 state(状态)，props(属性)，组件生命周期方法和 render 方法。
+
+我不会详细介绍你可以用生命周期方法来做什么，因为它不是 HOC 的特性，而是 React 的特性。 但请注意，使用 Inheritance Inversion(反向继承)，您可以为 WrappedComponent 创建新的生命周期方法。 记得总是这样调用 super.[lifecycleHook] ，这样就不会破坏 WrappedComponent 。
+
+一致性比较处理（Reconciliation process）
+在深入了解之前，让我们总结一些概念。
+
+React 元素描述当 React 执行 一致性比较(reconciliation) 过程时将要渲染的内容。
+
+React 元素有两种类型：String 和 Function。 字符串类型 React 元素（STRE）表示 DOM 节点，函数类型 React 元素（FTRE）表示通过继承 React.Component 创建的组件。 有关元素和组件的更多信息，请阅读 此文章。
+
+在 React 的 一致性比较(reconciliation) 过程中，FTRE 将被解析为完整的 STRE 树（最终结果将始终是 DOM 元素）。
+
+这非常重要，这意味着 Inheritance Inversion(反向继承) 的高阶组件无法保证解析完整的子树 。
+
+Inheritance Inversion(反向继承) 的高阶组件无法保证解析完整的子树。
+
+在学习 Render Highjacking(渲染劫持)时，将被证明这点非常重要。
+
+你可以用 Inheritance Inversion(反向继承) 来做什么？
+渲染劫持(Render Highjacking)
+操作 state(状态)
+
+渲染劫持(Render Highjacking)
+它被称为 渲染劫持(Render Highjacking)，因为 HOC 控制了 WrappedComponent 的渲染输出，并且可以用它做各种各样的事情。
+
+在渲染劫持中，您可以：state(状态)，props(属性)
+
+读取，添加，编辑，删除渲染输出的任何 React 元素中的 props(属性)
+读取并修改 render 输出的 React 元素树
+有条件地渲染元素树
+把样式包裹进元素树（就像在 Props Proxy(属性代理) 中的那样）
+注：render 是指 WrappedComponent.render 方法
+
+您无法编辑或创建 WrappedComponent 实例的 props(属性)，因为 React 组件无法编辑它接收到的 props(属性)，但是您可以更改从 render 方法输出的元素的 props(属性)。
+
+正如我们之前研究的那样，Inheritance Inversion(反向继承) 类型的 HOC 无法保证解析完整的子树，这意味着 渲染劫持(Render Highjacking) 技术有一些限制。经验法则是，使用 渲染劫持(Render Highjacking)，你可以完全操作 WrappedComponent 的 render 方法返回的元素树。如果该元素树包含函数式 React Component，那么您将无法操作该组件的子元素。它们被 React 的一致性比较过程推迟，直到它实际渲染到屏幕上。）
+
+示例1：条件渲染。除非 this.props.loggedIn 不为 true ，否则此 HOC 将准确渲染 WrappedComponent 将渲染的内容。（假设 HOC 将收到 loggedIn props(属性)）
 
 #### 渲染劫持
 
@@ -425,6 +482,10 @@ export default HOC(WrappedComponent)
 
 #### 操作 props 和 state
 
+HOC可以读取，编辑和删除 WrappedComponent 实例的状态，如果需要，还可以添加更多的 state(状态)。 请记住，您正在弄乱 WrappedComponent 的 state(状态)，这会导致您破坏一些东西。 大多数情况下，HOC 应限于读取或添加 state(状态) ，而添加 state(状态) 时应该被命名为不会弄乱 WrappedComponent 的 state(状态)。
+
+示例：通过访问 WrappedComponent 的 props(属性) 和 state(状态) 进行调试
+
 ``` jsx
 const HOCFactoryFactory = (...params) => {
   // 可以做一些改变 params 的事
@@ -439,6 +500,8 @@ const HOCFactoryFactory = (...params) => {
 
 HOCFactoryFactory(params)(WrappedComponent)
 ```
+
+这个 HOC 用其他元素包裹着 WrappedComponent ，并且还显示了 WrappedComponent 的实例 props(属性) 和 state(状态) 。Ryan Florence 和 Michael Jackson 教我了 JSON.stringify 技巧。您可以在 此处 查看调试器的完整实现。
 
 
 ## 属性渲染(Render Props)
