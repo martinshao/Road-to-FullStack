@@ -522,7 +522,7 @@ export function IIHOCDEBUGGER(WrappedComponent) {
 
 ### 继承和组合
 
-![](https://img.alicdn.com/tfs/TB1Z39ZmoY1gK0jSZFCXXcwqXXa-1251-533.png)
+![](https://img.alicdn.com/tfs/TB1nGmVmlv0gK0jSZKbXXbK2FXa-821-341.png)
 ![](https://img.alicdn.com/tfs/TB1yYKjmX67gK0jSZPfXXahhFXa-1251-398.png)
 ![](https://img.alicdn.com/tfs/TB11n5ZmkT2gK0jSZFkXXcIQFXa-1471-630.png)
 
