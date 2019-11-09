@@ -21,4 +21,8 @@ FP编程进阶之——惰性求值、惰性函数、惰性链
 FP编程进阶之——高阶函数  
 FP编程进阶之——递归和尾调用优化  
 FP编程进阶之——容器、函子  
-FP编程进阶之——Monad  
+FP编程进阶之——Monad
+
+## 参考资料
+
+* [JS函数式编程指南](https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/)

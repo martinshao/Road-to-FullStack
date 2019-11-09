@@ -520,15 +520,129 @@ export function IIHOCDEBUGGER(WrappedComponent) {
 
 这个 HOC 用其他元素包裹着 WrappedComponent ，并且还显示了 WrappedComponent 的实例 props(属性) 和 state(状态) 。
 
-### 继承和组合
+### 面向对象的继承和组合
 
 ![](https://img.alicdn.com/tfs/TB133m1mlr0gK0jSZFnXXbRRXXa-1247-512.png)
 ![](https://img.alicdn.com/tfs/TB1lGm0meL2gK0jSZFmXXc7iXXa-1247-377.png)
 ![](https://img.alicdn.com/tfs/TB11n5ZmkT2gK0jSZFkXXcIQFXa-1471-630.png)
 
+### 函数式编程的组合
+
+函数式编程中有一个比较重要的概念就是函数组合（compose）,组合多个函数，同时返回一个新的函数。调用时，组合函数按顺序从右向左执行。右边函数调用后，返回的结果，作为左边函数的参数传入，严格保证了执行顺序，这也是compose 主要特点。
+
+组合两个函数
+compose 非常简单，通过下面示例代码，就非常清楚
+``` jsx
+function compose (f, g) {
+    return function(x) {
+        return f(g(x));
+    }
+}
+
+var arr = [1, 2, 3],
+    reverse = function(x){ return x.reverse()},
+    getFirst = function(x) {return x[0]},
+    compseFunc = compose(getFirst, reverse);
+    
+compseFunc(arr);   // 3
+```
+参数在函数间就好像通过‘管道’传输一样，最右边的函数接收外界参数，返回结果传给左边的函数，最后输出结果。
+
+组合任意个函数
+上面组合了两个函数的compose,也让我们了解了组合的特点，接着我们看看如何组合更多的函数，因为在实际应用中，不会像入门介绍的代码那么简单。
+
+主要注意几个关键点：
+
+利用arguments的长度得到所有组合函数的个数
+reduce 遍历执行所有函数。
+    var compose = function() {
+      var args = Array.prototype.slice.call(arguments);
+      
+      return function(x) {
+       if (args.length >= 2) {
+       
+          return args.reverse().reduce((p, c) => {
+            return p = c(p)
+         }, x)
+         
+       } else {
+           return args[1] && args[1](x);
+       }
+      }
+    }
+   
+    // 利用上面示例 测试一下。
+    var arr = [1, 2, 3],
+    reverse = function(x){ return x.reverse()},
+    getFirst = function(x) {return x[0]},
+    trace = function(x) {  console.log('执行结果：', x); return x}
+    
+    
+    compseFunc = compose(trace, getFirst, trace, reverse);
+    
+compseFunc(arr);   
+ // 执行结果： (3) [3, 2, 1]
+ // 执行结果： 3
+ // 3
+如此实现，基本没什么问题，变量arr 在管道中传入后，经过各种操作，最后返回了结果。
+
+ES6 实现Compose function
+先看下compose 最基础的两参数版本，
+
+const compose = (f1, f2) => value => f1(f2(value));
+利用箭头函数，非常直接的表明两个函数嵌套执行的关系，
+
+接着看多层嵌套。
+
+    (f1, f2, f3...) => value => f1(f2(f3));
+抽象出来表示：
+
+     () => () => result;
+先提出这些基础的组合方式，对我们后面理解高级es6方法实现compose有很大帮助。
+
 ### 约定
 
 #### 不要改变原始组件。使用组合。
+
+不改变原始组件的意思就是：HOC不要改变被包装组件的原型。如果违背这个约定，将会导致两个不好的后果：
+
+1. 原始组件不能再像之前那样使用，因为原组件被改变了。
+2. 多个HOC的修改，后面的修改会覆盖前面的修改，前面的HOC修改将不可用。
+
+例子如下：
+
+``` jsx
+function logProps(InputComponent) {
+  InputComponent.prototype.componentWillReceiveProps = function(nextProps) {
+    console.log('Current props: ', this.props);
+    console.log('Next props: ', nextProps);
+  };
+  // 返回原始的 input 组件，暗示它已经被修改。
+  return InputComponent;
+}
+
+// 每次调用 logProps 时，增强组件都会有 log 输出。
+const EnhancedComponent = logProps(InputComponent);
+```
+
+为原始组件增加特性不要采取修改原型的方法，而是采用组合。
+
+HOC 有点像之前的容器组件，可为被包装组件添加特性，或者抽离出复杂的业务逻辑。容器组件担任分离将高层和低层关注的责任，由容器管理订阅和状态，并将 prop 传递给处理渲染 UI。HOC 使用容器作为其实现的一部分，你可以将 HOC 视为参数化容器组件。
+
+``` jsx
+function logProps(WrappedComponent) {
+  return class extends React.Component {
+    componentWillReceiveProps(nextProps) {
+      console.log('Current props: ', this.props);
+      console.log('Next props: ', nextProps);
+    }
+    render() {
+      // 将 input 组件包装在容器中，而不对其进行修改。Good!
+      return <WrappedComponent {...this.props} />;
+    }
+  }
+}
+```
 
 #### 最大化可组合性
 
