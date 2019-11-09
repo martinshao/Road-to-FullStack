@@ -1250,6 +1250,7 @@ const App = () => <CurrenciesWithAmount />;
 * [React Render Props](https://www.robinwieruch.de/react-render-props) —— 属性渲染讲解的很详细
 * [Render Props](https://zh-hans.reactjs.org/docs/render-props.html) —— 官方对于属性渲染的讲解
 * [高阶组件](https://zh-hans.reactjs.org/docs/higher-order-components.html) —— 官方对于高阶组件的讲解
+* [React组件间逻辑复用](http://www.ayqy.net/blog/react%E7%BB%84%E4%BB%B6%E9%97%B4%E9%80%BB%E8%BE%91%E5%A4%8D%E7%94%A8/)
 * [Functional Mixins](https://medium.com/javascript-scene/functional-mixins-composing-software-ffb66d5e731c)
 * [JavaScript 中的 Mixin 模式](https://zh.javascript.info/mixins)
 * [Stanko/react-ratio](https://github.com/Stanko/react-ratio)

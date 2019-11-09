@@ -150,3 +150,7 @@ public class UserManager
 [3]: https://www.runoob.com/design-pattern/design-pattern-tutorial.html
 [4]: https://segmentfault.com/a/1190000020319171
 [5]: http://wiki.jikexueyuan.com/project/javascript-design-patterns/
+
+
+* [深入理解Java中的组合和继承](https://www.hollischuang.com/archives/1319)
+* [怎样理解“组合优于继承”以及“OO的反模块化”，在这些方面FP具体来说有什么优势？](https://www.zhihu.com/question/21862257)
