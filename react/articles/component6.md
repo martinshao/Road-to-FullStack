@@ -406,27 +406,9 @@ const HOC = (WrappedComponent) =>
 
 反向继承允许 HOC 通过 this 访问 WrappedComponent 实例，这意味着它可以访问 state(状态)，props(属性)，组件生命周期方法和 render 方法。
 
-我不会详细介绍你可以用生命周期方法来做什么，因为它不是 HOC 的特性，而是 React 的特性。 但请注意，使用 Inheritance Inversion(反向继承)，您可以为 WrappedComponent 创建新的生命周期方法。 记得总是这样调用 super.[lifecycleHook] ，这样就不会破坏 WrappedComponent 。
-
-一致性比较处理（Reconciliation process）
-在深入了解之前，让我们总结一些概念。
-
-React 元素描述当 React 执行 一致性比较(reconciliation) 过程时将要渲染的内容。
-
-React 元素有两种类型：String 和 Function。 字符串类型 React 元素（STRE）表示 DOM 节点，函数类型 React 元素（FTRE）表示通过继承 React.Component 创建的组件。 有关元素和组件的更多信息，请阅读 此文章。
-
-在 React 的 一致性比较(reconciliation) 过程中，FTRE 将被解析为完整的 STRE 树（最终结果将始终是 DOM 元素）。
-
-这非常重要，这意味着 Inheritance Inversion(反向继承) 的高阶组件无法保证解析完整的子树 。
-
-Inheritance Inversion(反向继承) 的高阶组件无法保证解析完整的子树。
-
-在学习 Render Highjacking(渲染劫持)时，将被证明这点非常重要。
-
 你可以用 Inheritance Inversion(反向继承) 来做什么？
-渲染劫持(Render Highjacking)
-操作 state(状态)
-
+* 渲染劫持(Render Highjacking)
+* 操作 state(状态)
 
 #### 4.3.1 渲染劫持
 
