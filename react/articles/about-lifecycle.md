@@ -668,6 +668,18 @@ We are introducing two new lifecycles, static getDerivedStateFromProps and getSn
 2. UNSAFE_componentWillReceiveProps
 3. UNSAFE_componentWillUpdate。
 
+### componentWillMount
+
+将现有 componentWillMount 中的代码迁移至 componentDidMount 即可。
+
+### componentWillReceiveProps
+
+将现有 componentWillReceiveProps 中的代码根据更新 state 或回调，分别在 getDerivedStateFromProps 及 componentDidUpdate 中进行相应的重写即可，注意新老生命周期函数中 prevProps，this.props，nextProps，prevState，this.state 的不同。
+
+### componentWillUpdate
+
+将现有的 componentWillUpdate 中的回调函数迁移至 componentDidUpdate。如果触发某些回调函数时需要用到 DOM 元素的状态，则将对比或计算的过程迁移至 getSnapshotBeforeUpdate，然后在 componentDidUpdate 中统一触发回调或更新状态。
+
 ## 参考资料
 
 * [正确掌握 React 生命周期 (Lifecycle)][1]
