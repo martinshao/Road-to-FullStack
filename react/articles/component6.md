@@ -406,27 +406,9 @@ const HOC = (WrappedComponent) =>
 
 反向继承允许 HOC 通过 this 访问 WrappedComponent 实例，这意味着它可以访问 state(状态)，props(属性)，组件生命周期方法和 render 方法。
 
-我不会详细介绍你可以用生命周期方法来做什么，因为它不是 HOC 的特性，而是 React 的特性。 但请注意，使用 Inheritance Inversion(反向继承)，您可以为 WrappedComponent 创建新的生命周期方法。 记得总是这样调用 super.[lifecycleHook] ，这样就不会破坏 WrappedComponent 。
-
-一致性比较处理（Reconciliation process）
-在深入了解之前，让我们总结一些概念。
-
-React 元素描述当 React 执行 一致性比较(reconciliation) 过程时将要渲染的内容。
-
-React 元素有两种类型：String 和 Function。 字符串类型 React 元素（STRE）表示 DOM 节点，函数类型 React 元素（FTRE）表示通过继承 React.Component 创建的组件。 有关元素和组件的更多信息，请阅读 此文章。
-
-在 React 的 一致性比较(reconciliation) 过程中，FTRE 将被解析为完整的 STRE 树（最终结果将始终是 DOM 元素）。
-
-这非常重要，这意味着 Inheritance Inversion(反向继承) 的高阶组件无法保证解析完整的子树 。
-
-Inheritance Inversion(反向继承) 的高阶组件无法保证解析完整的子树。
-
-在学习 Render Highjacking(渲染劫持)时，将被证明这点非常重要。
-
 你可以用 Inheritance Inversion(反向继承) 来做什么？
-渲染劫持(Render Highjacking)
-操作 state(状态)
-
+* 渲染劫持(Render Highjacking)
+* 操作 state(状态)
 
 #### 4.3.1 渲染劫持
 
@@ -522,83 +504,88 @@ export function IIHOCDEBUGGER(WrappedComponent) {
 
 ### 面向对象的继承和组合
 
+我们知道 JavaScript 是支持多编程范式的语言，这里包括了 **面向对象** 和 **函数式**，恰好这两个编程范式中都有组合的概念，为了更好的理解下面我们要提到的 **最大化可组合性** 的概念，我们先对组合这个概念做一个简单的了解。
+
+提到面向对象，就不得不提到java，我们谈到java的时候通常会说它具有良好的复用性，其实这种复用性是由面向对象的编程范式带来的。
+
+提到面向对象，就不得不说面向对象的三个基本特征：封装、继承、多态。并且一直也有这样一种声音：继承可以帮助我实现类的复用。以Java为例，作为典型的支持面向对象的编程语言，我们可以和清楚的看到复用性是面向对象技术给Java带来的潜在的好处之一。所以大多数时候我们倾向与选择使用继承来实现类的复用。但是，凡事皆有利弊，如果滥用继承则产生很多难以维护的代码。
+
+所以除了继承，我们实现复用的方式还有组合复用。Java代码的复用有继承，组合以及代理三种具体的表现形式。我们这里重点讨论继承复用和组合复用。
+
+#### 继承
+
+继承（Inheritance）是一种联结类与类的层次模型。指的是一个类（称为子类、子接口）继承另外的一个类（称为父类、父接口）的功能，并可以增加它自己的新功能的能力，继承是类与类或者接口与接口之间最常见的关系；继承是一种is-a关系。
+
 ![](https://img.alicdn.com/tfs/TB133m1mlr0gK0jSZFnXXbRRXXa-1247-512.png)
+
+#### 组合
+
+组合(Composition)体现的是整体与部分、拥有的关系，即has-a的关系。
+
 ![](https://img.alicdn.com/tfs/TB1lGm0meL2gK0jSZFmXXc7iXXa-1247-377.png)
+
+#### 组合与继承的区别和联系
+
+在继承结构中，父类的内部细节对于子类是可见的。所以我们通常也可以说通过继承的代码复用是一种白盒式代码复用。（如果基类的实现发生改变，那么派生类的实现也将随之改变。这样就导致了子类行为的不可预知性；）
+
+组合是通过对现有的对象进行拼装（组合）产生新的、更复杂的功能。因为在对象之间，各自的内部细节是不可见的，所以我们也说这种方式的代码复用是黑盒式代码复用。（因为组合中一般都定义一个类型，所以在编译期根本不知道具体会调用哪个实现类的方法）
+
+继承，在写代码的时候就要指名具体继承哪个类，所以，在编译期就确定了关系。（从基类继承来的实现是无法在运行期动态改变的，因此降低了应用的灵活性。）
+
+组合，在写代码的时候可以采用面向接口编程。所以，类的组合关系一般在运行期确定。
+
+#### 优缺点对比
+
 ![](https://img.alicdn.com/tfs/TB11n5ZmkT2gK0jSZFkXXcIQFXa-1471-630.png)
+
+#### 如何选择
+
+相信很多人都知道面向对象中有一个比较重要的原则『多用组合、少用继承』或者说『组合优于继承』。从前面的介绍已经优缺点对比中也可以看出，组合确实比继承更加灵活，也更有助于代码维护。
+
+所以，建议在同样可行的情况下，优先使用组合而不是继承。因为组合更安全，更简单，更灵活，更高效。
+
+注意，并不是说继承就一点用都没有了，前面说的是【在同样可行的情况下】。有一些场景还是需要使用继承的，或者是更适合使用继承。
+
+继承要慎用，其使用场合仅限于你确信使用该技术有效的情况。一个判断方法是，问一问自己是否需要从新类向基类进行向上转型。如果是必须的，则继承是必要的。反之则应该好好考虑是否需要继承。《Java编程思想》
+
+只有当子类真正是超类的子类型时，才适合用继承。换句话说，对于两个类A和B，只有当两者之间确实存在is-a关系的时候，类B才应该继承类A。
 
 ### 函数式编程的组合
 
-函数式编程中有一个比较重要的概念就是函数组合（compose）,组合多个函数，同时返回一个新的函数。调用时，组合函数按顺序从右向左执行。右边函数调用后，返回的结果，作为左边函数的参数传入，严格保证了执行顺序，这也是compose 主要特点。
+什么是组合？
 
-组合两个函数
-compose 非常简单，通过下面示例代码，就非常清楚
-``` jsx
+组合是一种为软件的行为，进行清晰建模的一种简单、优雅而富于表现力的方式。通过组合小的、确定性的函数，来创建更大的软件组件和功能的过程，会生成更容易组织、理解、调试、扩展、测试和维护的软件。组合的概念是非常直观的，并不是函数式编程独有的，在我们生活中或者前端开发中处处可见。上面在说面向对象编程时，也提到了组合。
+
+在函数式编程中，组合显得更为重要，是最精髓的地方之一。从宏观上讲，函数式编程实际上是分解（将代码拆分为小片段）和组合（将小片段连接在一起）之间的相互作用。正是这种二元性，使得函数式编程如此模块化和高效。在函数编程中：函数组合是一种将已被分解的简单任务组织成复杂行为的整体过程。
+
+compose 非常简单，组合两个函数示例代码：
+``` js
 function compose (f, g) {
-    return function(x) {
-        return f(g(x));
-    }
+  return function(x) {
+    return f(g(x));
+  }
 }
+```
 
+关于组合性
+
+那么组合性指的就是函数可组合的能力。为什么我们要最大化追求组合性，因为函数组合能力大小，或者是一个函数可重用的可能性大小
+
+``` js
 var arr = [1, 2, 3],
-    reverse = function(x){ return x.reverse()},
-    getFirst = function(x) {return x[0]},
-    compseFunc = compose(getFirst, reverse);
+  reverse = function(x){ return x.reverse()},
+  getFirst = function(x) {return x[0]},
+  compseFunc = compose(getFirst, reverse);
     
 compseFunc(arr);   // 3
 ```
 参数在函数间就好像通过‘管道’传输一样，最右边的函数接收外界参数，返回结果传给左边的函数，最后输出结果。
 
-组合任意个函数
-上面组合了两个函数的compose,也让我们了解了组合的特点，接着我们看看如何组合更多的函数，因为在实际应用中，不会像入门介绍的代码那么简单。
-
-主要注意几个关键点：
-
-利用arguments的长度得到所有组合函数的个数
-reduce 遍历执行所有函数。
-    var compose = function() {
-      var args = Array.prototype.slice.call(arguments);
-      
-      return function(x) {
-       if (args.length >= 2) {
-       
-          return args.reverse().reduce((p, c) => {
-            return p = c(p)
-         }, x)
-         
-       } else {
-           return args[1] && args[1](x);
-       }
-      }
-    }
-   
-    // 利用上面示例 测试一下。
-    var arr = [1, 2, 3],
-    reverse = function(x){ return x.reverse()},
-    getFirst = function(x) {return x[0]},
-    trace = function(x) {  console.log('执行结果：', x); return x}
-    
-    
-    compseFunc = compose(trace, getFirst, trace, reverse);
-    
-compseFunc(arr);   
- // 执行结果： (3) [3, 2, 1]
- // 执行结果： 3
- // 3
-如此实现，基本没什么问题，变量arr 在管道中传入后，经过各种操作，最后返回了结果。
-
-ES6 实现Compose function
-先看下compose 最基础的两参数版本，
-
+``` js
 const compose = (f1, f2) => value => f1(f2(value));
-利用箭头函数，非常直接的表明两个函数嵌套执行的关系，
 
-接着看多层嵌套。
-
-    (f1, f2, f3...) => value => f1(f2(f3));
-抽象出来表示：
-
-     () => () => result;
-先提出这些基础的组合方式，对我们后面理解高级es6方法实现compose有很大帮助。
+// compose(f, g, h) 等同于 (...args) => f(g(h(...args)))
+```
 
 ### 约定
 
@@ -646,6 +633,52 @@ function logProps(WrappedComponent) {
 
 #### 最大化可组合性
 
+并不是所有的 HOC 都一样。有时候它仅接受一个参数，也就是被包裹的组件：
+
+``` js
+const NavbarWithRouter = withRouter(Navbar);
+```
+
+HOC 通常可以接收多个参数。比如在 Relay 中，HOC 额外接收了一个配置对象用于指定组件的数据依赖：
+
+``` js
+const CommentWithRelay = Relay.createContainer(Comment, config);
+```
+最常见的 HOC 签名如下：
+``` js
+// React Redux 的 `connect` 函数
+const ConnectedComment = connect(commentSelector, commentActions)(CommentList);
+```
+
+刚刚发生了什么？！如果你把它分开，就会更容易看出发生了什么。
+``` js
+// connect 是一个函数，它的返回值为另外一个函数。
+const enhance = connect(commentListSelector, commentListActions);
+// 返回值为 HOC，它会返回已经连接 Redux store 的组件
+const ConnectedComment = enhance(CommentList);
+```
+换句话说，connect 是一个返回高阶组件的高阶函数！
+
+这种形式可能看起来令人困惑或不必要，但它有一个有用的属性。 像 connect 函数返回的单参数 HOC 具有签名 Component => Component。 输出类型与输入类型相同的函数很容易组合在一起。
+
+``` js
+// 而不是这样...
+const EnhancedComponent = withRouter(connect(commentSelector)(WrappedComponent))
+
+// ... 你可以编写组合工具函数
+// compose(f, g, h) 等同于 (...args) => f(g(h(...args)))
+const enhance = compose(
+  // 这些都是单参数的 HOC
+  withRouter,
+  connect(commentSelector)
+)
+const EnhancedComponent = enhance(WrappedComponent)
+```
+
+（同样的属性也允许 connect 和其他 HOC 承担装饰器的角色，装饰器是一个实验性的 JavaScript 提案。）
+
+许多第三方库都提供了 compose 工具函数，包括 lodash （比如 lodash.flowRight）， Redux 和 Ramda。
+
 #### 包装显示名称以便轻松调试
 
 HOC 创建的容器组件会与任何其他组件一样，会显示在 React Developer Tools 中。为了方便调试，请选择一个显示名称，以表明它是 HOC 的产物。
@@ -663,6 +696,83 @@ function getDisplayName(WrappedComponent) {
   return WrappedComponent.displayName || WrappedComponent.name || 'Component';
 }
 ```
+
+### 注意事项
+
+高阶组件有一些需要注意的地方，对于 React 新手来说可能并不容易发现。
+
+不要在 render 方法中使用 HOC
+React 的 diff 算法（称为协调）使用组件标识来确定它是应该更新现有子树还是将其丢弃并挂载新子树。 如果从 render 返回的组件与前一个渲染中的组件相同（===），则 React 通过将子树与新子树进行区分来递归更新子树。 如果它们不相等，则完全卸载前一个子树。
+
+通常，你不需要考虑这点。但对 HOC 来说这一点很重要，因为这代表着你不应在组件的 render 方法中对一个组件应用 HOC：
+
+``` jsx
+render() {
+  // 每次调用 render 函数都会创建一个新的 EnhancedComponent
+  // EnhancedComponent1 !== EnhancedComponent2
+  const EnhancedComponent = enhance(MyComponent);
+  // 这将导致子树每次渲染都会进行卸载，和重新挂载的操作！
+  return <EnhancedComponent />;
+}
+```
+
+这不仅仅是性能问题 - 重新挂载组件会导致该组件及其所有子组件的状态丢失。
+
+如果在组件之外创建 HOC，这样一来组件只会创建一次。因此，每次 render 时都会是同一个组件。一般来说，这跟你的预期表现是一致的。
+
+在极少数情况下，你需要动态调用 HOC。你可以在组件的生命周期方法或其构造函数中进行调用。
+
+务必复制静态方法
+有时在 React 组件上定义静态方法很有用。例如，Relay 容器暴露了一个静态方法 getFragment 以方便组合 GraphQL 片段。
+
+但是，当你将 HOC 应用于组件时，原始组件将使用容器组件进行包装。这意味着新组件没有原始组件的任何静态方法。
+
+``` jsx
+// 定义静态函数
+WrappedComponent.staticMethod = function() {/*...*/}
+// 现在使用 HOC
+const EnhancedComponent = enhance(WrappedComponent);
+
+// 增强组件没有 staticMethod
+typeof EnhancedComponent.staticMethod === 'undefined' // true
+为了解决这个问题，你可以在返回之前把这些方法拷贝到容器组件上：
+
+function enhance(WrappedComponent) {
+  class Enhance extends React.Component {/*...*/}
+  // 必须准确知道应该拷贝哪些方法 :(
+  Enhance.staticMethod = WrappedComponent.staticMethod;
+  return Enhance;
+}
+```
+
+但要这样做，你需要知道哪些方法应该被拷贝。你可以使用 hoist-non-react-statics 自动拷贝所有非 React 静态方法:
+
+``` jsx
+import hoistNonReactStatic from 'hoist-non-react-statics';
+function enhance(WrappedComponent) {
+  class Enhance extends React.Component {/*...*/}
+  hoistNonReactStatic(Enhance, WrappedComponent);
+  return Enhance;
+}
+```
+除了导出组件，另一个可行的方案是再额外导出这个静态方法。
+
+``` jsx
+// 使用这种方式代替...
+MyComponent.someFunction = someFunction;
+export default MyComponent;
+
+// ...单独导出该方法...
+export { someFunction };
+
+// ...并在要使用的组件中，import 它们
+import MyComponent, { someFunction } from './MyComponent.js';
+```
+
+Refs 不会被传递
+虽然高阶组件的约定是将所有 props 传递给被包装组件，但这对于 refs 并不适用。那是因为 ref 实际上并不是一个 prop - 就像 key 一样，它是由 React 专门处理的。如果将 ref 添加到 HOC 的返回组件中，则 ref 引用指向容器组件，而不是被包装组件。
+
+这个问题的解决方案是通过使用 React.forwardRef API（React 16.3 中引入）。前往 ref 转发章节了解更多。
 
 ## 5、属性渲染(Render Props)
 
@@ -1219,31 +1329,6 @@ const App = () => <CurrenciesWithAmount />;
 * 最重要的是，这里的构建模型是动态的，所有改变都在render中触发，能更好的利用react的生命周期。
 
 ## 参考资料
-
-* [前端解读面向切面编程(AOP)][1]
-* [用AOP改善javascript代码][2]
-* [深入浅出 Javascript Decorators 和 AOP 编程][3]
-* [Mixins Considered Harmful][4]
-* [React中的函数子组件(FaCC)和高阶组件(HOC)][6]
-* [React 中的 Render Props][7]
-* [横切关注点的两种实现方法][8]
-* [之 横切关注点、通知、切点、连接点、引入、织入、创建切点][9]
-* [了解AOP][10]
-* [我想要 AOP — 使用 AOP 分离关注点][11]
-* [JSX In Depth][12]
-
-[1]: https://juejin.im/post/5bd2fbfef265da0aca335198
-[2]: http://www.alloyteam.com/2013/08/yong-aop-gai-shan-javascript-dai-ma/
-[3]: https://juejin.im/entry/5a12443951882512a860e93c
-[4]: https://zh-hans.reactjs.org/blog/2016/07/13/mixins-considered-harmful.html
-[6]: https://segmentfault.com/a/1190000016269347
-[7]: https://juejin.im/entry/5a151f4b518825296421555e
-[8]: https://blog.csdn.net/shendl/article/details/526362
-[9]: https://my.oschina.net/u/2378713/blog/670056
-[10]: http://www.uml.org.cn/mxdx/mxdx15.htm
-[11]: https://keelii.com/2019/07/06/i-want-my-aop-cn/
-[12]: https://reactjs.org/docs/jsx-in-depth.html#functions-as-children
-
 
 * [深入理解 React 高阶组件（Higher Order Component，简称：HOC）](https://www.html.cn/archives/9462) —— 高阶组件讲解很全面
 * [React组件间逻辑复用](http://www.ayqy.net/blog/react%E7%BB%84%E4%BB%B6%E9%97%B4%E9%80%BB%E8%BE%91%E5%A4%8D%E7%94%A8/)

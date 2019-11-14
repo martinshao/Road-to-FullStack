@@ -26,3 +26,5 @@ FP编程进阶之——Monad
 ## 参考资料
 
 * [JS函数式编程指南](https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/)
+* [函数式编程中的组合子](https://segmentfault.com/a/1190000016803036) -- 对于组合子的罗列十分全面
+* [函数式编程 - 组合compose](https://juejin.im/entry/5c78a3625188252d564288d4)

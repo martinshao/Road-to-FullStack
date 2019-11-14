@@ -18,6 +18,10 @@
 
 备注：**严谨的来说，JavaScript只有七种数据类型：Number、String 、Boolean、Null、Undefined、Symbol、Object**
 
+## 存储空间比较
+
+## 拷贝方式的不同
+
 ## 常见的基本数据类型
 
 **Number、String 、Boolean、Null和Undefined。**

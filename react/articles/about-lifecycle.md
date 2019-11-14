@@ -652,21 +652,27 @@ React遵循语义版本控制, 所以这种改变将是渐进的。我们目前�
 17.0：删除componentWillMount，componentWillReceiveProps和componentWillUpdate。 （从现在开始，只有新的“UNSAFE_”生命周期名称将起作用。）
 请注意，如果您是React应用程序开发人员，那么您不必对遗留方法进行任何操作。即将发布的16.3版本的主要目的是让开源项目维护人员在任何弃用警告之前更新其库。这些警告将在未来的16.x版本发布之前不会启用。
 
+我们正在添加以下生命周期别名（旧的生命周期名称和新的别名都将受支持。）：
+
+1. UNSAFE_componentWillMount，
+2. UNSAFE_componentWillReceiveProps
+3. UNSAFE_componentWillUpdate。
+
 我们在Facebook上维护了超过50,000个React组件，我们不打算立即重写它们。我们知道迁移需要时间。我们将采用逐步迁移路径以及React社区中的所有人。
 
 ## 从传统生命周期迁移
 
-如果您想开始使用React 16.3中引入的新组件API（或者如果您是维护人员提前更新库），以下是一些示例，我们希望这些示例可以帮助您开始考虑组件的变化。随着时间的推移，我们计划在文档中添加额外的“配方”，以展示如何以避免有问题的生命周期的方式执行常见任务。
+### componentWillMount
 
-在开始之前，我们将简要概述为16.3版计划的生命周期更改：
+将现有 `componentWillMount` 中的代码迁移至 `componentDidMount` 即可。
 
-> We are adding the following lifecycle aliases: UNSAFE_componentWillMount, UNSAFE_componentWillReceiveProps, and UNSAFE_componentWillUpdate. (Both the old lifecycle names and the new aliases will be supported.)
-We are introducing two new lifecycles, static getDerivedStateFromProps and getSnapshotBeforeUpdate.
+### componentWillReceiveProps
 
-我们正在添加以下生命周期别名（旧的生命周期名称和新的别名都将受支持。）：
-1. UNSAFE_componentWillMount，
-2. UNSAFE_componentWillReceiveProps
-3. UNSAFE_componentWillUpdate。
+将现有 `componentWillReceiveProps` 中的代码根据更新 `state` 或回调，分别在 `getDerivedStateFromProps` 及 `componentDidUpdate` 中进行相应的重写即可，注意新老生命周期函数中 `prevProps`，`this.props`，`nextProps`，`prevState`，`this.state` 的不同。
+
+### componentWillUpdate
+
+将现有的 `componentWillUpdate` 中的回调函数迁移至 `componentDidUpdate。如果触发某些回调函数时需要用到` DOM 元素的状态，则将对比或计算的过程迁移至 `getSnapshotBeforeUpdate`，然后在 `componentDidUpdate` 中统一触发回调或更新状态。
 
 ## 参考资料
 
