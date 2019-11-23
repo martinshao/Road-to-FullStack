@@ -17,18 +17,19 @@
 * `classnames`: 样式处理插件
 * `react-css-module`: 样式处理插件
 * `react-powerplug`: 基于 `render props` 的插件库，想更加深刻理解 `render props` 可以看下源码
+* `Reselect`: 库可以创建可记忆的(Memoized)、可组合的 selector 函数。[Reselect](https://github.com/reduxjs/reselect)
 
 ## 3-React组件类型一网打尽系列
 
 1. [认识React组件基础篇——类组件&函数组件][31]
-1. [认识React组件基础篇——受控组件&非受控组件][32]
-2. [认识React组件基础篇——无状态组件和有状态组件][33]
-3. [React组件设计技巧——展示型组件和容器型组件][34]
-4. [React组件设计技巧——木偶组件和聪明组件][35]
-5. [React组件设计技巧——高阶组件和函数子组件][36]
-6. [React组件性能优化——PureComponent][37]
-7. [React组件新能优化——Memo组件][38]
-8. [React组件新能优化——lazy和suspense][39]
+2. [认识React组件基础篇——受控组件&非受控组件][32]
+3. [认识React组件基础篇——无状态组件和有状态组件][33]
+4. [React组件设计技巧——展示型组件和容器型组件][34]
+5. [React组件设计技巧——木偶组件和聪明组件][35]
+6. [React组件设计技巧——高阶组件和函数子组件][36]
+7. [React组件性能优化——PureComponent][37]
+8. [React组件新能优化——Memo组件][38]
+9. [React组件新能优化——lazy和suspense][39]
 
 ## 4-React基础知识详解系列
 
