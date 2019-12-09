@@ -18,6 +18,7 @@
 * `react-css-module`: 样式处理插件
 * `react-powerplug`: 基于 `render props` 的插件库，想更加深刻理解 `render props` 可以看下源码
 * `Reselect`: 库可以创建可记忆的(Memoized)、可组合的 selector 函数。[Reselect](https://github.com/reduxjs/reselect)
+* `redux-actions` redux状态管理变得更加简单 [redux-actions入门](https://juejin.im/post/5b41641ef265da0f8202126d)
 
 ## 3-React组件类型一网打尽系列
 
@@ -65,12 +66,17 @@
 
 [1]: https://github.com/yezihaohao/react-admin
 
-## 9-React造轮子系列
+## 9-React 造轮子系列
 
 
 ## 10-React 组件设计原则
 
-## 11-参考资料
+## 11-React 开发技巧
+
+1. `React` 中常见 `eslint` 常见问题解析
+2. `React` & `Redux` 中使用 `AJAX` 轮询
+
+## 12-参考资料
 
 * [7 Architectural Attributes of a Reliable React Component](https://dmitripavlutin.com/7-architectural-attributes-of-a-reliable-react-component)
 * [可靠React组件设计的7个准则之SRP](https://juejin.im/post/5d4acb28e51d45620771f082)
