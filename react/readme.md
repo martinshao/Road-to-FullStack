@@ -13,12 +13,14 @@
 
 ## 2-React全家桶好用的插件
 
+
 * `prop-types`: 类型检查插件
 * `classnames`: 样式处理插件
 * `react-css-module`: 样式处理插件
 * `react-powerplug`: 基于 `render props` 的插件库，想更加深刻理解 `render props` 可以看下源码
 * `Reselect`: 库可以创建可记忆的(Memoized)、可组合的 selector 函数。[Reselect](https://github.com/reduxjs/reselect)
 * `redux-actions` redux状态管理变得更加简单 [redux-actions入门](https://juejin.im/post/5b41641ef265da0f8202126d)
+* `recompose`: 可以看做React技术栈的lodash，提供了许多用于创建react函数式组件和高阶组件的工具函数，包括compose、branch、withState、withStateHandlers等。[recompose](https://github.com/acdlite/recompose)
 
 ## 3-React组件类型一网打尽系列
 
