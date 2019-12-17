@@ -21,6 +21,7 @@
 * `Reselect`: 库可以创建可记忆的(Memoized)、可组合的 selector 函数。[Reselect](https://github.com/reduxjs/reselect)
 * `redux-actions` redux状态管理变得更加简单 [redux-actions入门](https://juejin.im/post/5b41641ef265da0f8202126d)
 * `recompose`: 可以看做React技术栈的lodash，提供了许多用于创建react函数式组件和高阶组件的工具函数，包括compose、branch、withState、withStateHandlers等。[recompose](https://github.com/acdlite/recompose)
+* `mitt`: 关于 EventEmitter 我想应该很多同学都很熟悉了。简而言之是一个事件的发布与订阅器。这两天读到了一些非常有意思的小库，虽然小但是功能完备，比如说这次我们要讲解的 Mitt。[Mitt](https://github.com/developit/mitt)
 
 ## 3-React组件类型一网打尽系列
 
