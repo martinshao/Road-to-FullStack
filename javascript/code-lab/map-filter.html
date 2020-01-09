@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    const wfLogs = [
+      {
+        id: 123123,
+        logs: '我是大帅哥'
+      },
+      {
+        id: 123125,
+        logs: '我是大师兄',
+      },
+      {
+        id: 123126,
+        logs: '我是二师兄',
+      },
+    ]
+    // wfLogs.forEach(logs => {
+    //   if (logs.id === 123123)
+    //     logs.logs = '我是师傅啊'
+    // })
+    for (const iterator of wfLogs) {
+      if (iterator.id === 123123)
+        iterator.logs = '我是师傅啊'
+    }
+  </script>
+</body>
+
+</html>

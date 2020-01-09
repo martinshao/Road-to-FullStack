@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    let str = 'ggggggggglggggggggglggggggggglkkggggggggglggggggggglggggggggglkkggggggggglggggggggglggggggggglkkggggggggglggggggggglggggggggglkkggggggggglggggggggglggggggggglkkggggggggglggggggggglggggggggglkkggggggggglggggggggglggggggggglkkggggggggglggggggggglggggggggglkkggggggggglggggggggglggggggggglkkggggggggglggggggggglggggggggglkkggggggggglggggggggglggggggggglkkggggggggglggggggggglggggggggglkk'
+    const truncate = (str) => {
+      if (str.length < 50) {
+        return str
+      }
+      let strArr = []
+      const n = 20
+      for (var i = 0, l = str.length; i < l / n; i++) {
+        var a = str.slice(n * i, n * (i + 1));
+        strArr.push(a);
+      }
+      return strArr.join(' ')
+    }
+    console.info(truncate(str))
+  </script>
+</body>
+
+</html>

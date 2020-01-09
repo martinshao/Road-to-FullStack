@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.15/lodash.min.js"></script>
+</head>
+
+<body>
+  <button onclick="handleTestClick()">测试</button>
+  <script>
+    console.info(moment(1576596873280))
+    let links = [
+      {
+        region: "cn-shanghai",
+        link: {
+          access: 'link-cn-shanghai-access',
+          gpu: 'link-cn-shanghai-gpu',
+        }
+      },
+      {
+        region: "cn-hangzhou",
+        link: {
+          access: 'link-cn-hangzhou-access',
+          gpu: 'link-cn-hangzhou-gpu',
+        }
+      },
+    ]
+    const fromPairs = pairs => pairs.reduce(
+      (res, pair) => (
+        (res[pair['region']] = pair['link']), res), {}
+    )
+    const regionLink = fromPairs(links)
+    const regions = links.map(
+      item => item.region
+    )
+    const linkList = []
+    regions.forEach(region => {
+      let regionss = regionLink[region]
+      let keys = Object.keys(regionss)
+      keys.forEach(key => {
+        linkList.push({
+          [`${region}-${key}`]: regionLink[region][key]
+        })
+      })
+    })
+    console.info(regionLink, regions, linkList)
+    const debounceTest = () =>
+      _.debounce(() => {
+        console.info('test---')
+      }, 1000, {
+        'leading': true,
+        'trailing': false
+      })
+    function handleTestClick() {
+      console.info('---', debounceTest)
+      debounceTest()
+    }
+  </script>
+</body>
+
+</html>

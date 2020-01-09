@@ -11,6 +11,7 @@
 * [Epitath 源码 - renderProps 新用法][7]
 * [FEX 技术周刊 - 2019/09/23][8]
 * [From Hooks to... Render Props?][9]
+* [React hooks实践](https://juejin.im/post/5c4d7122e51d4556940c15cb)
 
 [1]: https://juejin.im/post/5cf475d66fb9a07ea944594e
 [2]: https://juejin.im/post/5be3ea136fb9a049f9121014
@@ -21,3 +22,7 @@
 [7]: https://github.com/dt-fe/weekly/tree/master
 [8]: http://fex.baidu.com/blog/2019/09/fex-weekly-23/
 [9]: https://frontarm.com/james-k-nelson/hooks-vs-render-props/
+
+## 关于hooks优雅实现的库
+
+* [beautiful-react-hooks](https://github.com/antonioru/beautiful-react-hooks)

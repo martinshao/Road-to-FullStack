@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    var re = /^[a-zA-Z0-9_-\s]+$/;
+    console.info(re.test('-12'))
+    console.info(re.test('123- '))
+    console.info(re.test('123123-12312'))
+    console.info(re.test('1231 23-12-32'))
+    console.info(re.test('12312-asdsa'))
+    console.info(re.test('123-'))
+    console.info(re.test('12we'))
+    console.info(re.test('12we_'))
+    console.info(re.test('12we&'))
+    console.info(re.test('邵伟&'))
+  </script>
+</body>
+
+</html>
