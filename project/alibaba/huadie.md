@@ -8,19 +8,36 @@
 * `ONS`: 全称 `Open News Service` ，中文翻译“开放消息服务”
 * `ACM`: 全称 `Application Configuration Manangement` ，中文翻译“应用配置管理”
 
-## 架构分层介绍
+## 大纲
 
-* SPA页面呈现
-* 浏览器渲染
-* CDN加速 / 缓存
-* CI/CD DEF
-* Webpack lint
-* 业务模块路由
-* 业务子模块： router、分组、服务、变更、持续集成
-* 分层： component、container、model
-* 公共组件库、API请求接口的封装
-* React全家桶
-* 模块化ES6
+* [ ] 业务理解和方法
+* [x] 项目总体框架设计
+* [ ] DEF平台的使用详解
+* [ ] 基础框架出现问题和相关解释
+* [ ] 路由设计和组件设计模式介绍
+* [ ] React项目性能优化和相关实践
+* [ ] 接口对接原则和请求工具封装实践
+* [ ] 优秀插件、库的介绍和注意事项
+* [ ] 代码规范和相关实践方法介绍
+* [ ] 打包工具的优化和相关配置的实践
+* [ ] 编程语言的选择和相关学习方法介绍
+* [ ] 重构原则和重构工作的开展与实践
+
+## 业务理解和方法
+
+## 项目总体框架设计
+
+### 架构分层介绍
+
+![画蝶前端架构图](./_assets/hudie.png "画蝶前端架构图")
+
+## DEF平台的使用详解
+
+### 相关文档介绍
+
+> - DEF平台首页：https://def.alibaba-inc.com/
+> - DEF发布文档：https://work.def.alibaba-inc.com/doc/index
+> - DEF工程套件版本控制：https://def.alibaba-inc.com/my/next_module
 
 待处理问题：
 - [x] 持续集成停止部署时候，会报错：丢失regions的过程中请求getRegionInfo报错
