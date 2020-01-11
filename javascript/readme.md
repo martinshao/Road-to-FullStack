@@ -9,6 +9,14 @@
 
 该系列文章希望偏实用注意讲解日常开发中，JavaScript遇到的一些问题和知识体系的归纳总结。
 
+## collapsible markdown?
+
+<details>
+<summary>CLICK ME</summary>
+
+**<summary>标签与正文间一定要空一行！！！**
+</details>
+
 ## JavaScript基础中基础
 
 ### 基础系列文章思路
