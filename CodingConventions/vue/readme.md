@@ -2,6 +2,58 @@
 
 ## 大纲
 
+- [x] 项目目录结构参考
+- [ ] 前端vue项目开发流程
+- [ ] JavaScript开发规范
+- [ ] ES6规范
+- [ ] vue规范
+
+## 项目目录结构参考
+
+``` js
+├── index.html	//入口页面
+├── build //构建脚本目录
+│	├── build-server.js//运行本地构建服务器，启动 express
+│	├── build.js	//生产环境构建脚本
+│	├── dev-client.js	//开发服务器热重载脚本
+│	├── dev-server.js	//运行本地开发服务器
+│	├── vue-loader.conf.js //构建相关工具方法
+│	├── utils.js	//vue-loader 相关配置
+│	├── check-versions.js //版本检查
+│	├── webpack.base.conf.js	//wabpack 基础配置
+│	├── webpack.dev.conf.js //wabpack 开发环境配置
+│	└── webpack.prod.conf.js	//wabpack 生产环境配置
+├── config	//项目配置
+│	├── dev.env.js //开发环境变量
+│	├── index.js    //项目配置文件
+│	├── prod.env.js	//生产环境变量
+│	└── test.env.js//测试环境变量
+├── mocker //mock 数据目录
+│	└── hello.json
+├── package.json //npm 包配置文件，里面定义了项目的 npm 脚本，依赖包等信息
+├── src	//项目源码目录
+│	├── main.js //入口 js 文件
+│	├── app.vue//根组件
+│	├── components //公共组件目录
+│	│	└── title.vue
+│	├── api//接口调用文件夹
+│	│	└── httpCore.js	//公共 api 接口调用
+│	├── assets	//资源目录，这里的资源会被 wabpack 构建
+│	│	└── images
+│	│ └── logo.png
+│	├── router	//前端路由
+│	│	└── index.js
+│	├── util	//工具目录
+│	├── store//应用级数据
+│	│	└── modules	//模块
+│	│	└── index.js
+│	└── page	// 页面目录
+│ ├── hello.vue
+│ └── notfound.vue
+├── static //纯静态资源
+└── test	//测试文件目录（unit&e2e）
+```
+
 ## 开发流程
 
 ## JavaScript格式规范
