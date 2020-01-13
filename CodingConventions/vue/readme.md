@@ -56,6 +56,49 @@
 
 ## 开发流程
 
+【推荐】接到需求之后先定义前后端接口规范
+
+#### 1. axios请求封装
+
+> 增加 `request` 请求函数  
+> 文件：`src\api\httpCore.js` 示例:
+```js
+  // 注释
+  postUserInfoData (data) {
+    return axios({ url: 'rest/test', data, method: 'post' })
+  }
+```
+> 增加 `mocker` 数据  
+> 文件：`mocker\rest\test.json` 内容：报文（略）
+
+#### 2. 开发vue
+文件：`src\page\userinfo\UserFee.vue`  
+内容：略  
+备注：增加模板、脚本、样式相关内容
+
+#### 3. 注册路由（routes）
+文件：`src\router\index.js`  
+内容：推荐使用 声明式
+
+```js
+export default new Router({
+  routes: [
+    { path: 'userFee.html', name: 'userFee', component: userFee },
+    { path: 'miracleHome.html', name: 'MiracleHome', component: MiracleHome },
+    { path: 'searchList.html', name: 'SearchList', component: SearchList },
+    { path: '/', redirect: userFee },
+    { path: '/*', name: 'miracle404', component: miracle404 },
+  ]
+})
+```
+
+#### 4. 入口
+文件： `src\page\miracleHome\MiracleHome.vue` 内容:
+
+``` vue
+<router-link to="{name: 'userFee'}"><a class="new">和生活</a></router-link>
+```
+
 ## JavaScript格式规范
 
 > 使用 ECMAScript 6 作为源码标准。
