@@ -333,8 +333,9 @@ const { left, right } = processInput(input);
 
 #### 2. 对象
 
+2-1. 对象尽量静态化，一旦定义，就不得随意添加新的属性。如果添加属性不可避免，要使用Object.assign方法。
+
 ``` js
-对象尽量静态化，一旦定义，就不得随意添加新的属性。如果添加属性不可避免，要使用Object.assign方法。
 
 // bad
 const a = {};
@@ -347,8 +348,11 @@ Object.assign(a, { x: 3 });
 // good
 const a = { x: null };
 a.x = 3;
-如果对象的属性名是动态的，可以在创造对象的时候，使用属性表达式定义。
+```
 
+2-2. 如果对象的属性名是动态的，可以在创造对象的时候，使用属性表达式定义。
+
+``` js
 // bad
 const obj = {
   id: 5,
@@ -362,9 +366,12 @@ const obj = {
   name: 'San Francisco',
   [getKey('enabled')]: true,
 };
-另外，对象的属性和方法，尽量采用简洁表达法，这样易于描述和书写。
+```
 
-var ref = 'some value';
+2-3. 另外，对象的属性和方法，尽量采用简洁表达法，这样易于描述和书写。
+
+``` js
+const ref = 'some value';
 
 // bad
 const atom = {
@@ -416,14 +423,19 @@ const nodes = Array.from(foo);
 
 #### 4.函数
 
-``` js
-立即执行函数可以写成箭头函数的形式。
+4-1. 立即执行函数可以写成箭头函数的形式。
 
+
+``` js
 (() => {
   console.log('Welcome to the Internet.');
 })();
-那些需要使用函数表达式的场合，尽量用箭头函数代替。因为这样更简洁，而且绑定了 this。
+```
 
+4-2. 那些需要使用函数表达式的场合，尽量用箭头函数代替。因为这样更简洁，而且绑定了 this。
+> 备注: 简单的、单行的、不会复用的函数，建议采用箭头函数。如果函数体较为复杂，行数较多，还是应该采用传统的函数写法。
+
+``` js
 // bad
 [1, 2, 3].map(function (x) {
   return x * x;
@@ -436,13 +448,11 @@ const nodes = Array.from(foo);
 
 // best
 [1, 2, 3].map(x => x * x);
-简单的、单行的、不会复用的函数，建议采用箭头函数。如果函数体较为复杂，行数较多，还是应该采用传统的函数写法。
-
 ```
 
 #### 5.Map结构
 
-注意区分 Object 和 Map，只有模拟现实世界的实体对象时，才使用 Object。如果只是需要key: value的数据结构，使用 Map 结构。因为 Map 有内建的遍历机制。
+注意区分 `Object` 和 `Map`，只有模拟现实世界的实体对象时，才使用 `Object`。如果只是需要 `key: value` 的数据结构，使用 `Map` 结构。因为 `Map` 有内建的遍历机制。
 
 ``` js
 let map = new Map(arr);
@@ -463,7 +473,7 @@ for (let item of map.entries()) {
 
 #### 6. class取代构造函数
 
-6-1. 总是用 Class，取代需要 prototype 的操作。因为 Class 的写法更简洁，更易于理解。
+6-1. 总是用 `Class`，取代需要 `prototype` 的操作。因为 `Class` 的写法更简洁，更易于理解。
 
 ```js
 // bad
@@ -489,7 +499,7 @@ class Queue {
 }
 ```
 
-6-2. 使用extends实现继承，因为这样更简单，不会有破坏instanceof运算的危险。
+6-2. 使用 `extends` 实现继承，因为这样更简单，不会有破坏 `instanceof` 运算的危险。
 
 ``` js
 // bad
@@ -513,7 +523,7 @@ class PeekableQueue extends Queue {
 
 #### 7. promise的使用
 
-一般来说，不要在then方法里面定义失败状态的回调函数(即then的第二个参数)，总是使用catch方法
+一般来说，不要在 `then` 方法里面定义失败状态的回调函数(即then的第二个参数)，总是使用 `catch` 方法
 
 ``` js
 // bad
@@ -533,3 +543,8 @@ promise
     // error
   });
 ```
+
+## ✈️ 六、 vue开发规范
+
+
+
