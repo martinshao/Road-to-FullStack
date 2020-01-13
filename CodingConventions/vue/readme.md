@@ -23,12 +23,12 @@
 │ ├── webpack.base.conf.js // wabpack 基础配置
 │ ├── webpack.dev.conf.js  // wabpack 开发环境配置
 │ └── webpack.prod.conf.js // wabpack 生产环境配置
-├── config	               // 项目配置
-│ ├── dev.env.js           // 开发环境变量
-│ ├── index.js             // 项目配置文件
-│ ├── prod.env.js	         // 生产环境变量
-│ └── test.env.js          // 测试环境变量
-├── mocker                 // mock 数据目录
+├── config         // 项目配置
+│ ├── dev.env.js   // 开发环境变量
+│ ├── index.js     // 项目配置文件
+│ ├── prod.env.js  // 生产环境变量
+│ └── test.env.js  // 测试环境变量
+├── mocker         // mock 数据目录
 │ └── hello.json
 ├── package.json   // npm 包配置文件，里面定义了项目的 npm 脚本，依赖包等信息
 ├── src	           // 项目源码目录
