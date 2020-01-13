@@ -1,14 +1,14 @@
 # vue项目代码规范
 
-## 大纲
+## ✨大纲
 
 - [x] 项目目录结构参考
-- [ ] 前端vue项目开发流程
+- [x] 前端vue项目开发流程
 - [ ] JavaScript开发规范
 - [ ] ES6规范
 - [ ] vue规范
 
-## 项目目录结构参考
+## 🌞项目目录结构参考
 
 ``` 
 ├── index.html             // 入口页面
@@ -54,7 +54,7 @@
 └── test          // 测试文件目录（unit&e2e）
 ```
 
-## 开发流程
+## 🌛开发流程
 
 【推荐】接到需求之后先定义前后端接口规范
 
@@ -99,11 +99,9 @@ export default new Router({
 <router-link to="{name: 'userFee'}"><a class="new">和生活</a></router-link>
 ```
 
-## JavaScript格式规范
+## 🚄JavaScript 开发规范
 
-> 使用 ECMAScript 6 作为源码标准。
-
-#### 缩进
+#### 1. 缩进
 使用两个空格为一个缩进单位
 ``` js
 [ 1, 2, 3, 4, 5 ].map( ( value, index, array ) => {
@@ -112,7 +110,7 @@ export default new Router({
 ```
 
 
-#### 变量
+#### 2. 变量
 > 见名知意  
 > 常量使用 UPPER_CASE_WITH_UNDERLINE 规则  
 > 变量使用 lowerCamelCase 规则
@@ -129,7 +127,7 @@ const teamname = 'Front-end';
 let p = [ 'EPM UI', 'EPM UI Docs', 'and more' ];
 ```
 
-#### 数组
+#### 3. 数组
 > 单行定义的数组值间需在逗号后面带一个空格  
 > 单行定义的中括号内侧需各带一个空格
 
@@ -142,7 +140,7 @@ let array2 = [
 ];
 ```
 
-#### 对象
+#### 4. 对象
 > 单行定义的对象值间需在逗号后面带一个空格  
 > 单行定义的大括号内侧需各带一个空格  
 > 冒号左侧不需要带空格，右侧带一个空格  
@@ -156,7 +154,7 @@ let obj2 = {
 };
 ```
 
-#### 字符串
+#### 5. 字符串
 > 适当使用模板字符串  
 > 使用单引号定义字符串  
 > 当字符串中包含单引号的时候，可适当使用双引号定义字符串  
@@ -168,7 +166,7 @@ if ( str === "I'm string." ) {
 }
 ```
 
-#### 函数
+#### 6. 函数
 
 > 函数名后紧跟括号
 > 参数之间需在逗号后面加空格
@@ -197,7 +195,7 @@ if ( true ) {
 }
 ```
 
-#### 表达式
+#### 7. 表达式
 表达式中的运算符与操作数之间需要空格
 
 ``` js
@@ -212,7 +210,7 @@ if ( 0==false&&( 1==true||''===false ) ) {
 }
 ```
 
-#### 语句
+#### 8. 语句
 语句组成部分间需空一格
 
 ``` js
@@ -259,7 +257,7 @@ if( true ){
 }
 ```
 
-#### 注释
+#### 9. 注释
 行内注释建议换行，并在所指示的语句之前
 紧跟语句的注释需空两格
 行内注释双斜杠与注释内容间需空一格
@@ -273,13 +271,14 @@ for ( let i = 0; i < 100; i++ ) {
 }
 ```
 
-## ES6推荐
+## 🚀ES6推荐
+> 使用 `ECMAScript 6` 作为源码标准！
 
-#### 优先使用解构赋值
+#### 1. 优先使用解构赋值
 
 使用数组成员或者对象成员对变量赋值时，优先使用解构赋值。
 
-1. 一般对象数组解构赋值
+1-1. 一般对象数组解构赋值
 
 ``` js
 // 
@@ -297,7 +296,7 @@ const [head, ...tail] = arr; // head = [1], tail = [2, 3, 4]
 const { propA, propB } = obj; // 对象解构赋值
 ```
 
-2. 函数的参数如果是对象的成员，优先使用解构赋值。
+1-2. 函数的参数如果是对象的成员，优先使用解构赋值。
 
 ``` js
 // bad
@@ -316,7 +315,7 @@ function getFullName({ firstName, lastName }) {
 }
 ```
 
-3. 如果函数返回多个值，优先使用对象的解构赋值，而不是数组的解构赋值。这样便于以后添加返回值，以及更改返回值的顺序。
+1-3. 如果函数返回多个值，优先使用对象的解构赋值，而不是数组的解构赋值。这样便于以后添加返回值，以及更改返回值的顺序。
 
 ``` js
 // bad
@@ -332,7 +331,7 @@ function processInput(input) {
 const { left, right } = processInput(input);
 ```
 
-#### 对象
+#### 2. 对象
 
 ``` js
 对象尽量静态化，一旦定义，就不得随意添加新的属性。如果添加属性不可避免，要使用Object.assign方法。
@@ -390,9 +389,9 @@ const atom = {
 };
 ```
 
-#### 5.数组
+#### 3.数组
 
-1. 使用扩展运算符（...）拷贝数组。
+3-1. 使用扩展运算符（...）拷贝数组。
 
 ```js
 // bad
@@ -406,13 +405,16 @@ for (i = 0; i < len; i++) {
 
 // good
 const itemsCopy = [...items];
-使用 Array.from 方法，将类似数组的对象转为数组。
+```
 
+3-2. 使用 Array.from 方法，将类似数组的对象转为数组。
+
+``` js
 const foo = document.querySelectorAll('.foo');
 const nodes = Array.from(foo);
 ```
 
-#### 6.函数
+#### 4.函数
 
 ``` js
 立即执行函数可以写成箭头函数的形式。
@@ -438,12 +440,11 @@ const nodes = Array.from(foo);
 
 ```
 
-#### 7.Map结构
+#### 5.Map结构
 
 注意区分 Object 和 Map，只有模拟现实世界的实体对象时，才使用 Object。如果只是需要key: value的数据结构，使用 Map 结构。因为 Map 有内建的遍历机制。
 
 ``` js
-
 let map = new Map(arr);
 
 for (let key of map.keys()) {
@@ -457,10 +458,14 @@ for (let value of map.values()) {
 for (let item of map.entries()) {
   console.log(item[0], item[1]);
 }
+```
 
-8.class
-总是用 Class，取代需要 prototype 的操作。因为 Class 的写法更简洁，更易于理解。
 
+#### 6. class取代构造函数
+
+6-1. 总是用 Class，取代需要 prototype 的操作。因为 Class 的写法更简洁，更易于理解。
+
+```js
 // bad
 function Queue(contents = []) {
   this._queue = [...contents];
@@ -482,8 +487,11 @@ class Queue {
     return value;
   }
 }
-使用extends实现继承，因为这样更简单，不会有破坏instanceof运算的危险。
+```
 
+6-2. 使用extends实现继承，因为这样更简单，不会有破坏instanceof运算的危险。
+
+``` js
 // bad
 const inherits = require('inherits');
 function PeekableQueue(contents) {
@@ -502,7 +510,8 @@ class PeekableQueue extends Queue {
 }
 
 ```
-9.promise的使用
+
+#### 7. promise的使用
 
 一般来说，不要在then方法里面定义失败状态的回调函数(即then的第二个参数)，总是使用catch方法
 
