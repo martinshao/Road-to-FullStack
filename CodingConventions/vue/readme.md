@@ -35,18 +35,18 @@
 │ ├── main.js      // 入口 js 文件
 │ ├── app.vue      // 根组件
 │ ├── components   // 公共组件目录
-│ │	└── title.vue
+│ │ └── title.vue
 │ ├── api          // 接口调用文件夹
-│ │	└── httpCore.js// 公共 api 接口调用
+│ │ └── httpCore.js// 公共 api 接口调用
 │ ├── assets      // 资源目录，这里的资源会被 wabpack 构建
 │ │ └── images
 │ │ └── logo.png
 │ ├── router      // 前端路由
-│ │	└── index.js
+│ │ └── index.js
 │ ├── util        // 工具目录
 │ ├── store       // 应用级数据
-│ │	└── modules   // 模块
-│ │	└── index.js
+│ │ └── modules   // 模块
+│ │ └── index.js
 │ └── page        // 页面目录
 │ ├── hello.vue
 │ └── notfound.vue
