@@ -1,48 +1,41 @@
-// good
-// In a .vue file
-export default {
-  data() {
-    return {
-      foo: 'bar'
+// 正例
+Vue.component('TodoItem', {
+  props: {
+    todo: {
+      type: Object,
+      required: true
     }
-  }
-}
-
-// 在一个 Vue 的根实例上直接使用对象是可以的，
-// 因为只存在一个这样的实例。
-new Vue({
-  data: {
-    foo: 'bar'
-  }
+  },
+  template: `
+  <input
+    :value="todo.text"
+    @input="$emit('input', $event.target.value)"
+  >
+  `
 })
 
-// bad
-export default {
-  data: {
-    foo: 'bar'
-  }
-}
-
-// 正例
-props: {
-  status: String
-}
-// 更好的做法！
-props: {
-  status: {
-    type: String,
-      required: true,
-        validator: function (value) {
-          return [
-            'syncing',
-            'synced',
-            'version-conflict',
-            'error'
-          ].indexOf(value) !== -1
-        }
-  }
-}
-
 // 反例
-// 这样做只有开发原型系统时可以接受
-props: ['status']
+Vue.component('TodoItem', {
+  props: {
+    todo: {
+      type: Object,
+      required: true
+    }
+  },
+  methods: {
+    removeTodo() {
+      var vm = this
+      vm.$parent.todos = vm.$parent.todos.filter(function (todo) {
+        return todo.id !== vm.todo.id
+      })
+    }
+  },
+  template: `
+    <span>
+      {{ todo.text }}
+      <button @click="removeTodo">
+      X
+      </button>
+    </span>
+  `
+})

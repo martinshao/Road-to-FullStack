@@ -176,10 +176,6 @@ if ( str === "I'm string." ) {
 function sum( a, b, c ) {
   return a + b + c;
 }
-  
-if ( true ) {
-  console.log( sum( 1, 2, 3 ) );
-}
 ```
 箭头函数中参数即便只有一个，仍须添加括号
 代码块
@@ -269,6 +265,16 @@ for ( let i = 0; i < 100; i++ ) {
   console.log( 'Print something.' );  // 这又是一个注释。
   // 中文与 English 相结合的注释，带数字 300166 的例子。
 }
+```
+
+#### 10. 使用严格等于
+
+``` js
+// bad
+'12' == 12
+
+// good
+'12' === 12
 ```
 
 ## 🚀 五、 ES6推荐
@@ -544,6 +550,215 @@ promise
 
 ## ✈️ 六、 vue开发规范
 
+#### 1. 基于模块开发
+
+原则：每一个vue组件首先必须专注于解决一个单一的问题，独立的，可复用的，微小的和可测试的。 如果你的组件做了太多的事或是变得臃肿，请将其拆成粒度更小的组件并符合单一职责原则（SRP：Single responsibility principle）。建议不要超过 100 行代码
+
+#### 2. 只在需要时创建组件
+
+Vue.js 是一个基于组件的框架。如果你不知道何时创建组件可能会导致以下问题：
+
+> 1. 如果组件太大, 可能很难重用和维护;
+> 2. 如果组件太小，你的项目就会（因为深层次的嵌套而）被淹没，也更难使组件间通信;
+
+**规则**
+
+首先，尽可能早地尝试构建出诸如模态框、提示框、工具条、菜单、头部等这些明显的（通用型）组件。总之，你知道的这些组件以后一定会在当前页面或者是全局范围内需要。
+
+第二，在每一个新的开发项目中，对于一整个页面或者其中的一部分，在进行开发前先尝试思考一下。如果你认为它有一部分应该是一个组件，那么预先创建它。
+
+最后，如果你不确定，那就不要。避免那些“以后可能会有用”的组件污染你的项目。它们可能会永远的只是（静静地）待在那里，这一点也不聪明。注意，一旦你意识到应该这么做，最好是就把它打破，以避免与项目的其他部分构成兼容性和复杂性。
+
+#### 1. 组件文件
+
+只要有能够拼接文件的构建系统，就把每个组件单独分成文件。
+当你需要编辑一个组件或查阅一个组件的用法时，可以更快速的找到它。
+
+``` js
+// 正例
+components/
+|- TodoList.vue
+|- TodoItem.vue
+
+// 反例
+Vue.component('TodoList', {
+  // ...
+})
+Vue.component('TodoItem', {
+  // ...
+})
+```
+
+#### 单文件组件文件的大小写
+
+单文件组件的文件名应该要么始终是单词大写开头 (PascalCase)
+
+``` js
+// 正例
+components/
+|- MyComponent.vue
+
+// 反例
+components/
+|- myComponent.vue
+|- mycomponent.vue
+```
+
+#### 基础组件名
+
+应用特定样式和约定的基础组件 (也就是展示类的、无逻辑的或无状态的组件) 应该全部以一个特定的前缀开头，比如 Base、App 或 V。
+
+``` js
+// 正例
+components/
+|- BaseButton.vue
+|- BaseTable.vue
+|- BaseIcon.vue
+
+// 反例
+components/
+|- MyButton.vue
+|- VueTable.vue
+|- Icon.vue
+```
+
+#### 紧密耦合的组件名
+
+和父组件紧密耦合的子组件应该以父组件名作为前缀命名。
+
+如果一个组件只在某个父组件的场景下有意义，这层关系应该体现在其名字上。因为编辑器通常会按字母顺序组织文件，所以这样做可以把相关联的文件排在一起。
+
+``` js
+// 正例
+components/
+|- TodoList.vue
+|- TodoListItem.vue
+|- TodoListItemButton.vue
+components/
+|- SearchSidebar.vue
+|- SearchSidebarNavigation.vue
+
+// 反例
+components/
+|- SearchSidebar.vue
+|- NavigationForSearchSidebar.vue
+```
+
+#### 完整单词的组件名
+
+> 原则
+> 简短: 2 到 3 个单词  
+> 具有可读性: 以便于沟通交流  
+> 有意义的: 不过于具体，也不过于抽象  
+
+组件名应该倾向于完整单词而不是缩写。
+
+``` js
+// 正例
+components/
+|- StudentDashboardSettings.vue
+|- UserProfileOptions.vue
+
+// 反例
+components/
+|- SdSettings.vue
+|- UProfOpts.vue
+```
+
+组件名应该始终是多个单词的，根组件 App 除外
+
+``` js
+// bad
+export default {
+  name: 'Todo',
+  // ...
+}
+// good
+export default {
+  name: 'TodoItem',
+  // ...
+}
+```
+
+#### 模板中的组件名大小写
+
+``` js
+<!-- good -->
+<app-header></app-header>
+<user-list></user-list>
+<range-slider></range-slider>
+
+<!-- avoid -->
+<btn-group></btn-group> <!-- 虽然简短但是可读性差. 使用 `button-group` 替代 -->
+<ui-slider></ui-slider> <!-- ui 前缀太过于宽泛，在这里意义不明确 -->
+<slider></slider> <!-- 与自定义元素规范不兼容 -->
+```
+
+#### 单文件组件的顶级元素的顺序
+
+单文件组件应该总是让 `<template> 、<script> 和 <style>` 标签的顺序保持一致。且 `<style>` 要放在最后，因为另外两个标签至少要有一个。
+
+``` js
+// 正例
+<!-- ComponentA.vue -->
+<template>...</template>
+<script>/* ... */</script>
+<style>/* ... */</style>
+```
+
+#### 多个特性的元素
+
+多个特性的元素应该分多行撰写，每个特性一行。
+
+``` js
+// 正例
+<img
+  src="[https://vuejs.org/images/logo.png](https://vuejs.org/images/logo.png)"
+  alt="Vue Logo"
+>
+<MyComponent
+  foo="a"
+  bar="b"
+  baz="c"
+/>
+
+// 反例
+<img src="[https://vuejs.org/images/logo.png](https://vuejs.org/images/logo.png)" alt="Vue Logo">
+<MyComponent foo="a"  bar="b" baz="c"/>
+
+```
+
+#### 带引号的特性值
+
+非空 HTML 特性值应该始终带引号 (单引号或双引号，选你 JS 里不用的那个)。
+在 HTML 中不带空格的特性值是可以没有引号的，但这样做常常导致带空格的特征值被回避，导致其可读性变差。
+
+``` html
+// 正例
+<AppSidebar :style="{ width: sidebarWidth + 'px' }">
+
+// 反例
+<AppSidebar :style={width:sidebarWidth+'px'}>
+```
+
+#### 指令缩写
+
+都用指令缩写 (用 : 表示 v-bind: 和用 @ 表示 v-on:)
+
+``` html
+// 正例
+<input
+ @input="onInput"
+ @focus="onFocus"
+>
+
+// 反例
+<input
+ v-bind:value="newTodoText"
+ :placeholder="newTodoInstructions"
+>
+```
+
 #### 1. vue方法放置顺序
 
 ``` js
@@ -581,43 +796,6 @@ promise
 
 3-2. 在 created 里面监听 Bus 事件
 
-#### 4. 基于模块开发
-
-原则：每一个vue组件首先必须专注于解决一个单一的问题，独立的，可复用的，微小的和可测试的。 如果你的组件做了太多的事或是变得臃肿，请将其拆成更小的组件并保持单一的原则。
-
-#### 5. Vue 组件命名
-
-> 原则
-> 有意义的: 不过于具体，也不过于抽象  
-> 简短: 2 到 3 个单词  
-> 具有可读性: 以便于沟通交流  
-
-``` js
-<!-- good -->
-<app-header></app-header>
-<user-list></user-list>
-<range-slider></range-slider>
-
-<!-- avoid -->
-<btn-group></btn-group> <!-- 虽然简短但是可读性差. 使用 `button-group` 替代 -->
-<ui-slider></ui-slider> <!-- ui 前缀太过于宽泛，在这里意义不明确 -->
-<slider></slider> <!-- 与自定义元素规范不兼容 -->
-```
-
-> 组件名应该始终是多个单词的，根组件 App 除外
-> 
-``` js
-// bad
-export default {
-  name: 'Todo',
-  // ...
-}
-// good
-export default {
-  name: 'TodoItem',
-  // ...
-}
-```
 
 #### 6. 组件数据
 
@@ -718,20 +896,158 @@ export default {
 </script>
 ```
 
-#### 7. 只在需要时创建组件
+#### 7.	`v-for` 使用 `key` 配合
 
-Vue.js 是一个基于组件的框架。如果你不知道何时创建组件可能会导致以下问题：
+``` js
+<template>
+  <ul>
+    <li v-for="todo in todos" :key="todo.id">{{ todo.text }}</li>
+  </ul>
+</template>
+```
 
-> 1. 如果组件太大, 可能很难重用和维护;
-> 2. 如果组件太小，你的项目就会（因为深层次的嵌套而）被淹没，也更难使组件间通信;
+#### 8. 避免 v-if 和 v-for 用在一起
 
-**规则**
+永远不要把 v-if 和 v-for 同时用在同一个元素上。
 
-首先，尽可能早地尝试构建出诸如模态框、提示框、工具条、菜单、头部等这些明显的（通用型）组件。总之，你知道的这些组件以后一定会在当前页面或者是全局范围内需要。
+一般我们在两种常见的情况下会倾向于这样做：
 
-第二，在每一个新的开发项目中，对于一整个页面或者其中的一部分，在进行开发前先尝试思考一下。如果你认为它有一部分应该是一个组件，那么就创建它吧。
+为了过滤一个列表中的项目 (比如 v-for="user in users" v-if="user.isActive")。在这种情形下，请将 users 替换为一个计算属性 (比如 activeUsers)，让其返回过滤后的列表。
 
-最后，如果你不确定，那就不要。避免那些“以后可能会有用”的组件污染你的项目。它们可能会永远的只是（静静地）待在那里，这一点也不聪明。注意，一旦你意识到应该这么做，最好是就把它打破，以避免与项目的其他部分构成兼容性和复杂性。
+为了避免渲染本应该被隐藏的列表 (比如v-for="user in users" v-if="shouldShowUsers")。这种情形下，请将 v-if 移动至容器元素上 (比如 ul, ol)。
+
+``` js
+  // good
+  <ul v-if="shouldShowUsers">
+    <li v-for="user in users" :key="user.id">{{ user.name }}</li>
+  </ul>
+  // bad
+  <ul>
+    <li v-for="user in users" v-if="shouldShowUsers" :key="user.id">{{ user.name }}</li>
+  </ul>
+```
+
+#### 8.	禁止直接操作 dom
+
+禁止直接操作，如：`$(“#temp”).()`
+
+#### 9. 不要在 mutation 中调用另外的 mutation
+
+#### 10. 使用 mapGetter、mapActions 取存变量值
+
+``` js
+import { mapGetters } from 'vuex'
+
+export default {
+  // ...
+  computed: {
+    // mix the getters into computed with object spread operator
+    ...mapGetters([
+      'doneTodosCount',
+      'anotherGetter',
+      // ...
+    ])
+  }
+}
+
+import { mapActions } from 'vuex'
+
+export default {
+  // ...
+  methods: {
+    ...mapActions([
+      'increment', // map `this.increment()` to `this.$store.dispatch('increment')`
+
+      // `mapActions` also supports payloads:
+      'incrementBy' // map `this.incrementBy(amount)` to `this.$store.dispatch('incrementBy', amount)`
+    ]),
+    ...mapActions({
+      add: 'increment' // map `this.add()` to `this.$store.dispatch('increment')`
+    })
+  }
+}
+```
+
+#### 11. 禁止隐形的子父通信
+
+应该优先通过 `prop` 和事件进行父子组件之间的通信，而不是 `this.$parent` 或改变 `prop`。
+
+``` js
+// good
+Vue.component('TodoItem', {
+  props: {
+    todo: {
+      type: Object,
+      required: true
+    }
+  },
+  template: `
+  <input
+    :value="todo.text"
+    @input="$emit('input', $event.target.value)"
+  >
+  `
+})
+
+// bad
+Vue.component('TodoItem', {
+  props: {
+    todo: {
+      type: Object,
+      required: true
+    }
+  },
+  methods: {
+    removeTodo() {
+      var vm = this
+      vm.$parent.todos = vm.$parent.todos.filter(function (todo) {
+        return todo.id !== vm.todo.id
+      })
+    }
+  },
+  template: `
+    <span>
+      {{ todo.text }}
+      <button @click="removeTodo">
+      X
+      </button>
+    </span>
+  `
+})
+```
+
+#### 样式文件设置作用域
+
+使用 scoped 为样式文件增加作用域，如：`<style scoped>`
+
+#### scoped 中的元素选择器
+
+元素选择器应该避免在 scoped 中出现。
+在 scoped 样式中，类选择器比元素选择器更好，因为大量使用元素选择器是很慢的。
+
+``` html
+// 正例
+<template>
+  <button class="btn btn-close">X</button>
+</template>
+ 
+<style scoped>
+.btn-close {
+  background-color: red;
+}
+</style>
+
+// 反例
+<template>
+  <button>X</button>
+</template>
+ 
+<style scoped>
+button {
+  background-color: red;
+}
+</style>
+```
 
 #### 8. 注释规范
 
