@@ -11,8 +11,8 @@
 ## 项目目录结构参考
 
 ``` 
-├── index.html             // 入口页面
-├── build                  // 构建脚本目录
+├── index.html                   // 入口页面
+├── build                        // 构建脚本目录
 │	├── build-server.js      // 运行本地构建服务器，启动 express
 │	├── build.js             // 生产环境构建脚本
 │	├── dev-client.js        // 开发服务器热重载脚本
@@ -23,7 +23,7 @@
 │	├── webpack.base.conf.js // wabpack 基础配置
 │	├── webpack.dev.conf.js  // wabpack 开发环境配置
 │	└── webpack.prod.conf.js // wabpack 生产环境配置
-├── config	//项目配置
+├── config	                 // 项目配置
 │	├── dev.env.js //开发环境变量
 │	├── index.js //项目配置文件
 │	├── prod.env.js	//生产环境变量
