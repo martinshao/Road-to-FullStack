@@ -1106,26 +1106,57 @@ function setOpacity(node, val) {
 
 ``` js
 25-3-1. @module。声明模块
-/** * 模块说明 * @module 模块名 */
+/**
+ * 模块说明
+ * @module 模块名
+ */
 
-/** * Core模块提供最基础、最核心的接口 * @module Core */
+/**
+ * Core模块提供最基础、最核心的接口
+ * @module Core
+ */
 
 25-3-2. @class。声明类
-/** * 类说明 * @class 类名 * @constructor */
+/**
+ * 类说明
+ * @class 类名
+ * @constructor
+ */
+
 @class必须搭配@constructor或@static使用，分别标记非静态类与静态类。
 
-/** * 节点集合类 * @class NodeList * @constructor * @param {ArrayLike<Element>} nodes 初始化节点 */
+/**
+ * 节点集合类
+ * @class NodeList
+ * @constructor
+ * @param {ArrayLike<Element>} nodes 初始化节点
+ */
 
 25-3-3. @method。声明函数或类方法
-/** * 方法说明 * @method 方法名 * @for 所属类名 * @param {参数类型} 参数名 参数说明 * @return {返回值类型} 返回值说明 */
+/**
+ * 方法说明
+ * @method 方法名
+ * @for 所属类名
+ * @param {参数类型} 参数名 参数说明
+ * @return {返回值类型} 返回值说明
+ */
 没有指定@for时，表示此函数为全局或模块顶层函数。当函数为静态函数时，必须添加@static；当函数有参数时，必须使用@param；当函数有返回值时，必须使用@return。
 
-/** * 返回当前集合中指定位置的元素 * @method * @for NodeList * @param {Number} [i=0] 位置下标。如果为负数，则从集合的最后一个元素开始倒数 * @return {Element} 指定元素 */
+/**
+ * 返回当前集合中指定位置的元素
+ * @method
+ * @for NodeList
+ * @param {Number} [i=0] 位置下标。如果为负数，则从集合的最后一个元素开始倒数
+ * @return {Element} 指定元素
+ */
 
 - @param。声明函数参数，必须与@method搭配使用。
 - 当参数出现以下情况时，使用对应的格式：[参数名]
 - 参数有默认值 [参数名 = 默认值]
 
 25-3-4. @property。声明类属性
-/** * 属性说明 * @property {属性类型} 属性名 */
+/**
+ * 属性说明
+ * @property {属性类型} 属性名
+ */
 ```
