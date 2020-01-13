@@ -569,67 +569,72 @@ Vue.js 是一个基于组件的框架。如果你不知道何时创建组件可�
 
 最后，如果你不确定，那就不要。避免那些“以后可能会有用”的组件污染你的项目。它们可能会永远的只是（静静地）待在那里，这一点也不聪明。注意，一旦你意识到应该这么做，最好是就把它打破，以避免与项目的其他部分构成兼容性和复杂性。
 
-#### 1. 组件文件
+#### 3. 组件文件
 
 只要有能够拼接文件的构建系统，就把每个组件单独分成文件。
 当你需要编辑一个组件或查阅一个组件的用法时，可以更快速的找到它。
 
 ``` js
-// 正例
-components/
-|- TodoList.vue
-|- TodoItem.vue
-
-// 反例
+// bad
 Vue.component('TodoList', {
   // ...
 })
 Vue.component('TodoItem', {
   // ...
 })
+
+// good
+components/
+|- TodoList.vue
+|- TodoItem.vue
 ```
 
-#### 单文件组件文件的大小写
+#### 4. 单文件组件文件的大小写
 
 单文件组件的文件名应该要么始终是单词大写开头 (PascalCase)
 
 ``` js
-// 正例
-components/
-|- MyComponent.vue
-
-// 反例
+// bad
 components/
 |- myComponent.vue
 |- mycomponent.vue
+
+// good
+components/
+|- MyComponent.vue
 ```
 
-#### 基础组件名
+#### 5. 基础组件名
 
 应用特定样式和约定的基础组件 (也就是展示类的、无逻辑的或无状态的组件) 应该全部以一个特定的前缀开头，比如 Base、App 或 V。
 
 ``` js
-// 正例
-components/
-|- BaseButton.vue
-|- BaseTable.vue
-|- BaseIcon.vue
-
-// 反例
+// bad
 components/
 |- MyButton.vue
 |- VueTable.vue
 |- Icon.vue
+
+// good
+components/
+|- BaseButton.vue
+|- BaseTable.vue
+|- BaseIcon.vue
 ```
 
-#### 紧密耦合的组件名
+#### 6. 紧密耦合的组件名
 
 和父组件紧密耦合的子组件应该以父组件名作为前缀命名。
 
 如果一个组件只在某个父组件的场景下有意义，这层关系应该体现在其名字上。因为编辑器通常会按字母顺序组织文件，所以这样做可以把相关联的文件排在一起。
 
 ``` js
-// 正例
+// bad
+components/
+|- SearchSidebar.vue
+|- NavigationForSearchSidebar.vue
+
+// good
 components/
 |- TodoList.vue
 |- TodoListItem.vue
@@ -637,14 +642,9 @@ components/
 components/
 |- SearchSidebar.vue
 |- SearchSidebarNavigation.vue
-
-// 反例
-components/
-|- SearchSidebar.vue
-|- NavigationForSearchSidebar.vue
 ```
 
-#### 完整单词的组件名
+#### 7. 完整单词的组件名
 
 > 原则
 > 简短: 2 到 3 个单词  
@@ -654,15 +654,15 @@ components/
 组件名应该倾向于完整单词而不是缩写。
 
 ``` js
-// 正例
-components/
-|- StudentDashboardSettings.vue
-|- UserProfileOptions.vue
-
-// 反例
+// bad
 components/
 |- SdSettings.vue
 |- UProfOpts.vue
+
+// good
+components/
+|- StudentDashboardSettings.vue
+|- UserProfileOptions.vue
 ```
 
 组件名应该始终是多个单词的，根组件 App 除外
@@ -680,7 +680,7 @@ export default {
 }
 ```
 
-#### 模板中的组件名大小写
+#### 8. 模板中的组件名大小写
 
 ``` js
 <!-- good -->
@@ -694,11 +694,11 @@ export default {
 <slider></slider> <!-- 与自定义元素规范不兼容 -->
 ```
 
-#### 单文件组件的顶级元素的顺序
+#### 9. 单文件组件的顶级元素的顺序
 
 单文件组件应该总是让 `<template> 、<script> 和 <style>` 标签的顺序保持一致。且 `<style>` 要放在最后，因为另外两个标签至少要有一个。
 
-``` js
+``` html
 // 正例
 <!-- ComponentA.vue -->
 <template>...</template>
@@ -706,60 +706,61 @@ export default {
 <style>/* ... */</style>
 ```
 
-#### 多个特性的元素
+#### 10. 多个特性的元素
 
 多个特性的元素应该分多行撰写，每个特性一行。
 
-``` js
-// 正例
+``` html
+// bad
+<img src="[https://vuejs.org/images/logo.png](https://vuejs.org/images/logo.png)" alt="Vue Logo">
+<MyComponent foo="a"  bar="b" baz="c"/>
+
+// good
 <img
   src="[https://vuejs.org/images/logo.png](https://vuejs.org/images/logo.png)"
   alt="Vue Logo"
 >
+
 <MyComponent
   foo="a"
   bar="b"
   baz="c"
 />
-
-// 反例
-<img src="[https://vuejs.org/images/logo.png](https://vuejs.org/images/logo.png)" alt="Vue Logo">
-<MyComponent foo="a"  bar="b" baz="c"/>
-
 ```
 
-#### 带引号的特性值
+#### 11. 带引号的特性值
 
 非空 HTML 特性值应该始终带引号 (单引号或双引号，选你 JS 里不用的那个)。
+
 在 HTML 中不带空格的特性值是可以没有引号的，但这样做常常导致带空格的特征值被回避，导致其可读性变差。
 
 ``` html
-// 正例
-<AppSidebar :style="{ width: sidebarWidth + 'px' }">
-
-// 反例
+// bad
 <AppSidebar :style={width:sidebarWidth+'px'}>
+
+// good
+<AppSidebar :style="{ width: sidebarWidth + 'px' }">
 ```
 
-#### 指令缩写
+#### 12. 指令缩写
 
 都用指令缩写 (用 : 表示 v-bind: 和用 @ 表示 v-on:)
 
 ``` html
-// 正例
-<input
- @input="onInput"
- @focus="onFocus"
->
-
-// 反例
+// bad
 <input
  v-bind:value="newTodoText"
  :placeholder="newTodoInstructions"
 >
+
+// good
+<input
+ @input="onInput"
+ @focus="onFocus"
+>
 ```
 
-#### 1. vue方法放置顺序
+#### 13. vue方法放置顺序
 
 ``` js
   - components   
@@ -776,30 +777,30 @@ export default {
   - watch
 ```
 
-#### 2. method 自定义方法命名
+#### 14. method 自定义方法命名
 
-2-1. 动宾短语（good：jumpPage、openCarInfoDialog）（bad：go、nextPage、show、open、login）
+14-1. 动宾短语（good：jumpPage、openCarInfoDialog）（bad：go、nextPage、show、open、login）
 
-2-2. ajax 方法以 get、post 开头，以 data 结尾（good：getListData、postFormData）（bad：takeData、confirmData、getList、postForm）
+14-2. ajax 方法以 get、post 开头，以 data 结尾（good：getListData、postFormData）（bad：takeData、confirmData、getList、postForm）
 
-2-3. 事件方法以 on 开头（onTypeChange、onUsernameInput）
+14-3. 事件方法以 on 开头（onTypeChange、onUsernameInput）
 
-2-4. init、refresh 单词除外
+14-4. init、refresh 单词除外
 
-2-5. 尽量使用常用单词开头（set、get、open、close、jump）
+14-5. 尽量使用常用单词开头（set、get、open、close、jump）
 
-2-6. 驼峰命名（good: getListData）（bad: get_list_data、getlistData）
+14-6. 驼峰命名（good: getListData）（bad: get_list_data、getlistData）
 
-#### 3. 生命周期方法注意点
+#### 15. 生命周期方法注意点
 
-3-1. 不在 `mounted、created` 之类的方法写逻辑，取 `ajax` 数据，
+15-1. 不在 `mounted、created` 之类的方法写逻辑，取 `ajax` 数据，
 
-3-2. 在 created 里面监听 Bus 事件
+15-2. 在 created 里面监听 Bus 事件
 
 
-#### 6. 组件数据
+#### 16. 组件数据
 
-6-1. 组件的 `data` 必须是一个函数
+16-1. 组件的 `data` 必须是一个函数
 
 ``` js
 // good
@@ -828,7 +829,7 @@ export default {
 }
 ```
 
-6-2. Prop定义
+16-2. Prop定义
 
 > Prop 定义应该尽量详细。  
 > 在你提交的代码中，prop 的定义应该尽量详细，至少需要指定其类型。  
@@ -860,13 +861,13 @@ props: {
 }
 ```
 
-6-3. 验证组件的props
+16-3. 验证组件的props
 
 > 提供默认值。  
 > 使用 type 属性校验类型。  
 > 使用 props 之前先检查该 prop 是否存在。  
 
-``` js
+``` html
 <template>
   <input type="range" v-model="value" :max="max" :min="min" />
 </template>
@@ -896,9 +897,9 @@ export default {
 </script>
 ```
 
-#### 7.	`v-for` 使用 `key` 配合
+#### 17.	`v-for` 使用 `key` 配合
 
-``` js
+``` html
 <template>
   <ul>
     <li v-for="todo in todos" :key="todo.id">{{ todo.text }}</li>
@@ -906,7 +907,7 @@ export default {
 </template>
 ```
 
-#### 8. 避免 v-if 和 v-for 用在一起
+#### 18. 避免 v-if 和 v-for 用在一起
 
 永远不要把 v-if 和 v-for 同时用在同一个元素上。
 
@@ -916,26 +917,47 @@ export default {
 
 为了避免渲染本应该被隐藏的列表 (比如v-for="user in users" v-if="shouldShowUsers")。这种情形下，请将 v-if 移动至容器元素上 (比如 ul, ol)。
 
-``` js
-  // good
-  <ul v-if="shouldShowUsers">
-    <li v-for="user in users" :key="user.id">{{ user.name }}</li>
-  </ul>
+``` html
   // bad
   <ul>
     <li v-for="user in users" v-if="shouldShowUsers" :key="user.id">{{ user.name }}</li>
   </ul>
+
+  // good
+  <ul v-if="shouldShowUsers">
+    <li v-for="user in users" :key="user.id">{{ user.name }}</li>
+  </ul>
 ```
 
-#### 8.	禁止直接操作 dom
+#### 19.	禁止直接操作 dom
 
 禁止直接操作，如：`$(“#temp”).()`
 
-#### 9. 不要在 mutation 中调用另外的 mutation
-
-#### 10. 使用 mapGetter、mapActions 取存变量值
+#### 20. 不要在 mutation 中调用另外的 mutation
 
 ``` js
+// bad
+const mutations = {
+  ['CUST_DOWN'] (state) {
+    state.run = true
+    state.timer = setInterval(() => {
+      state.count --
+      if(state.count < 1) {
+        ['STOP'](state)
+      }
+    }, 1000)
+  },
+  ['STOP'] (state) {
+    clearInterval(state.timer)
+    state.run = false
+  }
+}
+```
+
+#### 21. 使用 mapGetter、mapActions 取存变量值
+
+``` js
+// example
 import { mapGetters } from 'vuex'
 
 export default {
@@ -950,6 +972,7 @@ export default {
   }
 }
 
+// example
 import { mapActions } from 'vuex'
 
 export default {
@@ -968,27 +991,11 @@ export default {
 }
 ```
 
-#### 11. 禁止隐形的子父通信
+#### 22. 禁止隐形的子父通信
 
 应该优先通过 `prop` 和事件进行父子组件之间的通信，而不是 `this.$parent` 或改变 `prop`。
 
 ``` js
-// good
-Vue.component('TodoItem', {
-  props: {
-    todo: {
-      type: Object,
-      required: true
-    }
-  },
-  template: `
-  <input
-    :value="todo.text"
-    @input="$emit('input', $event.target.value)"
-  >
-  `
-})
-
 // bad
 Vue.component('TodoItem', {
   props: {
@@ -1014,30 +1021,35 @@ Vue.component('TodoItem', {
     </span>
   `
 })
+
+// good
+Vue.component('TodoItem', {
+  props: {
+    todo: {
+      type: Object,
+      required: true
+    }
+  },
+  template: `
+  <input
+    :value="todo.text"
+    @input="$emit('input', $event.target.value)"
+  >
+  `
+})
 ```
 
-#### 样式文件设置作用域
+#### 23. 样式文件设置作用域
 
-使用 scoped 为样式文件增加作用域，如：`<style scoped>`
+使用 `scoped` 为样式文件增加作用域，如：`<style scoped>`
 
-#### scoped 中的元素选择器
+#### 24. scoped 中的元素选择器
 
 元素选择器应该避免在 scoped 中出现。
 在 scoped 样式中，类选择器比元素选择器更好，因为大量使用元素选择器是很慢的。
 
 ``` html
-// 正例
-<template>
-  <button class="btn btn-close">X</button>
-</template>
- 
-<style scoped>
-.btn-close {
-  background-color: red;
-}
-</style>
-
-// 反例
+// bad
 <template>
   <button>X</button>
 </template>
@@ -1047,53 +1059,64 @@ button {
   background-color: red;
 }
 </style>
+
+// good
+<template>
+  <button class="btn btn-close">X</button>
+</template>
+ 
+<style scoped>
+.btn-close {
+  background-color: red;
+}
+</style>
 ```
 
-#### 8. 注释规范
+#### 25. 注释规范
 
-8-1. 在vscode中使用vscode-fileheader插件，生成头部文件注释
+25-1. 在vscode中使用vscode-fileheader插件，生成头部文件注释
 
-8-2. 普通的注释
+25-2. 普通的注释
 
 ``` js
-8-2-1. 总是在单行注释符后留一个空格
+25-2-1. 总是在单行注释符后留一个空格
 // this is comment
-8-2-2. 总是在多行注释的结束符前留一个空格（使星号对齐）
+25-2-2. 总是在多行注释的结束符前留一个空格（使星号对齐）
 /* */
-8-2-3. 不要把注释写在多行注释的开始符、结束符所在行
+25-2-3. 不要把注释写在多行注释的开始符、结束符所在行
 // bad
 
 /* start end */
 
 // good
 /* here is line 1 here is line 2 */
-8-2-4. 不要编写无意义的注释
+25-2-4. 不要编写无意义的注释
 // 初始化value变量为0
 let value = 0;
-8-2-5. 如果某段代码有功能未实现，或者有待完善，必须添加“TODO”标记，“TODO”前后应留一个空格
+25-2-5. 如果某段代码有功能未实现，或者有待完善，必须添加“TODO”标记，“TODO”前后应留一个空格
 // TODO 未处理IE6-8的兼容性
 function setOpacity(node, val) {
   node.style.opacity = val;
 }
 ```
 
-8-3. 文档注释
+25-3. 文档注释
 
 文档注释将会以预定格式出现在API文档中。它以“/”开头，以“/”结束，其间的每一行均以“”开头（均与开始符的第一个“”对齐），且注释内容与“”间留一个空格。
 
 ``` js
-8-3-1. @module。声明模块
+25-3-1. @module。声明模块
 /** * 模块说明 * @module 模块名 */
 
 /** * Core模块提供最基础、最核心的接口 * @module Core */
 
-8-3-2. @class。声明类
+25-3-2. @class。声明类
 /** * 类说明 * @class 类名 * @constructor */
 @class必须搭配@constructor或@static使用，分别标记非静态类与静态类。
 
 /** * 节点集合类 * @class NodeList * @constructor * @param {ArrayLike<Element>} nodes 初始化节点 */
 
-8-3-3. @method。声明函数或类方法
+25-3-3. @method。声明函数或类方法
 /** * 方法说明 * @method 方法名 * @for 所属类名 * @param {参数类型} 参数名 参数说明 * @return {返回值类型} 返回值说明 */
 没有指定@for时，表示此函数为全局或模块顶层函数。当函数为静态函数时，必须添加@static；当函数有参数时，必须使用@param；当函数有返回值时，必须使用@return。
 
@@ -1103,6 +1126,6 @@ function setOpacity(node, val) {
 - 当参数出现以下情况时，使用对应的格式：[参数名]
 - 参数有默认值 [参数名 = 默认值]
 
-8-3-4. @property。声明类属性
+25-3-4. @property。声明类属性
 /** * 属性说明 * @property {属性类型} 属性名 */
 ```
