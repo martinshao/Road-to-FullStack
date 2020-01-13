@@ -470,7 +470,6 @@ for (let item of map.entries()) {
 }
 ```
 
-
 #### 6. class取代构造函数
 
 6-1. 总是用 `Class`，取代需要 `prototype` 的操作。因为 `Class` 的写法更简洁，更易于理解。
@@ -518,7 +517,6 @@ class PeekableQueue extends Queue {
     return this._queue[0];
   }
 }
-
 ```
 
 #### 7. promise的使用
@@ -589,6 +587,7 @@ promise
 
 #### 5. Vue 组件命名
 
+> 原则
 > 有意义的: 不过于具体，也不过于抽象  
 > 简短: 2 到 3 个单词  
 > 具有可读性: 以便于沟通交流  
@@ -605,32 +604,117 @@ promise
 <slider></slider> <!-- 与自定义元素规范不兼容 -->
 ```
 
-#### 6. 验证组件的props
-提供默认值。
-使用 type 属性校验类型。
-使用 props 之前先检查该 prop 是否存在。
+> 组件名应该始终是多个单词的，根组件 App 除外
+> 
+``` js
+// bad
+export default {
+  name: 'Todo',
+  // ...
+}
+// good
+export default {
+  name: 'TodoItem',
+  // ...
+}
+```
+
+#### 6. 组件数据
+
+6-1. 组件的 `data` 必须是一个函数
+
+``` js
+// good
+// In a .vue file
+export default {
+  data() {
+    return {
+      foo: 'bar'
+    }
+  }
+}
+
+// 在一个 Vue 的根实例上直接使用对象是可以的，
+// 因为只存在一个这样的实例。
+new Vue({
+  data: {
+    foo: 'bar'
+  }
+})
+
+// bad
+export default {
+  data: {
+    foo: 'bar'
+  }
+}
+```
+
+6-2. Prop定义
+
+> Prop 定义应该尽量详细。  
+> 在你提交的代码中，prop 的定义应该尽量详细，至少需要指定其类型。  
+
+``` js
+// bad
+// 这样做只有开发原型系统时可以接受
+props: ['status']
+
+// good
+props: {
+  status: String
+}
+
+// more
+props: {
+  status: {
+    type: String,
+      required: true,
+        validator: function (value) {
+          return [
+            'syncing',
+            'synced',
+            'version-conflict',
+            'error'
+          ].indexOf(value) !== -1
+        }
+  }
+}
+```
+
+6-3. 验证组件的props
+
+> 提供默认值。  
+> 使用 type 属性校验类型。  
+> 使用 props 之前先检查该 prop 是否存在。  
 
 ``` js
 <template>
-  <input type="range" v-model="value" :max="max" :min="min">
+  <input type="range" v-model="value" :max="max" :min="min" />
 </template>
 <script type="text/javascript">
-  export default {
-    props: {
-      max: {
-        type: Number, // 这里添加了数字类型的校验
-        default() { return 10; },
-      },
-      min: {
-        type: Number,
-        default() { return 0; },
-      },
-      value: {
-        type: Number,
-        default() { return 4; },
-      },
+export default {
+  props: {
+    max: {
+      type: Number, // 这里添加了数字类型的校验
+      default() {
+        return 10
+      }
     },
-  };
+    min: {
+      type: Number,
+      default() {
+        return 0
+      }
+    },
+    value: {
+      type: Number,
+      default() {
+        return 4
+      }
+    }
+  }
+}
 </script>
 ```
 
@@ -638,15 +722,16 @@ promise
 
 Vue.js 是一个基于组件的框架。如果你不知道何时创建组件可能会导致以下问题：
 
-如果组件太大, 可能很难重用和维护;
-如果组件太小，你的项目就会（因为深层次的嵌套而）被淹没，也更难使组件间通信;
-规则
+> 1. 如果组件太大, 可能很难重用和维护;
+> 2. 如果组件太小，你的项目就会（因为深层次的嵌套而）被淹没，也更难使组件间通信;
+
+**规则**
+
 首先，尽可能早地尝试构建出诸如模态框、提示框、工具条、菜单、头部等这些明显的（通用型）组件。总之，你知道的这些组件以后一定会在当前页面或者是全局范围内需要。
 
 第二，在每一个新的开发项目中，对于一整个页面或者其中的一部分，在进行开发前先尝试思考一下。如果你认为它有一部分应该是一个组件，那么就创建它吧。
 
 最后，如果你不确定，那就不要。避免那些“以后可能会有用”的组件污染你的项目。它们可能会永远的只是（静静地）待在那里，这一点也不聪明。注意，一旦你意识到应该这么做，最好是就把它打破，以避免与项目的其他部分构成兼容性和复杂性。
-
 
 #### 8. 注释规范
 
@@ -685,11 +770,13 @@ function setOpacity(node, val) {
 /** * 模块说明 * @module 模块名 */
 
 /** * Core模块提供最基础、最核心的接口 * @module Core */
+
 8-3-2. @class。声明类
 /** * 类说明 * @class 类名 * @constructor */
 @class必须搭配@constructor或@static使用，分别标记非静态类与静态类。
 
 /** * 节点集合类 * @class NodeList * @constructor * @param {ArrayLike<Element>} nodes 初始化节点 */
+
 8-3-3. @method。声明函数或类方法
 /** * 方法说明 * @method 方法名 * @for 所属类名 * @param {参数类型} 参数名 参数说明 * @return {返回值类型} 返回值说明 */
 没有指定@for时，表示此函数为全局或模块顶层函数。当函数为静态函数时，必须添加@static；当函数有参数时，必须使用@param；当函数有返回值时，必须使用@return。
@@ -699,6 +786,7 @@ function setOpacity(node, val) {
 - @param。声明函数参数，必须与@method搭配使用。
 - 当参数出现以下情况时，使用对应的格式：[参数名]
 - 参数有默认值 [参数名 = 默认值]
+
 8-3-4. @property。声明类属性
 /** * 属性说明 * @property {属性类型} 属性名 */
 ```
