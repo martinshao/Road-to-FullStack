@@ -40,18 +40,18 @@
 │	│	└── httpCore.js	     // 公共 api 接口调用
 │	├── assets               // 资源目录，这里的资源会被 wabpack 构建
 │	│	└── images
-│	│   └── logo.png
+│	│ └── logo.png
 │	├── router      // 前端路由
 │	│	└── index.js
 │	├── util        // 工具目录
 │	├── store       // 应用级数据
-│	│	└── modules // 模块
+│	│	└── modules   // 模块
 │	│	└── index.js
 │	└── page        // 页面目录
 │   ├── hello.vue
 │   └── notfound.vue
-├── static          // 纯静态资源
-└── test            // 测试文件目录（unit&e2e）
+├── static        // 纯静态资源
+└── test          // 测试文件目录（unit&e2e）
 ```
 
 ## 开发流程
