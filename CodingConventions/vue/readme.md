@@ -10,9 +10,9 @@
 
 ## 项目目录结构参考
 
-``` js
-├── index.html               // 入口页面
-├── build                    // 构建脚本目录
+``` 
+├── index.html             // 入口页面
+├── build                  // 构建脚本目录
 │	├── build-server.js      // 运行本地构建服务器，启动 express
 │	├── build.js             // 生产环境构建脚本
 │	├── dev-client.js        // 开发服务器热重载脚本
