@@ -22,24 +22,47 @@
         "avgDeployTime": 0
       },
     }
-
-    function objToArray(key, value) {
-      const keys = Object.keys(value)
+    // function objToArray(key, value) {
+    //   const keys = Object.keys(value)
+    //   const dataSource = []
+    //   keys.reduce(
+    //     (res, item) => (
+    //       res.push({
+    //         [key]: item,
+    //         ...value[item]
+    //       }), res
+    //     ),
+    //     dataSource
+    //   )
+    //   return dataSource
+    // }
+    function objToArray(firstKey, source) {
       const dataSource = []
-      keys.reduce(
-        (res, item) => (
-          res.push({
-            [key]: item,
-            ...value[item]
-          }), res
-        ),
-        dataSource
-      )
+      const { entries } = Object
+      for (let [key, value] of entries(source)) {
+        dataSource.push({
+          [firstKey]: key,
+          ...value,
+        })
+      }
       return dataSource
     }
     const dataSource = objToArray('days', lineData)
     const dataSource1 = objToArray('days', {})
     console.info(dataSource)
+    let obj = { a: 1, b: 2, c: 3 };
+    const { keys, values, entries } = Object
+    for (let key of keys(obj)) {
+      console.log(key); // 'a', 'b', 'c'  
+    }
+
+    for (let value of values(obj)) {
+      console.log(value); // 1, 2, 3  
+    }
+
+    for (let [key, value] of entries(obj)) {
+      console.log([key, value]); // ['a', 1], ['b', 2], ['c', 3]  
+    } 
   </script>
 </body>
 

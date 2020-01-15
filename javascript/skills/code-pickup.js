@@ -8,9 +8,8 @@
  * @version v3.0
  */
 function objToArray(key, value) {
-  const keys = Object.keys(value)
   const dataSource = []
-  keys.reduce(
+  Object.keys(value).reduce(
     (res, item) => (
       res.push({
         [key]: item,
@@ -24,9 +23,8 @@ function objToArray(key, value) {
 
 // v1.0
 function objToArray(key, value) {
-  const keys = Object.keys(value)
   const dataSource = []
-  keys.reduce(
+  Object.keys(value).reduce(
     (res, item) => {
       res.push({
         [key]: item,
@@ -41,9 +39,8 @@ function objToArray(key, value) {
 
 // v2.0
 function objToArray(key, value) {
-  const keys = Object.keys(value)
   const dataSource = []
-  keys.reduce(
+  Object.keys(value).reduce(
     (res, item) => {
       return res.push({
         [key]: item,
@@ -52,6 +49,18 @@ function objToArray(key, value) {
     },
     dataSource
   )
+  return dataSource
+}
+
+function objToArray(firstKey, source) {
+  const dataSource = []
+  const { entries } = Object
+  for (let [key, value] of entries(source)) {
+    dataSource.push({
+      [firstKey]: key,
+      ...value,
+    })
+  }
   return dataSource
 }
 
