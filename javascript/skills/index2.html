@@ -21,84 +21,25 @@
         "deployCount": 0,
         "avgDeployTime": 0
       },
-      "2020-01-03": {
-        "successRate": 0,
-        "deployCount": 0,
-        "avgDeployTime": 0
-      },
-      "2020-01-04": {
-        "successRate": 0,
-        "deployCount": 0,
-        "avgDeployTime": 0
-      },
-      "2020-01-05": {
-        "successRate": 0,
-        "deployCount": 0,
-        "avgDeployTime": 0
-      },
-      "2020-01-06": {
-        "successRate": 0,
-        "deployCount": 0,
-        "avgDeployTime": 0
-      },
-      "2020-01-07": {
-        "successRate": 0,
-        "deployCount": 0,
-        "avgDeployTime": 0
-      },
-      "2020-01-08": {
-        "successRate": 0,
-        "deployCount": 0,
-        "avgDeployTime": 0
-      },
-      "2020-01-09": {
-        "successRate": 0,
-        "deployCount": 0,
-        "avgDeployTime": 0
-      },
-      "2020-01-10": {
-        "successRate": 0,
-        "deployCount": 0,
-        "avgDeployTime": 0
-      },
-      "2020-01-11": {
-        "successRate": 0,
-        "deployCount": 0,
-        "avgDeployTime": 0
-      },
-      "2020-01-12": {
-        "successRate": 0,
-        "deployCount": 0,
-        "avgDeployTime": 0
-      },
-      "2020-01-13": {
-        "successRate": 0,
-        "deployCount": 0,
-        "avgDeployTime": 0
-      },
-      "2020-01-14": {
-        "successRate": 0,
-        "deployCount": 0,
-        "avgDeployTime": 0
-      }
     }
 
-    function objToArray(lineData) {
-      const keys = Object.keys(lineData)
+    function objToArray(key, value) {
+      const keys = Object.keys(value)
       const dataSource = []
       keys.reduce(
-        (res, item) => {
+        (res, item) => (
           res.push({
-            days: item,
-            ...lineData[item]
-          })
-          return res
-        },
+            [key]: item,
+            ...value[item]
+          }), res
+        ),
         dataSource
       )
       return dataSource
     }
-    const dataSource = objToArray(lineData)
+    const dataSource = objToArray('days', lineData)
+    const dataSource1 = objToArray('days', {})
+    console.info(dataSource)
   </script>
 </body>
 

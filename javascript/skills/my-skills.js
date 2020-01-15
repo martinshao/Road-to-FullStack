@@ -81,6 +81,29 @@ const a = keys.reduce(
   dataSource
 )
 
+function objToArray(lineData) {
+  const keys = Object.keys(lineData)
+  const dataSource = []
+  keys.reduce(
+    (res, item) => {
+      const {
+        successRate,
+        deployCount,
+        avgDeployTime,
+      } = lineData[item]
+      res.push({
+        day: item,
+        成功率: scaleHundred(successRate),
+        次数: deployCount,
+        平均耗时: millisecondToSecond(avgDeployTime),
+      })
+      return res
+    },
+    dataSource
+  )
+  return dataSource
+}
+
 const encode = (value) => {
   return window.btoa(window.encodeURIComponent(value))
 }
