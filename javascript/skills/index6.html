@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    let links = [
+      {
+        "link": "shanghai-link",
+        "region": "shanghai"
+      },
+      {
+        "link": "beijing-link",
+        "region": "beijing"
+      },
+      {
+        "link": "hangzhou-link",
+        "region": "hangzhou"
+      },
+      {
+        "link": "guangzhou-link",
+        "region": "guangzhou"
+      },
+    ]
+
+    // function fromPairs(key, value, pairs) {
+    //   return pairs.reduce(
+    //     function (res, pair) {
+    //       res[pair[key]] = pair[value]
+    //       return res
+    //     }, {}
+    //   )
+    // }
+
+    const fromPairs = (key, value, pairs) =>
+      pairs.reduce(
+        (res, pair) => {
+          res[pair[key]] = pair[value]
+          return res
+        }, {}
+      )
+
+    const array = fromPairs('region', 'link', links)
+    console.info(array)
+  </script>
+</body>
+
+</html>

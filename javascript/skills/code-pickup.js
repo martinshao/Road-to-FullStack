@@ -71,3 +71,64 @@ const lineData = {
 
 const dataSource = objToArray('days', lineData)
 const dataSource1 = objToArray('days', {})
+
+  // tips
+  // 上面的代码有个小技巧，就是逗号操作符的使用
+  (1, 2, 3) // return 3
+
+/**
+ *  转化对象
+ * @param {string} key 对象key值
+ * @param {string} value 对象value值
+ * @param {object} pairs 需要转化的对象
+ * @version
+ */
+function fromPairs(key, value, pairs) {
+  return pairs.reduce(
+    function (res, pair) {
+      res[pair[key]] = pair[value]
+      return res
+    }, {}
+  )
+}
+
+const fromPairs = (key, value, pairs) =>
+  pairs.reduce(
+    (res, pair) => (
+      (res[pair[key]] = pair[value]), res
+    ), {}
+  )
+
+const fromPairs = (key, value, pairs) =>
+  pairs.reduce(
+    (res, pair) => {
+      res[pair[key]] = pair[value]
+      return res
+    }, {}
+  )
+
+const fromPairs = pairs => pairs.reduce(
+  (res, pair) => (
+    (res[pair['region']] = pair['link']), res), {}
+)
+
+let links = [
+  {
+    "link": "shanghai-link",
+    "region": "shanghai"
+  },
+  {
+    "link": "beijing-link",
+    "region": "beijing"
+  },
+  {
+    "link": "hangzhou-link",
+    "region": "hangzhou"
+  },
+  {
+    "link": "guangzhou-link",
+    "region": "guangzhou"
+  },
+]
+
+const array = fromPairs('region', 'link', links)
