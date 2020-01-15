@@ -116,15 +116,15 @@ export default new Router({
 > 变量使用 lowerCamelCase 规则
 
 ``` js
-// Good.
-const PI = 3.141592653;
-const TEAM_NAME = 'Front-end';
-let followingProjects = [ 'EPM UI', 'EPM UI Docs', 'and more' ];
-  
-// Bad.
+// bad.
 const Pi = 3.141592653;
 const teamname = 'Front-end';
 let p = [ 'EPM UI', 'EPM UI Docs', 'and more' ];
+
+// good.
+const PI = 3.141592653;
+const TEAM_NAME = 'Front-end';
+let followingProjects = [ 'EPM UI', 'EPM UI Docs', 'and more' ];
 ```
 
 #### 3. 数组
@@ -195,14 +195,14 @@ if ( true ) {
 表达式中的运算符与操作数之间需要空格
 
 ``` js
-// Good.
-if ( 0 == false && ( 1 == true || '' === false ) ) {
-  let result = ( a / b ) % 10;
-}
-  
-// Bad.
+// bad.
 if ( 0==false&&( 1==true||''===false ) ) {
   let result=( a/b )%10;
+}
+
+// good.
+if ( 0 == false && ( 1 == true || '' === false ) ) {
+  let result = ( a / b ) % 10;
 }
 ```
 
@@ -210,7 +210,27 @@ if ( 0==false&&( 1==true||''===false ) ) {
 语句组成部分间需空一格
 
 ``` js
-// Good.
+// bad.
+if( true ){
+  while( false ){
+    // Just an example here.
+  }
+  switch( someValue ){
+    case 'foo':
+      console.log( 'bar' );
+      break;
+    case 'bar':
+      console.log( 'foo' );
+      break;
+    default:
+      console.log( "What's that." );
+  }
+  for( let i = 0; i < 100; i ++ ){
+    // Just an example here.
+  }
+}
+
+// good.
 if ( true ) {
   while ( false ) {
     // Just an example here.
@@ -228,26 +248,6 @@ if ( true ) {
   }
  
   for ( let i = 0; i < 100; i ++ ) {
-    // Just an example here.
-  }
-}
- 
-// Bad.
-if( true ){
-  while( false ){
-    // Just an example here.
-  }
-  switch( someValue ){
-    case 'foo':
-      console.log( 'bar' );
-      break;
-    case 'bar':
-      console.log( 'foo' );
-      break;
-    default:
-      console.log( "What's that." );
-  }
-  for( let i = 0; i < 100; i ++ ){
     // Just an example here.
   }
 }
@@ -280,11 +280,29 @@ for ( let i = 0; i < 100; i++ ) {
 ## 🚀 五、 ES6推荐
 > 使用 `ECMAScript 6` 作为源码标准！
 
-#### 1. 优先使用解构赋值
+#### 1. 变量声明
+
+> 严禁变量声明使用 `var`  
+> 普通变量声明使用 `let`  
+> 常量声明使用 `const`
+
+``` js
+// bad.
+var Pi = 3.141592653;
+var teamname = 'Front-end';
+var p = [ 'EPM UI', 'EPM UI Docs', 'and more' ];
+
+// good.
+const PI = 3.141592653;
+const TEAM_NAME = 'Front-end';
+let followingProjects = [ 'EPM UI', 'EPM UI Docs', 'and more' ];
+```
+
+#### 2. 优先使用解构赋值
 
 使用数组成员或者对象成员对变量赋值时，优先使用解构赋值。
 
-1-1. 一般对象数组解构赋值
+2-1. 一般对象数组解构赋值
 
 ``` js
 // 
@@ -302,7 +320,7 @@ const [head, ...tail] = arr; // head = [1], tail = [2, 3, 4]
 const { propA, propB } = obj; // 对象解构赋值
 ```
 
-1-2. 函数的参数如果是对象的成员，优先使用解构赋值。
+2-2. 函数的参数如果是对象的成员，优先使用解构赋值。
 
 ``` js
 // bad
@@ -321,7 +339,7 @@ function getFullName({ firstName, lastName }) {
 }
 ```
 
-1-3. 如果函数返回多个值，优先使用对象的解构赋值，而不是数组的解构赋值。这样便于以后添加返回值，以及更改返回值的顺序。
+2-3. 如果函数返回多个值，优先使用对象的解构赋值，而不是数组的解构赋值。这样便于以后添加返回值，以及更改返回值的顺序。
 
 ``` js
 // bad
@@ -337,9 +355,9 @@ function processInput(input) {
 const { left, right } = processInput(input);
 ```
 
-#### 2. 对象
+#### 3. 对象
 
-2-1. 对象尽量静态化，一旦定义，就不得随意添加新的属性。如果添加属性不可避免，要使用Object.assign方法。
+3-1. 对象尽量静态化，一旦定义，就不得随意添加新的属性。如果添加属性不可避免，要使用Object.assign方法。
 
 ``` js
 
@@ -356,7 +374,7 @@ const a = { x: null };
 a.x = 3;
 ```
 
-2-2. 如果对象的属性名是动态的，可以在创造对象的时候，使用属性表达式定义。
+3-2. 如果对象的属性名是动态的，可以在创造对象的时候，使用属性表达式定义。
 
 ``` js
 // bad
@@ -374,7 +392,7 @@ const obj = {
 };
 ```
 
-2-3. 另外，对象的属性和方法，尽量采用简洁表达法，这样易于描述和书写。
+3-3. 另外，对象的属性和方法，尽量采用简洁表达法，这样易于描述和书写。
 
 ``` js
 const ref = 'some value';
@@ -402,9 +420,9 @@ const atom = {
 };
 ```
 
-#### 3.数组
+#### 4.数组
 
-3-1. 使用扩展运算符（...）拷贝数组。
+4-1. 使用扩展运算符（...）拷贝数组。
 
 ```js
 // bad
@@ -420,16 +438,16 @@ for (i = 0; i < len; i++) {
 const itemsCopy = [...items];
 ```
 
-3-2. 使用 Array.from 方法，将类似数组的对象转为数组。
+4-2. 使用 Array.from 方法，将类似数组的对象转为数组。
 
 ``` js
 const foo = document.querySelectorAll('.foo');
 const nodes = Array.from(foo);
 ```
 
-#### 4.函数
+#### 5.函数
 
-4-1. 立即执行函数可以写成箭头函数的形式。
+5-1. 立即执行函数可以写成箭头函数的形式。
 
 
 ``` js
@@ -438,7 +456,7 @@ const nodes = Array.from(foo);
 })();
 ```
 
-4-2. 那些需要使用函数表达式的场合，尽量用箭头函数代替。因为这样更简洁，而且绑定了 this。
+5-2. 那些需要使用函数表达式的场合，尽量用箭头函数代替。因为这样更简洁，而且绑定了 this。
 > 备注: 简单的、单行的、不会复用的函数，建议采用箭头函数。如果函数体较为复杂，行数较多，还是应该采用传统的函数写法。
 
 ``` js
@@ -456,7 +474,7 @@ const nodes = Array.from(foo);
 [1, 2, 3].map(x => x * x);
 ```
 
-#### 5.Map结构
+#### 6.Map结构
 
 注意区分 `Object` 和 `Map`，只有模拟现实世界的实体对象时，才使用 `Object`。如果只是需要 `key: value` 的数据结构，使用 `Map` 结构。因为 `Map` 有内建的遍历机制。
 
@@ -476,9 +494,9 @@ for (let item of map.entries()) {
 }
 ```
 
-#### 6. class取代构造函数
+#### 7. class取代构造函数
 
-6-1. 总是用 `Class`，取代需要 `prototype` 的操作。因为 `Class` 的写法更简洁，更易于理解。
+7-1. 总是用 `Class`，取代需要 `prototype` 的操作。因为 `Class` 的写法更简洁，更易于理解。
 
 ```js
 // bad
@@ -504,7 +522,7 @@ class Queue {
 }
 ```
 
-6-2. 使用 `extends` 实现继承，因为这样更简单，不会有破坏 `instanceof` 运算的危险。
+7-2. 使用 `extends` 实现继承，因为这样更简单，不会有破坏 `instanceof` 运算的危险。
 
 ``` js
 // bad
@@ -525,7 +543,7 @@ class PeekableQueue extends Queue {
 }
 ```
 
-#### 7. promise的使用
+#### 8. promise的使用
 
 一般来说，不要在 `then` 方法里面定义失败状态的回调函数(即then的第二个参数)，总是使用 `catch` 方法
 

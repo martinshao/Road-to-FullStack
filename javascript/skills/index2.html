@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    const lineData = {
+      "2020-01-01": {
+        "successRate": 0,
+        "deployCount": 0,
+        "avgDeployTime": 0
+      },
+      "2020-01-02": {
+        "successRate": 0,
+        "deployCount": 0,
+        "avgDeployTime": 0
+      },
+      "2020-01-03": {
+        "successRate": 0,
+        "deployCount": 0,
+        "avgDeployTime": 0
+      },
+      "2020-01-04": {
+        "successRate": 0,
+        "deployCount": 0,
+        "avgDeployTime": 0
+      },
+      "2020-01-05": {
+        "successRate": 0,
+        "deployCount": 0,
+        "avgDeployTime": 0
+      },
+      "2020-01-06": {
+        "successRate": 0,
+        "deployCount": 0,
+        "avgDeployTime": 0
+      },
+      "2020-01-07": {
+        "successRate": 0,
+        "deployCount": 0,
+        "avgDeployTime": 0
+      },
+      "2020-01-08": {
+        "successRate": 0,
+        "deployCount": 0,
+        "avgDeployTime": 0
+      },
+      "2020-01-09": {
+        "successRate": 0,
+        "deployCount": 0,
+        "avgDeployTime": 0
+      },
+      "2020-01-10": {
+        "successRate": 0,
+        "deployCount": 0,
+        "avgDeployTime": 0
+      },
+      "2020-01-11": {
+        "successRate": 0,
+        "deployCount": 0,
+        "avgDeployTime": 0
+      },
+      "2020-01-12": {
+        "successRate": 0,
+        "deployCount": 0,
+        "avgDeployTime": 0
+      },
+      "2020-01-13": {
+        "successRate": 0,
+        "deployCount": 0,
+        "avgDeployTime": 0
+      },
+      "2020-01-14": {
+        "successRate": 0,
+        "deployCount": 0,
+        "avgDeployTime": 0
+      }
+    }
+
+    function objToArray(lineData) {
+      const keys = Object.keys(lineData)
+      const dataSource = []
+      keys.reduce(
+        (res, item) => {
+          res.push({
+            days: item,
+            ...lineData[item]
+          })
+          return res
+        },
+        dataSource
+      )
+      return dataSource
+    }
+    const dataSource = objToArray(lineData)
+  </script>
+</body>
+
+</html>

@@ -60,6 +60,17 @@
     //   console.info('---', debounceTest)
     //   debounceTest()
     // }
+
+    const todayYear = (new Date()).getFullYear();
+    const todayMonth = (new Date()).getMonth();
+    const todayDay = (new Date()).getDate();
+    const todayTime = (new Date(todayYear, todayMonth, todayDay, '23', '59', '59')).getTime();//毫秒
+    let day = moment(todayTime);
+    let lastWeek = moment().add(-7, 'd');
+    console.info(day.format('YYYY-MM-DD HH:mm:ss'))
+    console.info(lastWeek.format('YYYY-MM-DD HH:mm:ss'))
+    const tradeCreatedStart = new Date(moment().format('YYYY-MM-DD 00:00:00')).getTime();
+    const tradeCreatedEnd = new Date(moment().format('YYYY-MM-DD 23:59:59')).getTime();
   </script>
 </body>
 

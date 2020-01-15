@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+
+    const encode = (value) => {
+      return window.btoa(window.encodeURIComponent(value))
+    }
+
+    const decode = (value) => {
+      return window.decodeURIComponent(window.atob(value))
+    }
+
+    const urlQryToObj = (url) => {
+      const query = url.split('?')[1]
+      const params = query.split('&')
+      const obj = {}
+      params.map(item => {
+        const kv = item.split('=')
+        obj[kv[0]] = kv[1]
+        return kv
+      })
+      return obj
+    }
+
+    const encodeUrlParams = (objParams) => {
+      let encodeStr = ''
+      if (objParams) {
+        let queryArr = []
+        for (const key in objParams) {
+          if (objParams[key]) {
+            queryArr.push(`${key}=${objParams[key]}`)
+          }
+        }
+        const paramsStr = queryArr.join('&')
+        encodeStr = `spm=${encode(paramsStr)}`
+      }
+      return encodeStr
+    }
+
+    const decodeUrlParams = (url) => {
+      const objParams = urlQryToObj(url)
+      const decodeStr = objParams.spm
+      const decodeData = decode(decodeStr)
+      const params = decodeData.split('&')
+      const obj = {}
+      params.map(item => {
+        const kv = item.split('=')
+        obj[kv[0]] = kv[1]
+        return kv
+      })
+      return obj
+    }
+    let url = 'http://11.158.141.181/dashboard'
+    const objParams = {
+      serviceName: 'shao-serv-1',
+      ownerId: '123123',
+      ownerName: '邵伟'
+    }
+    const encodeStr = `${url}?${encodeUrlParams(objParams)}`
+    console.info(encodeStr)
+    const encodeData = decodeUrlParams(encodeStr)
+  </script>
+</body>
+
+</html>
