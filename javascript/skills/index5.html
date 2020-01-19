@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    const namespaceList = [
+      {
+        "authorizeType": "ADMIN",
+        "namespaceStatus": "NORMAL",
+        "namespace": "aicmed"
+      },
+      {
+        "authorizeType": "ADMIN",
+        "namespaceStatus": "NORMAL",
+        "namespace": "aicmed_dev"
+      },
+      {
+        "authorizeType": "ADMIN",
+        "namespaceStatus": "NORMAL",
+        "namespace": "aicmed_pub"
+      }
+    ]
+
+    const nsObj = {}
+    namespaceList.forEach(item => {
+      if (!nsObj[item.namespaceStatus]) {
+        nsObj[item.namespaceStatus] = []
+      }
+      nsObj[item.namespaceStatus].push({
+        label: item.namespace,
+        value: item.namespace,
+      })
+    })
+    console.info(nsObj)
+
+    const statusList = Object.keys(nsObj)
+    console.info(statusList)
+  </script>
+</body>
+
+</html>

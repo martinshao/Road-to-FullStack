@@ -72,38 +72,52 @@
     // const tradeCreatedStart = new Date(moment().format('YYYY-MM-DD 00:00:00')).getTime();
     // const tradeCreatedEnd = new Date(moment().format('YYYY-MM-DD 23:59:59')).getTime();
 
-    // const customer = [
-    //   {
-    //     vip: 'sss',
-    //     id: '0001',
-    //     name: '邵孤城',
-    //     surplus: 1000
-    //   },
-    //   {
-    //     vip: 'ss',
-    //     id: '0001',
-    //     name: '邵孤城',
-    //     surplus: 1000
-    //   },
-    //   {
-    //     vip: 's',
-    //     id: '0001',
-    //     name: '邵孤城',
-    //     surplus: 1000
-    //   },
-    //   {
-    //     vip: 'p',
-    //     id: '0001',
-    //     name: '邵孤城',
-    //     surplus: 1000
-    //   },
-    //   {
-    //     vip: 'p',
-    //     id: '0001',
-    //     name: '邵孤城',
-    //     surplus: 1000
-    //   },
-    // ]
+    const customer = [
+      {
+        vip: 'sss',
+        id: '0001',
+        name: '邵孤城',
+        surplus: 1000
+      },
+      {
+        vip: 'ss',
+        id: '0001',
+        name: '邵孤城',
+        surplus: 1000
+      },
+      {
+        vip: 's',
+        id: '0001',
+        name: '邵孤城',
+        surplus: 1000
+      },
+      {
+        vip: 'p',
+        id: '0001',
+        name: '邵孤城',
+        surplus: 1000
+      },
+      {
+        vip: 'p',
+        id: '0001',
+        name: '邵孤城',
+        surplus: 1000
+      },
+    ]
+
+    function membershipLevelIdentify(value) {
+      return new Map([
+        ['sss', () => { return '超级24K纯金土豪' }],
+        ['ss', () => { return '超级土豪' }],
+        ['s', () => { return '小土豪' }],
+        ['p', () => { return '穷逼' }],
+      ]).get(value)
+    }
+
+    customer.map(item => {
+      const resultFn = membershipLevelIdentify(item.vip)
+      console.info(resultFn())
+    })
 
     // const membershipLevelIdentify = _.cond([
     //   [_.matches({ 'vip': 'sss' }), _.constant('超级24K纯金土豪')],
@@ -117,86 +131,86 @@
     //   console.info(membershipLevelIdentify(item))
     // })
 
-    function changeCode(val) {
-      let char0 = val.charAt(0)
-      let char1 = val.charAt(1)
-      let char2 = val.charAt(2)
-      if (char2.charCodeAt(0) >= 122) {
-        if (char1.charCodeAt(0) >= 122) {
-          if (char0.charCodeAt(0) >= 122) {
-            console.info("The max code is zzz, no other max code now.")
-          } else {
-            char2 = String.fromCharCode(97)
-            char1 = String.fromCharCode(97)
-            char0 = String.fromCharCode(char0.charCodeAt(0) + 1)
-          }
-        } else {
-          char2 = String.fromCharCode(97)
-          char1 = String.fromCharCode(char1.charCodeAt(0) + 1)
-        }
-      } else {
-        char2 = String.fromCharCode(char2.charCodeAt(0) + 1)
-      }
-      return char0 + char1 + char2
-    }
+    // function changeCode(val) {
+    //   let char0 = val.charAt(0)
+    //   let char1 = val.charAt(1)
+    //   let char2 = val.charAt(2)
+    //   if (char2.charCodeAt(0) >= 122) {
+    //     if (char1.charCodeAt(0) >= 122) {
+    //       if (char0.charCodeAt(0) >= 122) {
+    //         console.info("The max code is zzz, no other max code now.")
+    //       } else {
+    //         char2 = String.fromCharCode(97)
+    //         char1 = String.fromCharCode(97)
+    //         char0 = String.fromCharCode(char0.charCodeAt(0) + 1)
+    //       }
+    //     } else {
+    //       char2 = String.fromCharCode(97)
+    //       char1 = String.fromCharCode(char1.charCodeAt(0) + 1)
+    //     }
+    //   } else {
+    //     char2 = String.fromCharCode(char2.charCodeAt(0) + 1)
+    //   }
+    //   return char0 + char1 + char2
+    // }
 
-    function charStep(char) {
-      return String.fromCharCode(char.charCodeAt(0) + 1)
-    }
+    // function charStep(char) {
+    //   return String.fromCharCode(char.charCodeAt(0) + 1)
+    // }
 
-    function backStart() {
-      return String.fromCharCode(97)
-    }
+    // function backStart() {
+    //   return String.fromCharCode(97)
+    // }
 
-    function charLimit(char, limit) {
-      return char.charCodeAt(0) >= limit
-    }
+    // function charLimit(char, limit) {
+    //   return char.charCodeAt(0) >= limit
+    // }
 
-    function encode(str) {
-      const [char0, char1, char2] = str
-      console.info(char0, char1, char2)
-      const charArr = [char0, char1, char2]
-      // return charArr.map(
-      //   char => charLimit(char, 122) ? backStart() : charStep(char)
-      // ).join('')
-      return charArr.reduce(
-        (acc, char) => acc + (charLimit(char, 122) ? backStart() : charStep(char))
-        , ''
-      )
-    }
+    // function encode(str) {
+    //   const [char0, char1, char2] = str
+    //   console.info(char0, char1, char2)
+    //   const charArr = [char0, char1, char2]
+    //   // return charArr.map(
+    //   //   char => charLimit(char, 122) ? backStart() : charStep(char)
+    //   // ).join('')
+    //   return charArr.reduce(
+    //     (acc, char) => acc + (charLimit(char, 122) ? backStart() : charStep(char))
+    //     , ''
+    //   )
+    // }
 
-    console.info(encode('abc'))
+    // console.info(encode('abc'))
 
-    const func = _.cond([
-      [_.matches({ 'a': 1 }), _.constant('matches A')],
-      [_.conforms({ 'b': _.isNumber }), _.constant('matches B')],
-      [_.stubTrue, _.constant('no match')]
-    ]);
+    // const func = _.cond([
+    //   [_.matches({ 'a': 1 }), _.constant('matches A')],
+    //   [_.conforms({ 'b': _.isNumber }), _.constant('matches B')],
+    //   [_.stubTrue, _.constant('no match')]
+    // ]);
 
-    const aCond = func({ 'a': 1, 'b': 2 });
-    // => 'matches A'
+    // const aCond = func({ 'a': 1, 'b': 2 });
+    // // => 'matches A'
 
-    const bCond = func({ 'a': 0, 'b': 1 });
-    // => 'matches B'
+    // const bCond = func({ 'a': 0, 'b': 1 });
+    // // => 'matches B'
 
-    const cCond = func({ 'a': '1', 'b': '2' });
-    // => 'no match'
+    // const cCond = func({ 'a': '1', 'b': '2' });
+    // // => 'no match'
 
-    console.info(aCond, bCond, cCond)
+    // console.info(aCond, bCond, cCond)
 
-    var objects = _.times(2, _.constant({ 'a': 1 }));
+    // var objects = _.times(2, _.constant({ 'a': 1 }));
 
-    console.log(objects);
-    // => [{ 'a': 1 }, { 'a': 1 }]
+    // console.log(objects);
+    // // => [{ 'a': 1 }, { 'a': 1 }]
 
-    console.log(objects[0] === objects[1]);
-    // => true
+    // console.log(objects[0] === objects[1]);
+    // // => true
 
-    _.times(3, String);
-    // => ['0', '1', '2']
+    // _.times(3, String);
+    // // => ['0', '1', '2']
 
-    _.times(4, _.constant(0));
-    // => [0, 0, 0, 0]
+    // _.times(4, _.constant(0));
+    // // => [0, 0, 0, 0]
   </script>
 </body>
 
