@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .visibility {
+            border: 1px solid #000;
+            visibility: hidden;
+        }
+
+        .visibility p {
+            border: 1px solid #000;
+            visibility: visible;
+        }
+
+        .display {
+            border: 1px solid #000;
+            display: none;
+        }
+
+        .display p {
+            border: 1px solid #000;
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <h3>visibility继承测试</h3>
+    <div class="visibility">
+        <p>我是visibility的子元素</p>
+    </div>
+
+    <h3>display继承测试</h3>
+    <div class="display">
+        <p>我是display的子元素</p>
+    </div>
+
+    <h3>占据空间测试</h3>
+    <div style="border: 1px solid #000;">
+        <div>我在visibility前面</div>
+        <div class="visibility">visibility</div>
+        <div>我在visibility后面</div>
+        <div>我在display前面</div>
+        <div class="display">display</div>
+        <div>我在display后面</div>
+    </div>
+
+</body>
+
+</html>
