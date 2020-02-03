@@ -27,13 +27,40 @@
 
 ### vscode 插件使用介绍
 
-1. vscode内置lint语法检查工具
+#### 1、 vscode内置lint语法检查工具
 
-2. Beautify
+我们团队前端开发推荐的开发工具是vscode（visual studio code），vscode工具集成了一些语法检查的功能，同学们也可以自己在setting中设置相关的属性。
+
+![vscode-validate](./assets/vscode-validate.png)
+
+一下例子是vscode对于一些语言进行语法检查时的报错
+
+![](./assets/js-syntax-check.png)
+
+#### 2、 Beautify
+
+![Beautify](./assets/Beautify.png)
+
+Beautify 是一个功能十分强大的vscode 代码格式化插件。
+
 3. Vetur & Vue VSCode Snippets
+
+![vetur](./assets/vetur.png)
+![vue-snippets](./assets/vue-snippets.png)
+
 4. HTML CSS Support
+
+![html-css-support](./assets/html-css-support.png)
+
 5. HTML Snippets
+
+![html-snippets](./assets/html-snippets.png)
+
 6. ES7 React/Redux/GraphQL/React-Native snippets
+
+![react-snippets](./assets/react-snippets.png)
 
 
 ### npm 插件使用介绍
+
+eslint+husky+prettier+lint-staged 
