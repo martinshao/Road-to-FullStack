@@ -63,4 +63,21 @@ Beautify 是一个功能十分强大的vscode 代码格式化插件。
 
 ### npm 插件使用介绍
 
+#### lint 的介绍
+
+lint是对前端代码按照代码规则进行静态扫描的工具，主要负责对当前本地代码进行规范检查，如果不符合当前制定的规范则lint则会报出error，并且和lint-staged结合使用就会保证未通过代码规范的检查不能被提交到远程分支上，这样就能保证线上代码的质量。
+
+
 eslint+husky+prettier+lint-staged 
+
+
+## 重要工具网站
+
+* [Eslint 中文官网](https://eslint.bootcss.com/)
+
+## 参考文章
+
+* [eslint+husky+prettier+lint-staged提升前端应用质量](https://juejin.im/post/5c67fcaae51d457fcb4078c9)
+* [用 husky 和 lint-staged 构建超溜的代码检查工作流](https://juejin.im/post/592615580ce463006bf19aa0)
+* [使用 husky、commitlint 和 lint-staged 来构建你的前端工作流（vue、react、dva）](https://juejin.im/post/5d1f1e595188254b732b60a3)
+* [前端开发规范之React应用使用ESLint](https://juejin.im/post/5a3c672451882506e50cd2cc)
