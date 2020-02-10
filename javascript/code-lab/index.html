@@ -61,63 +61,64 @@
     //   debounceTest()
     // }
 
-    // const todayYear = (new Date()).getFullYear();
-    // const todayMonth = (new Date()).getMonth();
-    // const todayDay = (new Date()).getDate();
-    // const todayTime = (new Date(todayYear, todayMonth, todayDay, '23', '59', '59')).getTime();//毫秒
-    // let day = moment(todayTime);
-    // let lastWeek = moment().add(-7, 'd');
-    // console.info(day.format('YYYY-MM-DD HH:mm:ss'))
-    // console.info(lastWeek.format('YYYY-MM-DD HH:mm:ss'))
-    // const tradeCreatedStart = new Date(moment().format('YYYY-MM-DD 00:00:00')).getTime();
-    // const tradeCreatedEnd = new Date(moment().format('YYYY-MM-DD 23:59:59')).getTime();
+    const todayYear = (new Date()).getFullYear();
+    const todayMonth = (new Date()).getMonth();
+    const todayDay = (new Date()).getDate();
+    const todayTime = (new Date(todayYear, todayMonth, todayDay, '00', '00', '00')).getTime();//毫秒
+    let day = moment(todayTime);
+    let lastWeek = moment().add(-7, 'd');
+    console.info(lastWeek)
+    console.info(day.format('YYYY-MM-DD HH:mm:ss'))
+    console.info(lastWeek.format('YYYY-MM-DD HH:mm:ss'))
+    const tradeCreatedStart = new Date(moment().format('YYYY-MM-DD 00:00:00')).getTime();
+    const tradeCreatedEnd = new Date(moment().format('YYYY-MM-DD 23:59:59')).getTime();
 
-    const customer = [
-      {
-        vip: 'sss',
-        id: '0001',
-        name: '邵孤城',
-        surplus: 1000
-      },
-      {
-        vip: 'ss',
-        id: '0001',
-        name: '邵孤城',
-        surplus: 1000
-      },
-      {
-        vip: 's',
-        id: '0001',
-        name: '邵孤城',
-        surplus: 1000
-      },
-      {
-        vip: 'p',
-        id: '0001',
-        name: '邵孤城',
-        surplus: 1000
-      },
-      {
-        vip: 'p',
-        id: '0001',
-        name: '邵孤城',
-        surplus: 1000
-      },
-    ]
+    // const customer = [
+    //   {
+    //     vip: 'sss',
+    //     id: '0001',
+    //     name: '邵孤城',
+    //     surplus: 1000
+    //   },
+    //   {
+    //     vip: 'ss',
+    //     id: '0001',
+    //     name: '邵孤城',
+    //     surplus: 1000
+    //   },
+    //   {
+    //     vip: 's',
+    //     id: '0001',
+    //     name: '邵孤城',
+    //     surplus: 1000
+    //   },
+    //   {
+    //     vip: 'p',
+    //     id: '0001',
+    //     name: '邵孤城',
+    //     surplus: 1000
+    //   },
+    //   {
+    //     vip: 'p',
+    //     id: '0001',
+    //     name: '邵孤城',
+    //     surplus: 1000
+    //   },
+    // ]
 
-    function membershipLevelIdentify(value) {
-      return new Map([
-        ['sss', () => { return '超级24K纯金土豪' }],
-        ['ss', () => { return '超级土豪' }],
-        ['s', () => { return '小土豪' }],
-        ['p', () => { return '穷逼' }],
-      ]).get(value)
-    }
+    // function membershipLevelIdentify(value) {
+    //   return new Map([
+    //     ['sss', () => { return '超级24K纯金土豪' }],
+    //     ['ss', () => { return '超级土豪' }],
+    //     ['s', () => { return '小土豪' }],
+    //     ['p', () => { return '穷逼' }],
+    //   ]).get(value)
+    // }
 
-    customer.map(item => {
-      const resultFn = membershipLevelIdentify(item.vip)
-      console.info(resultFn())
-    })
+    // customer.map(item => {
+    //   const resultFn = membershipLevelIdentify(item.vip)
+    //   console.info(resultFn())
+    // })
 
     // const membershipLevelIdentify = _.cond([
     //   [_.matches({ 'vip': 'sss' }), _.constant('超级24K纯金土豪')],
