@@ -45,3 +45,6 @@ const factorial2 = (n, total = 1) => {
     return factorial2(n - 1, total * n)
 }
 ```
+
+### 二分查找
+
