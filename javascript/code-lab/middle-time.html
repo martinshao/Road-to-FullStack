@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+</head>
+
+<body>
+  <button onclick="handleTestClick()">测试</button>
+  <script>
+    const day = moment(new Date());
+    const lastYear = moment().add(-2, 'y')
+
+    console.info(day.format('YYYY-MM-DD HH:mm'))
+
+    // function midTime(startTime, endTime) {
+    //   let midDate = []
+    //   let startDate = new Date(startTime)
+    //   let endDate = new Date(endTime)
+    //   let startTWDate = parseInt(startDate.getFullYear() * 12) + startDate.getMonth()
+    //   let endTWDate = parseInt(endDate.getFullYear() * 12) + endDate.getMonth()
+    //   while (startTWDate < endTWDate) {
+    //     startTWDate++
+    //     midDate.push(startTWDate)
+    //   }
+    //   let carry = false
+    //   const midDateStr = midDate.map(item => {
+    //     let r = 0
+    //     let mod = 0
+    //     let time = ''
+    //     r = parseInt(item / 12)
+    //     mod = item % 12
+    //     if(mod === 0 ) carry = !carry
+    //     if (carry) time = `${parseInt(r) - 1}-${mod-1}`
+    //     else time = `${parseInt(r)}-${mod+1}`
+    //     if(mod === 11 ) carry = !carry
+    //     console.info(time)
+    //     return time
+    //   })
+    //   return midDateStr
+    // }
+
+    // console.info(midTime(lastYear.unix() * 1000, day.unix() * 1000))
+  </script>
+</body>
+
+</html>

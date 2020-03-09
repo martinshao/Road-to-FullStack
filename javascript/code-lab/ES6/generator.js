@@ -1,4 +1,4 @@
-const generatorFunction = function() {
+const generatorFunction = function () {
   var i = 10;
   while (i) {
     console.info(i)
@@ -18,7 +18,7 @@ console.log(iterator.next());
 const generatorFunction = function* () {
   var i = 10;
   while (i) {
-      yield i--;
+    yield i--;
   }
 };
 
