@@ -33,3 +33,7 @@
 <BLANK LINE>//空行
 <footer> // 额外内容
 ```
+
+其中需要注意的是，log header 即首行部分必需，而 body 和 footer 部分可选。
+
+`<subject>`, `<body>`, `<footer>` 内容默认使用中文。
