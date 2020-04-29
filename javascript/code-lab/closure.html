@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    function sayHi(person) {
+      const name = person.name;
+      setTimeout(() => {
+        console.info('Hello, ' + name);
+      }, 0);
+    }
+
+    let someone = { name: 'Dan' };
+    sayHi(someone);
+
+    someone = { name: 'Yuzhi' };
+    sayHi(someone);
+
+    someone = { name: 'Dominic' };
+    sayHi(someone);
+
+    console.info('..........')
+  </script>
+</body>
+
+</html>

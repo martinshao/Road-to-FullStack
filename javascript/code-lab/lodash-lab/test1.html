@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.15/lodash.min.js"></script>
+</head>
+
+<body>
+  <script>
+    var my_object = { a: undefined, b: 2, c: 4, d: undefined };
+    console.info(_.pickBy({ a: null, b: 1, c: undefined, e: 0, f: '', g: '12' }, _.identity))
+  </script>
+</body>
+
+</html>
