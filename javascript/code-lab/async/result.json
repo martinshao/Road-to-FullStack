@@ -1,0 +1,32 @@
+{
+  "success": true,
+  "data": {
+    "data": [
+      {
+        "id": 4,
+        "gmtCreate": 1586855357272,
+        "gmtModified": 1586855357272,
+        "modelId": 2,
+        "creatorId": "68408",
+        "creatorName": "竹逊",
+        "status": "NORMAL",
+        "version": "1.0.0",
+        "fileName": "face_analysis_model.zip",
+        "fileUrl": "https://viapi-eas-models.oss-cn-shanghai.aliyuncs.com/PAI/face_analysis_model.zip?Expires=1589374861&OSSAccessKeyId=LTAI4FwegsncrqqrkPvCwmaG&Signature=hJ9IO3XMtGqdhkWj83uVKlTdYqg%3D",
+        "isReleased": 0,
+        "entryFile": "./",
+        "size": "169.86MB",
+        "description": "表情识别"
+      }
+    ],
+    "currentPage": 1,
+    "pageSize": 10,
+    "totalRecord": 1,
+    "totalPage": 1,
+    "extend": null
+  },
+  "errorMessage": null,
+  "requestId": "a3397551-247f-4df9-a7f5-c3c3bfb482e5",
+  "errorCode": null,
+  "showMessage": null
+}

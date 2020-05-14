@@ -1,12 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="./algo-all.js"></script>
+    <!-- <script src="./algo-all.js"></script> -->
 </head>
+
 <body>
-    
+    <script>
+        var a = 1;
+        var b = 2;
+        function fn() {
+            console.log(this.a);
+            console.log(this.b);
+            console.log(a);
+            console.log(b);
+            var a = 11;
+            var b = 22;
+            return () => {
+                console.log(this.a);
+                console.log(this.b);
+                console.log(a)
+                console.log(b);
+            };
+        }
+        var p = fn.call({a:'111111'});
+        p.call({});
+        /**
+         * 第一问
+         * var p = fn();
+         * let b报错，改成不报错的，比如 var b = 22继续答
+         * p();
+         */
+        /**
+         * 第二问
+         * var p = fn.call({});
+         * p();
+         */
+        /**
+         * 第三问
+         * var p = fn();
+         * p.call({});
+         */
+        /**
+         * 第四问
+         * var p = fn.call({a:'111111'});
+         * p.call({});
+         */
+    </script>
 </body>
+
 </html>
