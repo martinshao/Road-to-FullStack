@@ -28,3 +28,19 @@ FP编程进阶之——Monad
 * [JS函数式编程指南](https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/)
 * [函数式编程中的组合子](https://segmentfault.com/a/1190000016803036) -- 对于组合子的罗列十分全面
 * [函数式编程 - 组合compose](https://juejin.im/entry/5c78a3625188252d564288d4)
+
+https://lucasmreis.github.io/blog/pointfree-javascript/
+
+https://medium.com/dailyjs/functional-js-7-point-free-style-b21a1416ac6a
+
+https://www.html.cn/archives/7781
+
+https://towardsdatascience.com/javascript-currying-vs-partial-application-4db5b2442be8
+
+https://www.freecodecamp.org/news/how-to-use-partial-application-to-improve-your-javascript-code-5af9ad877833/
+
+https://segmentfault.com/a/1190000012769779
+
+https://segmentfault.com/a/1190000012769779
+
+https://www.ruanyifeng.com/blog/2017/03/pointfree.html
