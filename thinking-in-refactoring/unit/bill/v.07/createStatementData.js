@@ -1,3 +1,8 @@
+
+/**
+ * 基类，提供基础的计算能力
+ * @class PerformanceCalculator
+ */
 class PerformanceCalculator {
     constructor(aPerformance, aPlay) {
         this.performance = aPerformance;
