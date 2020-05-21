@@ -106,7 +106,6 @@ function renderPlainText(data) {
     console.log(result)
     return result;
 
-
     function usd(aNumber) {
         return new Intl.NumberFormat("en-US", {
             style: "currency",

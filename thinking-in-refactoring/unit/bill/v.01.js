@@ -83,4 +83,5 @@ function statement(invoice, plays) {
     return plays[aPerformance.playID];
   }
 }
+
 statement(invoice, plays)
