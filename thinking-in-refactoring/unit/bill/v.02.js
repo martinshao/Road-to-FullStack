@@ -38,18 +38,26 @@ function statement(invoice, plays) {
     for (let perf of invoice.performances) {
         let thisAmount = amountFor(perf, playFor(perf));
 
-        // add volume credits
+        // 计算会员积分
         volumeCredits += volumeCreditsFor(perf);
 
-        // print line for this order
+        // 打印单剧目账单信息
         result += `  ${playFor(perf).name}: ${usd(thisAmount/100)} (${perf.audience} seats)\n`;
         totalAmount += thisAmount;
     }
+    
     result += `Amount owed is ${usd(totalAmount/100)}\n`;
     result += `You earned ${volumeCredits} credits\n`;
     console.log(result)
     return result;
 
+    // 内联变量
+    function playFor(aPerformance) {
+        return plays[aPerformance.playID];
+    }
+
+    // 提炼函数
+    // 计算一场戏剧演出的费用
     function amountFor(aPerformance) {
         let result = 0;
         switch (playFor(aPerformance).type) {
@@ -72,10 +80,8 @@ function statement(invoice, plays) {
         return result;
     }
 
-    function playFor(aPerformance) {
-        return plays[aPerformance.playID];
-    }
-
+    // 提炼函数
+    // 计算会员积分
     function volumeCreditsFor(aPerformance) {
         let result = 0;
         result += Math.max(aPerformance.audience - 30, 0);
@@ -84,6 +90,10 @@ function statement(invoice, plays) {
         return result;
     }
 
+    // 提炼函数
+    // 转换金额单位
+    // 改变函数声明
+    // format → formatAsUSD → usd
     function usd(aNumber) {
         return new Intl.NumberFormat("en-US", {
             style: "currency",
