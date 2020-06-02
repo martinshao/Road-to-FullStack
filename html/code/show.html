@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body {
+      background-color: aqua;
+    }
+
+    .info-wrapper {
+      background-color: white;
+      display: flex;
+      width: 600px;
+      flex-wrap: wrap;
+    }
+
+    .item {
+      color: #00f5cc;
+      width: 300px;
+      flex: 0 0 auto;
+    }
+
+    .info-wrapper p {
+      margin: 0;
+      padding: 0;
+    }
+
+    .item span {
+      display: inline-block;
+      width: 80px;
+    }
+
+    .user-wrapper {
+      width: 640px;
+      display: flex;
+      flex-wrap: wrap;
+      background-color: white;
+      margin-top: 20px;
+    }
+
+    .info-item {
+      width: 50%;
+      flex: 0 0 50%;
+      margin: 6px 0;
+      background-color: bisque;
+      font-size: 12px;
+      color: #555555;
+    }
+
+    .info-item span:nth-child(1) {
+      display: inline-block;
+      line-height: 12px;
+      width: 80px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="info-wrapper">
+    <p class="item">分组名称: zhuxuntest3</p>
+    <p class="item">服务ID: 1440</p>
+    <p class="item">
+      <span>服务名称: </span>
+      eas-echo-test</p>
+  </div>
+  <div class="user-wrapper">
+    <div class="info-item">
+      <span>姓名</span>
+      <span>{user.name}</span>
+    </div>
+    <div class="info-item">
+      <span>年龄</span>
+      <span>{user.age}</span>
+    </div>
+    <div class="info-item">
+      <span>性别</span>
+      <span>{user.sex}</span>
+    </div>
+    <div class="info-item">
+      <span>手机号</span>
+      <span>{user.phone}</span>
+    </div>
+    <div class="info-item">
+      <span>家庭住址</span>
+      <span>{user.address}</span>
+    </div>
+    <div class="info-item">
+      <span>家庭住址</span>
+      <span>{user.duty}</span>
+    </div>
+  </div>
+</body>
+
+</html>
