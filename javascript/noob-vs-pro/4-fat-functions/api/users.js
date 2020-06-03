@@ -14,7 +14,7 @@ function updateUser(user) {
     }
 }
 
-module.export = {
+module.exports = {
     createUser,
     updateUser,
 }
