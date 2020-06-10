@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body {
+      display: flex;
+      margin: 0;
+      min-height: 100vh;
+      -webkit-user-select: none;
+      user-select: none;
+    }
+
+    .scalable {
+      background-color: #eee;
+      position: relative;
+      min-width: 100px;
+    }
+
+    .main {
+      background-color: white;
+      flex: 1;
+    }
+
+    .content {
+      padding: 20px;
+    }
+
+    .scalable .separator {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 14px;
+      height: 100%;
+      background-color: white;
+      box-shadow: 0px 0px 2px rgba(0, 0, 0, .35);
+      cursor: col-resize;
+    }
+
+    .scalable .separator i {
+      display: inline-block;
+      height: 14px;
+      width: 1px;
+      background-color: #e9e9e9;
+      margin: 0 1px;
+    }
+
+    .scalable .content {
+      padding-right: 34px;
+    }
+    .scalable .content img {
+      display: block;
+      max-width: 100%;
+      margin: auto;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="scalable">
+    <div class="content">
+      <img src="https://codingstartup.com/images/logo.svg" alt="">
+    </div>
+    <div class="separator">
+      <i></i><i></i>
+    </div>
+  </div>
+  <div class="main">
+    <div class="content">
+      Welcome to CodingStartup.
+    </div>
+  </div>
+</body>
+<script>
+  var startX, startWidth
+  document.querySelector('.separator').addEventListener('mousedown', startDrag)
+
+  function startDrag(e) {
+    startX = e.clientX
+    startWidth = parseInt(window.getComputedStyle(document.querySelector('.scalable')).width, 10)
+    console.info(startWidth)
+    document.documentElement.addEventListener('mousemove', onDrag)
+    document.documentElement.addEventListener('mouseup', stopDrag)
+  }
+
+  function onDrag(e) {
+    let newWidth = startWidth + e.clientX - startX
+    document.querySelector('.scalable').style.width = newWidth + 'px'
+  }
+
+  function stopDrag(e) {
+    document.documentElement.removeEventListener('mousemove', onDrag)
+    document.documentElement.removeEventListener('mouseup', stopDrag)
+  }
+</script>
+
+</html>
