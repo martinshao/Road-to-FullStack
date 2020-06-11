@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    const images = [
+      { id: 'a' },
+      { id: 'b' },
+      { id: 'c' },
+      { id: 'd' },
+      { id: 'e' },
+      { id: 'f' },
+    ]
+    const imgObj = images.reduce(
+      (total, curr, idx) =>
+        ({ ...total, [curr.id]: idx })
+      , {}
+    )
+    const doubleArr = [
+      ['a', 'c'],
+      ['f', 'e'], 'd'
+    ]
+
+    const double = [
+      [0, 2],
+      [5, 4],
+      3
+    ]
+
+    const doubelIdx = doubleArr.map(img => {
+      if (Array.isArray(img)) {
+        return img.map(
+          el => imgObj[el]
+        )
+      } else {
+        return imgObj[img]
+      }
+    })
+    console.info(images, doubleArr, double, imgObj, doubelIdx)
+  </script>
+</body>
+
+</html>
