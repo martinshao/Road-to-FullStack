@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    const arr = [
+      { name: 'shaw', age: 12 },
+      { name: 'li', age: 13 },
+      { name: 'zhang', age: 15 },
+      { name: 'wei', age: 16 },
+    ]
+
+    // const arrFilter = arr.reduce((total, curr) => {
+    //   if (curr.age > 13) {
+    //     return [...total, curr.name]
+    //   } else {
+    //     return [...total]
+    //   }
+    // }, [])
+    // const arrFilter = arr.reduce((total, curr) => {
+    //   return curr.age > 13 ? [...total, curr.name] : [...total]
+    // }, [])
+    const arrFilter = arr.reduce((total, curr) => curr.age > 13 ? [...total, curr.name] : [...total], [])
+    console.info(arrFilter)
+  </script>
+</body>
+
+</html>
