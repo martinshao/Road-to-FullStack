@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+const nums1 = [1, 2, 3, 0, 0, 0],
+  m = 3
+const nums2 = [2, 5, 6],
+  n = 3
+
+    var merge = function (nums1, m, nums2, n) {
+      let len = m + n - 1
+      let len1 = m - 1
+      let len2 = n - 1
+
+      while (len1 >= 0 && len2 >= 0) {
+        if (nums1[len1] < nums2[len2]) {
+          nums1[len] = nums2[len2]
+          len2--
+        } else {
+          nums1[len] = nums1[len1]
+          len1--
+        }
+        len--
+      }
+      // if (len1 < 0) {
+      //   nums1[len1 + 1] = nums2[len2]
+      // }
+      nums1.splice(0, len2 + 1)
+      nums1.unshift(...nums2.slice(0, len2 + 1))
+      console.info(nums1, len1, nums2, len2)
+    }
+
+    merge(nums1, m, nums2, n)
+  </script>
+</body>
+
+</html>
