@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+    }
+
+    .main {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      max-width: 1024px;
+      height: 90vh;
+      margin-top: 20px;
+      background-color: #ffebcd;
+    }
+
+    .nav {
+      position: relative;
+      height: 100%;
+      overflow: hidden;
+      border: 2px solid aqua;
+      transition: 0.7s ease-in-out;
+    }
+
+    .nav-btn {
+      cursor: pointer;
+      padding-top: 14px;
+      width: 100%;
+      height: 80px;
+      color: #ecf0f1;
+      overflow: hidden;
+      text-align: center;
+      text-align: center;
+      box-sizing: border-box;
+      background-color: #262626;
+      transition: 0.7s ease-in-out;
+    }
+
+    .hamburger.is-active .line:nth-child(2) {
+      opacity: 0;
+    }
+
+    .hamburger.is-active .line:nth-child(1) {
+      -webkit-transform: translateY(13px) rotate(45deg);
+      -ms-transform: translateY(13px) rotate(45deg);
+      -o-transform: translateY(13px) rotate(45deg);
+      transform: translateY(13px) rotate(45deg);
+    }
+
+    .hamburger.is-active .line:nth-child(3) {
+      -webkit-transform: translateY(-13px) rotate(-45deg);
+      -ms-transform: translateY(-13px) rotate(-45deg);
+      -o-transform: translateY(-13px) rotate(-45deg);
+      transform: translateY(-13px) rotate(-45deg);
+    }
+
+    .line {
+      width: 50px;
+      height: 5px;
+      background-color: #ecf0f1;
+      display: block;
+      margin: 8px auto;
+      transition: .7s ease-in-out;
+    }
+
+    .scroll-tip {
+      position: absolute;
+      width: 100%;
+      height: 80px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #262626;
+      transform: rotate(-90deg);
+      font-size: 0.5em;
+      user-select: none;
+      transition: 1.4s ease-in-out;
+    }
+
+    .scroll-tip-normal {
+      bottom: 55px;
+    }
+
+    .scroll-tip-active {
+      bottom: 255px;
+    }
+
+    .logo {
+      height: 100%;
+      overflow: hidden;
+      border: 2px solid yellowgreen;
+      transition: 0.7s ease-in-out;
+    }
+
+    .major {
+      height: 100%;
+      overflow: hidden;
+      border: 2px solid red;
+      transition: 0.7s ease-in-out;
+    }
+
+    .parallax {
+      height: 100%;
+      overflow: hidden;
+      border: 2px solid goldenrod;
+      transition: 0.7s ease-in-out;
+    }
+
+    .tools {
+      height: 100%;
+      width: 80px;
+      overflow: hidden;
+      border: 2px solid orange;
+      transition: 0.7s ease-in-out;
+    }
+
+    .swiper {
+      height: 100%;
+      overflow: hidden;
+      border: 2px solid gold;
+      transition: 0.7s ease-in-out;
+    }
+
+    .active {
+      flex: 1;
+    }
+
+    .normal {
+      flex: 0;
+    }
+
+    .dup-active {
+      width: 80px;
+    }
+
+    .dup-normal {
+      width: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="main">
+    <div class="logo left active">LOGO</div>
+    <div class="nav dup-normal">
+      <div class="nav-btn">
+        <div class="hamburger is-active">
+          <span class="line"></span>
+          <span class="line"></span>
+          <span class="line"></span>
+        </div>
+      </div>
+      <div class="scroll-tip scroll-tip-active">
+        <h1>Scroll</h1>
+      </div>
+    </div>
+    <div class="major right normal">MAJOR</div>
+    <div class="parallax right normal">PARALLAX</div>
+    <div class="tools">TOOLS</div>
+    <div class="swiper left active">SWIPER</div>
+  </div>
+</body>
+<script>
+  const scrollTip = document.querySelector('.scroll-tip')
+  const hamburger = document.querySelector('.hamburger')
+  const left = document.querySelectorAll('.left')
+  const right = document.querySelectorAll('.right')
+  const navBtn = document.querySelector('.nav-btn')
+  const logo = document.querySelector('.logo')
+  navBtn.addEventListener('click', function (e) {
+    console.info(e, e.target)
+    hamburger.classList.add('is-active')
+    scrollTip.classList.remove('scroll-tip-normal')
+    scrollTip.classList.add('scroll-tip-active')
+    left.forEach(
+      el => {
+        el.classList.remove('normal')
+        el.classList.add('active')
+      }
+    )
+    right.forEach(
+      el => {
+        el.classList.remove('active')
+        el.classList.add('normal')
+      }
+    )
+    document.querySelector('.nav').classList.remove('dup-active')
+    document.querySelector('.nav').classList.add('dup-normal')
+  })
+  logo.addEventListener('click', function (e) {
+    console.info(e, e.target)
+    hamburger.classList.remove('is-active')
+    scrollTip.classList.remove('scroll-tip-active')
+    scrollTip.classList.add('scroll-tip-normal')
+    left.forEach(
+      el => {
+        el.classList.remove('active')
+        el.classList.add('normal')
+      }
+    )
+    right.forEach(
+      el => {
+        el.classList.remove('normal')
+        el.classList.add('active')
+      }
+    )
+    document.querySelector('.nav').classList.remove('dup-normal')
+    document.querySelector('.nav').classList.add('dup-active')
+  })
+</script>
+
+</html>
