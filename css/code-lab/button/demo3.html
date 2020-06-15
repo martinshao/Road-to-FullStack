@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>动画边框效果</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    .box {
+      position: relative;
+      height: 200px;
+      width: 200px;
+      padding: 10px;
+      margin: 100px auto;
+      background: #eee;
+      overflow: hidden;
+      /*设置overflow因此隐藏掉4个模拟边框，鼠标移入后再显示出来*/
+    }
+
+    .box .item {
+      height: 100%;
+      color: #fff;
+      font-size: 30px;
+      line-height: 200px;
+      text-align: center;
+      background: #ccc;
+    }
+
+    .box .top,
+    .box .bottom {
+      height: 10px;
+      width: 220px;
+      background: rgb(18, 233, 54);
+    }
+
+    .box .left,
+    .box .right {
+      height: 220px;
+      width: 10px;
+      background: rgb(18, 233, 54);
+    }
+
+    .box .top {
+      position: absolute;
+      top: 0;
+      left: -220px;
+      transition: all 1s ease;
+      /*必须要有，不然数百移出来的时候就不会有动画返回效果*/
+    }
+
+    .box .left {
+      position: absolute;
+      bottom: -220px;
+      left: 0px;
+      transition: all 1s ease;
+    }
+
+    .box .right {
+      position: absolute;
+      top: -220px;
+      right: 0px;
+      transition: all 1s ease;
+    }
+
+    .box .bottom {
+      position: absolute;
+      bottom: 0;
+      right: -220px;
+      transition: all 1s ease;
+    }
+
+    .box:hover .top {
+      animation: topslide 2s infinite linear;
+    }
+
+    .box:hover .left {
+      animation: leftslide 2s infinite linear;
+    }
+
+    .box:hover .right {
+      animation: rightslide 2s infinite linear;
+    }
+
+    .box:hover .bottom {
+      animation: bottomslide 2s infinite linear;
+    }
+    @keyframes topslide {
+      0% {left: -220px}
+      25%{left: -110px}
+      50% {left: 0px}
+      75% {left: 110px}
+      100% {left: 220px}
+    }
+
+    @keyframes rightslide {
+      0% {top: -220px}
+      25%{top: -110px}
+      50% {top: 0px}
+      75% {top: 110px}
+      100% {top: 220px}
+    }
+
+    @keyframes bottomslide {
+      0% {right: -220px}
+      25%{right: -110px}
+      50% {right: 0px}
+      75% {right: 110px}
+      100% {right: 220px}
+    }
+
+    @keyframes leftslide {
+      0% {bottom: -220px}
+      25%{bottom: -110px}
+      50% {bottom: 0px}
+      75% {bottom: 110px}
+      100% {bottom: 220px}
+    }
+  </style>
+</head>
+
+<body>
+  <div class="box">
+    <div class="item">内容</div>
+    <div class="top"></div>
+    <div class="right"></div>
+    <div class="bottom"></div>
+    <div class="left"></div>
+  </div>
+</body>
+
+</html>

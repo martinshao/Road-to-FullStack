@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    @import url("https://fonts.googleapis.com/css?family=Rubik:300,400,500&display=swap");
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Rubik", sans-serif;
+    }
+
+    body {
+      display: flex;
+      justify-content: center;
+      align-self: center;
+      min-height: 100vh;
+      background: #222;
+    }
+
+    .container {
+      position: relative;
+      max-width: 100%;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      grid-template-rows: minmax(100px, auto);
+      margin: 40px;
+      grid-auto-flow: dense;
+      grid-gap: 10px;
+    }
+
+    .container .box {
+      color: #929796;
+      background: #333;
+      padding: 20px;
+      display: grid;
+      font-size: 20px;
+      place-items: center;
+      text-align: center;
+      color: #fff;
+      transition: 0.5s;
+    }
+
+    .container .box:hover {
+      background: #e91e63;
+    }
+
+    .container .box img {
+      position: relative;
+      max-width: 100px;
+      margin-bottom: 10px;
+    }
+
+    .container .box:nth-child(1) {
+      grid-column: span 2;
+      grid-row: span 1;
+    }
+
+    .container .box:nth-child(2) {
+      grid-column: span 1;
+      grid-row: span 2;
+    }
+
+    .container .box:nth-child(4) {
+      grid-column: span 1;
+      grid-row: span 2;
+    }
+
+    .container .box:nth-child(5) {
+      grid-column: span 3;
+      grid-row: span 1;
+    }
+
+    @media (max-width: 991px) {
+      .container {
+        grid-template-columns: repeat(auto-fill, minmax(50%, 1fr));
+        grid-template-rows: minmax(auto, auto);
+      }
+
+      .container .box {
+        grid-column: unset !important;
+        grid-row: unset !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="box">
+      <div class="content">
+        <img src="https://image.flaticon.com/icons/svg/2377/2377010.svg" alt="">
+        <p>Wash hands with soap and water after touching animals and animal products.</p>
+      </div>
+    </div>
+    <div class="box">
+      <div class="content">
+        <img src="https://image.flaticon.com/icons/svg/619/619404.svg" alt="">
+        <p>When coughing and sneezing cover mouth and nose with flexed elbow or tissue.</p>
+      </div>
+    </div>
+    <div class="box">
+      <div class="content">
+        <img src="https://image.flaticon.com/icons/svg/655/655820.svg" alt="">
+        <p>Avoid travelling if you have a fever or cough.</p>
+      </div>
+    </div>
+    <div class="box">
+      <div class="content">
+        <img src="https://image.flaticon.com/icons/svg/2217/2217528.svg" alt="">
+        <p>If you have a fever, cough and difficulty breathing, seek medical care early.</p>
+      </div>
+    </div>
+    <div class="box">
+      <div class="content">
+        <img src="https://image.flaticon.com/icons/svg/2599/2599564.svg" alt="">
+        <p>If you are coughing or sneezing, wear musk and must know how to use it and dispose it properly.</p>
+      </div>
+    </div>
+    <div class="box">
+      <div class="content">
+        <img src="https://image.flaticon.com/icons/svg/1973/1973685.svg" alt="">
+        <p>Eat only well cooked food.</p>
+      </div>
+    </div>
+    <div class="box">
+      <div class="content">
+        <img src="https://image.flaticon.com/icons/svg/2002/2002516.svg" alt="">
+        <p>Avoid close contact with animals that are sick.</p>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
