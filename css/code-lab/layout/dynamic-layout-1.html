@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="./vanilla-tilt.js"></script>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      background-color: #ffebcd;
+    }
+
+    h1 {
+      margin: 0;
+      padding: 0;
+    }
+
+    .main {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      max-width: 1280px;
+      height: 90vh;
+      margin: 60px;
+    }
+
+    .nav {
+      position: relative;
+      height: 100%;
+      overflow: hidden;
+      background-color: white;
+      transition: 0.7s ease-in-out;
+    }
+
+    .nav-btn {
+      cursor: pointer;
+      padding-top: 14px;
+      width: 100%;
+      height: 80px;
+      color: #ecf0f1;
+      overflow: hidden;
+      text-align: center;
+      text-align: center;
+      box-sizing: border-box;
+      background-color: #262626;
+      transition: 0.7s ease-in-out;
+    }
+
+    .hamburger.is-active .line:nth-child(2) {
+      opacity: 0;
+    }
+
+    .hamburger.is-active .line:nth-child(1) {
+      -webkit-transform: translateY(13px) rotate(45deg);
+      -ms-transform: translateY(13px) rotate(45deg);
+      -o-transform: translateY(13px) rotate(45deg);
+      transform: translateY(13px) rotate(45deg);
+    }
+
+    .hamburger.is-active .line:nth-child(3) {
+      -webkit-transform: translateY(-13px) rotate(-45deg);
+      -ms-transform: translateY(-13px) rotate(-45deg);
+      -o-transform: translateY(-13px) rotate(-45deg);
+      transform: translateY(-13px) rotate(-45deg);
+    }
+
+    .line {
+      width: 50px;
+      height: 5px;
+      background-color: #ecf0f1;
+      display: block;
+      margin: 8px auto;
+      transition: .7s ease-in-out;
+    }
+
+    .scroll-tip {
+      position: absolute;
+      width: 100%;
+      height: 80px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #262626;
+      transform: rotate(-90deg);
+      font-size: 0.5em;
+      user-select: none;
+      transition: 1.4s ease-in-out;
+    }
+
+    .scroll-tip-normal {
+      bottom: 55px;
+    }
+
+    .scroll-tip-active {
+      bottom: 255px;
+    }
+
+    .logo {
+      position: relative;
+      height: 100%;
+      overflow: hidden;
+      transition: 0.7s ease-in-out;
+      background: linear-gradient(135deg, #0099F7, #F11712);
+    }
+
+    .logo-main {
+      width: 100%;
+      height: 100%;
+      cursor: pointer;
+    }
+
+    .logo-title {
+      font-size: 5em;
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      color: white;
+    }
+
+    .logo-text {
+      position: absolute;
+      width: 400px;
+      height: 300px;
+      bottom: 0;
+      transform-style: preserve-3d;
+      transform: translateZ(20px);
+      transition: 1.4s ease-in-out;
+    }
+
+    .logo-text.logo-text-active {
+      right: 130px;
+    }
+
+    .logo-text.logo-text-normal {
+      right: -400px;
+    }
+
+    .logo-text::after {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      width: 98.5%;
+      height: 90%;
+      bottom: 0;
+      left: 20px;
+      background: linear-gradient(#00000000, #00000030);
+      border-radius: 8px;
+    }
+
+    .text-inner1 {
+      color: #a29bfe;
+      position: absolute;
+      user-select: none;
+      cursor: pointer;
+      transition: 0.7s ease-in-out;
+      left: 23px;
+      bottom: 140px;
+      font-size: 4em;
+      transform-style: preserve-3d;
+    }
+
+    .text-inner2 {
+      position: absolute;
+      user-select: none;
+      cursor: pointer;
+      transition: 0.7s ease-in-out;
+      left: 26px;
+      bottom: 100px;
+      color: #ffffff;
+      transform-style: preserve-3d;
+    }
+
+    .text-inner2:hover {
+      letter-spacing: 5px;
+    }
+
+    .text-inner3 {
+      color: #a29bfe;
+      position: absolute;
+      user-select: none;
+      cursor: pointer;
+      left: 26px;
+      bottom: 60px;
+      transition: 0.7s ease-in-out;
+      transform-style: preserve-3d;
+    }
+
+    .text-inner4 {
+      color: #a29bfe;
+      font-size: 2.5em;
+      position: absolute;
+      left: 26px;
+      bottom: -5px;
+      transition: 0.7s ease-in-out;
+      user-select: none;
+      cursor: pointer;
+      transform-style: preserve-3d;
+    }
+
+    .text-inner5 {
+      position: absolute;
+      user-select: none;
+      cursor: pointer;
+      right: -120px;
+      transition: 0.7s ease-in-out;
+      list-style: none;
+      justify-content: space-around;
+      bottom: 0;
+      font-size: 1.5em;
+      border-radius: 8px;
+      padding: 5px;
+      color: #ffffff;
+      background: #a29bfe;
+    }
+
+    .text-inner6 {
+      position: absolute;
+      bottom: 50px;
+      left: 26px;
+      width: 80%;
+      height: 5px;
+      border-radius: 8px;
+      transition: 0.7s ease-in-out;
+      cursor: pointer;
+      background: #ffffff;
+      transform-style: preserve-3d;
+    }
+
+    .text-inner5:hover {
+      color: #a29bfe;
+      background: #ffffff;
+    }
+
+    .major {
+      height: 100%;
+      overflow: hidden;
+      border: 2px solid red;
+      transition: 0.7s ease-in-out;
+    }
+
+    .parallax {
+      height: 100%;
+      overflow: hidden;
+      border: 2px solid goldenrod;
+      transition: 0.7s ease-in-out;
+    }
+
+    .tools {
+      height: 100%;
+      width: 80px;
+      overflow: hidden;
+      border: 2px solid orange;
+      transition: 0.7s ease-in-out;
+    }
+
+    .swiper {
+      height: 100%;
+      overflow: hidden;
+      border: 2px solid gold;
+      transition: 0.7s ease-in-out;
+    }
+
+    .active {
+      flex: 1;
+    }
+
+    .normal {
+      flex: 0;
+    }
+
+    .dup-active {
+      width: 80px;
+    }
+
+    .dup-normal {
+      width: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="main">
+    <div class="logo left active">
+      <div class="logo-main" data-tilt data-tilt-glare="true" data-tilt-max-glare="0.5" data-tilt-speed="400" data-tilt-max="3" data-tilt-perspective="600">
+        <h1 class="logo-title">LOGO</h1>
+        <div class="logo-text logo-text-active">
+          <h1 class="text-inner1">白上フブキ</h1>
+          <h1 class="text-inner2">白上吹雪</h1>
+          <h1 class="text-inner3">Shirakami Fubuki</h1>
+          <h1 class="text-inner4">
+            <span>F</span>BK
+          </h1>
+          <div class="text-inner5">
+            <h1>F</h1>
+            <h1>B</h1>
+            <h1>K</h1>
+          </div>
+          <h1 class="text-inner6"></h1>
+        </div>
+      </div>
+    </div>
+    <div class="nav dup-normal">
+      <div class="nav-btn">
+        <div class="hamburger is-active">
+          <span class="line"></span>
+          <span class="line"></span>
+          <span class="line"></span>
+        </div>
+      </div>
+      <div class="scroll-tip scroll-tip-active">
+        <h1>Scroll</h1>
+      </div>
+    </div>
+    <div class="major right normal">MAJOR</div>
+    <div class="parallax right normal">PARALLAX</div>
+    <div class="tools">TOOLS</div>
+    <div class="swiper left active">SWIPER</div>
+  </div>
+</body>
+<script>
+  const scrollTip = document.querySelector('.scroll-tip')
+  const hamburger = document.querySelector('.hamburger')
+  const left = document.querySelectorAll('.left')
+  const right = document.querySelectorAll('.right')
+  const navBtn = document.querySelector('.nav-btn')
+  const logo = document.querySelector('.logo')
+  const logoText = document.querySelector('.logo-text')
+  const logoMain = document.querySelector('.logo-main')
+  navBtn.addEventListener('click', function (e) {
+    console.info(e, e.target)
+    hamburger.classList.add('is-active')
+    scrollTip.classList.remove('scroll-tip-normal')
+    scrollTip.classList.add('scroll-tip-active')
+    left.forEach(
+      el => {
+        el.classList.remove('normal')
+        el.classList.add('active')
+      }
+    )
+    right.forEach(
+      el => {
+        el.classList.remove('active')
+        el.classList.add('normal')
+      }
+    )
+    document.querySelector('.nav').classList.remove('dup-active')
+    document.querySelector('.nav').classList.add('dup-normal')
+
+    logoText.classList.remove('logo-text-normal')
+    logoText.classList.add('logo-text-active')
+  })
+  logo.addEventListener('click', function (e) {
+    console.info(e, e.target)
+    hamburger.classList.remove('is-active')
+    scrollTip.classList.remove('scroll-tip-active')
+    scrollTip.classList.add('scroll-tip-normal')
+    left.forEach(
+      el => {
+        el.classList.remove('active')
+        el.classList.add('normal')
+      }
+    )
+    right.forEach(
+      el => {
+        el.classList.remove('normal')
+        el.classList.add('active')
+      }
+    )
+    document.querySelector('.nav').classList.remove('dup-normal')
+    document.querySelector('.nav').classList.add('dup-active')
+
+    logoText.classList.remove('logo-text-active')
+    logoText.classList.add('logo-text-normal')
+  })
+  VanillaTilt.init(logoMain);
+</script>
+
+</html>
