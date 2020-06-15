@@ -5,12 +5,19 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <script src="./vanilla-tilt.js"></script>
   <style>
     body {
       margin: 0;
       padding: 0;
       display: flex;
       justify-content: center;
+      background-color: #ffebcd;
+    }
+
+    h1 {
+      margin: 0;
+      padding: 0;
     }
 
     .main {
@@ -19,17 +26,16 @@
       justify-content: center;
       align-items: center;
       width: 100%;
-      max-width: 1024px;
+      max-width: 1280px;
       height: 90vh;
-      margin-top: 20px;
-      background-color: #ffebcd;
+      margin: 60px;
     }
 
     .nav {
       position: relative;
       height: 100%;
       overflow: hidden;
-      border: 2px solid aqua;
+      background-color: white;
       transition: 0.7s ease-in-out;
     }
 
@@ -97,10 +103,139 @@
     }
 
     .logo {
+      position: relative;
       height: 100%;
       overflow: hidden;
-      border: 2px solid yellowgreen;
       transition: 0.7s ease-in-out;
+      background: linear-gradient(135deg, #0099F7, #F11712);
+    }
+
+    .logo-main {
+      width: 100%;
+      height: 100%;
+      cursor: pointer;
+    }
+
+    .logo-title {
+      font-size: 5em;
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      color: white;
+    }
+
+    .logo-text {
+      position: absolute;
+      width: 400px;
+      height: 300px;
+      bottom: 0;
+      transform-style: preserve-3d;
+      transform: translateZ(20px);
+      transition: 1.4s ease-in-out;
+    }
+
+    .logo-text.logo-text-active {
+      right: 130px;
+    }
+
+    .logo-text.logo-text-normal {
+      right: -400px;
+    }
+
+    .logo-text::after {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      width: 98.5%;
+      height: 90%;
+      bottom: 0;
+      left: 20px;
+      background: linear-gradient(#00000000, #00000030);
+      border-radius: 8px;
+    }
+
+    .text-inner1 {
+      color: #a29bfe;
+      position: absolute;
+      user-select: none;
+      cursor: pointer;
+      transition: 0.7s ease-in-out;
+      left: 23px;
+      bottom: 140px;
+      font-size: 4em;
+      transform-style: preserve-3d;
+    }
+
+    .text-inner2 {
+      position: absolute;
+      user-select: none;
+      cursor: pointer;
+      transition: 0.7s ease-in-out;
+      left: 26px;
+      bottom: 100px;
+      color: #ffffff;
+      transform-style: preserve-3d;
+    }
+
+    .text-inner2:hover {
+      letter-spacing: 5px;
+    }
+
+    .text-inner3 {
+      color: #a29bfe;
+      position: absolute;
+      user-select: none;
+      cursor: pointer;
+      left: 26px;
+      bottom: 60px;
+      transition: 0.7s ease-in-out;
+      transform-style: preserve-3d;
+    }
+
+    .text-inner4 {
+      color: #a29bfe;
+      font-size: 2.5em;
+      position: absolute;
+      left: 26px;
+      bottom: -5px;
+      transition: 0.7s ease-in-out;
+      user-select: none;
+      cursor: pointer;
+      transform-style: preserve-3d;
+    }
+
+    .text-inner5 {
+      position: absolute;
+      user-select: none;
+      cursor: pointer;
+      right: -120px;
+      transition: 0.7s ease-in-out;
+      list-style: none;
+      justify-content: space-around;
+      bottom: 0;
+      font-size: 1.5em;
+      border-radius: 8px;
+      padding: 5px;
+      color: #ffffff;
+      background: #a29bfe;
+    }
+
+    .text-inner6 {
+      position: absolute;
+      bottom: 50px;
+      left: 26px;
+      width: 80%;
+      height: 5px;
+      border-radius: 8px;
+      transition: 0.7s ease-in-out;
+      cursor: pointer;
+      background: #ffffff;
+      transform-style: preserve-3d;
+    }
+
+    .text-inner5:hover {
+      color: #a29bfe;
+      background: #ffffff;
     }
 
     .major {
@@ -152,7 +287,25 @@
 
 <body>
   <div class="main">
-    <div class="logo left active">LOGO</div>
+    <div class="logo left active">
+      <div class="logo-main" data-tilt data-tilt-glare="true" data-tilt-max-glare="0.5" data-tilt-speed="400" data-tilt-max="3" data-tilt-perspective="600">
+        <h1 class="logo-title">LOGO</h1>
+        <div class="logo-text logo-text-active">
+          <h1 class="text-inner1">白上フブキ</h1>
+          <h1 class="text-inner2">白上吹雪</h1>
+          <h1 class="text-inner3">Shirakami Fubuki</h1>
+          <h1 class="text-inner4">
+            <span>F</span>BK
+          </h1>
+          <div class="text-inner5">
+            <h1>F</h1>
+            <h1>B</h1>
+            <h1>K</h1>
+          </div>
+          <h1 class="text-inner6"></h1>
+        </div>
+      </div>
+    </div>
     <div class="nav dup-normal">
       <div class="nav-btn">
         <div class="hamburger is-active">
@@ -178,6 +331,8 @@
   const right = document.querySelectorAll('.right')
   const navBtn = document.querySelector('.nav-btn')
   const logo = document.querySelector('.logo')
+  const logoText = document.querySelector('.logo-text')
+  const logoMain = document.querySelector('.logo-main')
   navBtn.addEventListener('click', function (e) {
     console.info(e, e.target)
     hamburger.classList.add('is-active')
@@ -197,6 +352,9 @@
     )
     document.querySelector('.nav').classList.remove('dup-active')
     document.querySelector('.nav').classList.add('dup-normal')
+
+    logoText.classList.remove('logo-text-normal')
+    logoText.classList.add('logo-text-active')
   })
   logo.addEventListener('click', function (e) {
     console.info(e, e.target)
@@ -217,7 +375,11 @@
     )
     document.querySelector('.nav').classList.remove('dup-normal')
     document.querySelector('.nav').classList.add('dup-active')
+
+    logoText.classList.remove('logo-text-active')
+    logoText.classList.add('logo-text-normal')
   })
+  VanillaTilt.init(logoMain);
 </script>
 
 </html>
