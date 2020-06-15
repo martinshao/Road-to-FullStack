@@ -85,6 +85,8 @@
 
 * [7 Architectural Attributes of a Reliable React Component](https://dmitripavlutin.com/7-architectural-attributes-of-a-reliable-react-component)
 * [可靠React组件设计的7个准则之SRP](https://juejin.im/post/5d4acb28e51d45620771f082)
+* [How do you separate components?](https://reactarmory.com/answers/how-should-i-separate-components)
+* [[译] 你是如何拆分组件的？](https://juejin.im/post/59aa7f8c6fb9a024747f13b7)
 
 
 [31]: https://github.com/Martin-Shao/Road-to-FullStack/blob/master/react/articles/component1.md
