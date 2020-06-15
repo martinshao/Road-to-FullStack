@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+  const original = [
+    {
+      id: 1,
+      name: 'tom',
+      age: 24
+    },
+    {
+      id: 2,
+      name: 'tim',
+      age: 25
+    },
+    {
+      id: 3,
+      name: 'jack',
+      age: 24
+    },
+
+  ]
+
+  const update = [
+    {
+      id: 1,
+      gender: 'male',
+      eyeColour: 'blue',
+      weight: 150
+    },
+    {
+      id: 2,
+      gender: 'male',
+      eyeColour: 'green',
+      weight: 175
+    },
+    {
+      id: 3,
+      gender: 'male',
+      eyeColour: 'hazel',
+      weight: 200
+    },
+  ]
+
+  function mergeById(array1, array2) {
+    const findPerson = id => array2.find(person => person.id === id);
+    return array1.map(person => Object.assign({}, person, findPerson(person.id)))
+  }
+
+  console.log(mergeById(original, update));
+</script>
+
+</html>
