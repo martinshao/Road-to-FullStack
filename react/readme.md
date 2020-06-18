@@ -23,6 +23,7 @@
 * `mitt`: 关于 EventEmitter 我想应该很多同学都很熟悉了。简而言之是一个事件的发布与订阅器。这两天读到了一些非常有意思的小库，虽然小但是功能完备，比如说这次我们要讲解的 Mitt。[Mitt](https://github.com/developit/mitt)
 * `SWR`: SWR is a React Hooks library for remote data fetching. [SWR](https://github.com/zeit/swr)
 * `react-beautiful-dnd`: Beautiful and accessible drag and drop for lists with React. [react-beautiful-dnd](https://github.com/atlassian/react-beautiful-dnd) https://react-beautiful-dnd.netlify.com
+* `awesome-react-hooks`: Awesome React Hooks Resources
 
 ## 3-React组件类型一网打尽系列
 
@@ -72,6 +73,8 @@
 
 ## 9-React 造轮子系列
 
+### 优秀轮子源码学习
+* [react-component/dialog](https://github.com/react-component/dialog) antd出品
 
 ## 10-React 组件设计原则
 
