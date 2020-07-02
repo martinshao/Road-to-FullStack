@@ -38,6 +38,41 @@ console.info(Person);
 console.info(typeof Person.prototype) // => object
 ```
 
+## 隐式原型(__proto__)和显式原型(prototype)
+
+### 显式原型 explicit prototype property
+
+每一个函数在创建之后都会拥有一个名为prototype的属性，这个属性指向函数的原型对象。通过Function.prototype.bind方法构造出来的函数是个例外，它没有prototype属性。
+
+### 隐式原型 implicit prototype link
+
+avaScript中任意对象都有一个内置属性[[prototype]]，在ES5之前没有标准的方法访问这个内置属性，但是大多数浏览器都支持通过__proto__来访问。ES5中有了对于这个内置属性标准的Get方法Object.getPrototypeOf()Note: Object.prototype 这个对象是个例外，它的__proto__值为null
+
+>  隐式原型指向创建这个对象的函数( `constructor` )的 `prototype`
+
+### 作用
+
+* 显式原型的作用：用来实现基于原型的继承与属性的共享。
+  > ECMAScript does not use classes such as those in C++, Smalltalk, or Java. Instead objects may be created in various ways including via a literal notation or via constructors which create objects and then execute code that initialises all or part of them by assigning initial values to their properties. Each constructor is a function that has a property named “prototype” that is used to implement prototype-based inheritance and shared properties.Objects are created by using constructors in new expressions; for example, new Date(2009,11) creates a new Date object. ----ECMAScript Language Specification
+* 隐式原型的作用：构成原型链，同样用于实现基于原型的继承。举个例子，当我们访问obj这个对象中的x属性时，如果在obj中找不到，那么就会沿着__proto__依次查找。
+  > Every object created by a constructor has an implicit reference (called the object’s prototype) to the value of its constructor’s “prototype” ----ECMAScript Language Specification
+
+### __proto__的指向
+
+__proto__的指向到底如何判断呢？根据ECMA定义 'to the value of its constructor’s "prototype" ' ----指向创建这个对象的函数的显式原型。所以关键的点在于找到创建这个对象的构造函数，接下来就来看一下JS中对象被创建的方式，一眼看过去似乎有三种方式：（1）对象字面量的方式 （2）new 的方式 （3）ES5中的Object.create() 但是我认为本质上只有一种方式，也就是通过new来创建。为什么这么说呢，首先字面量的方式是一种为了开发人员更方便创建对象的一个语法糖，本质就是 var o = new Object(); o.xx = xx;o.yy=yy; 再来看看Object.create(),这是ES5中新增的方法，在这之前这被称为原型式继承，
+
+道格拉斯在2006年写了一篇文章，题为 Prototypal Inheritance In JavaScript。在这篇文章中，他介绍了一种实现继承的方法，这种方法并没有使用严格意义上的构造函数。他的想法是借助原型可以基于已有的对象创建新对象，同时还不比因此创建自定义类型，为了达到这个目的，他给出了如下函数:
+
+``` js
+function object(o){
+  function F(){}
+  F.prototype = o;
+  return new F()
+}
+// ----- 《JavaScript高级程序设计》P169
+```
+
+
 ## 理解原型对象、prototype属性、constructor构造函数
 
 JavaScript中，**无论什么时候**，只要创建了一个新函数，就会根据一组特定的规则为该函数创建一个 `prototype` 属性，这个属性指向函数的原型对象。
@@ -65,7 +100,9 @@ function Person(name, age) {
 控制台可以看到清晰的结构  
 ![prototype console](https://img.alicdn.com/tfs/TB1XcsLlRr0gK0jSZFnXXbRRXXa-418-245.png "prototype console")
 
-创建了自定义的构造函数之后，其原型对象默认只会取得 `constructor` 属性；至于其他方法，则都是从 `Object` 继承而来的。当调用构造函数创建一个新实例后，该实例的内部将包含一个指针（内部属性），指向构造函数的原型对象。**ECMA-262**第5版中管这个指针叫 `[[Prototype]]` 。虽然在脚本中没有标准的方式访问 `[[Prototype]]` ，但Firefox、Safari和Chrome在每个对象上都支持一个属性 `__proto__` ；而在其他实现中，这个属性对脚本则是完全不可见的。不过，要明确的真正重要的一点就是，**这个连接存在于实例与构造函数的原型对象之间，而不是存在于实例与构造函数之间**。
+创建了自定义的构造函数之后，其原型对象默认只会取得 `constructor` 属性；至于其他方法，则都是从 `Object` 继承而来的。当调用构造函数创建一个新实例后，该实例的内部将包含一个指针（内部属性），指向构造函数的原型对象。**ECMA-262**第5版中管这个指针叫 `[[Prototype]]` 。虽然在脚本中没有标准的方式访问 `[[Prototype]]` ，但Firefox、Safari和Chrome在每个对象上都支持一个属性 `__proto__` ；而在其他实现中，这个属性对脚本则是完全不可见的。
+
+不过，要明确的真正重要的一点就是，**这个连接存在于实例与构造函数的原型对象之间，而不是存在于实例与构造函数之间**。
 
 ### 确定对象之间关系(确立构造函数与实例对象间关系)
 
@@ -380,25 +417,3 @@ function Person(name, age) {
 
 最后的最后我们祭出经典原型链图。  
 ![](https://img.alicdn.com/tfs/TB1RcEMlG61gK0jSZFlXXXDKFXa-618-781.jpg)
-
- the constructor property of an instance of a function object "specifies the function that creates an object's prototype". This is confusing, so Object.constructor is "the function that creates an object's prototype"? What object is "an object" exactly?
-
-I'm trying to understand why is Object.constructor's constructor property itself?
-
-as such: Object.constructor===Object.constructor.constructor // why?
-
-Edit: i find T.J. Crowder's answer good but the phrasing of his words is pretty vague (making it hard to understand at first read, at least for me). Here's the rephrased answer:
-
-1) Object is an instance of Function
-
-2) Object does not have a property called constructor so when we call Object.constructor, it actually gives us Object.[[prototype]].constructor (aka Object.__proto__.constructor).
-
-3) Object.constructor (aka Object.__proto__.constructor) is an instance of Function.
-
-4) Since both Object and Object.constructor (aka Object.__proto__.constructor) are instances of Function therefore they both have a __proto__ property which refer to the same object. In other words Object.__proto__ === Object.constructor.__proto__ (aka Object.__proto__.constructor._proto_)
-
-5) The line Object.constructor===Object.constructor.constructor is actually equal to the line Object.__proto__.constructor===Object.constructor.__proto__.constructor
-
-6) combining steps 4 and 5 give us Object.constructor===Object.constructor.constructor
-
-7) goto step 4)
