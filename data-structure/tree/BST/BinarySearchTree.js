@@ -25,10 +25,10 @@ class Node {
 
 class BinarySearchTree {
   constructor(arr) {
-    this.root = new Node(arr[0])
     if (arr.length === 0) return
-    arr.forEach((el, i) => {
-      this.root.insertNode(new Node(arr[i]))
+    this.root = new Node(arr.shift())
+    arr.forEach((el) => {
+      this.root.insertNode(new Node(el))
     });
   }
 
@@ -44,61 +44,72 @@ class BinarySearchTree {
     const arr = []
     while (queue.length > 0) {
       node = queue.shift()
-      if (node) {
-        arr.push(node.data)
-        if (node.data) queue.push(node.left)
-        if (node.right) queue.push(node.right)
-      }
+      arr.push(node.data)
+      node.left && queue.push(node.left)
+      node.right && queue.push(node.right)
     }
     return arr
   }
 
-  //前序遍历
-  preOrder(arr = [], node = this.root) {
-    if (node === null) return arr;
-    arr.push(node.data)
-    this.preOrder(arr, node.left)
-    this.preOrder(arr, node.right)
-    return arr;
-  }
-  //中序遍历
-  inOrder(arr = [], node = this.root) {
-    if (node === null) return arr;
-    this.inOrder(arr, node.left)
-    arr.push(node.data)
-    this.inOrder(arr, node.right)
-    return arr;
-  }
   //后序遍历
-  postOrder(arr, node = this.root) {
-    if (node === null) return arr;
-    this.postOrder(arr, node.left)
-    arr.push(node.data)
-    this.postOrder(arr, node.right)
-    return arr;
-  }
+  // postOrder2() {
+  //   // 这个方法有问题，稍后研究
+  //   let node = this.root
+  //   let flag = ''
+  //   const arr = [], stack = [], dirStack = []
+  //   while (node || stack.length) {
+  //     if (node.left) {
+  //       stack.push(node)
+  //       node = node.left
+  //       dirStack.push('left')
+  //     } else if (node.right) {
+  //       stack.push(node)
+  //       node = node.right
+  //       dirStack.push('right')
+  //     } else {
+  //       arr.push(node.data)
+  //       node = stack.pop()
+  //       node && (dirStack.pop() === 'left' ? node.left = null : node.right = null)
+  //     }
+  //   }
+  //   return arr
+  // }
 
-  //前序遍历
-  preOrder2() {
-    var node = this.root
-    var arr = []
-    var stack = []
-    while (node !== null || stack.length > 0) {
-      while (node !== null) {
-        stack.push(node)
-        arr.push(node.data)
-        node = node.left
-      }
-      //出来的时候node的左树已经遍历完了，此时是null
-      if (stack.length > 0) {
-        node = stack.pop()
-        node = node.right
-      }
-      //出来后回到大循环的开始，又进入第一个小循环遍历左树
-    }
-    return arr
-  }
+  postOrder() {
+    const node = this.root
+    const arr = [], stack = []
 
+    // stack < BTNode *> s;
+    // BinTree * p=root;
+    // BTNode * temp;
+    // while (node || stack.length) {
+    //   while (node)              //沿左子树一直往下搜索，直至出现没有左子树的结点 
+    //   {
+    //     BTNode * btn=(BTNode *)malloc(sizeof(BTNode));
+    //     btn -> btnode=p;
+    //     btn -> isFirst=true;
+    //     s.push(btn);
+    //     p = p -> lchild;
+    //   }
+
+    //   if (!s.empty()) {
+    //     temp = s.top();
+    //     s.pop();
+    //     if (temp -> isFirst == true)     //表示是第一次出现在栈顶 
+    //     {
+    //       temp -> isFirst=false;
+    //       s.push(temp);
+    //       p = temp -> btnode -> rchild;
+    //     }
+    //     else//第二次出现在栈顶 
+    //     {
+    //       cout << temp -> btnode -> data << "";
+    //       p = NULL;
+    //     }
+    //   }
+    // }
+  }
 }
 
-var BST = new BinarySearchTree([9, 6, 11, 7, 19, 8, 20, 5])
+// const BST = new BinarySearchTree([9, 6, 11, 7, 19, 8, 20, 5])
+const BST = new BinarySearchTree([23, 45, 16, 37, 3, 99, 22])
