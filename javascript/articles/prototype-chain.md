@@ -38,13 +38,13 @@ console.info(Person);
 console.info(typeof Person.prototype) // => object
 ```
 
-## 隐式原型(__proto__)和显式原型(prototype)
+## 隐式原型(`__proto__`)和显式原型(`prototype`)
 
-### 显式原型 explicit prototype property
+### 显式原型 `explicit prototype property`
 
 每一个函数在创建之后都会拥有一个名为prototype的属性，这个属性指向函数的原型对象。通过Function.prototype.bind方法构造出来的函数是个例外，它没有prototype属性。
 
-### 隐式原型 implicit prototype link
+### 隐式原型 `implicit prototype link`
 
 avaScript中任意对象都有一个内置属性[[prototype]]，在ES5之前没有标准的方法访问这个内置属性，但是大多数浏览器都支持通过__proto__来访问。ES5中有了对于这个内置属性标准的Get方法Object.getPrototypeOf()Note: Object.prototype 这个对象是个例外，它的__proto__值为null
 
