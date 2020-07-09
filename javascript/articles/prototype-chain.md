@@ -417,3 +417,8 @@ function Person(name, age) {
 
 最后的最后我们祭出经典原型链图。  
 ![](https://img.alicdn.com/tfs/TB1RcEMlG61gK0jSZFlXXXDKFXa-618-781.jpg)
+
+
+## 参考资料
+
+* (JavaScript 中的构造函数)[https://juejin.im/entry/584a1c98ac502e006c5d63b8]

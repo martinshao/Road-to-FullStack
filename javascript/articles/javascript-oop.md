@@ -42,3 +42,8 @@ SOLID原则（单一职责原则、开放关闭原则、里氏替换原则、接
 24种设计模式(gof23+1)
 
 ## JavaScript之对象
+
+## 参考资料
+
+* (百度百科-面向对象)[https://baike.baidu.com/item/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1]
+* (面向对象的三个基本特征 和 五种设计原则)[https://blog.csdn.net/cancan8538/article/details/8057095]
