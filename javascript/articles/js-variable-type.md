@@ -6,7 +6,7 @@
 
 ## JavaScript变量类型思维导图
 
-![variable type](https://wx2.sbimg.cn/2020/07/31/Pa9nG.png "variable type")
+![Pa9nG.png](https://wx2.sbimg.cn/2020/07/31/Pa9nG.png)
 
 ## 概述
 
