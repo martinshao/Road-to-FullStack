@@ -190,3 +190,175 @@ typeof [] ; //object
 typeof new Date(); //object
 typeof new RegExp(); //object
 ```
+
+那么typeof的实现原理是什么呢？不同的对象底层都表示为二进制，其低位的 1-3 位用来存储类型信息，typeof 就是通过判断前三位的机器码来判定类型。判定规则如下:
+
+000: 对象
+110: 布尔
+010: 浮点数
+100: 字符串
+1: 整数
+
+有两个值比较特殊:
+
+
+null(JSVAL_NULL)
+null 的所有机器码为 0，因此 typeof null 为"object"
+
+
+undefined(JSVAL_VOID)
+用整数 −2^30(整数范围之外的数字)表示。
+
+
+以下是 typeof 的引擎代码：
+
+``` cpp
+JS_PUBLIC_API(JSType)
+   JS_TypeOfValue(JSContext *cx, jsval v)
+   {
+       JSType type = JSTYPE_VOID;// 初始化为undefined
+       JSObject *obj;
+       JSObjectOps *ops;
+       JSClass *clasp;
+
+       CHECK_REQUEST(cx);
+       if (JSVAL_IS_VOID(v)) {
+           type = JSTYPE_VOID;
+       } else if (JSVAL_IS_OBJECT(v)) {
+           obj = JSVAL_TO_OBJECT(v);
+           if (obj &&
+               (ops = obj->map->ops,
+                ops == &js_ObjectOps
+                ? (clasp = OBJ_GET_CLASS(cx, obj),
+                   clasp->call || clasp == &js_FunctionClass)
+                : ops->call != 0)) {
+               type = JSTYPE_FUNCTION;
+           } else {
+               type = JSTYPE_OBJECT;
+           }
+       } else if (JSVAL_IS_NUMBER(v)) {
+           type = JSTYPE_NUMBER;
+       } else if (JSVAL_IS_STRING(v)) {
+           type = JSTYPE_STRING;
+       } else if (JSVAL_IS_BOOLEAN(v)) {
+           type = JSTYPE_BOOLEAN;
+       }
+       return type;
+   }
+```
+
+可以看到 typeof 首先判断值是不是 undefined(通过值是不是等于 JSVAL_VOID(−2^30)来判断)。
+``` cpp
+#define JSVAL_IS_VOID(v)  ((v) == JSVAL_VOID)
+```
+当判断为 object 类型后会作进一步判断，如果可以调用 call 或者内部属性[[Class]]标记为函数则为函数，因此 typeof 可以判断是不是函数。
+``` cpp
+clasp->call
+clasp == &js_FunctionClass
+```
+对于 null，通过 JSVAL_IS_OBJECT 判断为 true 后，作进一步判断，不是函数，因此为 object。
+``` cpp
+#define JSVAL_IS_OBJECT(v)      (JSVAL_TAG(v) == JSVAL_OBJECT)
+```
+
+### instanceof
+
+instanceof 运算符用于检测构造函数的 prototype 属性是否出现在某个实例对象的原型链上。
+``` js
+object instanceof constructor
+// object 某个实例对象
+// constructor 某个构造函数
+```
+
+``` js
+[] instanceof Array; //true
+[] instanceof Object; //true
+new Date() instanceof Date;//true
+new Date() instanceof Object;//true
+function Person(){};
+new Person() instanceof Person;//true
+new Person() instanceof Object;//true
+```
+
+### Object.prototype.toString
+
+``` js
+Object.prototype.toString.call('') ;   // [object String]
+Object.prototype.toString.call(1) ;    // [object Number]
+Object.prototype.toString.call(true) ; // [object Boolean]
+Object.prototype.toString.call(undefined) ; // [object Undefined]
+Object.prototype.toString.call(null) ; // [object Null]
+Object.prototype.toString.call(new Function()) ; // [object Function]
+Object.prototype.toString.call(new Date()) ; // [object Date]
+Object.prototype.toString.call([]) ; // [object Array]
+Object.prototype.toString.call(new RegExp()) ; // [object RegExp]
+Object.prototype.toString.call(new Error()) ; // [object Error]
+Object.prototype.toString.call(document) ; // [object HTMLDocument]
+Object.prototype.toString.call(window) ; //[object Window]
+```
+
+## 变量复制
+
+上面我们说了直接类型和引用类型在拷贝过程中的区别，引发一个问题是如何真是拷贝一个引用类型变量，而不仅仅是拷贝其引用地址。
+
+这里就要涉及到两个概念：浅拷贝、深拷贝，
+
+
+## 类型转换与假值
+
+JavaScript是一门动态语言，意味着在执行过程中发生类型转换是一件很正常的事情。我们将JavaScript中常见的类型转换分为显示转换(explicitly conversion，Explicit Coercion)和隐式转换(implicitly conversion)。
+
+常见的显示转换常用API完成，如下：
+
+``` js
+Number("25") // 数字25，此时字符串转换为数字
+Number("") // 数字0
+Number([]) // 数字0
+Number(null) // 数字0
+Number(true) // 数字1
+Number(false) // 数字0
+Number("Test") // NaN，因为字符串"Test"无法转换为数字了
+```
+
+类似的API还包括：parseInt()、parseFloat()、String()、Boolean()等
+``` js
+String(25) //Output is "25" as 25 is converted to string "25"
+String([]) //Output is "" as [] is converted to empty string ""
+String(null) //Output is "null" as null is converted to string "null"
+String(true) //Output is "true" as true is converted to string "true"
+String(false) //Output is "false" as false is converted to string "false"
+String({}) //Output is "[object Object]" as {} is converted to string(similar to calling toString() on a object)
+
+Boolean(25) //Output is true
+Boolean([]) //Output is true
+Boolean(null) //Output is false
+Boolean({}) //Output is true
+Boolean("Yeah! I will be converted to Boolean.") //Output is true
+
+```
+
+常见的隐式转换则发生在计算过程中，如下：
+``` js
+"1" + 5 === "15" // 5 got converted to string.
+1 + "5" === "15" // 1 got converted to string.
+1 - "5" === -4 // "5" got converted to a number.
+alert({}) // alerts "[object Object]", {} got converted to string.
+!0 === true // 0 got converted to boolean
+if ("hello") {} // runs, "hello" got converted to boolean.
+new Array(3) === ",,"; // Return true. The array is converted to string - Array.toString();
+```
+
+### 假值
+
+在见识了JavaScript的类型转换之后，我们隐秘的发现一类日常开发中十分常用到的情况，就是boolean类型的转换。
+
+JavaScript中有 6 个值为“假”，这六个值是
+
+``` js
+false
+null
+undefined
+0
+''  // (空字符串)
+NaN
+```
