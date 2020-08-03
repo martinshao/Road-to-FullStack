@@ -40,14 +40,20 @@ Function : typeof instance === "function"
 
 ## 存储空间比较
 
+JavaScript的数据按照存储方式的不同，一般会分为两种，一种存在栈内存中，一种存在堆内存中。
+
+JS的内存空间分为栈(stack)、堆(heap)、池(一般也会归类为栈中)。
+栈是一种后入先出的线性表数据结构。一般数据存储的时候是连续的，并且大小空间固定。这也是为什么null是object类型却属于基本数据类型。
+堆是一种经过排序的树形数据结构，每个结点都有一个值。
+它的存取数据的方式，与书架与书非常相似。我们不关心书的放置顺序是怎样的，只需知道书的名字就可以取出我们想要的书了。
+
 ![save type](../_assets/20191016202804.png "save type")
 
 ## 拷贝方式的不同
 
-## 常见的基本数据类型
+不同数据结构存储的方式不同，意味着copy方式也不同。
 
-**Number、String 、Boolean、Null和Undefined。**
-基本数据类型是按值访问的，因为可以直接操作保存在变量中的实际值。示例：
+**Number、String 、Boolean、Null和Undefined。**都属于基本数据类型，是按值访问的，因为可以直接操作保存在变量中的实际值。示例：
 
 ``` js
   var a = 10
@@ -55,6 +61,11 @@ Function : typeof instance === "function"
   b = 20;
   console.log(a); // 10值
 ```
+
+![save type](../_assets/20200803173733.png "save type")
+![save type](../_assets/20200803173800.png "save type")
+
+## 常见的基本数据类型
 
 上面，b获取的是a值得一份拷贝，虽然，两个变量的值相等，但是两个变量保存了两个不同的基本数据类型值。
 b只是保存了a复制的一个副本。所以，b的改变，对a没有影响。
