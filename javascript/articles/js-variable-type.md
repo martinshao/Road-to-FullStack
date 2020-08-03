@@ -47,49 +47,46 @@ JS的内存空间分为栈(stack)、堆(heap)、池(一般也会归类为栈中)
 堆是一种经过排序的树形数据结构，每个结点都有一个值。
 它的存取数据的方式，与书架与书非常相似。我们不关心书的放置顺序是怎样的，只需知道书的名字就可以取出我们想要的书了。
 
+javascript的引用数据类型是保存在堆内存中的对象。与其他语言的不同是，你不可以直接访问堆内存空间中的位置和操作堆内存空间。只能操作对象在栈内存中的引用地址。  
+所以，引用类型数据在栈内存中保存的实际上是对象在堆内存中的引用地址。通过这个引用地址可以快速查找到保存中堆内存中的对象。
+
 ![save type](../_assets/20191016202804.png "save type")
 
 ## 拷贝方式的不同
 
-不同数据结构存储的方式不同，意味着copy方式也不同。
+不同数据结构存储的方式不同，意味着copy方式也不同。我们通常按照存储方式的不同区分js的数据类型为基本数据类型和引用数据类型，这么做也是为了区分拷贝方式的不同。
 
-**Number、String 、Boolean、Null和Undefined。**都属于基本数据类型，是按值访问的，因为可以直接操作保存在变量中的实际值。示例：
+**undefined、Boolean、Number、String、BigInt和Symbol。**都属于基本数据类型，是按值访问的，因为可以直接操作保存在变量中的实际值。
+
+在实际的拷贝过程中，也是开辟新的内存空间，复制一份相同的副本存储在新内存空间中，如下示例：
 
 ``` js
-  var a = 10
-  var b = a;
-  b = 20;
-  console.log(a); // 10值
+  let num1 = 10
+  let num2 = a;
+  num2 = 20;
+  console.log(num1); // 10值
 ```
 
-![save type](../_assets/20200803173733.png "save type")
-![save type](../_assets/20200803173800.png "save type")
-
-## 常见的基本数据类型
-
-上面，b获取的是a值得一份拷贝，虽然，两个变量的值相等，但是两个变量保存了两个不同的基本数据类型值。
-b只是保存了a复制的一个副本。所以，b的改变，对a没有影响。
 下图演示了这种基本数据类型赋值的过程：
 
-![basic-data](https://img.alicdn.com/tfs/TB1rQQElQL0gK0jSZFtXXXQCXXa-544-222.png "basic-data")
+备注：这其中 null 比较特殊，它属于特殊基本类型。
 
-常见的引用类型数据
-也就是对象类型Object type，比如：Object 、Array 、Function 、Data等。  
-javascript的引用数据类型是保存在堆内存中的对象。与其他语言的不同是，你不可以直接访问堆内存空间中的位置和操作堆内存空间。只能操作对象在栈内存中的引用地址。  
-所以，引用类型数据在栈内存中保存的实际上是对象在堆内存中的引用地址。通过这个引用地址可以快速查找到保存中堆内存中的对象。
+![save type](../_assets/20200803173733.png "save type")
+
+基本上所有对象类型就是引用类型，引用类型的拷贝特点就是复制引用。
+
+![save type](../_assets/20200803173800.png "save type")
+
+通过代码说明就是浅复制的情况下，对于变量的复制只是简单的复制了引用地址，而两个变量的引用地址却同时指向了堆内存中的同一个对象。
 
 ``` js
-　　var obj1 = new Object();
-　　var obj2 = obj1;
-　　obj2.name = "我有名字了";
-　　console.log(obj1.name); // 我有名字了
+  const person1 = new Object();
+  const person2 = person1;
+  person2.name = "Jack";
+  console.log(person1.name); // Jack
 ```
 
-说明这两个引用数据类型指向了同一个堆内存对象。obj1赋值给onj2，实际上这个堆内存对象在栈内存的引用地址复制了一份给了obj2，  
-但是实际上他们共同指向了同一个堆内存对象。实际上改变的是堆内存对象。
-下面我们来演示这个引用数据类型赋值过程：
-
-![object](https://img.alicdn.com/tfs/TB1zHcJlND1gK0jSZFKXXcJrVXa-577-513.png "object")
+关于如何解决浅复制带来的问题，下面会有方案。
 
 ## 总结区别
 
