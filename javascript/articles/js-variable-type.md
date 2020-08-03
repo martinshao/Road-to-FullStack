@@ -156,4 +156,37 @@ alert(typeof null == typeof undefined); //output "false"
 
 使用typeof方法在前面已经讲过，null与undefined的类型是不一样的，所以输出"false"。而===代表绝对等于，在这里null === undefined输出false。
 
-## 变量
+## 类型检测
+
+类型检测是日常开发中常会遇到的一类问题，对于JavaScript变量类型的检测有这么几种方式：typeof、instanceof、constructor、prototype、特殊类。接下里我会一一介绍，这里非常琐碎，但是非常有用。
+
+### typeof
+
+typeof 操作符返回一个字符串，表示未经计算的操作数的类型。具体用法如下：
+``` js
+typeof operand
+typeof(operand)
+// operand 一个表示对象或原始值的表达式，其类型将被返回。
+```
+typeof 操作符是有一定局限性的，它返回的类型仅仅包括以下类型：
+
+``` js
+typeof undefined // "undefined"
+typeof null      // "object"
+typeof true      // "boolean"
+typeof 13        // "number"
+typeof 518n      // "bigint"
+typeof 'shaw'    // "string"
+typeof new Symbol(13) // "symbol"
+typeof new Function() // "function"
+typeof {name: 'shaw'} // "object"
+```
+
+这里typeof的局限性主要体现在了两个方面，一是将特殊原始类型 null 判定为对象，二是无法具体区分内置类型(Date、Array、RegExp等)
+
+``` js
+typeof null; //object
+typeof [] ; //object
+typeof new Date(); //object
+typeof new RegExp(); //object
+```
