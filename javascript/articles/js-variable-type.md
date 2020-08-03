@@ -16,9 +16,31 @@
 > 到目前为止，我们看到的大多数引用类型值都是Object类型的实例。  
 ><p align="right"> -------《JavaScript高级程序设计》</p>
 
-备注：**严谨的来说，JavaScript只有七种数据类型：Number、String 、Boolean、Null、Undefined、Symbol、Object**
+按照最新的ECMAScript规范制定的那样，在JavaScript中有9中变量类型(如果以后面试再遇到类似的问题，可以理直气壮的说9种)
+
+* 6种特殊基本类型(primitive value)：undefined、Boolean、Number、String、BigInt、Symbol
+* null作为一种特殊的基本类型(special primitive value)。如果对象没有被继承实现，就表现为null
+* Object 特殊的引用类型数据结构，用于被继承实现各种内置类型，包装类型等。
+* Function 特殊的引用类数据结构
+
+``` js
+undefined : typeof instance === "undefined"
+Boolean : typeof instance === "boolean"
+Number : typeof instance === "number"
+String : typeof instance === "string"
+BigInt : typeof instance === "bigint"
+Symbol : typeof instance === "symbol"
+
+null : typeof instance === "object"
+
+Object : typeof instance === "object"
+Function : typeof instance === "function"
+```
+
 
 ## 存储空间比较
+
+![save type](../_assets/20191016202804.png "save type")
 
 ## 拷贝方式的不同
 
