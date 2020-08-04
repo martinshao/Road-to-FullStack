@@ -47,6 +47,19 @@ PrimitiveList extends Component {
 
 在我们改变 theme 状态时，子组件毫无意外的进行了 re-render，但其实这并不是我们想要的，优化渲染性能就是避免无意义的渲染的 re-render。此时当我们需要借助 shouldComponentUpdate() 这个生命周期，对子组件进行改造。
 
+这里顺便总结一下用法：
+
+``` js
+shouldComponentUpdate(nextProps, nextState) {
+  return true        
+}
+```
+
+* nextProps: 组件将会接收的下一个参数props
+* nextProps: 组件的下一个状态state
+
+因此当你想要React重新渲染你的组件的时候，就在这个方法中返回true，否则返回false。
+
 ``` js
 class PrimitiveList extends Component {
   static propTypes = {
@@ -92,4 +105,78 @@ const PrimitiveList = memo(({ value }) => {
 PrimitiveList.propTypes = {
   value: PropTypes.number,
 }
+```
+
+``` js
+const MyComponent = React.memo(function MyComponent(props) {
+  /* render using props */
+});
+// or
+React.memo(()=> ())
+```
+
+当然，memo函数赋予我们更多权限，当需要我们手动对比传入的 props 的时候，memo可以手动添加 areEqual 函数，并且自己实现 areEqual 函数。
+
+``` js
+function MyComponent(props) {
+  /* render using props */
+}
+function areEqual(prevProps, nextProps) {
+  /*
+  return true if passing nextProps to render would return
+  the same result as passing prevProps to render,
+  otherwise return false
+  */
+}
+export default React.memo(MyComponent, areEqual);
+```
+
+``` js
+function Memo() {
+
+  const [count, setCount] = useState(10)
+  const [array, setArray] = useState([0, 1, 2])
+  const [dark, setDark] = useState(false)
+
+  const theme = {
+    backgroundColor: dark ? '#333' : '#FFF',
+    color: dark ? '#FFF' : '#333'
+  }
+
+  return (
+    <div style={theme}>
+      <button onClick={() => setDark(preDark => !preDark)}>Toggle theme</button>
+      <button onClick={() => setCount(count + 1)}>Add Count</button>
+      <button onClick={() => setArray([...array, array.length])}>array change</button>
+      <PrimitiveList value={count} />
+      <ObjectList value={array} />
+    </div>
+  )
+}
+
+function ObjectList({ value }) {
+  console.info('%cObjectList is rendering...', 'color: #f1f1b8')
+  return value.map(num => <div key={num}>{num}</div>)
+}
+
+function areEqual(prevProps, nextProps) {
+  return prevProps.value.length === nextProps.value.length
+}
+
+ObjectList.propTypes = {
+  value: PropTypes.arrayOf(PropTypes.number).isRequired,
+}
+
+export default memo(ObjectList, areEqual)
+
+const PrimitiveList = memo(({ value }) => {
+  console.info('%cPrimitiveList is rendering...', 'color: #dcff93')
+  return <div>this is count {value}</div>
+})
+
+PrimitiveList.propTypes = {
+  value: PropTypes.number,
+}
+
+export default PrimitiveList
 ```
