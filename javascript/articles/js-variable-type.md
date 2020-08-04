@@ -346,6 +346,9 @@ alert({}) // alerts "[object Object]", {} got converted to string.
 !0 === true // 0 got converted to boolean
 if ("hello") {} // runs, "hello" got converted to boolean.
 new Array(3) === ",,"; // Return true. The array is converted to string - Array.toString();
+
+!"0" === false // "0" got converted to true, then reversed.
+!"false" === false // "false" converted to true, then reversed.
 ```
 
 ### 假值
