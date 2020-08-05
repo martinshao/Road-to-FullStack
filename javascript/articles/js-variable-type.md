@@ -320,7 +320,7 @@ Number(false) // 数字0
 Number("Test") // NaN，因为字符串"Test"无法转换为数字了
 ```
 
-类似的API还包括：parseInt()、parseFloat()、String()、Boolean()等
+类似的API还包括：parseInt()、parseFloat()、String()、Boolean()、obj.toString()等
 ``` js
 String(25) //Output is "25" as 25 is converted to string "25"
 String([]) //Output is "" as [] is converted to empty string ""
