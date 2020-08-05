@@ -43,7 +43,7 @@
 
 ## 5-React黑魔法Hooks
 
-1. hooks介绍与基本应用
+1. [hooks介绍与基本应用][42]
 1. hooks使用实践及注意事项
 1. hooks造轮子之Redux实现
 1. hooks造轮子之……
@@ -105,3 +105,4 @@
 [39]: https://github.com/Martin-Shao/Road-to-FullStack/blob/master/react/articles/component9.md
 
 [41]: https://github.com/Martin-Shao/Road-to-FullStack/blob/master/react/articles/about-lifecycle.md
+[42]: https://github.com/Martin-Shao/Road-to-FullStack/blob/master/react/articles/about-hooks1.md
