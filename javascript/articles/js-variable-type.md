@@ -402,39 +402,100 @@ const a = String(25)
 
 对象与原始类型相等比较，对象类型会依照 ToPrimitive 规则转换成原始类型的值进行比较。
 
-
 ### 隐式转换
 
-常见的隐式转换则发生在计算过程中，如下：
-``` js
-"1" + 5 === "15" // 5 got converted to string.
-1 + "5" === "15" // 1 got converted to string.
-1 - "5" === -4 // "5" got converted to a number.
-alert({}) // alerts "[object Object]", {} got converted to string.
-!0 === true // 0 got converted to boolean
-if ("hello") {} // runs, "hello" got converted to boolean.
-new Array(3) === ",,"; // Return true. The array is converted to string - Array.toString();
+* 取反操作符 !
+* 条件判断
+* 宽松比较操作符 '=='
+* 计算操作符，常见 '+' '-'
+* . 点号操作符
+* 关系运算符比较
 
-!"0" === false // "0" got converted to true, then reversed.
-!"false" === false // "false" converted to true, then reversed.
+#### 取反操作符 !
+
+取反操作符特别强大，在我们实际开发中运用也非常广泛，可以把非boolean的变量强制转换成boolean类型变量
+
+``` js
+!0
+!12
+![]
+!{}
+!null
+!undefined
 ```
 
-### 常见隐式场景
+#### 条件判断
 
+```
+if (true)
+if ({})
+if ([])
+if (42)
+if(null)
+if(undefined)
+if ("0")
+if ("false")
+if (new Date())
+if (-42)
+if (12n)
+if (3.14)
+if (-3.14)
+if (Infinity)
+if (-Infinity)
+```
 
+#### 比较操作符
+
+我们知道比较操作符有两种，'==' 宽松比较 和 '===' 严格比较，这两者之间是有区别的。
+
+* '==='：严格相等运算符，不会发生类型转换，必须要数据类型和值完全一致
+* '=='：宽松相等运算符比较特殊一点，隐式转换的发生也是有条件的：
+  * 左右两边是null 或 undefined ：没有隐式转换，无条件返回ture
+  * 左右都是是NaN：没有隐式转换，NaN和任何数字都不相等，无条件返回false
+  * 左右都是string,boolean,number：有隐式转换，会将number数据转换成number
+  * 左右或是引用类型：对象类型会依照 ToPrimitive 规则转换成原始类型的值进行比较
+  * 左右都是引用类型：规则是只比较 reference ，只有reference 相同时返回 true
+
+``` js
+[] == []  // false
+{} == {}  // false
+[] != []  // true
+
+[] == 0
+'0' == 0
+
+!0 // true
+!"0" // false
+!"false" // false
+
+new Array(3) === ",,"
+```
+
+#### 计算操作符
+
+``` js
+"1" + 5 === "15"
+1 + "5" === "15"
+1 - "5" === -4
+
+{} + 1 === 1
+[] + 1 === '1'
+```
 
 ### 假值
 
 在见识了JavaScript的类型转换之后，我们隐秘的发现一类日常开发中十分常用到的情况，就是boolean类型的转换。
 
-JavaScript中有 6 个值为“假”，这六个值是
+JavaScript中有 8 个值为“假”，这8个值是
 
 ``` js
 false
+0
+-0
+0n
+''
 null
 undefined
-0
-''  // (空字符串)
 NaN
 ```
 
