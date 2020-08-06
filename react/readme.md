@@ -24,6 +24,7 @@
 * `SWR`: SWR is a React Hooks library for remote data fetching. [SWR](https://github.com/zeit/swr)
 * `react-beautiful-dnd`: Beautiful and accessible drag and drop for lists with React. [react-beautiful-dnd](https://github.com/atlassian/react-beautiful-dnd) https://react-beautiful-dnd.netlify.com
 * `awesome-react-hooks`: Awesome React Hooks Resources
+* `useHooks`: Easy to understand React Hook recipes by Gabe Ragland [useHooks](https://usehooks.com/)
 
 ## 3-React组件类型一网打尽系列
 
