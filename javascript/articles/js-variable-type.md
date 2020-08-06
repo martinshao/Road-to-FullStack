@@ -504,3 +504,4 @@ NaN
 * [从一道面试题说起—js隐式转换踩坑合集](https://juejin.im/post/6844903694039777288)
 * [带你撸一遍JS隐式转换细则](https://juejin.im/post/6844903934876745735)
 * [js隐式转换相关知识](https://zhuanlan.zhihu.com/p/38976424)
+* [js中比较运算符隐式类型转换](https://segmentfault.com/a/1190000018637123)
