@@ -2,6 +2,9 @@
 
 ![](../assets/purecomponent.png)
 
+> 从组件的角度谈性能优化的时候，我认为需要把握住的一个核心就是：避免冗余的渲染。
+> 展开来说，JavaScript每段代码的执行，都是需要消耗计算的，react 上减少组件的渲染次数，也就是减少JavaScript的执行，直指性能优化的目的。
+
 这是React组件性能优化的第一篇，会有一些铺垫内容，请小伙伴们内心阅读。
 
 一般涉及到组件的性能优化，都会从渲染的角度的来说。为什么是从渲染的角度出发？我们知道在React的世界里，component从状态变化到实际dom的渲染是会先经过render，之后依据render的结果产生virtual DOM，最后再将virtual DOM和真正的DOM进行比较，把有修改的部分更新到真正的DOM上。而在这个过程中，涉及到JavaScript的部分（包括component 生命周期函数的运行，DOM diff算法的执行）都是很快的，根据我们以往的经验与实践中，我们都知道影响网页性能最大的因素是浏览器的重绘（reflow）和重排版（repaint）。React背后的Virtual Dom就是尽可能地减少浏览器的重绘和重排版，追根溯源，把握render执行的时机就是我们优化渲染性能的关键。
