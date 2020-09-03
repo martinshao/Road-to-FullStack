@@ -21,7 +21,7 @@ function sum(x, y) {
 }
 ```
 
-关于函数声明，它最重要的一个特征就是函数声明提升，意思是执行代码之前先读取函数声明。这意味着可以把函数声明放在调用它的语句之后。如下代码可以正确执行：
+关于函数声明，它最重要的一个特征就是函数声明提升(function declaration hoisting)，意思是执行代码之前先读取函数声明。这意味着可以把函数声明放在调用它的语句之后。如下代码可以正确执行：
 
 ```js
 sum(2, 3); // 5
@@ -93,6 +93,56 @@ greet('Martin'); // Hello World.
 
 理论上上面这么做，没有任何问题，但肯定是不值得提倡的，后面我们可以尝试用 arguments 这个对象对函数 不定参数 这个特性加以利用。
 
+还有一种情况是实参要比声明函数时的参数（形参）数量要少，要么缺少的参数会被设置为 undefined。
+
+```js
+funciton print(x, y) {
+  console.info(x, y)
+}
+print(1) // 1 undefined
+```
+
+实际上，调用的时候传参缺省在日常开发开发中非常常见，为了代码健壮性的考虑要做设置的必要的参数默认值。并且实际做法在 ES2015 推出之前有着不同写法。
+
+```js
+// ES2015 之前
+function greet(name, age) {
+  name = name || 'Martin';
+  age = age || 18;
+  console.info("Hello, I'm " + name + ". I'm " + age + ' years old.');
+}
+
+// ES2015 的写法
+function greet(name = 'Martin', age = 18) {
+  console.info(`Hello, I'm ${name}. I'm ${age} years old`);
+}
+```
+
+实际上，使用 y || 2 是不严谨的，显式地设置假值(undefined、null、false、0、-0、”、NaN)也会得到相同的结果。所以应该根据实际场景进行合理设置。更多设置默认参数的方法。
+
+上面两个例子是我日常开发中最常用到的(ES2015 之前的方式现在也不常用了)。下面将一些不常用的全部列举出来。
+
+```js
+// 有形参和无形参，效果一样。
+function add() {
+  var a = arguments[0] ? arguments[0] : 1;
+  var b = arguments[1] ? arguments[1] : 2;
+  return a + b;
+}
+function add(a, b) {
+  var a = arguments[0] ? arguments[0] : 1;
+  var b = arguments[1] ? arguments[1] : 2;
+  return a + b;
+}
+
+// 跟上面 name = name || 'Martin' 写法类似
+function greet(name = 'Martin', age = 18) {
+  if (!name) name = 'Martin';
+  if (!age) age = 18;
+  console.info("Hello, I'm " + name + ". I'm " + age + ' years old.');
+}
+```
+
 ### 同名参数
 
 在非严格模式下，函数中可以出现同名形参，且只能访问最后出现的该名称的形参。
@@ -116,12 +166,12 @@ console.log(add(1, 2, 3)); //SyntaxError: Duplicate parameter name not allowed i
 
 ### 函数的形参与实参
 
-参数有形参（parameter）和实参（argument）的区别，形参相当于函数中定义的变量，实参是在运行时的函数调用时传入的参数。
+Parameters(形参) 是函数定义时的形式参数，作为函数定义的一部分，是列出类的变量，作用为接收函数调用时的实参。
+Arguments(实参) 是函数调用时的实际参数，是在函数被调用时传递给该函数的变量值。实参可以为变量、常量、函数、表达式等。
 
-实参：从字面意义我们可以理解为“实际存在的参数”，是在函数调用时传给函数的变量，该变量在函数执行时必须存在。实参可以为变量、常量、函数、表达式等。
-形参：从字面意义我们可以理解为“形式上存在的参数”，由此我们可以看出它并不是真实存在的参数，又称为虚拟变量。它在函数定义时使用，作用为接收函数调用时的实参。
+在 JavaScript 中实参与形参数量并不需要像 JAVA 一样必须在数量上严格保持一致，具有很大的灵活性。如果函数调用期间传递的 arguments(实参) 数量和函数定义中列出的 parameters(形参) 数量不同，JavaScript 不会抛出错误。我们应该清楚的是， parameters(形参) 和 arguments(实参) 应该被视为两个不同的实体来对待。
 
-在 JavaScript 中实参与形参数量并不需要像 JAVA 一样必须在数量上严格保持一致，具有很大的灵活性。如下：
+如下：
 
 ```js
 function test(str1, str2, str3) {
@@ -172,7 +222,7 @@ console.log(obj1); // name: 'typeScript', star: 100000
 console.log(obj2); // name: 'react', star: 20000
 ```
 
-## arguments 对象
+### arguments 对象
 
 JavaScript 函数内部有一个 arguments 对象，该对象算是蛮重要的一个概念。
 
@@ -215,15 +265,133 @@ const args = Array.from(arguments);
 const args = [...arguments];
 ```
 
+arguments 对象的 length 属性显示实参的个数，函数的 length 属性显示形参的个数。
+
+```js
+function add(x, y) {
+  console.info(arguments.length); //3
+  return x + 1;
+}
+add(1, 2, 3);
+console.info(add.length); //2
+```
+
 ### arguments 属性
 
 > arguments.callee 指向参数所属的当前执行的函数。
 > arguments.length 传递给函数的参数数量。
 > arguments[@@iterator] 返回一个新的 Array 迭代器 对象，该对象包含参数中每个索引的值。
 
+```js
+function factorial(num) {
+  if (num <= 1) {
+    return 1;
+  } else {
+    return num * factorial(num - 1);
+  }
+}
+```
+
+```js
+function factorial(num) {
+  if (num <= 1) {
+    return 1;
+  } else {
+    return num * arguments.callee(num - 1);
+  }
+}
+```
+
+```js
+function factorial(num) {
+  'use strict';
+  if (num <= 1) {
+    return 1;
+  } else {
+    return num * arguments.callee(num - 1);
+  }
+}
+//TypeError: 'caller', 'callee', and 'arguments' properties may not be accessed on strict mode functions or the arguments objects for calls to them
+console.log(factorial(5));
+```
+
+```js
+var factorial = function fn(num) {
+  if (num <= 1) {
+    return 1;
+  } else {
+    return num * fn(num - 1);
+  }
+};
+```
+
+**arguments.caller**
+
+```js
+function inner(x) {
+  console.log(arguments.caller); //undefined
+}
+inner(1);
+```
+
+同样地，在严格模式下，访问这个属性会抛出 TypeError 错误
+
+```js
+function inner(x) {
+  'use strict';
+  //TypeError: 'caller' and 'arguments' are restricted function properties and cannot be accessed in this context
+  console.log(arguments.caller);
+}
+inner(1);
+```
+
+### 参数传递
+
+javascript 中所有函数的参数都是按值传递的。也就是说，把函数外部的值复制到函数内部的参数，就和把值从一个变量复制到另一个变量一样
+
+基本类型值：在向参数传递基本类型的值时，被传递的值会被复制给一个局部变量(命名参数或 arguments 对象的一个元素)
+
+```js
+function addTen(num) {
+  num += 10;
+  return num;
+}
+var count = 20;
+var result = addTen(count);
+console.log(count); //20，没有变化
+console.log(result); //30
+```
+
+引用类型值：在向参数传递引用类型的值时，会把这个值在内存中的地址复制给一个局部变量，因此这个局部变量的变化会反映在函数的外部
+
+```js
+function setName(obj) {
+  obj.name = 'test';
+}
+var person = new Object();
+setName(person);
+console.log(person.name); //'test'
+```
+
+当在函数内部重写引用类型的形参时，这个变量引用的就是一个局部对象了。而这个局部对象会在函数执行完毕后立即被销毁
+
+```js
+function setName(obj) {
+  obj.name = 'test';
+  console.log(person.name); //'test'
+  obj = new Object();
+  obj.name = 'white';
+  console.log(person.name); //'test'
+}
+var person = new Object();
+console.log(person.name); //undefined
+setName(person);
+console.log(person.name); //'test'
+```
+
 ### 用法实例
 
-遍历参数求和
+**遍历参数求和**
 
 这个也是典型的 不定参数 的用法，声明时不指定参数的个数，而是在调用时根据需要传递参数。
 
@@ -236,14 +404,62 @@ function add() {
   }
   return sum;
 }
-add(); // 0
-add(1); // 1
-add(1, 2, 3, 4); // 10
 ```
 
-## this 和 arguments
+这个代码可以使用 ES6 剩余参数的新特性，优化的更加简洁。
 
-this 和 arguments 是函数内部两个非常重要的对象。
+```js
+function sum(...args) {
+  return args.reduce((acc, curr) => acc + curr);
+}
+```
+
+剩余参数和 `arguments` 对象之间的区别主要有三个：
+
+- 剩余参数只包含那些没有对应形参的实参，而 `arguments` 对象包含了传给函数的所有实参。
+- `arguments` 对象不是一个真正的数组，而剩余参数是真正的 `Array` 实例。
+- `arguments` 对象还有一些附加的属性 （如 `callee` 属性）。
+
+**定义连接字符串的函数**
+
+```js
+function myConcat(separator) {
+  var args = Array.prototype.slice.call(arguments, 1);
+  return args.join(separator);
+}
+```
+
+### 函数的重载
+
+javascript 函数不能像传统意义上那样实现重载。而在其他语言中，可以为一个函数编写两个定义，只要这两个定义的签名(接受的参数的类型和数量)不同即可
+javascript 函数没有签名，因为其参数是由包含 0 或多个值的数组来表示的。而没有函数签名，真正的重载是不可能做到的。
+
+```js
+//后面的声明覆盖了前面的声明
+function addSomeNumber(num) {
+  return num + 100;
+}
+function addSomeNumber(num) {
+  return num + 200;
+}
+var result = addSomeNumber(100); //300
+```
+
+只能通过检查传入函数中参数的类型和数量并作出不同的反应，来模仿方法的重载
+
+```js
+function doAdd() {
+  if (arguments.length == 1) {
+    alert(arguments[0] + 10);
+  } else if (arguments.length == 2) {
+    alert(arguments[0] + arguments[1]);
+  }
+}
+doAdd(10); //20
+doAdd(30, 20); //50
+```
+
+## this
 
 ## 函数原型方法
 
@@ -260,3 +476,11 @@ call apply bind...
 function
 
 ## 函数组合
+
+
+## 参考文章
+
+* [第八章：Javascript函数](https://www.cnblogs.com/ahthw/p/4282745.html)
+* [杂七杂八JS ：深入理解 函数、匿名函数、自执行函数](https://blog.csdn.net/xixiruyiruyi/article/details/54894404)
+* [JavaScript 中arguments.callee的代替用法](https://www.jianshu.com/p/72a590f59f4f)
+* [Parameters(形参) 和 Arguments(实参) ](https://www.html.cn/archives/8057)
