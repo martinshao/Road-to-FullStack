@@ -70,6 +70,71 @@ const sum = function (x, y) {
 
 ## 匿名函数和立即执行函数
 
+Lambda 表达式（lambda expression）是一个匿名函数，Lambda 表达式基于数学中的 λ 演算得名，直接对应于其中的 lambda 抽象（lambda abstraction），是一个匿名函数，即没有函数名的函数。Lambda 表达式可以表示闭包（注意和数学传统意义上的不同）。
+
+参数列表 => 语句或语句块
+
+```js
+x => x + 1                              // Implicitly typed, expression body
+x => { return x + 1; }                  // Implicitly typed, statement body
+(int x) => x + 1                        // Explicitly typed, expression body
+(int x) => { return x + 1; }            // Explicitly typed, statement body
+(x, y) => x * y                         // Multiple parameters
+() => Console.WriteLine()               // No parameters
+async (t1,t2) => await t1 + await t2    // Async
+delegate (int x) { return x + 1; }      // Anonymous method expression
+delegate { return 1 + 1; }              // Parameter list omitted
+```
+
+匿名函数 `(anonymous function)` 最早是 LISP 语言引入，后面发展为不仅是函数式语言所特有，在解释型语言和编译型语言中也越来越多匿名函数的身影，或许有个更潮的名字叫 `lambda` 表达式。
+
+闭包多是用匿名函数实现，在匿名函数中引用了外部变量，那这个匿名函数就形成了闭包。由于闭包和匿名函数之间有着千丝万缕的关系，所以经常会把两者搞混淆。其实在 Js 中匿名函数、闭包、自执行函数、回调函数、箭头函数，这些概念似乎相同，却又不同，请读者朋友自行了解。
+
+匿名函数拥有可动态编程的执行过程。巧妙使用可以让你的代码简约而不失优雅，灵活而不失约束。好了，正式切入本文的正题，巧用匿名函数重构代码。按照重构的惯例，先指出代码中的坏味（Bad Smell）：
+
+定义冗长的重复配置
+条件多变的集合过滤
+说一不二的方法调用
+
+### 立即执行函数
+
+在这篇帖子里，我们一直叫自执行函数，确切的说是自执行匿名函数（Self-executing anonymous function），但英文原文作者一直倡议使用立即调用的函数表达式（Immediately-Invoked Function Expression）这一名称，作者又举了一堆例子来解释，好吧，我们来看看：
+
+```
+// 下面2个括弧()都会立即执行
+
+(function () { /* code */ } ()); // 推荐使用这个
+(function () { /* code */ })(); // 但是这个也是可以用的
+
+// 由于括弧()和JS的&&，异或，逗号等操作符是在函数表达式和函数声明上消除歧义的
+// 所以一旦解析器知道其中一个已经是表达式了，其它的也都默认为表达式了
+// 不过，请注意下一章节的内容解释
+
+var i = function () { return 10; } ();
+true && function () { /* code */ } ();
+0, function () { /* code */ } ();
+
+// 如果你不在意返回值，或者不怕难以阅读
+// 你甚至可以在function前面加一元操作符号
+
+!function () { /* code */ } ();
+~function () { /* code */ } ();
+-function () { /* code */ } ();
++function () { /* code */ } ();
+
+// 还有一个情况，使用new关键字,也可以用，但我不确定它的效率
+// http://twitter.com/kuvos/status/18209252090847232
+
+new function () { /* code */ }
+new function () { /* code */ } () // 如果需要传递参数，只需要加上括弧()
+```
+
+```js
+(function () {
+  // 这里是块级作用域
+})();
+```
+
 ## 函数参数
 
 ### 参数个数
@@ -166,8 +231,8 @@ console.log(add(1, 2, 3)); //SyntaxError: Duplicate parameter name not allowed i
 
 ### 函数的形参与实参
 
-Parameters(形参) 是函数定义时的形式参数，作为函数定义的一部分，是列出类的变量，作用为接收函数调用时的实参。
-Arguments(实参) 是函数调用时的实际参数，是在函数被调用时传递给该函数的变量值。实参可以为变量、常量、函数、表达式等。
+> - Parameters(形参) 是函数定义时的形式参数，作为函数定义的一部分，是列出类的变量，作用为接收函数调用时的实参。
+> - Arguments(实参) 是函数调用时的实际参数，是在函数被调用时传递给该函数的变量值。实参可以为变量、常量、函数、表达式等。
 
 在 JavaScript 中实参与形参数量并不需要像 JAVA 一样必须在数量上严格保持一致，具有很大的灵活性。如果函数调用期间传递的 arguments(实参) 数量和函数定义中列出的 parameters(形参) 数量不同，JavaScript 不会抛出错误。我们应该清楚的是， parameters(形参) 和 arguments(实参) 应该被视为两个不同的实体来对待。
 
@@ -278,9 +343,9 @@ console.info(add.length); //2
 
 ### arguments 属性
 
-> arguments.callee 指向参数所属的当前执行的函数。
-> arguments.length 传递给函数的参数数量。
-> arguments[@@iterator] 返回一个新的 Array 迭代器 对象，该对象包含参数中每个索引的值。
+> - arguments.callee 指向参数所属的当前执行的函数。
+> - arguments.length 传递给函数的参数数量。
+> - arguments[@@iterator] 返回一个新的 Array 迭代器 对象，该对象包含参数中每个索引的值。
 
 ```js
 function factorial(num) {
@@ -463,7 +528,14 @@ doAdd(30, 20); //50
 
 ## 函数原型方法
 
-call apply bind...
+> - Function.prototype.apply()
+> - Function.prototype.bind()
+> - Function.prototype.call()
+> - Function.prototype.toString() 返回一个表示当前函数源代码的字符串。很简单，本文不做深入探讨。
+
+上面我们花了不少的篇幅简绍 this 关键字，在JavaScript 函数中十分重要，改变 function 也提供了改变 this 指向的方法。
+
+![](../_assets/20200903155902.png)
 
 ## 箭头函数
 
@@ -477,10 +549,9 @@ function
 
 ## 函数组合
 
-
 ## 参考文章
 
-* [第八章：Javascript函数](https://www.cnblogs.com/ahthw/p/4282745.html)
-* [杂七杂八JS ：深入理解 函数、匿名函数、自执行函数](https://blog.csdn.net/xixiruyiruyi/article/details/54894404)
-* [JavaScript 中arguments.callee的代替用法](https://www.jianshu.com/p/72a590f59f4f)
-* [Parameters(形参) 和 Arguments(实参) ](https://www.html.cn/archives/8057)
+- [第八章：Javascript 函数](https://www.cnblogs.com/ahthw/p/4282745.html)
+- [杂七杂八 JS ：深入理解 函数、匿名函数、自执行函数](https://blog.csdn.net/xixiruyiruyi/article/details/54894404)
+- [JavaScript 中 arguments.callee 的代替用法](https://www.jianshu.com/p/72a590f59f4f)
+- [Parameters(形参) 和 Arguments(实参) ](https://www.html.cn/archives/8057)
