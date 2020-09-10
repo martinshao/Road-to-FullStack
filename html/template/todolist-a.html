@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TODO LIST</title>
+  <style>
+    body {
+      margin: 0;
+      display: grid;
+      padding: 3em;
+      place-items: center;
+      width: 100%;
+      height: 100%;
+      background-color: #fff;
+    }
+    ul {
+      margin: 0;
+      padding: 0;
+    }
+    .todo-list {
+      width: 550px;
+      padding: 20px;
+      background: #fff;
+      box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .2), 0 25px 50px 0 rgba(0, 0, 0, .1);
+    }
+
+    .control h1 {
+      width: 100%;
+      font-size: 100px;
+      text-align: center;
+      margin: 0;
+      line-height: 100px;
+      color: rgba(175, 47, 47, .15);
+    }
+
+    .control new-todo {
+      padding: 16px 16px 16px 60px;
+      border: 0;
+      outline: none;
+      font-size: 24px;
+      box-sizing: border-box;
+      width: 100%;
+      line-height: 1.4rem;
+      box-shadow: inset 0 -2px 1px rgba(0, 0, 0, .3);
+    }
+
+    input[type="text"],
+    #btn1,
+    #btn2 {
+      box-sizing: border-box;
+      text-align: right;
+      font-size: 1.4em;
+      height: 2.7em;
+      border: 1px solid #c8cccf;
+      color: #6a6f77;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      display: block;
+      outline: 0;
+      padding: 0 1em;
+      text-decoration: none;
+      width: 100%;
+    }
+
+    input[type="text"]:focus {
+      border: 1px solid #ff7496;
+    }
+
+    .todos {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .todo-item {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      font-size: 24px;
+      display: flex;
+      align-items: center;
+      border-bottom: 1px solid #f1f1f1;
+    }
+
+    .todo-item input {
+      display: block;
+      width: 20px;
+      height: 20px;
+      margin: 0 20px;
+    }
+
+    .todo-item label {
+      flex: 1;
+      padding: 15px 15px 15px 0;
+      line-height: 1.2;
+      display: block;
+    }
+
+    .todo-item label.complete {
+      text-decoration: line-through;
+    }
+
+    .todo-item button {
+      border: 0;
+      outline: 0;
+      display: block;
+      width: 40px;
+      text-align: center;
+      font-size: 30px;
+      color: #cc9a9a;
+    }
+
+    .incorrect:before {
+      content: '\2716';
+      color: #b20610;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="todo-list">
+    <div class="control">
+      <h1>todos</h1>
+      <form>
+        <input type="text" class="new-todo" placeholder="What needs to be done?">
+      </form>
+    </div>
+    <ul>
+      <li class="todo-item">
+        <input type="checkbox">
+        <label>123</label>
+        <button class="incorrect"></button>
+      </li>
+      <li class="todo-item">
+        <input type="checkbox">
+        <label>123</label>
+        <button class="incorrect"></button>
+      </li>
+      <li class="todo-item">
+        <input type="checkbox">
+        <label>123</label>
+        <button class="incorrect"></button>
+      </li>
+    </ul>
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Todo List</title>
+  <style>
+    body {
+      margin: 0;
+      display: grid;
+      padding: 3em;
+      place-items: center;
+      width: 100%;
+      height: 100%;
+      background-color: #fff;
+    }
+
+    .todo-list {
+      width: 550px;
+      padding: 20px;
+      background: #fff;
+      box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .2), 0 25px 50px 0 rgba(0, 0, 0, .1);
+    }
+
+    .add {
+      width: 80px;
+      font-size: 1rem;
+      color: #fff;
+      background: #3ea2ee;
+      border: none;
+      border-radius: 3px;
+      padding: .375rem .75rem;
+      margin-left: 15px;
+      line-height: 1;
+      cursor: pointer;
+      outline: none;
+      transition: all .15s ease-in-out
+    }
+
+    .add:hover {
+      color: #fff;
+      background-color: #0069d9;
+      border-color: #0062cc;
+    }
+
+    .add:focus {
+      border-color: #80bdff;
+      outline: 0;
+      box-shadow: 0 0 0 .2rem rgba(0, 123, 255, .25);
+    }
+
+    .form-control {
+      display: block;
+      width: 100%;
+      padding: .375rem .75rem;
+      font-size: 1rem;
+      line-height: 1.5;
+      color: #495057;
+      background-color: #fff;
+      background-clip: padding-box;
+      border: 1px solid #ced4da;
+      border-radius: .25rem;
+      transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out
+    }
+
+    .form-control:focus {
+      background-color: #fff;
+      border-color: #80bdff;
+      outline: 0;
+      box-shadow: 0 0 0 .2rem rgba(0, 123, 255, .25);
+    }
+
+    .search {
+      display: flex;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="todo-list">
+    <div class="top">
+      <div class="title">
+        <h2>TODOLIST</h2>
+      </div>
+      <div class="search">
+        <input type="text" class="form-control" placeholder="Please enter your name">
+        <button class="add">add</button>
+      </div>
+    </div>
+    <div class="head"></div>
+    <div class="content"></div>
+  </div>
+
+</body>
+
+</html>
