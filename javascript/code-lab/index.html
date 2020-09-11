@@ -302,29 +302,12 @@
     // const allTheChildren = function (elements) {
     //   return _.map(elements, getChildren)
     // }
-
-    // const words = function (str) {
-    //   return split(' ', str)
-    // }
-
-    // const sentences = undefined
-
-    // const filterQs = R.filter(R.match(/q/i));
-
-
-
-    // const isDouble = number => number % 2 === 0
-
-    // const filterCurry = R.curry((fn, arr) => filter(fn, arr))
-    // const filterDouble = filterCurry(isDouble)
-
-    // filterDouble([1, 2, 3, 4, 5, 6])
-
-
-
-    // const strs = ['quick', 'camels', 'quarry', 'over', 'quails']
-
-
+    const slice = (start, end, arr) => Array.prototype.slice.call(arr, start, end)
+    const take = slice.bind(null, 0)
+    take.bind(null, 2)([1, 2, 3])
+    
+    console.info()
+    // console.info(take(2)([1, 2, 3]))
   </script>
 </body>
 

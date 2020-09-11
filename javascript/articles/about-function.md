@@ -1118,6 +1118,12 @@ const hasQs = match.bind(null, regExp)
 const filterQs = filterCurried(hasQs)
 
 filterQs(['quick', 'camels', 'quarry', 'over', 'quails'])
+
+const isDouble = number => number % 2 === 0
+
+const filterDouble = filterCurried(isDouble)
+
+filterDouble([1, 2, 3, 4, 5, 6])
 ```
 
 ``` js
@@ -1147,6 +1153,22 @@ const max = R.reduce(_keepHighest, -Infinity)
 const max = R.reduce(Math.max, -Infinity)
 
 max([323, 523, 554, 123, 5234])
+```
+
+``` js
+[1, 2, 3].slice(0, 2)
+
+const slice = (start, end, arr) => Array.prototype.slice.call(arr, start, end)
+const take = slice.bind(null, 0)
+take.bind(null, 2)([1, 2, 3]) // [1, 2]
+
+const sliceCurried = R.curry((start, end, arr) => R.slice(start, end, arr))
+const take = sliceCurried(0);
+take(2)([1, 2, 3]) // [1, 2]
+
+const sliceCurried = R.curry((start, end, xs) => xs.slice(start, end));
+const take = sliceCurried(0);
+take(2)([1, 2, 3]) // [1, 2]
 ```
 
 ## 高阶函数
