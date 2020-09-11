@@ -7,7 +7,8 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.15/lodash.min.js"></script>
+  <!-- <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.15/lodash.min.js"></script> -->
+  <script src="https://cdn.jsdelivr.net/npm/ramda@0.27.1/dist/ramda.min.js"></script>
 </head>
 
 <body>
@@ -61,60 +62,60 @@
     //   debounceTest()
     // }
 
-    const todayYear = (new Date()).getFullYear();
-    const todayMonth = (new Date()).getMonth();
-    const todayDay = (new Date()).getDate();
-    const todayTime = (new Date(todayYear, todayMonth, todayDay, '00', '00', '00')).getTime();//毫秒
-    let day = moment(todayTime);
-    let lastWeek = moment().add(-2, 'y');
+    // const todayYear = (new Date()).getFullYear();
+    // const todayMonth = (new Date()).getMonth();
+    // const todayDay = (new Date()).getDate();
+    // const todayTime = (new Date(todayYear, todayMonth, todayDay, '00', '00', '00')).getTime();//毫秒
+    // let day = moment(todayTime);
+    // let lastWeek = moment().add(-2, 'y');
     // console.info(lastWeek.unix())
     // console.info(day.format('YYYY-MM-DD HH:mm:ss'))
     // console.info(lastWeek.format('YYYY-MM-DD HH:mm:ss'))
     // const tradeCreatedStart = new Date(moment().format('YYYY-MM-DD 00:00:00')).getTime();
     // const tradeCreatedEnd = new Date(moment().format('YYYY-MM-DD 23:59:59')).getTime();
 
-    function ten2twelve(x) {
-      var r = ''
-      var mod = 0
-      r = parseInt(x / 12)
-      mod = x % 12
-      console.info('ten2twelve...', r, mod)
-      if (mod === 0) return `${parseInt(r) - 1}-12`
-      else return `${parseInt(r)}-${mod}`
-    }
+    // function ten2twelve(x) {
+    //   var r = ''
+    //   var mod = 0
+    //   r = parseInt(x / 12)
+    //   mod = x % 12
+    //   console.info('ten2twelve...', r, mod)
+    //   if (mod === 0) return `${parseInt(r) - 1}-12`
+    //   else return `${parseInt(r)}-${mod}`
+    // }
 
-    function midTime(startTime, endTime) {
-      let midDate = []
-      let startDate = new Date(startTime)
-      let endDate = new Date(endTime)
-      console.info(moment(startDate).format('YYYY-MM-DD HH:mm:ss'))
-      console.info(moment(endDate).format('YYYY-MM-DD HH:mm:ss'))
-      let startTWDate = parseInt(startDate.getFullYear() * 12) + startDate.getMonth()
-      let endTWDate = parseInt(endDate.getFullYear() * 12) + endDate.getMonth()
-      console.info(startTWDate, endTWDate)
-      while (startTWDate < endTWDate) {
-        startTWDate++
-        console.info(startTWDate)
-        midDate.push(startTWDate)
-      }
-      let carry = false
-      const midDateStr = midDate.map(item => {
-        var r = 0
-        var mod = 0
-        var midss = ''
-        r = parseInt(item / 12)
-        mod = item % 12
-        if(mod === 0 ) carry = !carry
-        if (carry) midss = `${parseInt(r) - 1}-${mod-1}`
-        else midss = `${parseInt(r)}-${mod+1}`
-        if(mod === 11 ) carry = !carry
-        return midss
-      })
-      console.info(midDate)
-      console.info(midDateStr)
-    }
+    // function midTime(startTime, endTime) {
+    //   let midDate = []
+    //   let startDate = new Date(startTime)
+    //   let endDate = new Date(endTime)
+    //   console.info(moment(startDate).format('YYYY-MM-DD HH:mm:ss'))
+    //   console.info(moment(endDate).format('YYYY-MM-DD HH:mm:ss'))
+    //   let startTWDate = parseInt(startDate.getFullYear() * 12) + startDate.getMonth()
+    //   let endTWDate = parseInt(endDate.getFullYear() * 12) + endDate.getMonth()
+    //   console.info(startTWDate, endTWDate)
+    //   while (startTWDate < endTWDate) {
+    //     startTWDate++
+    //     console.info(startTWDate)
+    //     midDate.push(startTWDate)
+    //   }
+    //   let carry = false
+    //   const midDateStr = midDate.map(item => {
+    //     var r = 0
+    //     var mod = 0
+    //     var midss = ''
+    //     r = parseInt(item / 12)
+    //     mod = item % 12
+    //     if(mod === 0 ) carry = !carry
+    //     if (carry) midss = `${parseInt(r) - 1}-${mod-1}`
+    //     else midss = `${parseInt(r)}-${mod+1}`
+    //     if(mod === 11 ) carry = !carry
+    //     return midss
+    //   })
+    //   console.info(midDate)
+    //   console.info(midDateStr)
+    // }
 
-    midTime(lastWeek.unix() * 1000, day.unix() * 1000)
+    // midTime(lastWeek.unix() * 1000, day.unix() * 1000)
 
     // const customer = [
     //   {
@@ -255,6 +256,75 @@
 
     // _.times(4, _.constant(0));
     // // => [0, 0, 0, 0]
+
+
+    // const curry = _.curry
+
+    // const match = curry(function (what, str) {
+    //   return str.match(what)
+    // })
+
+    // const replace = curry(function (what, replacement, str) {
+    //   return str.replace(what, replacement)
+    // })
+
+    // const filter = curry(function (f, ary) {
+    //   return ary, filter(f)
+    // })
+
+    // const map = curry(function (f, ary) {
+    //   return ary.map(f)
+    // })
+
+    // match(/\s+/g, "hello world"); // [ ' ' ]
+    // match(/\s+/g)("hello world"); // [ ' ' ]
+
+    // const hasSpaces = match(/\s+/g)
+    // hasSpaces("hello world") // [ ' ' ]
+
+    // filter(hasSpaces, ['tori_spelling', 'tori amos']) // ["tori amos"]
+
+    // const findSpaces = filter(hasSpaces)
+    // findSpaces(['tori_spelling', 'tori amos']) // ["tori amos"]
+
+    // const noVowels = replace(/[aeiou]/ig)
+    // const censored = noVowels('*')
+
+    // censored('Chocolate Rain')
+
+
+    // const getChildren = function (x) {
+    //   return x.childNodes
+    // }
+
+    // const allTheChildren = map(getChildren)
+
+    // const allTheChildren = function (elements) {
+    //   return _.map(elements, getChildren)
+    // }
+
+    // const words = function (str) {
+    //   return split(' ', str)
+    // }
+
+    // const sentences = undefined
+
+    // const filterQs = R.filter(R.match(/q/i));
+
+
+
+    // const isDouble = number => number % 2 === 0
+
+    // const filterCurry = R.curry((fn, arr) => filter(fn, arr))
+    // const filterDouble = filterCurry(isDouble)
+
+    // filterDouble([1, 2, 3, 4, 5, 6])
+
+
+
+    // const strs = ['quick', 'camels', 'quarry', 'over', 'quails']
+
+
   </script>
 </body>
 

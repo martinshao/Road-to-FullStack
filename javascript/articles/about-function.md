@@ -533,21 +533,633 @@ doAdd(30, 20); //50
 > - Function.prototype.call()
 > - Function.prototype.toString() 返回一个表示当前函数源代码的字符串。很简单，本文不做深入探讨。
 
-上面我们花了不少的篇幅简绍 this 关键字，在JavaScript 函数中十分重要，改变 function 也提供了改变 this 指向的方法。
+上面我们花了不少的篇幅简绍 this 关键字，在 JavaScript 函数中十分重要，改变 function 也提供了改变 this 指向的方法。
 
 ![](../_assets/20200903155902.png)
 
+### apply
+
+对于一些需要写循环以便历数组各项的需求，我们可以用 apply 完成以避免循环。
+
+```js
+const numbers = [5, 6, 2, 3, 7];
+const max = Math.max.apply(null, numbers); // max = 7
+const min = Math.min.apply(null, numbers); // min = 2
+
+// 等同下面形式
+Math.max(numbers[0], ...)
+Math.max(5, 6, ..)
+```
+
+用 apply 将数组各项添加到另一个数组
+
+```js
+const array = ['a', 'b'];
+const elements = [0, 1, 2];
+
+// concat 不改变原有数组，返回一个合并的新数组
+const arrEle = array.concat(elements);
+
+array.push.apply(array, elements);
+```
+
+使用 apply 来链接构造器
+
+你可以使用 apply 来链接一个对象构造器，类似于 Java。在接下来的例子中我们会创建一个全局 Function 对象的 construct 方法 ，来使你能够在构造器中使用一个类数组对象而非参数列表。
+
+```js
+Function.prototype.construct = function (aArgs) {
+  var oNew = Object.create(this.prototype);
+  this.apply(oNew, aArgs);
+  return oNew;
+};
+```
+
+### call
+
+使用 call 方法调用父构造函数
+
+```js
+function Product(name, price) {
+  this.name = name;
+  this.price = price;
+}
+
+function Food(name, price) {
+  Product.call(this, name, price);
+  this.category = 'food';
+}
+```
+
+使用 call 方法调用匿名函数
+
+```js
+var animals = [
+  { species: 'Lion', name: 'King' },
+  { species: 'Whale', name: 'Fail' },
+];
+
+for (var i = 0; i < animals.length; i++) {
+  (function (i) {
+    this.print = function () {
+      console.log('#' + i + ' ' + this.species + ': ' + this.name);
+    };
+    this.print();
+  }.call(animals[i], i));
+}
+```
+
+使用 call 方法调用函数并且指定上下文的 'this'
+
+```js
+function greet() {
+  var reply = [this.animal, 'typically sleep between', this.sleepDuration].join(
+    ' '
+  );
+  console.log(reply);
+}
+
+var obj = {
+  animal: 'cats',
+  sleepDuration: '12 and 16 hours',
+};
+
+greet.call(obj); // cats typically sleep between 12 and 16 hours
+```
+
+使用 call 方法调用函数并且不指定第一个参数（argument）
+
+```js
+var sData = 'Wisen';
+
+function display() {
+  console.log('sData value is %s ', this.sData);
+}
+
+display.call(); // sData value is Wisen
+```
+
+### bind
+
+创建绑定函数
+
+```js
+this.x = 9; // 在浏览器中，this 指向全局的 "window" 对象
+var module = {
+  x: 81,
+  getX: function () {
+    return this.x;
+  },
+};
+
+module.getX(); // 81
+
+var retrieveX = module.getX;
+retrieveX();
+// 返回 9 - 因为函数是在全局作用域中调用的
+
+// 创建一个新函数，把 'this' 绑定到 module 对象
+// 新手可能会将全局变量 x 与 module 的属性 x 混淆
+var boundGetX = retrieveX.bind(module);
+boundGetX(); // 81
+```
+
+偏函数
+
+```js
+function list() {
+  return Array.prototype.slice.call(arguments);
+}
+
+function addArguments(arg1, arg2) {
+  return arg1 + arg2;
+}
+
+var list1 = list(1, 2, 3); // [1, 2, 3]
+
+var result1 = addArguments(1, 2); // 3
+
+// 创建一个函数，它拥有预设参数列表。
+var leadingThirtysevenList = list.bind(null, 37);
+
+// 创建一个函数，它拥有预设的第一个参数
+var addThirtySeven = addArguments.bind(null, 37);
+
+var list2 = leadingThirtysevenList();
+// [37]
+
+var list3 = leadingThirtysevenList(1, 2, 3);
+// [37, 1, 2, 3]
+
+var result2 = addThirtySeven(5);
+// 37 + 5 = 42
+
+var result3 = addThirtySeven(5, 10);
+// 37 + 5 = 42 ，第二个参数被忽略
+```
+
+配合 setTimeout
+
+```js
+function LateBloomer() {
+  this.petalCount = Math.ceil(Math.random() * 12) + 1;
+}
+
+// 在 1 秒钟后声明 bloom
+LateBloomer.prototype.bloom = function () {
+  window.setTimeout(this.declare.bind(this), 1000);
+};
+
+LateBloomer.prototype.declare = function () {
+  console.log('I am a beautiful flower with ' + this.petalCount + ' petals!');
+};
+
+var flower = new LateBloomer();
+flower.bloom(); // 一秒钟后, 调用 'declare' 方法
+```
+
+作为构造函数使用的绑定函数
+
+```js
+function Point(x, y) {
+  this.x = x;
+  this.y = y;
+}
+
+Point.prototype.toString = function () {
+  return this.x + ',' + this.y;
+};
+
+var p = new Point(1, 2);
+p.toString(); // '1,2'
+
+var emptyObj = {};
+var YAxisPoint = Point.bind(emptyObj, 0 /*x*/);
+
+// 本页下方的 polyfill 不支持运行这行代码，
+// 但使用原生的 bind 方法运行是没问题的：
+
+var YAxisPoint = Point.bind(null, 0 /*x*/);
+
+/*（译注：polyfill 的 bind 方法中，如果把 bind 的第一个参数加上，
+即对新绑定的 this 执行 Object(this)，包装为对象，
+因为 Object(null) 是 {}，所以也可以支持）*/
+
+var axisPoint = new YAxisPoint(5);
+axisPoint.toString(); // '0,5'
+
+axisPoint instanceof Point; // true
+axisPoint instanceof YAxisPoint; // true
+new YAxisPoint(17, 42) instanceof Point; // true
+```
+
+快捷调用
+
+```js
+var slice = Array.prototype.slice;
+
+// ...
+
+slice.apply(arguments);
+
+// 与前一段代码的 "slice" 效果相同
+var unboundSlice = Array.prototype.slice;
+var slice = Function.prototype.apply.bind(unboundSlice);
+
+// ...
+
+slice(arguments);
+```
+
 ## 箭头函数
+
+箭头函数表达式的语法比函数表达式更简洁，并且没有自己的 this，arguments，super 或 new.target。箭头函数表达式更适用于那些本来需要匿名函数的地方，并且它不能用作构造函数。
+
+```js
+(param1, param2, …, paramN) => { statements }
+(param1, param2, …, paramN) => expression
+//相当于：(param1, param2, …, paramN) =>{ return expression; }
+
+// 当只有一个参数时，圆括号是可选的：
+(singleParam) => { statements }
+singleParam => { statements }
+
+// 没有参数的函数应该写成一对圆括号。
+() => { statements }
+
+//加括号的函数体返回对象字面量表达式：
+params => ({foo: bar})
+
+//支持剩余参数和默认参数
+(param1, param2, ...rest) => { statements }
+(param1 = defaultValue1, param2, …, paramN = defaultValueN) => {
+statements }
+
+//同样支持参数列表解构
+let f = ([a, b] = [1, 2], {x: c} = {x: a + b}) => a + b + c;
+f();  // 6
+```
+
+### 使用
+
+```js
+var elements = ['Hydrogen', 'Helium', 'Lithium', 'Beryllium'];
+
+elements.map(function (element) {
+  return element.length;
+}); // 返回数组：[8, 6, 7, 9]
+
+// 上面的普通函数可以改写成如下的箭头函数
+elements.map((element) => {
+  return element.length;
+}); // [8, 6, 7, 9]
+
+// 当箭头函数只有一个参数时，可以省略参数的圆括号
+elements.map((element) => {
+  return element.length;
+}); // [8, 6, 7, 9]
+
+// 当箭头函数的函数体只有一个 `return` 语句时，可以省略 `return` 关键字和方法体的花括号
+elements.map((element) => element.length); // [8, 6, 7, 9]
+
+// 在这个例子中，因为我们只需要 `length` 属性，所以可以使用参数解构
+// 需要注意的是字符串 `"length"` 是我们想要获得的属性的名称，而 `lengthFooBArX` 则只是个变量名，
+// 可以替换成任意合法的变量名
+elements.map(({ length: lengthFooBArX }) => lengthFooBArX); // [8, 6, 7, 9]
+```
+
+### 意外的性质
+
+**没有单独的 this**
+
+在箭头函数出现之前，每一个新函数根据它是被如何调用的来定义这个函数的 this 值：
+
+如果是该函数是一个构造函数，this 指针指向一个新的对象
+在严格模式下的函数调用下，this 指向 undefined
+如果是该函数是一个对象的方法，则它的 this 指针指向这个对象
+等等
+This 被证明是令人厌烦的面向对象风格的编程。
+
+```js
+function Person() {
+  // 创建实例时，this 指向实例
+  this.age = 0;
+
+  setInterval(function growUp() {
+    // 在非严格模式, growUp()函数定义 `this`作为全局对象,
+    // 与在 Person()构造函数中定义的 `this`并不相同.
+    this.age++;
+  }, 1000);
+}
+
+function Person() {
+  const that = this;
+  that.age = 0;
+
+  setInterval(function growUp() {
+    // 回调引用的是`that`变量, 其值是预期的对象.
+    that.age++;
+  }, 1000);
+}
+
+function Person() {
+  this.age = 0;
+
+  setInterval(
+    function growUp() {
+      this.age++;
+    }.bind(this),
+    1000
+  ); // 创建绑定函数
+}
+
+function Person() {
+  this.age = 0;
+
+  this.growUp = setInterval(() => {
+    this.age++; // this 正确地指向 p 实例
+  }, 1000);
+}
+```
+
+**与严格模式的关系**
+
+鉴于 this 是词法层面上的，严格模式中与 this 相关的规则都将被忽略。严格模式的其他规则依然不变。
+
+```js
+var f = () => {
+  'use strict';
+  return this;
+};
+f() === window; // 或者 global
+```
+
+**通过 call 或 apply 调用**
+
+由于 箭头函数没有自己的 this 指针，通过 call() 或 apply() 方法调用一个函数时，只能传递参数（不能绑定 this---译者注），他们的第一个参数会被忽略。（这种现象对于 bind 方法同样成立---译者注）
+
+```js
+var adder = {
+  base: 1,
+
+  add: function (a) {
+    var f = (v) => v + this.base;
+    return f(a);
+  },
+
+  addThruCall: function (a) {
+    var f = (v) => v + this.base;
+    var b = {
+      base: 2,
+    };
+
+    return f.call(b, a);
+  },
+};
+
+console.log(adder.add(1)); // 输出 2
+console.log(adder.addThruCall(1)); // 仍然输出 2
+```
+
+**不绑定 arguments**
+箭头函数不绑定 Arguments 对象。因此，在本示例中，arguments 只是引用了封闭作用域内的 arguments：
+
+```js
+var arguments = [1, 2, 3];
+var arr = () => arguments[0];
+
+arr(); // 1
+
+function foo(n) {
+  var f = () => arguments[0] + n; // 隐式绑定 foo 函数的 arguments 对象. arguments[0] 是 n,即传给foo函数的第一个参数
+  return f();
+}
+
+foo(1); // 2
+foo(2); // 4
+foo(3); // 6
+foo(3, 2); //6
+```
+
+在大多数情况下，使用剩余参数是相较使用 arguments 对象的更好选择。
+
+```js
+function foo(arg) {
+  var f = (...args) => args[0];
+  return f(arg);
+}
+foo(1); // 1
+
+function foo(arg1, arg2) {
+  var f = (...args) => args[1];
+  return f(arg1, arg2);
+}
+foo(1, 2); //2
+```
+
+**使用箭头函数作为方法**
+
+如上所述，箭头函数表达式对非方法函数是最合适的。让我们看看当我们试着把它们作为方法时发生了什么。
+
+```js
+'use strict';
+var obj = {
+  i: 10,
+  b: () => console.log(this.i, this),
+  c: function () {
+    console.log(this.i, this);
+  },
+};
+obj.b();
+// undefined, Window{...}
+obj.c();
+// 10, Object {...}
+```
+
+箭头函数没有定义 this 绑定。另一个涉及 Object.defineProperty()的示例：
+
+```js
+'use strict';
+var obj = {
+  a: 10,
+};
+
+Object.defineProperty(obj, 'b', {
+  get: () => {
+    console.log(this.a, typeof this.a, this);
+    return this.a + 10;
+    // 代表全局对象 'Window', 因此 'this.a' 返回 'undefined'
+  },
+});
+
+obj.b; // undefined   "undefined"   Window {postMessage: ƒ, blur: ƒ, focus: ƒ, close: ƒ, frames: Window, …}
+```
+
+**使用 new 操作符**
+箭头函数不能用作构造器，和 new 一起用会抛出错误。
+
+```js
+var Foo = () => {};
+var foo = new Foo(); // TypeError: Foo is not a constructor
+```
+
+箭头函数没有 prototype 属性
+
+```js
+var Foo = () => {};
+console.log(Foo.prototype); // undefined
+```
+
+yield 关键字通常不能在箭头函数中使用（除非是嵌套在允许使用的函数内）。因此，箭头函数不能用作函数生成器。
 
 ## 柯里化
 
-`function curry() {}`
+在计算机科学中，柯里化（英语：Currying），是把接受多个参数的函数变换成接受一个单一参数（最初函数的第一个参数）的函数，并且返回接受余下的参数而且返回结果的新函数的技术。这个技术由克里斯托弗·斯特雷奇以逻辑学家哈斯凯尔·加里命名的，尽管它是 Moses Schönfinkel 和戈特洛布·弗雷格发明的。
+
+> 柯里化是一个把具有较多 arity 的函数转换成具有较少 arity 函数的过程 -- Kristina Brainwave
+
+柯里化 是一种转换，将 f(a,b,c) 转换为可以被以 f(a)(b)(c) 的形式进行调用。JavaScript 实现通常都保持该函数可以被正常调用，并且如果参数数量不足，则返回偏函数。
+
+柯里化让我们能够更容易地获取偏函数。就像我们在日志记录示例中看到的那样，普通函数 log(date, importance, message) 在被柯里化之后，当我们调用它的时候传入一个参数（如 log(date)）或两个参数（log(date, importance)）时，它会返回偏函数。
+
+当把已知函数的一些参数固定，结果函数被称为偏函数，通过使用 bind 获得偏函数，也有其他方式实现。
+
+当我们不想一次一次重复相同的参数时，偏函数是很便捷的。如我们有 send(from,to)函数，如果 from 总是相同的，可以使用偏函数简化调用。
+
+柯里化是转换函数调用从 f(a,b,c)至 f(a)(b)(c).Javascript 通常既实现正常调用，也实现参数数量不足时的偏函数方式调用。
+
+当我们想容易的偏函数时，柯里化非常好。如我们已经看到的日志示例：通用的函数是 log(date,importance,message),柯里化之后获得偏函数为，一个参数如 log(date),或两个参数 log(date,importance).
+
+柯里化求和函数
+
+```js
+// 普通方式
+const sum = (a, b, c) => a + b + c;
+sum(1, 2, 3); // 6
+
+// 柯里化
+const sum = (a) => (b) => (c) => a + b + c;
+sum(1)(2)(3); // 6
+```
+
+```js
+var add = function () {
+  var _args = [];
+  return function () {
+    if (arguments.length === 0) {
+      return _args.reduce(function (a, b) {
+        return a + b;
+      });
+    }
+    [].push.apply(_args, arguments);
+    return arguments.callee;
+  };
+};
+```
+
+```js
+const curry2 = (fn) => (p1) => (p2) => fn(p1, p2);
+const curry3 = (fn) => (p1) => (p2) => (p3) => fn(p1, p2, p3);
+const curry4 = (fn) => (p1) => (p2) => (p3) => (p4) => fn(p1, p2, p3, p4);
+// ... 以此类推
+
+function curryN(fn) {
+  return (p1) => {
+    return (p2) => {
+      // ...
+      return (pN) => {
+        // N 个嵌套函数
+        return fn(p1, p2, ...pN);
+      };
+    };
+  };
+}
+```
+
+```js
+const words = R.split(' ');
+const sentences = R.map(words);
+
+const words = (str) => String.prototype.split.call(str, ' ');
+const map = (fn, arr) => Array.prototype.map.call(arr, fn);
+
+const mapWords = R.curry((fn, arr) => map(fn, arr));
+
+const sentences = mapWords(words);
+
+sentences(['Jingle bells Batman smells', 'Robin laid an egg']);
+sentences(['shaw martin']);
+```
+
+```js
+const strQs = strs.filter((str) => str.match(/q/i));
+
+const filterQs = (arr) => arr.filter((str) => str.match(/q/i));
+
+const filterQs = function (arr) {
+  return arr.filter(function (str) {
+    return str.match(/q/i);
+  });
+};
+```
+
+```js
+const regExp = /q/i;
+
+const filter = (fn, arr) => Array.prototype.filter.call(arr, fn)
+const filterCurried = R.curry((fn, arr) => filter(fn, arr))
+const match = (regExp, str) => String.prototype.match.call(str, regExp)
+const matchCurried = R.curry((regExp, str) => match(regExp, str))
+
+const hasQs = str => str.match(regExp)
+const hasQs = matchCurried(regExp)
+const hasQs = match.bind(null, regExp)
+
+const filterQs = filterCurried(hasQs)
+
+filterQs(['quick', 'camels', 'quarry', 'over', 'quails'])
+```
+
+``` js
+const filterQs = function (arr) {
+  return R.filter(function (x) {
+    return R.match(/q/i, x)
+  }, arr)
+}
+
+const filterQs = R.filter(R.match(/q/i));
+```
+
+``` js
+const _keepHighest = function (x, y) {
+  return x >= y ? x : y
+}
+
+const max = function (xs) {
+  return R.reduce(function(acc, x) {
+    return _keepHighest(acc, x)
+  }, -Infinity, xs)
+}
+
+const max = xs => R.reduce(_keepHighest, -Infinity, xs)
+
+const max = R.reduce(_keepHighest, -Infinity)
+const max = R.reduce(Math.max, -Infinity)
+
+max([323, 523, 554, 123, 5234])
+```
 
 ## 高阶函数
 
-function
+高阶函数是那些操作其他函数的函数。用最简单的话来说，高阶函数就是一个将函数作为参数或者返回值的函数。
+
+例如 `Array.prototype.map`, `Array.prototype.filter`和`Array.prototype.reduce`是JavaScript原生的高阶函数。
+
+
 
 ## 函数组合
+
+
 
 ## 参考文章
 
@@ -555,3 +1167,14 @@ function
 - [杂七杂八 JS ：深入理解 函数、匿名函数、自执行函数](https://blog.csdn.net/xixiruyiruyi/article/details/54894404)
 - [JavaScript 中 arguments.callee 的代替用法](https://www.jianshu.com/p/72a590f59f4f)
 - [Parameters(形参) 和 Arguments(实参) ](https://www.html.cn/archives/8057)
+- [箭头函数](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Functions/Arrow_functions)
+- [Function](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Function)
+- [js函数柯里化](https://juejin.im/post/6844903843793207309)
+- [JavaScript中的函数柯里化](https://juejin.im/post/6844903743519997966)
+- [柯里化与函数组合](https://juejin.im/post/6844903743415140360)
+- [彻底弄懂函数组合](https://juejin.im/post/6844903910834962446)
+- [高阶函数及函数柯里化](https://juejin.im/post/6844903959757324296)
+- [理解JavaScript的高阶函数](https://juejin.im/post/6844903892124172301)
+- [大佬，JavaScript 柯里化，了解一下？](https://juejin.im/post/6844903603266650125)
+- [JavaScript专题之函数柯里化](https://github.com/mqyqingfeng/Blog/issues/42)
+```
