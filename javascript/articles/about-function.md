@@ -1199,4 +1199,7 @@ take(2)([1, 2, 3]) // [1, 2]
 - [理解JavaScript的高阶函数](https://juejin.im/post/6844903892124172301)
 - [大佬，JavaScript 柯里化，了解一下？](https://juejin.im/post/6844903603266650125)
 - [JavaScript专题之函数柯里化](https://github.com/mqyqingfeng/Blog/issues/42)
-```
+- [JavaScript 轻量级函数式编程](https://wizardforcel.gitbooks.io/functional-light-js/content/)
+- [函数式编程指北](https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/)
+- [Ramda](https://ramdajs.com/)
+- [lodash](https://lodash.com/)
