@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TODO LIST</title>
+  <link href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    .card-width {
+      width: 400px;
+      margin: 20px auto;
+    }
+
+    .card-header {
+      color: #fff;
+    }
+
+    .App {
+      text-align: center;
+    }
+
+    .App-logo {
+      animation: App-logo-spin infinite 20s linear;
+      height: 40vmin;
+      pointer-events: none;
+    }
+
+    .App-header {
+      background-color: #282c34;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-size: calc(10px + 2vmin);
+      color: white;
+    }
+
+    .App-link {
+      color: #61dafb;
+    }
+
+    @keyframes App-logo-spin {
+      from {
+        transform: rotate(0deg);
+      }
+
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    .form-check-label {
+      color: #333;
+      text-decoration: none;
+    }
+
+    .add-todo {
+      display: flex;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="card bg-dark card-width">
+    <h3 class="card-header text-center">TodoList</h3>
+    <div class="card-body">
+      <ul class="list-group">
+        <li class="list-group-item">
+          <div class="form-check">
+            <input type="checkbox" name="1" id="1" class="form-check-input">
+            <label for="1" class="form-check-label">出去吃饭</label>
+            <button type="button" class="close float-right" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+        </li>
+        <li class="list-group-item">
+          <div class="form-check">
+            <input type="checkbox" name="1" id="1" class="form-check-input">
+            <label for="1" class="form-check-label">出去吃饭</label>
+            <button type="button" class="close float-right" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+        </li>
+      </ul>
+      <hr />
+      <form class="add-todo" action="">
+        <input type="text" class="form-control" placeholder="其他待办事项">
+        <button class="card-link btn btn-primary btn-sm btn-block">添加</button>
+      </form>
+    </div>
+  </div>
+</body>
+
+</html>
