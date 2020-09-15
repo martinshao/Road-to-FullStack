@@ -16,11 +16,26 @@
       background-color: #fff;
     }
 
-    .todo-list {
+    .todo-list-app {
       width: 550px;
       padding: 20px;
-      background: #fff;
+      background-color: #f4f7fc;
       box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .2), 0 25px 50px 0 rgba(0, 0, 0, .1);
+    }
+
+    .title {
+      width: 100%;
+      margin: 0 auto;
+      background: linear-gradient(90deg, #3ea2ee 13%, #f56468 28%);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .title h2 {
+      font-size: 40px;
+      margin: 0;
+      margin-bottom: 24px;
     }
 
     .add {
@@ -50,6 +65,10 @@
       box-shadow: 0 0 0 .2rem rgba(0, 123, 255, .25);
     }
 
+    button[disabled] {
+      opacity: .5;
+    }
+
     .form-control {
       display: block;
       width: 100%;
@@ -71,27 +90,170 @@
       box-shadow: 0 0 0 .2rem rgba(0, 123, 255, .25);
     }
 
-    .search {
+    .add-todo {
       display: flex;
+    }
+
+
+
+    ul.todo-list {
+      padding: 0;
+      margin-bottom: 30px;
+    }
+
+    ul.todo-list li {
+      position: relative;
+      list-style-type: none;
+      display: block;
+      margin: 10px 0;
+      background: #e0e8f5;
+      border-radius: 3px;
+      padding-left: 38px;
+      /* custom checkbox width + 16 */
+      padding-top: 12px;
+      padding-bottom: 12px;
+      padding-right: 49px;
+      /* delete button + 5 */
+      overflow: hidden;
+      transition: background .15s ease-in-out
+    }
+
+    ul.todo-list .archived {
+      background: #fff !important;
+    }
+
+    .todo-text {
+      position: relative;
+      display: inline-block;
+      padding: 0 0.5em;
+    }
+
+
+    ul.todo-list li .delete {
+      position: absolute;
+      height: 100%;
+      top: 50%;
+      right: 0;
+      transform: translateY(-50%);
+      cursor: pointer;
+      opacity: 0;
+      width: 0;
+      background-color: #f56468;
+      color: #fff;
+      transition: all ease-in 0.25s;
+    }
+
+    ul.todo-list li .delete:after {
+      position: absolute;
+      content: '';
+      width: 16px;
+      height: 16px;
+      top: 50%;
+      left: 50%;
+      background-image: url(./images/trash.svg);
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain;
+      transform: translate(-50%, -50%) scale(0.5);
+      transition: all ease-in 0.25s;
+    }
+
+    ul.todo-list li:hover .delete {
+      width: 44px;
+      opacity: 1;
+    }
+
+    ul.todo-list li:hover .delete:after {
+      transform: translate(-50%, -50%) scale(1);
+    }
+
+    .todo-checkbox {
+      position: absolute;
+      opacity: 0;
+      display: none;
+    }
+
+    .todo-checkbox+label {
+      position: absolute;
+      cursor: pointer;
+      left: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 22px;
+      height: 22px;
+      border-radius: 2px;
+      border: 1px solid #cfdcec;
+      background-color: #fff;
+    }
+
+    .todo-checkbox:checked+label:after {
+      position: absolute;
+      content: '';
+      top: 30%;
+      left: 50%;
+      height: 3px;
+      width: 6px;
+      border: solid #fc6c48;
+      border-width: 0 0 2px 2px;
+      transform-origin: center center;
+      transform: rotate(-45deg) translate(-50%, -50%);
+    }
+
+    .todo-checkbox:checked+label:after {
+      display: block;
+    }
+
+    .todo-checkbox:checked~.todo-text {
+      color: #888;
+      text-decoration: line-through
+    }
+
+    .container {
+      width: 100%;
+      border: 1px solid #ccc;
+      margin: 0 auto;
+      background: linear-gradient(90deg, #f29914 15%, #0bbbe3 76%);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
     }
   </style>
 </head>
 
 <body>
-  <div class="todo-list">
+  <div class="todo-list-app">
     <div class="top">
       <div class="title">
         <h2>TODOLIST</h2>
       </div>
-      <div class="search">
-        <input type="text" class="form-control" placeholder="Please enter your name">
-        <button class="add">add</button>
+      <div class="add-todo">
+        <input type="text" class="form-control" placeholder="需要处理的任务">
+        <button class="add" disabled>add</button>
       </div>
     </div>
-    <div class="head"></div>
-    <div class="content"></div>
+    <div class="content">
+      <ul class="todo-list">
+        <li>
+          <input type="checkbox" class="todo-checkbox" checked>
+          <label></label>
+          <span class="todo-text">1</span>
+          <span class="delete"></span>
+        </li>
+        <li class="archived">
+          <input type="checkbox" class="todo-checkbox">
+          <label></label>
+          <span class="todo-text">1</span>
+          <span class="delete"></span>
+        </li>
+        <li class="archived">
+          <input type="checkbox" class="todo-checkbox">
+          <label></label>
+          <span class="todo-text">1</span>
+          <span class="delete"></span>
+        </li>
+      </ul>
+    </div>
   </div>
-
 </body>
 
 </html>
