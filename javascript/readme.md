@@ -42,13 +42,13 @@
 * 深入浅出图解作用域链和闭包 - 12
 * 深度解析 `new` 原理及模拟实现 - 13
 * JavaScript继承方式详解 - 14
-* [JavaScript立即执行函数][115]
+* [JavaScript 中函数的方方面面][116]
 
 [101]: https://github.com/Martin-Shao/Road-to-FullStack/blob/master/javascript/articles/js-variable-type.md
 [102]: https://github.com/Martin-Shao/Road-to-FullStack/blob/master/javascript/running-analysis/mm-gc.md
 [105]: https://github.com/Martin-Shao/Road-to-FullStack/blob/master/javascript/articles/about-this.md
 [109]: https://github.com/Martin-Shao/Road-to-FullStack/blob/master/javascript/articles/prototype-chain.md
-[115]: https://github.com/Martin-Shao/Road-to-FullStack/blob/master/javascript/articles/javascript-iife.md
+[116]: https://github.com/Martin-Shao/Road-to-FullStack/blob/master/javascript/articles/about-function.md
 
 ----------------------------------------------------------------------------
 
