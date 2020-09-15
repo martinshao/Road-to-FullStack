@@ -1012,6 +1012,18 @@ console.log(Foo.prototype); // undefined
 
 yield 关键字通常不能在箭头函数中使用（除非是嵌套在允许使用的函数内）。因此，箭头函数不能用作函数生成器。
 
+## 函数式编程简介
+
+之所以要在这里加入函数式编程的内容，是因为我觉得前端同学在日常开发中，用好函数式编程是很重要的事情，对于我来说这里涉及到的不是简单的把编码看成是糊口的工具，而是一种精神：工匠精神，对于代码精雕细琢的精神。
+
+在我有限的编码生涯中，接触到的编程范式莫过于过程式、命令式、面向对象式、函数式，这些都属于编程范式的范畴，其中我最常用的就是面向对象编程、函数式编程，这里需要着重介绍函数式编程的一些概念，和对代码优化带来的巨大贡献。
+
+有句话一直深深烙印在我心中，我觉得下面两句话能够道出一些面向对象和函数式的精髓：
+
+> 面向对象编程 (OO) 通过封装变化使得代码更易理解。
+> 函数式编程 (FP) 通过最小变化使得代码更易理解。
+> ———— Michael Feathers
+
 ## 柯里化
 
 在计算机科学中，柯里化（英语：Currying），是把接受多个参数的函数变换成接受一个单一参数（最初函数的第一个参数）的函数，并且返回接受余下的参数而且返回结果的新函数的技术。这个技术由克里斯托弗·斯特雷奇以逻辑学家哈斯凯尔·加里命名的，尽管它是 Moses Schönfinkel 和戈特洛布·弗雷格发明的。
@@ -1106,82 +1118,113 @@ const filterQs = function (arr) {
 ```js
 const regExp = /q/i;
 
-const filter = (fn, arr) => Array.prototype.filter.call(arr, fn)
-const filterCurried = R.curry((fn, arr) => filter(fn, arr))
-const match = (regExp, str) => String.prototype.match.call(str, regExp)
-const matchCurried = R.curry((regExp, str) => match(regExp, str))
+const filter = (fn, arr) => Array.prototype.filter.call(arr, fn);
+const filterCurried = R.curry((fn, arr) => filter(fn, arr));
+const match = (regExp, str) => String.prototype.match.call(str, regExp);
+const matchCurried = R.curry((regExp, str) => match(regExp, str));
 
-const hasQs = str => str.match(regExp)
-const hasQs = matchCurried(regExp)
-const hasQs = match.bind(null, regExp)
+const hasQs = (str) => str.match(regExp);
+const hasQs = matchCurried(regExp);
+const hasQs = match.bind(null, regExp);
 
-const filterQs = filterCurried(hasQs)
+const filterQs = filterCurried(hasQs);
 
-filterQs(['quick', 'camels', 'quarry', 'over', 'quails'])
+filterQs(['quick', 'camels', 'quarry', 'over', 'quails']);
 
-const isDouble = number => number % 2 === 0
+const isDouble = (number) => number % 2 === 0;
 
-const filterDouble = filterCurried(isDouble)
+const filterDouble = filterCurried(isDouble);
 
-filterDouble([1, 2, 3, 4, 5, 6])
+filterDouble([1, 2, 3, 4, 5, 6]);
 ```
 
-``` js
+```js
 const filterQs = function (arr) {
   return R.filter(function (x) {
-    return R.match(/q/i, x)
-  }, arr)
-}
+    return R.match(/q/i, x);
+  }, arr);
+};
 
 const filterQs = R.filter(R.match(/q/i));
 ```
 
-``` js
+```js
 const _keepHighest = function (x, y) {
-  return x >= y ? x : y
-}
+  return x >= y ? x : y;
+};
 
 const max = function (xs) {
-  return R.reduce(function(acc, x) {
-    return _keepHighest(acc, x)
-  }, -Infinity, xs)
-}
+  return R.reduce(
+    function (acc, x) {
+      return _keepHighest(acc, x);
+    },
+    -Infinity,
+    xs
+  );
+};
 
-const max = xs => R.reduce(_keepHighest, -Infinity, xs)
+const max = (xs) => R.reduce(_keepHighest, -Infinity, xs);
 
-const max = R.reduce(_keepHighest, -Infinity)
-const max = R.reduce(Math.max, -Infinity)
+const max = R.reduce(_keepHighest, -Infinity);
+const max = R.reduce(Math.max, -Infinity);
 
-max([323, 523, 554, 123, 5234])
+max([323, 523, 554, 123, 5234]);
 ```
 
-``` js
-[1, 2, 3].slice(0, 2)
+```js
+[1, 2, 3].slice(0, 2);
 
-const slice = (start, end, arr) => Array.prototype.slice.call(arr, start, end)
-const take = slice.bind(null, 0)
-take.bind(null, 2)([1, 2, 3]) // [1, 2]
+const slice = (start, end, arr) => Array.prototype.slice.call(arr, start, end);
+const take = slice.bind(null, 0);
+take.bind(null, 2)([1, 2, 3]); // [1, 2]
 
-const sliceCurried = R.curry((start, end, arr) => R.slice(start, end, arr))
+const sliceCurried = R.curry((start, end, arr) => R.slice(start, end, arr));
 const take = sliceCurried(0);
-take(2)([1, 2, 3]) // [1, 2]
+take(2)([1, 2, 3]); // [1, 2]
 
 const sliceCurried = R.curry((start, end, xs) => xs.slice(start, end));
 const take = sliceCurried(0);
-take(2)([1, 2, 3]) // [1, 2]
+take(2)([1, 2, 3]); // [1, 2]
 ```
 
 ## 高阶函数
 
 高阶函数是那些操作其他函数的函数。用最简单的话来说，高阶函数就是一个将函数作为参数或者返回值的函数。
 
-例如 `Array.prototype.map`, `Array.prototype.filter`和`Array.prototype.reduce`是JavaScript原生的高阶函数。
-
-
+例如 `Array.prototype.map`, `Array.prototype.filter`和`Array.prototype.reduce`是 JavaScript 原生的高阶函数。
 
 ## 函数组合
 
+> 将一个函数的输出作为另一个函数的输入
 
+function compose 称为函数组合，又是一种重要代码组织思想，形式如下：
+
+```js
+// function expression
+const compose = function (f, g) {
+  return function (x) {
+    return f(g(x));
+  };
+};
+
+// lambda expression
+const compose = (f, g) => (x) => f(g(x));
+```
+
+f 和 g 都是函数，x 是在它们之间通过“管道”传输的值。
+
+组合看起来像是在饲养函数。你就是饲养员，选择两个有特点又遭你喜欢的函数，让它们结合，产下一个崭新的函数。组合的用法如下：
+
+```js
+const float = parseFloat('1.65');
+const number = Math.round(float);
+
+const number = Math.round(parseFloat('1.65'));
+
+const stringRound = compose(Math.round, parseFloat);
+
+const number = stringRound('1.65');
+```
 
 ## 参考文章
 
@@ -1191,14 +1234,14 @@ take(2)([1, 2, 3]) // [1, 2]
 - [Parameters(形参) 和 Arguments(实参) ](https://www.html.cn/archives/8057)
 - [箭头函数](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Functions/Arrow_functions)
 - [Function](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Function)
-- [js函数柯里化](https://juejin.im/post/6844903843793207309)
-- [JavaScript中的函数柯里化](https://juejin.im/post/6844903743519997966)
+- [js 函数柯里化](https://juejin.im/post/6844903843793207309)
+- [JavaScript 中的函数柯里化](https://juejin.im/post/6844903743519997966)
 - [柯里化与函数组合](https://juejin.im/post/6844903743415140360)
 - [彻底弄懂函数组合](https://juejin.im/post/6844903910834962446)
 - [高阶函数及函数柯里化](https://juejin.im/post/6844903959757324296)
-- [理解JavaScript的高阶函数](https://juejin.im/post/6844903892124172301)
+- [理解 JavaScript 的高阶函数](https://juejin.im/post/6844903892124172301)
 - [大佬，JavaScript 柯里化，了解一下？](https://juejin.im/post/6844903603266650125)
-- [JavaScript专题之函数柯里化](https://github.com/mqyqingfeng/Blog/issues/42)
+- [JavaScript 专题之函数柯里化](https://github.com/mqyqingfeng/Blog/issues/42)
 - [JavaScript 轻量级函数式编程](https://wizardforcel.gitbooks.io/functional-light-js/content/)
 - [函数式编程指北](https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/)
 - [Ramda](https://ramdajs.com/)

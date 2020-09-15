@@ -305,33 +305,90 @@
 
     const compose = (f, g) => x => f(g(x))
 
-    const toUpperCase = x => x.toUpperCase()
 
-    const exclaim = x => x + '!'
+    const map = (fn, arr) => {
+      let results = []
+      for (let value of arr) {
+        results.push(fn(value))
+      }
+      return results
+    }
 
-    const shout = compose(exclaim, toUpperCase)
+    const filter = (fn, arr) => {
+      let results = []
+      for (let value of arr) {
+        (fn(value)) ? results.push(value): undefined
+      }
+      return results
+    }
 
-    // const shout = x => exclaim(toUpperCase(x))
+    const apressBooks = [{
+        "id": 111,
+        "title": "C# 6.0",
+        "author": "ANDREW TROELSEN",
+        "rating": [4.7],
+        "reviews": [{
+          good: 4,
+          excellent: 12
+        }]
+      },
+      {
+        "id": 222,
+        "title": "Efficient Learning Machines",
+        "author": "Rahul Khanna",
+        "rating": [4.5],
+        "reviews": []
+      },
+      {
+        "id": 333,
+        "title": "Pro AngularJS",
+        "author": "Adam Freeman",
+        "rating": [4.0],
+        "reviews": []
+      },
+      {
+        "id": 444,
+        "title": "Pro ASP.NET",
+        "author": "Adam Freeman",
+        "rating": [4.2],
+        "reviews": [{
+          good: 14,
+          excellent: 12
+        }]
+      }
+    ]
 
-    console.info(shout('send in the clowns'))
+    // 获取满分评价图书
+    let filterOutStandingBooks = (book) => book.rating[0] === 5
+    // 获取评价大于4.5的图书
+    let filterGoodBooks = (book) => book.rating[0] > 4.5
+    // 获取评价小于3.5的图书
+    let filterBadBooks = (book) => book.rating[0] < 3.5
+    // 获取图书的title和author
+    let projectTitleAndAuthor = (book) => ({
+      title: book.title,
+      author: book.author
+    })
+    // 获取图书的author
+    let projectAuthor = (book) => ({
+      author: book.author
+    })
+    // 获取图书的title
+    let projectTitle = (book) => ({
+      title: book.title
+    })
 
-    const head = x => x[0]
+    let queryGoodBooks = R.partial(filter, [filterGoodBooks])
+    let mapTitleAndAuthor = R.partial(map, [projectTitleAndAuthor])
 
-    const reverse = R.reduce((acc, x) => [x].concat(acc), [])
+    let titleAndAuthorForGoodBooks = compose(mapTitleAndAuthor, queryGoodBooks)
 
-    const last = compose(head, reverse)
+    // queryGoodBooks(apressBooks)
+    // titleAndAuthorForGoodBooks(apressBooks)
 
-    console.info(last(['jumpkick', 'roundhouse', 'uppercut']))
-
-    // 结合律（associativity）
-    // const associative = compose(f, compose(g, h)) == compose(compose(f, g), h);
-
-    const lastUpper = R.compose(toUpperCase, head, reverse);
-
-    const loudLastUpper = R.compose(exclaim, toUpperCase, head, reverse)
-
-    console.info(lastUpper(['jumpkick', 'roundhouse', 'uppercut']))
-    console.info(loudLastUpper(['jumpkick', 'roundhouse', 'uppercut']))
+    const greet = (salutation, title, firstName, lastName) =>
+      salutation + ', ' + title + ' ' + firstName + ' ' + lastName + '!';
+    const sayHelloToMs = R.partial(greet, ['Hello', 'Ms.']);
   </script>
 </body>
 
