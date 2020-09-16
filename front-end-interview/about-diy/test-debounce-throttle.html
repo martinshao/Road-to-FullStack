@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .container {
+      margin: 100px;
+      background-color: aliceblue;
+      width: 1000px;
+      height: 500px;
+      display: flex;
+    }
+
+    .content {
+      width: 200px;
+      height: 500px;
+      background-color: aquamarine;
+      margin-right: 20px;
+    }
+
+    .draw {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    #top {
+      background-color: bisque;
+    }
+
+    #bottom {
+      background-color: cornsilk;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="content"></div>
+    <div class="draw">
+      <canvas id="top" width="800"></canvas>
+      <canvas id="middle" width="800"></canvas>
+      <canvas id="bottom" width="800"></canvas>
+    </div>
+  </div>
+  <input id="name" type="text">
+
+  <script>
+    const contextTop = document.getElementById("top").getContext("2d");
+    const contextMiddle = document.getElementById("middle").getContext("2d");
+    const contextBottom = document.getElementById("bottom").getContext("2d");
+
+    let startX = 1
+
+    function paint(context) {
+      console.info('paint start...')
+      context.beginPath();
+      context.lineWidth = 1;
+      context.moveTo(startX, 0);
+      context.lineTo(startX, 100);
+      context.closePath();
+      context.strokeStyle = "black";
+      context.stroke();
+    }
+
+    function debounce(fn, delay = 10) {
+      let timeout = null
+      return function (...args) {
+        clearTimeout(timeout)
+        timeout = setTimeout(() => {
+          fn.apply(this, args)
+        }, delay);
+      }
+    }
+
+    const paintDebounce = debounce(paint)
+
+    function throttle(fn, delay = 50) {
+      let flag = false
+      const that = this
+      console.info('throttle...', flag)
+      return function (...args) {
+        console.info('before flag', flag)
+        if (flag) return;
+        flag = true
+        console.info('after flag', flag)
+        setTimeout(() => {
+          fn.apply(that, args)
+          flag = false
+        }, delay);
+      }
+    }
+
+    const throttlePrint = throttle(print)
+    const paintThrottle = throttle(paint)
+
+    const input = document.getElementById('name')
+    input.addEventListener('keyup', function () {
+      console.info('keyup')
+      throttlePrint(input.value)
+    })
+
+    const content = document.querySelector('.content')
+    content.addEventListener('mousemove', function () {
+      console.info('mouse move')
+      startX += 3;
+      if (startX > 800) return false;
+      paintDebounce(contextTop)
+      paintThrottle(contextBottom)
+      paint(contextMiddle)
+    })
+    content.addEventListener('mouseenter', function () {
+      console.info('mouse enter')
+    })
+    content.addEventListener('mouseleave', function () {
+      console.info('mouse leave')
+    })
+  </script>
+</body>
+
+</html>
