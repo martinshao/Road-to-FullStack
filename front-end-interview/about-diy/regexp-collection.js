@@ -14,5 +14,16 @@ function isCardNo(number) {
  * 实现千位分隔符
  */
 function parseToMoney(num) {
-  
+  const regExp = /\d(?=(\d{3})+$)/g
+  return num.replace(regExp, ',')
 }
+
+const number1 = '12345678'
+const number2 = '123456789'
+
+console.info(parseToMoney(number1))
+console.info(parseToMoney(number2))
+
+"12345678".replace(/(?=\d{3}$)/g, ',')
+"12345678".replace(/(?=(\d{3})+$)/g, ',')
+"12345678".replace(/(?!^)(?=(\d{3})+$)/g, ',')
