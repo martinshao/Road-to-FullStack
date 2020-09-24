@@ -1,5 +1,13 @@
 # JavaScript 手写题总结
 
+## JavaScript 中设计模式
+
+### 手写发布订阅模式
+
+> 发布订阅的核心: 每次event. emit（发布），就会触发一次event. on（注册）
+
+
+
 ## 异步相关手写
 
 实现 Promise
