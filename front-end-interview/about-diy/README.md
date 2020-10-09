@@ -1,12 +1,177 @@
 # JavaScript 手写题总结
 
+## JavaScript 必知必会基础题
+
+### 防抖
+
+```js
+function debounce(fn, delay = 100) {
+  let timeout = null;
+  return function (...args) {
+    clearTimeout(timeout);
+    timeout = setTimeout(() => {
+      fn.apply(this, args);
+    }, delay);
+  };
+}
+```
+
+### 节流
+
+```js
+function throttle(fn, delay = 100) {
+  let flag = false;
+  return function (...args) {
+    if (flag) return;
+    flag = true;
+    setTimeout(() => {
+      fn.apply(this, args);
+      flag = false;
+    }, delay);
+  };
+}
+```
+
+### new 实现
+
+### instanceof 实现
+
+```js
+function myInstanceof(l, r) {
+  let proto = l.__proto__;
+  let prototype = r.prototype;
+  while (true) {
+    if (proto === null) return false;
+    if (proto === prototype) return true;
+    proto = proto.__proto__;
+  }
+}
+```
+
+### call 实现
+
+```js
+Function.prototype.myCall = function (context = globalThis) {
+  const key = Symbol('key');
+  context[key] = this;
+  const args = [...arguments].slice(1);
+  const res = context[key](...args);
+  delete context[key];
+  return res;
+};
+
+// test
+const jack = {
+  name: 'Jack',
+};
+
+function say() {
+  console.info(`My name is ${this.name || 'default'}`);
+}
+
+say.myCall(jack);
+```
+
+### apply 实现
+
+```js
+Function.prototype.myApply = function (context = globalThis) {
+  const key = Symbol('key');
+  context[key] = this;
+  let res;
+  if (arguments[1]) {
+    res = context[key](...arguments[1]);
+  } else {
+    res = context[key]();
+  }
+  delete context[key];
+  return res;
+};
+
+// test
+const jack = {
+  name: 'Jack',
+};
+
+function say() {
+  console.info(`My name is ${this.name || 'default'}`);
+}
+
+say.myApply(jack);
+```
+
+### bind 实现
+
+```js
+Function.prototype.myBind = function (context = globalThis) {
+  const fn = this;
+  const args = Array.from(arguments).slice(1);
+  const newFunc = function () {
+    const newArgs = args.concat(...arguments);
+    if (this instanceof newFunc) {
+      fn.apply(this, newArgs);
+    } else {
+      fn.apply(context, newArgs);
+    }
+  };
+  newFunc.prototype = Object.create(fn.prototype);
+  return newFunc;
+};
+
+// test
+const me = { name: 'Jack' };
+const other = { name: 'Jackson' };
+function say() {
+  console.log(`My name is ${this.name || 'default'}`);
+}
+const meSay = say.myBind(me);
+meSay();
+const otherSay = say.myBind(other);
+otherSay();
+
+// MDN 实现
+//  Yes, it does work with `new (funcA.bind(thisArg, args))`
+if (!Function.prototype.bind)
+  (function () {
+    var ArrayPrototypeSlice = Array.prototype.slice;
+    Function.prototype.bind = function (otherThis) {
+      if (typeof this !== 'function') {
+        // closest thing possible to the ECMAScript 5
+        // internal IsCallable function
+        throw new TypeError(
+          'Function.prototype.bind - what is trying to be bound is not callable'
+        );
+      }
+
+      var baseArgs = ArrayPrototypeSlice.call(arguments, 1),
+        baseArgsLength = baseArgs.length,
+        fToBind = this,
+        fNOP = function () {},
+        fBound = function () {
+          baseArgs.length = baseArgsLength; // reset to default base arguments
+          baseArgs.push.apply(baseArgs, arguments);
+          return fToBind.apply(
+            fNOP.prototype.isPrototypeOf(this) ? this : otherThis,
+            baseArgs
+          );
+        };
+
+      if (this.prototype) {
+        // Function.prototype doesn't have a prototype property
+        fNOP.prototype = this.prototype;
+      }
+      fBound.prototype = new fNOP();
+
+      return fBound;
+    };
+  })();
+```
+
 ## JavaScript 中设计模式
 
 ### 手写发布订阅模式
 
-> 发布订阅的核心: 每次event. emit（发布），就会触发一次event. on（注册）
-
-
+> 发布订阅的核心: 每次 event. emit（发布），就会触发一次 event. on（注册）
 
 ## 异步相关手写
 
