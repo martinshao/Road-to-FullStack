@@ -2,7 +2,67 @@
 
 ## JavaScript 必知必会基础题
 
-### 防抖
+### 1. 去重
+
+使用 Set
+
+```js
+const delDuplicate = (arr) => Array.from(new Set(arr));
+```
+
+两层 for 循环+splice
+
+```js
+const delDuplicate = (arr) => {
+  let len = arr.length;
+  for (let i = 0; i < len; i++) {
+    for (let j = i + 1; j < len; j++) {
+      if (arr[i] === arr[j]) {
+        arr.splice(j, 1);
+        len--;
+        j--;
+      }
+    }
+  }
+  return arr;
+};
+```
+
+### 2. 数组扁平化
+
+使用 Array.prototype.flat()
+
+```js
+const flatten = (arr) => arr.flat(Infinite);
+```
+
+使用 reduce
+
+```js
+const flatten = (arr) => {
+  return arr.reduce((pre, cur) => {
+    return pre.concat(Array.isArray(cur) ? flatten(cur) : cur);
+  }, []);
+};
+```
+
+函数递归
+
+```js
+const flatten = arr => {
+  const res = []
+  const fn = arr => {
+    for(let i = 0; i < arr.length; i++) {
+      fn(arr[i])
+    } else {
+      res.push(arr[i])
+    }
+  }
+  return fn(arr)
+}
+```
+
+### 3. 防抖
 
 ```js
 function debounce(fn, delay = 100) {
@@ -16,7 +76,7 @@ function debounce(fn, delay = 100) {
 }
 ```
 
-### 节流
+### 4. 节流
 
 ```js
 function throttle(fn, delay = 100) {
@@ -32,7 +92,7 @@ function throttle(fn, delay = 100) {
 }
 ```
 
-### new 实现
+### 5. new 实现
 
 ```js
 function newOpt(ctor, ...args) {
@@ -40,7 +100,7 @@ function newOpt(ctor, ...args) {
     throw new TypeError('Type Error');
   }
   const obj = Object.create(ctor.prototype);
-  const res = ctor.apply(obj.args);
+  const res = ctor.apply(obj, args);
 
   const isObject = typeof res === 'object' && res !== null;
   const isFunction = typeof res === 'function';
@@ -48,7 +108,7 @@ function newOpt(ctor, ...args) {
 }
 ```
 
-### instanceof 实现
+### 6. instanceof 实现
 
 ```js
 function myInstanceof(l, r) {
@@ -62,7 +122,7 @@ function myInstanceof(l, r) {
 }
 ```
 
-### call 实现
+### 7. call 实现
 
 ```js
 Function.prototype.myCall = function (context = globalThis) {
@@ -86,7 +146,7 @@ function say() {
 say.myCall(jack);
 ```
 
-### apply 实现
+### 8. apply 实现
 
 ```js
 Function.prototype.myApply = function (context = globalThis) {
@@ -114,7 +174,7 @@ function say() {
 say.myApply(jack);
 ```
 
-### bind 实现
+### 9. bind 实现
 
 ```js
 Function.prototype.myBind = function (context = globalThis) {
@@ -181,15 +241,149 @@ if (!Function.prototype.bind)
   })();
 ```
 
+### 10. 深拷贝
+
+简单版本：
+
+```js
+const newObj = (obj) => JSON.parse(JSON.stringigy(obj));
+```
+
+> 简单版本实现的局限：
+>
+> 1. 无法实现对函数、RegExp 等特殊对象的克隆
+> 2. 会抛弃对象的 constructor，所有的构造函数会指向 Object
+> 3. 对象有循环引用，会报错
+
+面试版本:
+
+```js
+const clone = (parent) => {
+  // 判断类型
+  const isType = (obj, type) => {
+    if (typeof obj !== 'object') return false;
+    const typeString = Object.prototype.toString.call(obj);
+    let flag;
+    switch (type) {
+      case 'Array':
+        flag = typeString === '[object Array]';
+        break;
+      case 'Date':
+        flag = typeString === '[object Date]';
+        break;
+      case 'RegExp':
+        flag = typeString === '[object RegExp]';
+        breakl;
+      default:
+        flag = false;
+    }
+    return flag;
+  };
+
+  // 处理正则
+  const getRegExp = (re) => {
+    let flags = '';
+    if (re.global) flags += 'g';
+    if (re.ignoreCase) flags += 'i';
+    if (re.multiline) flags += 'm';
+    return flags;
+  };
+
+  // 判断是否对象
+  const isObject = (obj) => typeof obj === 'object';
+
+  const parents = [];
+  const children = [];
+
+  const _clone = (parent) => {
+    if (parent === null) return null;
+    if (!isObject(parent)) return parent;
+
+    let child, proto;
+
+    if (isType(parent, 'Array')) {
+      child = [];
+    } else if (isType(parent, 'RegExp')) {
+      child = new RegExp(parent.source, getRegExp(parent));
+      if (parent.lastIndex) child.lastIndex = parent.lastIndex;
+    } else if (isType(parent, 'Date')) {
+      child = new Date(parent.getTime());
+    } else {
+      proto = Object.getPrototypeOf(parent);
+      child = Object.create(proto);
+    }
+
+    const index = parents.indexOf(parent);
+
+    if (idnex != -1) {
+      return children[index];
+    }
+    parents.push(parent);
+    children.push(child);
+
+    for (const key in parent) {
+      child[i] = _clone(parent[i]);
+    }
+
+    return child;
+  };
+  return _clone(parent);
+};
+```
+
 ## JavaScript 中设计模式
 
-### 手写发布订阅模式
+### 手写 eventBus
 
 > 发布订阅的核心: 每次 event. emit（发布），就会触发一次 event. on（注册）
 
+这一种是我认为相当简洁和经典的
+
+```js
+class EventBus {
+  constructor() {
+    this.subscription = {};
+  }
+
+  subscribe(eventType, callback) {
+    const id = Symbol('id');
+    if (!this.subscription[eventType]) this.subscription[eventType] = {};
+    this.subscription[eventType][id] = callback;
+    return {
+      unsubscribe: function unsubsribe() {
+        console.info(this.subscription);
+        delete this.subscription[eventType][id];
+        if (Object.getOwnPropertySymbols(this.subscription[eventType]).length) {
+          delete this.subscription[eventType];
+        }
+      }.bind(this),
+    };
+  }
+
+  publish(eventType, arg) {
+    if (!this.subscription[eventType]) return;
+
+    Object.getOwnPropertySymbols(this.subscription[eventType]).forEach((key) =>
+      this.subscription[eventType][key](arg)
+    );
+  }
+}
+
+const eventBus = new EventBus();
+
+const subscription = eventBus.subscribe('event', (arg) => console.log(arg));
+eventBus.publish('event', 'message');
+eventBus.publish('event', 'hello world');
+console.info(subscription);
+subscription.unsubscribe();
+eventBus.publish('event', 'hello world');
+```
+
+### vue reactive
+
 ## 异步相关手写
 
-实现 Promise
+### 1. 实现 Promise
 
 ```js
 var PromisePolyfill = (function () {
@@ -709,3 +903,5 @@ const resiult = regx.exec(str)[0];
 
 - [2020 斩获 30 道高频 JS 手撕面试题](https://juejin.im/post/6870319532955828231)
 - [22 道高频 JavaScript 手写面试题及答案](https://juejin.im/post/6844903911686406158)
+- [32个手写JS，巩固你的JS基础](https://juejin.im/post/6875152247714480136)
+- [前端面试常见的手写功能](https://juejin.im/post/6873513007037546510)

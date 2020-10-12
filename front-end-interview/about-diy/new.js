@@ -17,7 +17,7 @@ function newOpt(ctor, ...args) {
     throw new TypeError('Type Error')
   }
   const obj = Object.create(ctor.prototype)
-  const res = ctor.apply(obj.args)
+  const res = ctor.apply(obj, args)
 
   const isObject = typeof res === 'object' && res !== null
   const isFunction = typeof res === 'function'
