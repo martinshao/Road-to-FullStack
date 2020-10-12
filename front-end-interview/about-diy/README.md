@@ -331,6 +331,23 @@ const clone = (parent) => {
 };
 ```
 
+### 11. 柯里化
+
+```js
+function curry(fn) {
+  return (...xs) => {
+    if (xs.length === fn.length) {
+      throw new Error('ENTRY INVOCATION');
+    }
+    if (xs.length >= fn.length) {
+      return fn(...xs);
+    }
+
+    return curry(fn.bind(null, ...xs));
+  };
+}
+```
+
 ## JavaScript 中设计模式
 
 ### 手写 eventBus
@@ -903,5 +920,5 @@ const resiult = regx.exec(str)[0];
 
 - [2020 斩获 30 道高频 JS 手撕面试题](https://juejin.im/post/6870319532955828231)
 - [22 道高频 JavaScript 手写面试题及答案](https://juejin.im/post/6844903911686406158)
-- [32个手写JS，巩固你的JS基础](https://juejin.im/post/6875152247714480136)
+- [32 个手写 JS，巩固你的 JS 基础](https://juejin.im/post/6875152247714480136)
 - [前端面试常见的手写功能](https://juejin.im/post/6873513007037546510)
