@@ -77,6 +77,42 @@ g: null,
 };
 ```
 
+```js
+function flatten(input) {
+  let result = {};
+
+  const toString = (obj) => Object.prototype.toString.call(obj);
+  const isObject = (obj) => toString(obj) === '[object Object]';
+  const isArray = (obj) => toString(obj) === '[object Array]';
+
+  const arrayKey = (preKey, key) => `${preKey}[${key}]`;
+  const objectKey = (preKey, key) => `${preKey}.${key}`;
+
+  function flat(preKey, ipt) {
+    if (ipt) {
+      let temp = {};
+      if (isObject(ipt)) {
+        for (let key in ipt) {
+          temp = Object.assign(temp, flat(objectKey(preKey, key), ipt[key]));
+        }
+      } else if (isArray(ipt)) {
+        for (let key in ipt) {
+          temp = Object.assign(temp, flat(arrayKey(preKey, key), ipt[key]));
+        }
+      } else {
+        temp[preKey] = ipt;
+      }
+      return temp;
+    }
+  }
+
+  for (let key in input) {
+    result = Object.assign(result, flat(key, input[key]));
+  }
+  return result;
+}
+```
+
 ### 组合总和
 
 给定一个无重复元素的数组  candidates  和一个目标数  target ，找出  candidates  中所有可以使数字和为  target  的组合。
