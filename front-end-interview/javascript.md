@@ -30,6 +30,27 @@
 13. 请解释同步和异步函数之间的区别。
 14. 什么是事件循环？调用堆栈和任务队列之间有什么区别？
 
-
-
 ## 高级部分，JavaScript运行原理和语言特性的深入了解
+
+
+## 京城一灯面试题
+
+1. 浏览器为什么要阻止跨域请求？如何解决跨越？每次跨越请求都需要到达服务端吗？浏览器端怎么拦截跨越请求的发出(是发出，不是接收)?
+2. 实现一个函数 findLastIndex(), 返回指定数在“有序”数组中最后一次出现位置的索引 如findLastIndex([1,2,3,3,3,4,5], 3), 返回4。时间复杂度是多少？什么情况下时间复杂度最高？
+3. WebWorker的缺点是什么？在worker线程怎么获取主线程上下文？解决卡顿的问题除了使用WebWorker还有其他的解决方案吗？（面试中，建议了解下fiber）
+有没有测试过worker通信时间？
+4. 完善下面函数，实现图片的加载
+function createImg(url){   }
+createImg(url).then((value) => {
+    document.body.appendChild(value)
+})
+5. JavaScript 中函数继承主要继承的是什么？可以继承函数体吗？为什么？
+
+## 从浏览器设计角度谈性能优化
+
+* [现代浏览器工作原理](http://chuquan.me/2018/01/21/browser-architecture-overview/)
+* [十分钟读懂浏览器渲染流程](https://blog.csdn.net/chanzhi2016/article/details/79345565)
+* [浏览器渲染原理、渲染阻塞、帧原理一次性说完](https://www.xuanbiyijue.com/2020/07/25/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%B8%B2%E6%9F%93%E5%8E%9F%E7%90%86%E3%80%81%E6%B8%B2%E6%9F%93%E9%98%BB%E5%A1%9E%E3%80%81%E5%B8%A7%E5%8E%9F%E7%90%86%E4%B8%80%E6%AC%A1%E6%80%A7%E8%AF%B4%E5%AE%8C/)
+* [浏览器的渲染：过程与原理](https://juejin.im/entry/6844903503609987080)
+* [渲染页面：浏览器的工作原理](https://developer.mozilla.org/zh-CN/docs/Web/Performance/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%B8%B2%E6%9F%93%E9%A1%B5%E9%9D%A2%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86)
+* 

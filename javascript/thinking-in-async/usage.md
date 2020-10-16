@@ -65,6 +65,8 @@ executor是带有 resolve 和 reject 两个参数的函数 。Promise构造函�
 
 * [MDN Promise][1]
 * [MDN 使用 Promise][2]
+* [【建议星星】要就来45道Promise面试题一次爽到底(1.1w字用心整理)][3]
 
 [1]: https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise
 [2]: https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Using_promises
+[3]: https://juejin.im/post/6844904077537574919

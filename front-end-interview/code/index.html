@@ -45,32 +45,32 @@
     //   }, 3000);
     // }
     // f1();
-    function wait1(param) {
-      return new Promise(resolve =>
-        setTimeout(function (params) {
-          console.info('wait1---', params);
-          resolve(params);
-        }, 3 * 1000, param + 1)
-      )
-    }
+    // function wait1(param) {
+    //   return new Promise(resolve =>
+    //     setTimeout(function (params) {
+    //       console.info('wait1---', params);
+    //       resolve(params);
+    //     }, 3 * 1000, param + 1)
+    //   )
+    // }
 
-    function wait2(param) {
-      return new Promise(resolve =>
-        setTimeout(function (params) {
-          console.info('wait2---', params);
-          resolve(params);
-        }, 5 * 1000, param + 1)
-      )
-    }
+    // function wait2(param) {
+    //   return new Promise(resolve =>
+    //     setTimeout(function (params) {
+    //       console.info('wait2---', params);
+    //       resolve(params);
+    //     }, 5 * 1000, param + 1)
+    //   )
+    // }
 
-    function wait3(param) {
-      return new Promise(resolve =>
-        setTimeout(function (params) {
-          console.info('wait3---', params);
-          resolve(params);
-        }, 8 * 1000, param + 1)
-      )
-    }
+    // function wait3(param) {
+    //   return new Promise(resolve =>
+    //     setTimeout(function (params) {
+    //       console.info('wait3---', params);
+    //       resolve(params);
+    //     }, 8 * 1000, param + 1)
+    //   )
+    // }
 
     // async function main() {
     //   console.time();
@@ -81,18 +81,53 @@
     //   console.timeEnd();
     // }
 
-    async function main() {
-      console.time();
-      const w1 = await wait1(2);
-      const w2 = await wait2(4);
-      const w3 = await wait3(6);
-      console.info('---w1---', w1);
-      console.info('---w2---', w2);
-      console.info('---w3---', w3);
-      console.timeEnd();
-      return 1212
+    // async function main() {
+    //   console.time();
+    //   const w1 = await wait1(2);
+    //   const w2 = await wait2(4);
+    //   const w3 = await wait3(6);
+    //   console.info('---w1---', w1);
+    //   console.info('---w2---', w2);
+    //   console.info('---w3---', w3);
+    //   console.timeEnd();
+    //   return 1212
+    // }
+    // main();
+    function (input) {
+      var result = {};
+
+      function recurse(src, prop) {
+        var toString = Object.prototype.toString;
+        if (src == null) return;
+
+
+        if (toString.call(src) == '[object Object]') {
+          var isEmpty = true;
+          for (let p in src) {
+            isEmpty = false;
+            recurse(src[p], prop ? `${prop}.${p}` : p);
+          }
+          if (isEmpty && prop) {
+            result[prop] = {};
+          }
+        } else if (toString.call(src) == '[object Array]') {
+          var len = src.length;
+          if (len > 0) {
+            src.forEach((item, index) => {
+              recurse(item, prop ? `${prop}[${index}]` : index);
+            })
+          } else {
+            result[prop] = [];
+          }
+
+        } else {
+          result[prop] = src;
+        }
+      }
+      recurse(input, '');
+      console.log(result);
+      return result;
     }
-    main();
   </script>
 </body>
 
