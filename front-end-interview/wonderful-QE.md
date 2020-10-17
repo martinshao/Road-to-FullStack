@@ -13,6 +13,10 @@
 * [深入理解HTTPS工作原理](https://juejin.im/post/6844903830916694030)
 
 * [腾讯前端面试](https://juejin.im/post/6844904178100207623)
+* [面试题](https://www.jianshu.com/p/5c47a9f960c2)
+* [有赞社招-前端面试经历分享](https://juejin.im/post/6844903890735857677)
+* [有赞、饿了么前端最新面试题总结](https://zhuanlan.zhihu.com/p/192943794)
+* [杭州有赞前端面试](https://www.nowcoder.com/discuss/232732?type=2)
 
 ### SegmentFault
 
@@ -32,3 +36,18 @@
 * [macrotask与microtask](http://www.ayqy.net/blog/javascript-macrotask-vs-microtask/)
 * [Event Loop的规范和实现](https://zhuanlan.zhihu.com/p/33087629)
 * [JS事件循环机制（event loop）之宏任务/微任务](https://juejin.im/post/6844903638238756878)
+
+## 工程化——脚手架搭建
+
+* [从零开始搭建 Vue 脚手架工具（一）](https://juejin.im/post/6844903927062724621)
+
+## 关于webpack的方方面面
+
+* [webpack编译流程](https://juejin.im/post/6844903935828819981)
+* [webpack运行流程、源码解析，Tabable原理](https://juejin.im/post/6844903976563900430)
+* [Webpack原理与实践（一）：打包流程](https://juejin.im/post/6844903712058507272)
+
+## 关于程序员成长的话题
+
+* [万字长文干货，面试官角度看招聘](https://zhuanlan.zhihu.com/p/145743998)
+* [今天聊：你为什么迟迟进不去大厂](https://www.yuque.com/iscott/10/qmrae8#pzZXE)
