@@ -1,5 +1,5 @@
 // method 1
-const newObj = JSON.parse(JSON.stringify(oldObj))
+// const newObj = JSON.parse(JSON.stringify(oldObj))
 
 // method 2
 const clone = parent => {
@@ -73,3 +73,46 @@ const clone = parent => {
   }
   return _clone(parent)
 }
+
+// mthod3
+
+// const target = {
+//   field1: 1,
+//   field2: undefined,
+//   field3: 'ConardLi',
+//   field4: {
+//     child: 'child',
+//     child2: {
+//       child2: 'child2'
+//     }
+//   }
+// };
+
+const target = {
+  field1: 1,
+  field2: undefined,
+  field3: {
+    child: 'child'
+  },
+  field4: [2, 4, 8]
+};
+
+function deepClone(obj, map = new WeakMap()) {
+  if (typeof obj === 'object') {
+    const result = Array.isArray(obj) ? [] : {}
+    if (map.get(target)) {
+      return map.get(target)
+    }
+    map.set(target, result)
+    for (const key in obj) {
+      result[key] = deepClone(obj[key], map)
+    }
+    return result
+  } else {
+    return obj
+  }
+}
+
+const result = deepClone(target)
+// console.info(target.field4.child2 === result.field4.child2)
+console.info(result)

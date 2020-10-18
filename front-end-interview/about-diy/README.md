@@ -370,7 +370,7 @@ class EventBus {
       unsubscribe: function unsubsribe() {
         console.info(this.subscription);
         delete this.subscription[eventType][id];
-        if (Object.getOwnPropertySymbols(this.subscription[eventType]).length) {
+        if (!Object.getOwnPropertySymbols(this.subscription[eventType]).length) {
           delete this.subscription[eventType];
         }
       }.bind(this),
