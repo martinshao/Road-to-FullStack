@@ -58,6 +58,10 @@
 * [浏览器与Node的事件循环(Event Loop)有何区别?](https://github.com/ljianshu/Blog/issues/54)
 * [微任务、宏任务与Event-Loop](https://juejin.im/post/6844903657264136200)
 
+## 关于异步
+
+* [Promise的源码实现](https://juejin.im/post/6844903796129136654)
+
 ## 工程化——脚手架搭建
 
 * [从零开始搭建 Vue 脚手架工具（一）](https://juejin.im/post/6844903927062724621)
