@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BFC 特性及应用</title>
+  <style>
+    /* div {
+      width: 100px;
+      height: 100px;
+      background: lightblue;
+      margin: 100px;
+    } */
+    .clearfix:after {
+      content: '';
+      height: 0;
+      display: block;
+      clear: both;
+    }
+  </style>
+</head>
+
+<body>
+  <div></div>
+  <div></div>
+  <div style="border: 40px solid #000;" class="clearfix">
+    <div style="width: 100px;height: 100px;background: #eee;float: left;"></div>
+    <div></div>
+  </div>
+</body>
+
+</html>

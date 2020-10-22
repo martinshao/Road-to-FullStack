@@ -92,21 +92,77 @@ const target = {
   field1: 1,
   field2: undefined,
   field3: {
-    child: 'child'
+    child1: 'child',
+    child2: {
+      grandson: {
+        name: 'Martin',
+        sex: 'man'
+      }
+    }
   },
-  field4: [2, 4, 8]
+  field4: [2, 4, 8],
+  field5: null
 };
 
+const mapType = '[object Map]'
+const setType = '[object Set]'
+const arrayType = '[object Array]'
+const objectType = '[object Object]'
+
+const boolType = '[object Object]'
+const dataType = '[object Date]'
+const errorType = '[object Error]'
+const numberType = '[object Number]'
+const regexptype = '[object RegExp]'
+const stringType = '[object String]'
+const symbolType = '[object Symbol]'
+
+const toString = obj => Object.prototype.toString.call(obj)
+const isObject = obj = toString(obj) === '[object Object]'
+const isArray = arr = toString(arr) === '[object Array]'
+
+// 这已经很好
 function deepClone(obj, map = new WeakMap()) {
-  if (typeof obj === 'object') {
-    const result = Array.isArray(obj) ? [] : {}
-    if (map.get(target)) {
-      return map.get(target)
+  if (isObject(obj)) {
+    const result = isArray(obj) ? [] : {}
+    if (map.get(obj)) {
+      return map.get(obj)
     }
-    map.set(target, result)
+    map.set(obj, result)
     for (const key in obj) {
       result[key] = deepClone(obj[key], map)
     }
+    return result
+  } else {
+    return obj
+  }
+}
+
+function forEach(array, iterate) {
+  let index = -1
+  const length = array.length
+  while (++index < length) {
+    iterate(array[index], index)
+  }
+  return array
+}
+
+function deepClone(obj, map = new WeakMap()) {
+  const isArr = isArray(obj)
+
+  if (isObject(obj)) {
+    const result = isArr ? [] : {}
+    if (map.get(obj)) {
+      return map.get(obj)
+    }
+    map.set(obj, result)
+    const keys = isArr ? undefined : Object.keys(obj)
+      (keys || obj).forEach((item, key) => {
+        if (keys) {
+          key = item
+        }
+        result[key] = deepClone(obj[key], map)
+      })
     return result
   } else {
     return obj
