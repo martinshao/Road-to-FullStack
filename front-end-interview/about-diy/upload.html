@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>分片上传研究</title>
+  <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/spark-md5/3.0.0/spark-md5.js"></script>
+</head>
+
+<body>
+  <h1>大文件上传测试</h1>
+  <div>
+    <h3>自定义上传文件</h3>
+    <input type="file" id="file" />
+    <div>
+      <input id="submitBtn" type="button" value="提交">
+    </div>
+  </div>
+</body>
+<script type="text/javascript">
+  $(function () {
+    const submitBtn = $('#submitBtn')
+    submitBtn.on('click', async () => {
+      const fileDom = $('#file')[0];
+      const files = fileDom.files
+      const file = files[0]
+      if (!file) {
+        alert('No file')
+        return;
+      }
+      const fileSize = file.size;
+      // const chunkSize = 2 * (2 << 9) * (2 << 10)
+      const chunkSize = 2 * 1024 * 1024
+      const chunks = Math.ceil(fileSize / chunkSize)
+      const blobSlice = File.prototype.slice || File.prototype.mozSlice || File.prototype.webkitSlice
+      const spark = new SparkMD5.ArrayBuffer();
+      const reader = new FileReader()
+      let currentChunk = 0
+
+      reader.onload = function (e) {
+        const result = e.target.result
+        spark.append(result);
+        currentChunk++;
+        if (currentChunk < chunks) {
+          loadNext();
+          console.info(`第${currentChunk}分片解析完成，开始解析${currentChunk + 1}分片`)
+        } else {
+          const md5 = spark.end();
+          console.info('解析完成')
+          console.info('md5')
+        }
+      }
+
+      function loadNext() {
+        const start = currentChunk * chunkSize;
+        const end = start + chunkSize > file.size ? file.size : (start + chunkSize);
+        reader.readAsArrayBuffer(blobSlice.call(file, start, end))
+      }
+      loadNext();
+    })
+  })
+</script>
+
+</html>

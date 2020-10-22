@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>分片上传研究</title>
+</head>
+
+<body>
+  <input type="file" id="file" />
+</body>
+<script>
+  window.onload = function () {
+    const input = document.getElementById('file');
+    input.onchange = function () {
+      const file = this.files[0]
+      if (file) {
+        const reader = new FileReader()
+        reader.readAsArrayBuffer(file)
+        reader.onload = function () {
+          console.info(this.result)
+          console.info(new Blob([this.result]))
+        }
+      }
+    }
+  }
+</script>
+
+</html>
