@@ -29,6 +29,7 @@
 * [有赞社招-前端面试经历分享](https://juejin.im/post/6844903890735857677)
 * [有赞、饿了么前端最新面试题总结](https://zhuanlan.zhihu.com/p/192943794)
 * [杭州有赞前端面试](https://www.nowcoder.com/discuss/232732?type=2)
+* [16年毕业的前端er在杭州求职ing](https://juejin.im/post/6844903553291517959)
 
 - [2020 斩获 30 道高频 JS 手撕面试题](https://juejin.im/post/6870319532955828231)
 - [22 道高频 JavaScript 手写面试题及答案](https://juejin.im/post/6844903911686406158)
@@ -94,6 +95,7 @@
 * [Webpack原理与实践（一）：打包流程](https://juejin.im/post/6844903712058507272)
 * [霖呆呆的webpack之路-自定义plugin篇](https://juejin.im/post/6844904162405138445)
 * [AST详解与运用](https://juejin.im/post/6885146952877031432)
+* [深入浅出 Webpack](http://webpack.wuhaolin.cn/)
 
 ## VUE
 
@@ -135,3 +137,10 @@
 * [大文件分片上传（NodeJs+Koa）](https://juejin.im/post/6844904180860076046)
 * [字节跳动面试官，我也实现了大文件上传和断点续传](https://juejin.im/post/6844904055819468808)
 * [《大胖 • 小课》- 说说大文件分片和断点续传](https://cloud.tencent.com/developer/article/1599751)
+* [16年毕业的前端er在杭州求职ing](https://juejin.im/post/6844903553291517959)
+
+[JS 脚本语言的优势与一些问题](https://doc.yonyoucloud.com/doc/wiki/project/cocos2d-x-from-cplusplus-js/s-advantages-and-some-problems-of-scripting-languages.html)
+
+## 工程化
+
+* [从零手写pm-cli脚手架，统一阿里拍卖源码架构](https://juejin.im/post/6847902222253031432)
