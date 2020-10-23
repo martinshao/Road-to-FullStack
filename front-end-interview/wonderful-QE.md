@@ -138,6 +138,8 @@
 * [字节跳动面试官，我也实现了大文件上传和断点续传](https://juejin.im/post/6844904055819468808)
 * [《大胖 • 小课》- 说说大文件分片和断点续传](https://cloud.tencent.com/developer/article/1599751)
 * [16年毕业的前端er在杭州求职ing](https://juejin.im/post/6844903553291517959)
+* [之前招的当老板了，阿里拍卖急招前端！！！](https://juejin.im/post/6844904037058379783)
+* [学习方法分享：为何一年半就能拿到大厂 offer](https://juejin.im/post/6844903904681918471)
 
 [JS 脚本语言的优势与一些问题](https://doc.yonyoucloud.com/doc/wiki/project/cocos2d-x-from-cplusplus-js/s-advantages-and-some-problems-of-scripting-languages.html)
 
