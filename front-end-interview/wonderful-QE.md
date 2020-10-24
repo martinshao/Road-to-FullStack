@@ -146,3 +146,17 @@
 ## 工程化
 
 * [从零手写pm-cli脚手架，统一阿里拍卖源码架构](https://juejin.im/post/6847902222253031432)
+
+## 性能优化手段
+
+* [懒加载和预加载](https://juejin.im/post/6844903614138286094)
+* [前端性能优化的七大手段](https://www.cnblogs.com/xiaohuochai/p/9178390.html)
+* [Intersection Observer](https://developer.mozilla.org/zh-CN/docs/Web/API/IntersectionObserver)
+* [（译）2019年前端性能优化清单 — 上篇](https://juejin.im/post/6844903765682683911)
+* [（译）2019年前端性能优化清单 — 中篇](https://juejin.im/post/6844903765741404168)
+* [（译）2019年前端性能优化清单 — 下篇](https://juejin.im/post/6844903765749792782)
+* [前端性能优化 24 条建议（2020）](https://segmentfault.com/a/1190000022205291)
+* [前端性能优化指南](https://segmentfault.com/a/1190000020867090)
+* [浅谈script标签的defer和async](https://juejin.im/entry/6844903560879013896)
+* [04 动态加载 JS 文件](https://chanshiyu.gitbook.io/blog/qian-duan/shi-zhan-xi-lie/04-dong-tai-jia-zai-js-wen-jian)
+* [浅谈script标签的defer和async](https://juejin.im/entry/6844903560879013896)
