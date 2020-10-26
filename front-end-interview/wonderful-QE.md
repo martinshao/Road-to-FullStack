@@ -57,6 +57,7 @@
 ## 关于继承
 
 * [做完这48道题彻底弄懂JS继承](https://juejin.im/post/6844904098941108232)
+* [JavaScript深入之继承的多种方式和优缺点](https://github.com/mqyqingfeng/Blog/issues/16)
 
 ## 关于深拷贝
 
@@ -160,3 +161,46 @@
 * [浅谈script标签的defer和async](https://juejin.im/entry/6844903560879013896)
 * [04 动态加载 JS 文件](https://chanshiyu.gitbook.io/blog/qian-duan/shi-zhan-xi-lie/04-dong-tai-jia-zai-js-wen-jian)
 * [浅谈script标签的defer和async](https://juejin.im/entry/6844903560879013896)
+
+## 前端并发控制
+
+* [Axios请求并发限制](https://www.jianshu.com/p/d3529d18cf59)
+* [不到50行代码实现一个能对请求并发数做限制的通用RequestDecorator](https://juejin.im/post/6844903678906728456)
+* [15 行代码实现并发控制（javascript）](https://segmentfault.com/a/1190000013128649)
+* [axios.all()解决并发请求](https://segmentfault.com/a/1190000019882188)
+
+## 前端数据监控平台
+
+* [埋点、数仓到中台：数据体系的从0到1](https://zhuanlan.zhihu.com/p/127165324)
+
+## JSSDK
+
+* [JavaScript sdk(jssdk)设计指南](https://js8.in/2016/06/29/javascript%20sdk(jssdk)%E8%AE%BE%E8%AE%A1%E6%8C%87%E5%8D%97/)
+
+## node 后端开发
+
+* [Koa日志中间件封装开发](https://segmentfault.com/a/1190000018433489)
+* [koa的中间件](https://www.jianshu.com/p/9e32541171e3)
+* [iKcamp新书上市《Koa与Node.js开发实战》](https://segmentfault.com/a/1190000017540384)
+* [使用Koa.js离不开这十个中间件](https://segmentfault.com/a/1190000017349532)
+* [《Node.js从入门到上线》入门篇 （持续更新中）](https://segmentfault.com/a/1190000015219640)
+* [简易Node中间层【只作为中间层】](https://segmentfault.com/a/1190000008250900)
+
+## 跨平台
+
+* [字节跳动技术整理：一文秒懂Flutter 跨平台演进及架构](https://zhuanlan.zhihu.com/p/130700225)
+* [跨平臺技術演進及Flutter未來](https://codertw.com/%E7%A8%8B%E5%BC%8F%E8%AA%9E%E8%A8%80/732899/)
+* [WebView性能、体验分析与优化](https://tech.meituan.com/2017/06/09/webviewperf.html)
+
+## npm包管理
+
+* [什么是npm系列：一、npm简介](https://juejin.im/post/6844903917260636167)
+* [什么是npm系列：二、install 的十八般武艺](https://juejin.im/post/6844903919332622350)
+* [什么是npm系列：三、如何发布自己的npm包](https://juejin.im/post/6844903935472304135)
+
+三面
+这一轮主要会提供一些特定场景，让你进行方案设计。也包括一些软件工程相关的抽象概念。
+1. native如何检测webview页面白屏/崩溃，纯js是否能实现类似功能
+2. 代码实现一个需求，发送请求时如果5秒内没有响应，则重复执行当前的请求，请求发送次数总共不超过三次
+3. 如果让你实现RN/weex/flutter之间的代码互相转换，你会怎么做设计
+4. 一个持续进行的项目，如何从系统层面减少工作量

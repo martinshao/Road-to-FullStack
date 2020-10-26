@@ -56,3 +56,66 @@ class SuperMan {
 
 const peter = new SuperMan('Spider Man')
 console.info(peter)
+
+// 组合式继承
+
+function Parent(name) {
+  this.name = name;
+  this.colors = ['red', 'black', 'green']
+}
+
+Parent.prototype.getName = function () {
+  console.info(this.name)
+}
+
+function Child(name, age) {
+  Parent.call(this, name)
+  this.age = age
+}
+
+Child.prototype = new Parent()
+Child.prototype.constructor = Child
+
+// 寄生组合式继承
+
+function prototype(subType, superType) {
+  const prototype = Object.create(superType.prototype);
+  prototype.constructor = subType;
+  subType.prototype = prototype;
+}
+
+function Child(age) {
+  this.age = age;
+}
+
+function Parent(name) {
+  this.name = name;
+  this.colors = ['red', 'blue', 'green'];
+}
+
+Parent.prototype.getName = function () {
+  console.log(this.name)
+}
+
+function inheritPrototype(subType, superType) {
+  var prototype = Object.create(superType.prototype)
+  prototype.constructor = subType
+  subType.prototype = prototype
+}
+
+function SuperType(name) {
+  this.name = name
+  this.colors = ["red", "blue", "green"]
+}
+SuperType.prototype.sayName = function () {
+  console.log(this.name)
+}
+
+function SubType(name, age) {
+  SuperType.call(this, name)
+  this.age = age
+}
+inheritPrototype(SubType, SuperType)
+SubType.prototype.sayAge = function () {
+  console.log(this.age)
+}
