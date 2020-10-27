@@ -146,15 +146,18 @@ Promise.prototype.catch = function (onRejected) {
 }
 
 Promise.prototype.finally = function (callback) {
-  return this.then((value) => {
-    return Promise.resolve(callback()).then(() => {
-      return value
-    })
-  }, (error) => {
-    return Promise.resolve(callback()).then(() => {
-      throw error
-    })
-  })
+  return this.then(
+    (value) => {
+      return Promise.resolve(callback()).then(() => {
+        return value
+      })
+    },
+    (error) => {
+      return Promise.resolve(callback()).then(() => {
+        throw error
+      })
+    }
+  )
 }
 
 Promise.all = function (promises) {
