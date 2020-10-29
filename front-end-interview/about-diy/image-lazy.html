@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>图片懒加载</title>
+  <style>
+    .content {
+      height: 200px;
+      border: 2px solid #ff3355;
+    }
+
+    .wrapper {
+      width: 600px;
+      height: 600px;
+      background-color: antiquewhite;
+    }
+
+    img {
+      width: 400px;
+      height: 400px;
+      display: inline-block;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="content">1</div>
+  <div class="content">1</div>
+  <div class="content">1</div>
+  <div class="content">1</div>
+  <div class="content">1</div>
+  <div class="content">1</div>
+  <div class="content">1</div>
+  <div class="content">1</div>
+  <div class="content">
+    <div id="cat">222</div>
+  </div>
+  <div class="wrapper">
+    <div>
+      <div>
+        <table id="table-2">
+          <img loading="lazy" src="http://localhost:8080/girl11.jpg" alt="图片">
+        </table>
+      </div>
+    </div>
+  </div>
+  <!-- <img src="" data-src="http://localhost:8080/girl11.jpg" alt="图片">
+  <img src="" data-src="http://localhost:8080/girl11.jpg" alt="图片">
+  <img src="" data-src="http://localhost:8080/girl12.jpg" alt="图片">
+  <img src="" data-src="http://localhost:8080/girl12.jpg" alt="图片">
+  <img src="" data-src="http://localhost:8080/girl11.jpg" alt="图片">
+  <img src="" data-src="http://localhost:8080/girl11.jpg" alt="图片">
+  <img src="" data-src="http://localhost:8080/girl11.jpg" alt="图片">
+  <img src="" data-src="http://localhost:8080/girl11.jpg" alt="图片">
+  <img src="" data-src="http://localhost:8080/girl11.jpg" alt="图片">
+  <img src="" data-src="http://localhost:8080/girl11.jpg" alt="图片">
+  <img src="" data-src="http://localhost:8080/girl11.jpg" alt="图片">
+  <img src="" data-src="http://localhost:8080/girl11.jpg" alt="图片"> -->
+</body>
+<script>
+  // var imgs = document.querySelectorAll('img');
+
+  // function getTop(e) {
+  //   var T = e.offsetTop;
+  //   console.info(T)
+  //   while (e = e.offsetParent) {
+  //     console.info('loop...')
+  //     T += e.offsetParent;
+  //     console.info('parent', e)
+  //   }
+  //   return T;
+  // }
+
+  // function lazyLoad(imgs) {
+  //   console.info(111)
+  //   var H = window.innerHeight;
+  //   var S = document.documentElement.scrollTop || document.body.scrollTop;
+  //   for (var i = 0; i < imgs.length; i++) {
+  //     if (H + S > getTop(imgs[i])) {
+  //       console.info(222)
+  //       imgs[i].src = imgs[i].getAttribute('data-src');
+  //     }
+  //   }
+  // }
+  // window.onload = window.onscroll = function () {
+  //   lazyLoad(imgs);
+  // }
+</script>
+
+</html>

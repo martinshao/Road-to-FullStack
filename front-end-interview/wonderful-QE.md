@@ -54,10 +54,14 @@
 
 * [FE-Essay/浏览器渲染/浏览器输入URL的全过程.md](https://github.com/i-want-offer/FE-Essay/blob/master/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%B8%B2%E6%9F%93/%E6%B5%8F%E8%A7%88%E5%99%A8%E8%BE%93%E5%85%A5URL%E7%9A%84%E5%85%A8%E8%BF%87%E7%A8%8B.md)
 
+
+* [彻底理解浏览器的跨域](https://juejin.im/post/6844903816060469262)
+
 ## 关于继承
 
 * [做完这48道题彻底弄懂JS继承](https://juejin.im/post/6844904098941108232)
 * [JavaScript深入之继承的多种方式和优缺点](https://github.com/mqyqingfeng/Blog/issues/16)
+* [Javascript继承机制的设计思想](http://www.ruanyifeng.com/blog/2011/06/designing_ideas_of_inheritance_mechanism_in_javascript.html)
 
 ## 关于深拷贝
 
@@ -97,6 +101,8 @@
 * [霖呆呆的webpack之路-自定义plugin篇](https://juejin.im/post/6844904162405138445)
 * [AST详解与运用](https://juejin.im/post/6885146952877031432)
 * [深入浅出 Webpack](http://webpack.wuhaolin.cn/)
+* [玩转webpack（一）上篇：webpack的基本架构和构建流程](https://segmentfault.com/a/1190000012081469) 重点
+* [玩转webpack（一）下篇：webpack的基本架构和构建流程](https://cloud.tencent.com/developer/article/1006354)
 
 ## VUE
 
@@ -197,6 +203,45 @@
 * [什么是npm系列：一、npm简介](https://juejin.im/post/6844903917260636167)
 * [什么是npm系列：二、install 的十八般武艺](https://juejin.im/post/6844903919332622350)
 * [什么是npm系列：三、如何发布自己的npm包](https://juejin.im/post/6844903935472304135)
+
+## react 源码
+
+* [《React源码解析》系列完结！](https://juejin.im/post/6844903568487497741)
+* [看react源码的基本思路](https://segmentfault.com/a/1190000018783864)
+* [React 源码解析](https://react.jokcy.me/)
+
+## 状态管理
+
+* [如何实现一个 redux-observable](http://yoyoyohamapi.me/2018/08/21/%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA_redux-observable/)
+* [使用 redux-observable 实现组件自治](http://yoyoyohamapi.me/2018/08/18/%E4%BD%BF%E7%94%A8_redux-observable_%E5%AE%9E%E7%8E%B0%E7%BB%84%E4%BB%B6%E8%87%AA%E6%B2%BB/)
+
+## 工程化——依赖管理
+
+* [使用 Lerna 管理模块](https://juejin.im/post/6844903985900421127)
+* [关于技术](https://www.yuque.com/jianxu/study)
+* [使用 ES6 写 Koa Web 项目](https://learnku.com/articles/37380)
+* [基于 Lerna 管理 packages 的 Monorepo 项目最佳实践](https://juejin.im/post/6844903911095025678)
+* [选择性依赖项解决](https://classic.yarnpkg.com/zh-Hans/docs/selective-version-resolutions/)
+* [如何利用AOP+IOC思想解构前端项目开发](https://juejin.im/post/6888677412280729613)
+
+## TypeScript
+
+* [Decorators](https://www.typescriptlang.org/docs/handbook/decorators.html)
+* [Abstract Factory in Typescript (GoF Design Pattern)](https://medium.com/@cristianalemanfuentes/abstract-factory-in-typescript-gof-design-pattern-e8f661e49071)
+* [Webpack手写loader和plugin](https://juejin.im/post/6888936770692448270)
+
+- [从一个需求出发，聊聊useRef三兄弟](https://juejin.im/post/6888616874171432973)
+- [JavaScript的offset、client、scroll家族属性](https://juejin.im/post/6888911624871084046)
+- [Yarn Workspace 使用指南](https://www.jianshu.com/p/990afa30b6fe)
+
+
+## 布局
+
+* [DOM中的元素位置和大小的计算方法，含jquery和dojo方法](https://my.oschina.net/xpbug/blog/212094)
+* [使用IntersectionObserver实现图片懒加载](https://juejin.im/post/6844903879579041805)
+* [深入理解定位父级offsetParent及偏移大小](https://www.cnblogs.com/xiaohuochai/p/5828369.html)
+* [图片懒加载的几种方法](https://www.jianshu.com/p/c0f8cc330653)
+* [实现图片懒加载(Lazyload)](https://juejin.im/post/6844903455048335368)
 
 三面
 这一轮主要会提供一些特定场景，让你进行方案设计。也包括一些软件工程相关的抽象概念。

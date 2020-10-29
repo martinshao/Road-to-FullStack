@@ -171,7 +171,7 @@ class CPromise {
   }
 }
 
-resolvePromise(promise, x, resolve, reject) {
+function resolvePromise(promise, x, resolve, reject) {
   const self = this
   if (promise === x) {
     reject(new TypeError('Chaining cycle'))
