@@ -47,6 +47,7 @@
 * [Last-Modified](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Last-Modified)
 * [If-Modified-Since](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/If-Modified-Since)
 * [http缓存 及 Etag 记录](https://segmentfault.com/a/1190000018621167)
+* [轻松理解浏览器缓存（Koa缓存源码解析）](https://juejin.im/post/6844904133024022536)
 
 * [JSONP原理及简单实现](https://juejin.im/entry/6844903493371691016)
 
@@ -62,6 +63,7 @@
 * [做完这48道题彻底弄懂JS继承](https://juejin.im/post/6844904098941108232)
 * [JavaScript深入之继承的多种方式和优缺点](https://github.com/mqyqingfeng/Blog/issues/16)
 * [Javascript继承机制的设计思想](http://www.ruanyifeng.com/blog/2011/06/designing_ideas_of_inheritance_mechanism_in_javascript.html)
+* [[译] JavaScript 中的私有变量](https://juejin.im/post/6844903565769572366)
 
 ## 关于深拷贝
 
@@ -112,12 +114,15 @@
 
 * [TypeScript中的数据类型](https://juejin.im/post/6844903959321116686)
 * [手撕ts面试题——不能不掌握的ts高级特性](https://juejin.im/post/6844904147167215624)
+* [深入理解 TypeScript](https://jkchao.github.io/typescript-book-chinese/typings/generices.html)
+* [你不知道的 TypeScript 泛型（万字长文，建议收藏）](https://lucifer.ren/blog/2020/06/16/ts-generics/)
 
 ## React
 
 * [【React深入】深入分析虚拟DOM的渲染原理和特性](https://segmentfault.com/a/1190000018891454)
 * [【React】深入理解虚拟dom和diff算法](https://juejin.im/post/6844904165026562056)
 * [谈谈React虚拟DOM和diff算法](https://juejin.im/post/6844903856690724872)
+* [我在大厂写React，学到了什么？性能优化篇](https://juejin.im/post/6889247428797530126)
 
 ## 关于程序员成长的话题
 
@@ -139,7 +144,6 @@
 * [koa中间件开发和使用](https://chenshenhai.github.io/koa2-note/note/start/middleware.html)
 * [学习node前你就该跟人家拉开差距【node专栏01】](https://juejin.im/post/6886081203004833800)
 * [koa源码阅读[3]-koa-send与它的衍生(static)](https://cloud.tencent.com/developer/article/1550864)
-* [轻松理解浏览器缓存（Koa缓存源码解析）](https://juejin.im/post/6844904133024022536)
 * [Node + js实现大文件分片上传基本原理及实践(一)](https://www.cnblogs.com/tugenhua0707/p/11246860.html)
 * [大文件分片上传（NodeJs+Koa）](https://juejin.im/post/6844904180860076046)
 * [字节跳动面试官，我也实现了大文件上传和断点续传](https://juejin.im/post/6844904055819468808)
@@ -153,6 +157,7 @@
 ## 工程化
 
 * [从零手写pm-cli脚手架，统一阿里拍卖源码架构](https://juejin.im/post/6847902222253031432)
+* [【译】73个超棒且可提高生产力的 NPM 包](https://juejin.im/post/6890702514446925838)
 
 ## 性能优化手段
 
@@ -204,6 +209,10 @@
 * [什么是npm系列：二、install 的十八般武艺](https://juejin.im/post/6844903919332622350)
 * [什么是npm系列：三、如何发布自己的npm包](https://juejin.im/post/6844903935472304135)
 
+## React
+
+* [玩转react-hooks,自定义hooks设计模式及其实战](https://juejin.im/post/6890738145671938062)
+
 ## react 源码
 
 * [《React源码解析》系列完结！](https://juejin.im/post/6844903568487497741)
@@ -223,6 +232,7 @@
 * [基于 Lerna 管理 packages 的 Monorepo 项目最佳实践](https://juejin.im/post/6844903911095025678)
 * [选择性依赖项解决](https://classic.yarnpkg.com/zh-Hans/docs/selective-version-resolutions/)
 * [如何利用AOP+IOC思想解构前端项目开发](https://juejin.im/post/6888677412280729613)
+* [使用Lerna & Yarn Workspaces 构建mono-repo项目](https://zhuanlan.zhihu.com/p/108118011)
 
 ## TypeScript
 
@@ -242,6 +252,41 @@
 * [深入理解定位父级offsetParent及偏移大小](https://www.cnblogs.com/xiaohuochai/p/5828369.html)
 * [图片懒加载的几种方法](https://www.jianshu.com/p/c0f8cc330653)
 * [实现图片懒加载(Lazyload)](https://juejin.im/post/6844903455048335368)
+
+## Web Workers技术
+
+* [前端进阶：深入理解Web Workers](https://www.infoq.cn/article/hfqk1EicIO5QPfulfFzj)
+* [Web Worker 的内部构造以及 5 种你应当使用它的场景](https://cloud.tencent.com/developer/article/1587126)
+
+## 网络
+
+* [前端常见跨域解决方案（全）](https://segmentfault.com/a/1190000011145364)
+* [https://zhuanlan.zhihu.com/p/28940451](https://zhuanlan.zhihu.com/p/28940451)
+
+## web IDE调研
+
+## CDN 技术
+
+* [什么是CDN？](https://www.cloudflare.com/zh-cn/learning/cdn/what-is-a-cdn/)
+* [也许是史上最全的一次CDN详解](https://zhuanlan.zhihu.com/p/28940451)
+* [CDN 原理和几种变形（DCDN/ECDN/PCDN/SCDN）](https://czj.so/759/cdn%E5%8E%9F%E7%90%86%E5%92%8C%E5%87%A0%E7%A7%8D%E5%8F%98%E5%BD%A2.html)
+* [CDN原理简析](https://juejin.im/post/6844903873518239752)
+
+## 前端性能优化
+
+* [【值得收藏】前端优化详解以及需要关注的几个问题](https://juejin.im/post/6888848660591968264)
+* [7 天打造前端性能监控系统](http://fex.baidu.com/blog/2014/05/build-performance-monitor-in-7-days/)
+* [蚂蚁金服如何把前端性能监控做到极致?](https://www.infoq.cn/article/Dxa8aM44oz*Lukk5Ufhy)
+
+## 基于JS的后端
+
+* [nest](https://docs.nestjs.cn/)
+* [egg](https://eggjs.org/zh-cn/)
+* [egg.js和nestjs使用场景对比](https://juejin.im/post/6844903906028290061)
+* [Nestjs 框架教程（第一篇：简介）](https://keelii.com/2019/07/03/nestjs-framework-tutorial-1/)
+
+## babel 基础
+* [史上最清晰易懂的babel配置解析](https://segmentfault.com/a/1190000018721165)
 
 三面
 这一轮主要会提供一些特定场景，让你进行方案设计。也包括一些软件工程相关的抽象概念。

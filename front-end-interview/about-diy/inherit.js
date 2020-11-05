@@ -115,7 +115,41 @@ function SubType(name, age) {
   SuperType.call(this, name)
   this.age = age
 }
+
 inheritPrototype(SubType, SuperType)
 SubType.prototype.sayAge = function () {
   console.log(this.age)
 }
+
+const super1 = new SuperType('Rose')
+const sub1 = new SubType('Martin', 12)
+const sub2 = new SubType('Robot', 16)
+
+class Point {
+  constructor(x, y) {
+    this.x = x
+    this.y = y
+  }
+
+  getDistance() {
+    const distance = Math.sqrt(this.x * this.x + this.y * this.y)
+    console.info('distance...', distance)
+    return distance
+  }
+}
+
+class ColorPoint extends Point {
+
+  constructor(x, y, color) {
+    super(x, y)
+    this.color = color
+  }
+
+  getColor() {
+    console.info('This point color is', this.color)
+  }
+}
+
+const p1 = new Point(1, 1)
+const cp1 = new ColorPoint(2, 2, 'red')
+const cp2 = new ColorPoint(3, 3, 'yellow')
