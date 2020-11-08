@@ -367,10 +367,31 @@ console.log(dog1.toString());
 
 内置对象类型的 toString()
 
-```
+```js
 1.toString() // Uncaught SyntaxError: Invalid or unexpected token
 Number(1).toString() // '1'
+BigInt(1212).toString() // 1212
+Symbol('key').toString() // "Symbol(key)"
 
+function add(a,b) {
+    return a +b
+}
+add.toString()
+// "function add(a,b) {
+//     return a +b
+// }"
+```
+
+Number 内置类型的 `toString()` 还有一些特殊的用法
+
+``` js
+const x = 6;
+
+console.log(x.toString(2));       // 输出 '110'
+console.log((254).toString(16));  // 输出 'fe'
+
+console.log((-10).toString(2));   // 输出 '-1010'
+console.log((-0xff).toString(2)); // 输出 '-11111111'
 ```
 
 ```js
@@ -513,7 +534,7 @@ const a = String(25);
 
 #### 条件判断
 
-```
+``` js
 if (true)
 if ({})
 if ([])
@@ -548,8 +569,8 @@ if (-Infinity)
 {} == {}  // false
 [] != []  // true
 
-[] == 0
-'0' == 0
+[] == 0 // true
+'0' == 0 // true
 
 !0 // true
 !"0" // false
@@ -567,6 +588,19 @@ new Array(3) === ",,"
 
 {} + 1 === 1
 [] + 1 === '1'
+
+{}+[];
+[]+{};
+{} + {};
+
+console.info([] == false) // true
+console.info({} == false) // false
+
+Boolean('0') == Boolean(0) // false
+console.log(NaN == 0); // false
+console.log(NaN <= 0); // false
+console.log(null <= 0); // true
+console.log(1 + null); // 1
 ```
 
 ### 假值
