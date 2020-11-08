@@ -58,6 +58,10 @@
 
 * [彻底理解浏览器的跨域](https://juejin.im/post/6844903816060469262)
 
+## JavaScript语法基础
+
+* [JS 中的 Reflect 和 Proxy](https://juejin.im/post/6844903790739456013)
+
 ## 关于继承
 
 * [做完这48道题彻底弄懂JS继承](https://juejin.im/post/6844904098941108232)
@@ -156,8 +160,30 @@
 
 ## 工程化
 
+* [3-13 构建 Npm 模块](https://webpack.wuhaolin.cn/3%E5%AE%9E%E6%88%98/3-13%E6%9E%84%E5%BB%BANpm%E6%A8%A1%E5%9D%97.html)
 * [从零手写pm-cli脚手架，统一阿里拍卖源码架构](https://juejin.im/post/6847902222253031432)
 * [【译】73个超棒且可提高生产力的 NPM 包](https://juejin.im/post/6890702514446925838)
+
+### Rollup
+
+* [Rollup.js 中文网](https://www.rollupjs.com/)
+* [从模块化到NPM私有仓库搭建](https://juejin.im/post/6844903798465363981)
+* [什么是amd、commonjs、umd、esm](https://juejin.im/post/6844903978333896718)
+* [前端模块化标准对比 iife amd cmd cjs umd es6](https://blog.whyoop.com/2018/08/01/js-modules/)
+* [Rollup打包工具的使用](https://juejin.im/post/6844904058394771470)
+* [前端组件/库打包利器rollup使用与配置实战](https://juejin.im/post/6844903970469576718)
+* [Tree-Shaking性能优化实践 - 原理篇](https://juejin.im/post/6844903544756109319)
+* [配置Tree Shaking来减少JavaScript的打包体积](https://blog.fundebug.com/2018/08/15/reduce-js-payload-with-tree-shaking/)
+* [Webpack Tree shaking 深入探究](https://juejin.im/post/6844903687412776974)
+* [Tree Shaking in Webpack](https://zhuanlan.zhihu.com/p/41997654)
+* [babel 按需加载插件的实现](https://www.jianshu.com/p/671ecb408e72)
+* [总结 Tree-Shaking](https://www.jianshu.com/p/f02015898902)
+* [4-10 使用 Tree Shaking](https://webpack.wuhaolin.cn/4%E4%BC%98%E5%8C%96/4-10%E4%BD%BF%E7%94%A8TreeShaking.html)
+* [Webpack 4 Tree Shaking 终极优化指南](https://juejin.im/post/6844903998634328072)
+
+### Babel
+
+* [Babel快速上手使用指南](https://juejin.im/post/6844903858632654856)
 
 ## 性能优化手段
 
@@ -183,6 +209,8 @@
 ## 前端数据监控平台
 
 * [埋点、数仓到中台：数据体系的从0到1](https://zhuanlan.zhihu.com/p/127165324)
+* [运维开发实践——基于Sentry搭建错误日志监控系统](https://www.cnblogs.com/duanxz/p/11797929.html)
+* [UMD](https://leohxj.gitbooks.io/front-end-database/content/javascript-modules/about-umd.html)
 
 ## JSSDK
 
@@ -243,6 +271,8 @@
 - [从一个需求出发，聊聊useRef三兄弟](https://juejin.im/post/6888616874171432973)
 - [JavaScript的offset、client、scroll家族属性](https://juejin.im/post/6888911624871084046)
 - [Yarn Workspace 使用指南](https://www.jianshu.com/p/990afa30b6fe)
+- [TypeScript中函数定义中的嵌套泛型](https://www.thinbug.com/q/49102449)
+- [typescript 泛型可以嵌套吗？](https://www.zhihu.com/question/405366419/answer/1323431617)
 
 
 ## 布局
@@ -287,6 +317,10 @@
 
 ## babel 基础
 * [史上最清晰易懂的babel配置解析](https://segmentfault.com/a/1190000018721165)
+
+## 设计模式
+
+* [软件设计模式概述](http://c.biancheng.net/view/1317.html)
 
 三面
 这一轮主要会提供一些特定场景，让你进行方案设计。也包括一些软件工程相关的抽象概念。
