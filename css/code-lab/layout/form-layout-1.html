@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>表单布局</title>
+  <style>
+    form p {
+      margin: 10px 0;
+    }
+
+    label,
+    input {
+      vertical-align: middle;
+    }
+
+    label {
+      width: 80px;
+      display: inline-block;
+    }
+
+    input[type="text"] {
+      width: 240px;
+    }
+
+    input[type="email"] {
+      width: 240px;
+    }
+
+
+
+    textarea {
+      width: 240px;
+    }
+
+    input[type="radio"],
+    input[type="checkbox"] {
+      width: auto;
+    }
+
+    .radio,
+    .checkbox {
+      width: auto;
+    }
+
+    label {
+      text-align: right;
+      margin-right: 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <form action="" method="post">
+    <p>
+      <label>姓名: </label><input type="text" name="name" />
+    </p>
+    <p>
+      <label>E-Mail: </label><input type="email" name="email" />
+    </p>
+    <p>
+      <label>所在城市: </label> <select name="city">
+        <option value="1">北京</option>
+        <option value="2">上海</option>
+      </select>
+    </p>
+    <p>
+      <label>性别: </label>
+      <input type="radio" name="sex" value="male" checked />男</input>
+      <input type="radio" name="sex" value="female" />女</input>
+    </p>
+    <p>
+      <label>个人爱好: </label>
+      <input type="checkbox" name="music" value="music" checked />音乐</input>
+      <input type="checkbox" name="swimming" value="swimming" />游泳</input>
+      <input type="checkbox" name="football" value="football" checked />足球</input>
+      <input type="checkbox" name="skating" value="skating" />轮滑</input>
+    </p>
+    <p>
+      <label>自我介绍: </label>
+      <textarea name="introduce"></textarea>
+    </p>
+  </form>
+</body>
+
+</html>
