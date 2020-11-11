@@ -118,8 +118,10 @@ const stringType = '[object String]'
 const symbolType = '[object Symbol]'
 
 const toString = obj => Object.prototype.toString.call(obj)
-const isObject = obj = toString(obj) === '[object Object]'
+// const isObject = obj = toString(obj) === '[object Object]'
 const isArray = arr = toString(arr) === '[object Array]'
+
+const isObject = obj => typeof obj === 'object'
 
 // 这已经很好
 function deepClone(obj, map = new WeakMap()) {

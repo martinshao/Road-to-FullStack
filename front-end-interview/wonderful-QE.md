@@ -3,6 +3,11 @@
 ## 汇总的面试题分析
 
 
+### JavaScript 基础
+
+* [这些高阶的函数技术，你掌握了么](https://juejin.im/post/6892886272377880583)
+
+
 ### HTML & CSS
 
 * [10 分钟理解 BFC 原理](https://zhuanlan.zhihu.com/p/25321647)
@@ -198,6 +203,7 @@
 * [浅谈script标签的defer和async](https://juejin.im/entry/6844903560879013896)
 * [04 动态加载 JS 文件](https://chanshiyu.gitbook.io/blog/qian-duan/shi-zhan-xi-lie/04-dong-tai-jia-zai-js-wen-jian)
 * [浅谈script标签的defer和async](https://juejin.im/entry/6844903560879013896)
+* [前端性能优化 24 条建议（2020）](https://juejin.im/post/6892994632968306702)
 
 ## 前端并发控制
 
@@ -246,6 +252,11 @@
 * [《React源码解析》系列完结！](https://juejin.im/post/6844903568487497741)
 * [看react源码的基本思路](https://segmentfault.com/a/1190000018783864)
 * [React 源码解析](https://react.jokcy.me/)
+
+## React 应用
+
+* [Umi Hooks - 助力拥抱 React Hooks](https://zhuanlan.zhihu.com/p/103150605)
+* [React Hooks 原理](https://github.com/brickspert/blog/issues/26)
 
 ## 状态管理
 
