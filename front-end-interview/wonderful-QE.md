@@ -7,7 +7,6 @@
 
 * [这些高阶的函数技术，你掌握了么](https://juejin.im/post/6892886272377880583)
 
-
 ### HTML & CSS
 
 * [10 分钟理解 BFC 原理](https://zhuanlan.zhihu.com/p/25321647)
@@ -17,6 +16,10 @@
 * [重排(reflow)和重绘(repaint)](https://juejin.im/post/6844904083212468238)
 
 ### 掘金篇
+
+* [面试造火箭，看下这些大厂原题](https://juejin.im/post/6859121743869509646)
+* [13期前端冲刺必备指南-this/call/apply/bind](https://juejin.im/post/6844904186069401607)
+* [一年半前端跳槽面试经验（头条、微信、shopee）](https://juejin.im/post/6844904095564709896)
 
 * [面试分享：两年工作经验成功面试阿里P6总结](https://juejin.im/post/6844903928442667015)
 * [霖呆呆的近期面试128题汇总(含超详细答案) | 掘金技术征文](https://juejin.im/post/6844904151369908232)
@@ -104,7 +107,7 @@
 
 * [从零开始搭建 Vue 脚手架工具（一）](https://juejin.im/post/6844903927062724621)
 
-## 关于webpack的方方面面
+## 关于 webpack 的方方面面
 
 * [webpack编译流程](https://juejin.im/post/6844903935828819981)
 * [webpack运行流程、源码解析，Tabable原理](https://juejin.im/post/6844903976563900430)
@@ -114,6 +117,8 @@
 * [深入浅出 Webpack](http://webpack.wuhaolin.cn/)
 * [玩转webpack（一）上篇：webpack的基本架构和构建流程](https://segmentfault.com/a/1190000012081469) 重点
 * [玩转webpack（一）下篇：webpack的基本架构和构建流程](https://cloud.tencent.com/developer/article/1006354)
+
+* [重学webpack4之基础篇](https://juejin.im/post/6893511215768272909)
 
 ## VUE
 
@@ -132,12 +137,7 @@
 * [【React】深入理解虚拟dom和diff算法](https://juejin.im/post/6844904165026562056)
 * [谈谈React虚拟DOM和diff算法](https://juejin.im/post/6844903856690724872)
 * [我在大厂写React，学到了什么？性能优化篇](https://juejin.im/post/6889247428797530126)
-
-## 关于程序员成长的话题
-
-* [万字长文干货，面试官角度看招聘](https://zhuanlan.zhihu.com/p/145743998)
-* [今天聊：你为什么迟迟进不去大厂](https://www.yuque.com/iscott/10/qmrae8#pzZXE)
-* [2019 前端两年半回顾：深挖洞，广积粮](https://github.com/amandakelake/blog/issues/94)
+* [玩转react-hooks,自定义hooks设计模式及其实战](https://juejin.im/post/6890738145671938062)
 * [详解：虚拟dom及dIff算法-一篇就够了（文章比较长，建议收藏）](https://juejin.im/post/6844904078196097031)
 * [【React】深入理解虚拟dom和diff算法](https://juejin.im/post/6844904165026562056)
 * [React Diff算法与传统的Diff算法理解](https://www.jianshu.com/p/51c0b5ea13bf)
@@ -145,6 +145,34 @@
 * [React源码揭秘3 Diff算法详解](https://juejin.im/post/6844904167472005134)
 * [浅谈React 16中的Fiber机制](https://tech.youzan.com/react-fiber/)
 * [剖析React内部运行机制-「译」React Fiber 架构](https://juejin.im/post/6844903981211189261)
+
+### React 面试题
+
+* [2019年17道高频React面试题及详解](https://juejin.im/post/6844903922453200904)
+
+
+### React Hooks
+
+### React 源码
+
+* [《React源码解析》系列完结！](https://juejin.im/post/6844903568487497741)
+* [看react源码的基本思路](https://segmentfault.com/a/1190000018783864)
+* [React 源码解析](https://react.jokcy.me/)
+
+### React 应用
+
+* [Umi Hooks - 助力拥抱 React Hooks](https://zhuanlan.zhihu.com/p/103150605)
+* [React Hooks 原理](https://github.com/brickspert/blog/issues/26)
+
+### React 工程化
+
+* [从零开始配置 react + typescript（三）：webpack](https://zhuanlan.zhihu.com/p/107832106)
+
+## 关于程序员成长的话题
+
+* [万字长文干货，面试官角度看招聘](https://zhuanlan.zhihu.com/p/145743998)
+* [今天聊：你为什么迟迟进不去大厂](https://www.yuque.com/iscott/10/qmrae8#pzZXE)
+* [2019 前端两年半回顾：深挖洞，广积粮](https://github.com/amandakelake/blog/issues/94)
 * [Node + js实现大文件分片上传基本原理及实践(一)](https://www.cnblogs.com/tugenhua0707/p/11246860.html)
 
 ## Node
@@ -243,21 +271,6 @@
 * [什么是npm系列：二、install 的十八般武艺](https://juejin.im/post/6844903919332622350)
 * [什么是npm系列：三、如何发布自己的npm包](https://juejin.im/post/6844903935472304135)
 
-## React
-
-* [玩转react-hooks,自定义hooks设计模式及其实战](https://juejin.im/post/6890738145671938062)
-
-## react 源码
-
-* [《React源码解析》系列完结！](https://juejin.im/post/6844903568487497741)
-* [看react源码的基本思路](https://segmentfault.com/a/1190000018783864)
-* [React 源码解析](https://react.jokcy.me/)
-
-## React 应用
-
-* [Umi Hooks - 助力拥抱 React Hooks](https://zhuanlan.zhihu.com/p/103150605)
-* [React Hooks 原理](https://github.com/brickspert/blog/issues/26)
-
 ## 状态管理
 
 * [如何实现一个 redux-observable](http://yoyoyohamapi.me/2018/08/21/%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA_redux-observable/)
@@ -272,6 +285,8 @@
 * [选择性依赖项解决](https://classic.yarnpkg.com/zh-Hans/docs/selective-version-resolutions/)
 * [如何利用AOP+IOC思想解构前端项目开发](https://juejin.im/post/6888677412280729613)
 * [使用Lerna & Yarn Workspaces 构建mono-repo项目](https://zhuanlan.zhihu.com/p/108118011)
+* [lerna+yarn workspace+monorepo项目的最佳实践](https://juejin.im/post/6844903918279852046)
+* [大型前端项目管理 - Monorepo](https://www.jianshu.com/p/1caeeb409bff)
 
 ## TypeScript
 
@@ -302,7 +317,7 @@
 ## 网络
 
 * [前端常见跨域解决方案（全）](https://segmentfault.com/a/1190000011145364)
-* [https://zhuanlan.zhihu.com/p/28940451](https://zhuanlan.zhihu.com/p/28940451)
+* [也许是史上最全的一次CDN详解](https://zhuanlan.zhihu.com/p/28940451)
 
 ## web IDE调研
 
