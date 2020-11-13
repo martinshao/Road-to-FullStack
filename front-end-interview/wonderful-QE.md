@@ -20,6 +20,7 @@
 * [面试造火箭，看下这些大厂原题](https://juejin.im/post/6859121743869509646)
 * [13期前端冲刺必备指南-this/call/apply/bind](https://juejin.im/post/6844904186069401607)
 * [一年半前端跳槽面试经验（头条、微信、shopee）](https://juejin.im/post/6844904095564709896)
+* [前端面试题总结（欢迎收藏）](https://juejin.im/post/6893856813247266823)
 
 * [面试分享：两年工作经验成功面试阿里P6总结](https://juejin.im/post/6844903928442667015)
 * [霖呆呆的近期面试128题汇总(含超详细答案) | 掘金技术征文](https://juejin.im/post/6844904151369908232)
@@ -65,6 +66,7 @@
 
 
 * [彻底理解浏览器的跨域](https://juejin.im/post/6844903816060469262)
+* [半小时搞懂 HTTP、HTTPS和HTTP2](https://juejin.im/post/6894053426112495629)
 
 ## JavaScript语法基础
 
