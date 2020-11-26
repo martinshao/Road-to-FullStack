@@ -88,12 +88,6 @@ class EventEmitter {
     return true
   }
 
-  addListener(type, fn) {
-    if (!this._events.get(type)) {
-      this._events.set(type, fn)
-    }
-  }
-
   emit(type, ...args) {
     let handler;
     handler = this._events.get(type)

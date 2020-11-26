@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .wrapper {
+      width: 600px;
+      height: 300px;
+      display: flex;
+      background-color: grey;
+      margin: 50px;
+    }
+    .content {
+      width: 100%;
+      margin: 10px;
+      background-color: yellowgreen;
+    }
+    .block {
+      width: 100px;
+      height: 100px;
+      background-color: hotpink;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <div class="content">
+      <span>content1</span>
+      <div class="block">block</div>
+    </div>
+    <div class="content">content2</div>
+    <div class="content">content3</div>
+  </div>
+</body>
+<script>
+  document.addEventListener('click', function(event) {
+    console.info(event.target)
+  }, false)
+</script>
+</html>

@@ -147,6 +147,18 @@
 * [React源码揭秘3 Diff算法详解](https://juejin.im/post/6844904167472005134)
 * [浅谈React 16中的Fiber机制](https://tech.youzan.com/react-fiber/)
 * [剖析React内部运行机制-「译」React Fiber 架构](https://juejin.im/post/6844903981211189261)
+* React 的 useCallback 和 useMemo 的区别
+* React 的 useEffect 和 useLayoutEffect 的区别
+* React 处理异常的一些办法
+* [React函数式组件使用Ref](https://juejin.im/post/6844904070843482119)
+* [useRef使用总结](https://juejin.im/post/6844904174417608712)
+* [深入理解 React useLayoutEffect 和 useEffect 的执行时机](https://blog.csdn.net/yunfeihe233/article/details/106616674)
+* [十个案例学会 React Hooks](https://zhuanlan.zhihu.com/p/60925430)
+* [React Hooks 第一期：聊聊 useCallback](https://zhuanlan.zhihu.com/p/56975681)
+* [源码解析React Hook构建过程：没有设计就是最好的设计](https://www.infoq.cn/article/fiWNgsIOLaCmt-hphLYC) 目前认为是说React hooks最好的文章
+* [React Hooks源码浅析](https://zhuanlan.zhihu.com/p/68842478)
+* [React技术细节手册 - React Hook 的运行原理和让人困惑的秘密](https://juejin.cn/post/6844904175038562317)
+* [React工作原理浅析 #32](https://github.com/mengtuifrontend/Blog/issues/32)
 
 ### React 面试题
 
