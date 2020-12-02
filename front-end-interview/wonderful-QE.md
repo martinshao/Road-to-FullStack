@@ -100,6 +100,7 @@
 * [Node.js 事件循环，定时器和 process.nextTick()](https://nodejs.org/zh-cn/docs/guides/event-loop-timers-and-nexttick/)
 * [Node 定时器详解](http://www.ruanyifeng.com/blog/2018/02/node-event-loop.html)
 * [Handling IO — NodeJS Event Loop Part 4](https://blog.insiderattack.net/handling-io-nodejs-event-loop-part-4-418062f917d1)
+* [Node.js 事件循环，定时器和 process.nextTick()](https://nodejs.org/zh-cn/docs/guides/event-loop-timers-and-nexttick/) 官网讲解 Node.js 的事件循环还是比较靠谱的
 
 ## 关于异步
 
@@ -160,6 +161,10 @@
 * [React技术细节手册 - React Hook 的运行原理和让人困惑的秘密](https://juejin.cn/post/6844904175038562317)
 * [React工作原理浅析 #32](https://github.com/mengtuifrontend/Blog/issues/32)
 
+### React-Router
+
+* [react-router路由机制](https://www.jianshu.com/p/53e7c1dcca13)
+
 ### React 面试题
 
 * [2019年17道高频React面试题及详解](https://juejin.im/post/6844903922453200904)
@@ -185,6 +190,10 @@
 ### React 工程化
 
 * [从零开始配置 react + typescript（三）：webpack](https://zhuanlan.zhihu.com/p/107832106)
+
+### React 状态管理
+
+* [2020 年 React 状态管理](https://juejin.cn/post/6844904116209057800)
 
 ## 关于程序员成长的话题
 
