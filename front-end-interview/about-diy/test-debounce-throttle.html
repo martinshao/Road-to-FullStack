@@ -66,7 +66,7 @@
       context.stroke();
     }
 
-    function debounce(fn, delay = 10) {
+    function debounce(fn, delay = 100) {
       let timeout = null
       return function (...args) {
         clearTimeout(timeout)
@@ -78,7 +78,7 @@
 
     const paintDebounce = debounce(paint)
 
-    function throttle(fn, delay = 50) {
+    function throttle(fn, delay = 100) {
       let flag = false
       const that = this
       console.info('throttle...', flag)

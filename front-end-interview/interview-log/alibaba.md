@@ -140,3 +140,89 @@ candidates  中的数字可以无限制重复被选取。
   [3,5]
 ]
 ```
+
+### 找交集元素
+
+找出连个数组相同的元素（交集），返回新数组，新数组的元素不能重复
+
+```js
+[1,2,3,4,3,4][3,4,5] => [3,4]
+```
+
+### 实现 Array.prototype.map 方法 (polyfill)
+
+### 实现一个 LazyMan
+
+```js
+实现一个 HelloMan ，可以按照以下方式调用:
+HelloMan("Hank")输出:
+Hi! This is Hank!
+
+HelloMan("Hank").sleep(10).eat("dinner")输出
+Hi! This is Hank!
+//等待10秒..
+Wake up after 10
+Eat dinner~
+
+HelloMan("Hank").eat("dinner").eat("supper")输出
+Hi This is Hank!
+Eat dinner~
+Eat supper~
+
+HelloMan("Hank").sleepFirst(5).eat("supper")输出
+//等待5秒
+Wake up after 5
+Hi This is Hank!
+Eat supper
+以此类推。
+```
+
+### 实现对象的深拷贝的方法
+
+### 实现一个eventBus方法
+
+### 获取一个数字数组中的最大值
+
+```js
+input: [1,5,3,9,2,7]
+output: 9
+```
+
+### 多维数组拍平至一维数组
+
+```js
+input:
+[
+  1,
+  [2, '3'],
+  {name: '数组'},
+  false,
+  ['a[b]c', 'd,e,f', [[4]]],
+  [{g: 5}]
+]
+
+output:
+[
+  1,2,'3',
+  {name: '数组'},
+  false,
+  'a[b]c',
+  'd,e,f',
+  4,
+  {g: 5}
+]
+```
+
+### 函数柯里化
+
+函数 add(a,b)可以返回a与b之和，请求add函数，是的add(a)(b)得到相同的结果
+
+### 反转链表
+
+### 爬楼梯算法题
+
+### 二叉树镜像判断
+
+### 二叉树路径和判断
+
+输入一棵二叉树和一个整数，打印出二叉树中节点值的和为输入整数的所有路径。从树的根节点开始往下一直到叶节点所经过的节点形成一条路径。

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>重绘和回流</title>
+  <style>
+    #container {
+      width: 200px;
+      height: 200px;
+      background-color: aqua;
+      text-align: center;
+      line-height: 200px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="container">container</div>
+</body>
+<script>
+  let container = document.getElementById('container')
+  container.style.width = '100px'
+  container.style.height = '400px'
+  container.style.border = '10px solid red'
+  container.style.color = 'red'
+  container.style.lineHeight = '400px'
+</script>
+
+</html>

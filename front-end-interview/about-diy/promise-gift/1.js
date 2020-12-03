@@ -12,3 +12,4 @@ new Promise((resolve, reject) => {
 console.info('e');
 
 // b -> c -> e -> d -> a
+
