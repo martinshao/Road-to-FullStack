@@ -8,7 +8,7 @@ class LazyMan {
     };
 
     this.tasks.push(task);
-    console.info('constructor...')
+    console.info('constructor...');
     setTimeout(() => {
       this.next();
     }, 0);
@@ -58,4 +58,4 @@ function HelloMan(name) {
   return new LazyMan(name);
 }
 
-HelloMan("Hank").sleepFirst(5).eat("supper")
+HelloMan('Hank').sleepFirst(5).eat('supper');

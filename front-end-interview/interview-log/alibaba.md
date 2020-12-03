@@ -117,7 +117,7 @@ function flatten(input) {
 
 给定一个无重复元素的数组  candidates  和一个目标数  target ，找出  candidates  中所有可以使数字和为  target  的组合。
 
-candidates  中的数字可以无限制重复被选取。
+candidates 中的数字可以无限制重复被选取。
 
 说明：
 
@@ -177,47 +177,186 @@ Eat supper
 以此类推。
 ```
 
+```js
+class LazyMan {
+  constructor(name) {
+    this.name = name;
+    this.tasks = [];
+    const task = () => {
+      console.info(`Hi! This is ${name}`);
+      this.next();
+    };
+
+    this.tasks.push(task);
+    console.info('constructor...');
+    setTimeout(() => {
+      this.next();
+    }, 0);
+  }
+
+  next() {
+    const task = this.tasks.shift();
+    task && task();
+  }
+
+  sleep(time) {
+    this._sleepWrapper(time, false);
+    return this;
+  }
+
+  sleepFirst(time) {
+    this._sleepWrapper(time, true);
+    return this;
+  }
+
+  _sleepWrapper(time, first) {
+    const task = () => {
+      setTimeout(() => {
+        console.info(`Wake up after ${time} second`);
+        this.next();
+      }, time * 1000);
+    };
+
+    if (first) {
+      this.tasks.unshift(task);
+    } else {
+      this.tasks.push(task);
+    }
+  }
+
+  eat(type) {
+    const task = () => {
+      console.info(`Eat ${type}~`);
+      this.next();
+    };
+    this.tasks.push(task);
+    return this;
+  }
+}
+
+function HelloMan(name) {
+  return new LazyMan(name);
+}
+
+HelloMan('Hank').sleepFirst(5).eat('supper');
+```
+
 ### 实现对象的深拷贝的方法
 
-### 实现一个eventBus方法
+```js
+function deepClone(obj, map = new WeakMap()) {
+  if (isObject(obj)) {
+    const result = isArray(obj) ? [] : {};
+    if (map.get(obj)) {
+      return map.get(obj);
+    }
+    map.set(obj, result);
+    for (const key in obj) {
+      result[key] = deepClone(obj[key], map);
+    }
+    return result;
+  } else {
+    return obj;
+  }
+}
+```
+
+### 实现一个 eventBus 方法
+
+```js
+class EventBus {
+  constructor() {
+    this.subscription = {};
+  }
+
+  subscribe(eventType, callback) {
+    const id = Symbol('id');
+    if (!this.subscription[eventType]) this.subscription[eventType] = {};
+    this.subscription[eventType][id] = callback;
+    return {
+      unsubscribe: function unsubsribe() {
+        console.info(this.subscription);
+        delete this.subscription[eventType][id];
+        if (
+          !Object.getOwnPropertySymbols(this.subscription[eventType]).length
+        ) {
+          delete this.subscription[eventType];
+        }
+      }.bind(this),
+    };
+  }
+
+  publish(eventType, arg) {
+    if (!this.subscription[eventType]) return;
+
+    Object.getOwnPropertySymbols(this.subscription[eventType]).forEach((key) =>
+      this.subscription[eventType][key](arg)
+    );
+  }
+}
+
+const eventBus = new EventBus();
+
+const subscription = eventBus.subscribe('event', (arg) => console.log(arg));
+eventBus.publish('event', 'message');
+eventBus.publish('event', 'hello world');
+console.info(subscription);
+subscription.unsubscribe();
+eventBus.publish('event', 'hello world');
+```
 
 ### 获取一个数字数组中的最大值
 
 ```js
-input: [1,5,3,9,2,7]
-output: 9
+input: [1, 5, 3, 9, 2, 7];
+output: 9;
 ```
 
 ### 多维数组拍平至一维数组
 
 ```js
-input:
-[
+input: [
   1,
   [2, '3'],
   {name: '数组'},
   false,
   ['a[b]c', 'd,e,f', [[4]]],
-  [{g: 5}]
-]
+  [{g: 5}],
+];
 
-output:
-[
-  1,2,'3',
-  {name: '数组'},
-  false,
-  'a[b]c',
-  'd,e,f',
-  4,
-  {g: 5}
-]
+output: [1, 2, '3', {name: '数组'}, false, 'a[b]c', 'd,e,f', 4, {g: 5}];
 ```
 
 ### 函数柯里化
 
-函数 add(a,b)可以返回a与b之和，请求add函数，是的add(a)(b)得到相同的结果
+函数 add(a,b)可以返回 a 与 b 之和，请求 add 函数，是的 add(a)(b)得到相同的结果
+
+```js
+// method1
+const add = (a) => (b) => a + b;
+
+// method2
+function curry(fn) {
+  return (...xs) => {
+    if (xs.length === 0) {
+      throw Error('EMPTY INVOCATION');
+    }
+    if (xs.length >= fn.length) {
+      return fn(...xs);
+    }
+    return curry(fn.bind(null, ...xs));
+  };
+}
+const add = (a, b) => a + b;
+const curriedAdd = curry(add);
+curriedAdd(1)(2);
+```
 
 ### 反转链表
+
+```js
+
+```
 
 ### 爬楼梯算法题
 

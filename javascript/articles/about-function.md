@@ -100,7 +100,7 @@ delegate { return 1 + 1; }              // Parameter list omitted
 
 在这篇帖子里，我们一直叫自执行函数，确切的说是自执行匿名函数（Self-executing anonymous function），但英文原文作者一直倡议使用立即调用的函数表达式（Immediately-Invoked Function Expression）这一名称，作者又举了一堆例子来解释，好吧，我们来看看：
 
-```
+``` js
 // 下面2个括弧()都会立即执行
 
 (function () { /* code */ } ()); // 推荐使用这个
