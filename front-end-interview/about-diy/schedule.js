@@ -39,3 +39,13 @@ addTask(4000, 4)
 addTask(2000, 2)
 addTask(3000, 3)
 addTask(1000, 1)
+
+let count = 1
+
+const id = setInterval(() => {
+  console.info('interval')
+  count ++;
+  if(count === 11) {
+    clearInterval(id)
+  }
+}, 500);

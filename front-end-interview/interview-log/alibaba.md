@@ -117,7 +117,7 @@ function flatten(input) {
 
 给定一个无重复元素的数组  candidates  和一个目标数  target ，找出  candidates  中所有可以使数字和为  target  的组合。
 
-candidates 中的数字可以无限制重复被选取。
+candidates  中的数字可以无限制重复被选取。
 
 说明：
 
@@ -139,6 +139,30 @@ candidates 中的数字可以无限制重复被选取。
   [2,3,3],
   [3,5]
 ]
+```
+
+```js
+var combinationSum = function (candidates, target) {
+  const ans = [];
+  const dfs = (target, combine, idx) => {
+    if (idx === candidates.length) {
+      return;
+    }
+    if (target === 0) {
+      ans.push(combine);
+      return;
+    }
+    // 直接跳过
+    dfs(target, combine, idx + 1);
+    // 选择当前数
+    if (target - candidates[idx] >= 0) {
+      dfs(target - candidates[idx], [...combine, candidates[idx]], idx);
+    }
+  };
+
+  dfs(target, [], 0);
+  return ans;
+};
 ```
 
 ### 找交集元素
@@ -355,12 +379,43 @@ curriedAdd(1)(2);
 ### 反转链表
 
 ```js
+function revertLink(head) {
+  let curr = head,
+    prev = null;
+  while (curr) {
+    const temp = curr.next;
+    curr.next = prev;
+    prev = curr;
+    curr = temp;
+  }
+  return prev;
+}
 
+var reverseList = function (head) {
+  let [prev, curr] = [null, head];
+  while (curr) {
+    [curr.next, prev, curr] = [prev, curr, curr.next];
+  }
+  return prev;
+};
 ```
 
 ### 爬楼梯算法题
 
 ### 二叉树镜像判断
+
+```js
+function isSymmetric(tree) {
+  return !tree || _isSymmetric(tree.left, tree.right)
+}
+
+function _isSymmetric(treeLeft, treeRight) {
+  if(!treeLeft && !treeRight) return true;
+  if((treeLeft && !treeRight) || (!treeLeft && treeRight)) return false
+  if(treeLeft.val !== treeRight.val) return false
+  return _isSymmetric(treeLeft.left, treeRight.right) && _isSymmetric(treeLeft.right, treeRight.left)
+}
+```
 
 ### 二叉树路径和判断
 

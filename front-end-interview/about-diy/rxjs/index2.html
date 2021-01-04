@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rxjs demo</title>
+  <script src="https://cdn.bootcdn.net/ajax/libs/rxjs/6.6.3/rxjs.umd.js"></script>
+</head>
+
+<body>
+
+</body>
+<script>
+  // const source = rxjs.from(['a', 'b', 'c', 'd', 2])
+  //   .zip(rxjs.interval(500), (x, y) => x);
+
+  // const example = source
+  //   .map(x => x.toUpperCase())
+  //   .catch(error => rxjs.of('h'));
+
+  // example.subscribe({
+  //   next: (value) => { console.log(value); },
+  //   error: (err) => { console.log('Error: ' + err); },
+  //   complete: () => { console.log('complete'); }
+  // });
+
+  let source = rxjs.from(['a', 'b', 'c', 'd', 2])
+  rxjs.zip(source, rxjs.interval(500), (x, y) => x).pipe(
+    rxjs.operators.map(x => x.toUpperCase()),
+    rxjs.operators.catchError(error => rxjs.of('h'))
+  ).subscribe({
+    next: (value) => { console.log(value); },
+    error: (err) => { console.log('Error: ' + err); },
+    complete: () => { console.log('complete'); }
+  })
+
+  // rxjs.of(1, 2, 3, 4, 5).pipe(
+  //   rxjs.operators.map(n => {
+  //     if (n === 4) {
+  //       throw 'four!';
+  //     }
+  //     return n;
+  //   }),
+  //   rxjs.operators.catchError(err => rxjs.of('I', 'II', 'III', 'IV', 'V')),
+  // )
+  //   .subscribe(x => console.log(x));
+
+  // let age$ = rxjs.of(27, 25, 29);
+  // let name$ = rxjs.of('Foo', 'Bar', 'Beer');
+  // let isDev$ = rxjs.of(true, true, false);
+
+  // rxjs.zip(age$, name$, isDev$).pipe(
+  //   rxjs.operators.map(([age, name, isDev]) => ({ age, name, isDev })),
+  // )
+  //   .subscribe(x => console.log(x));
+</script>
+
+</html>

@@ -8,7 +8,6 @@ class LazyMan {
     };
 
     this.tasks.push(task);
-    console.info('constructor...');
     setTimeout(() => {
       this.next();
     }, 0);

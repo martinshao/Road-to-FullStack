@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>bufferCount</title>
+  <script src="https://npmcdn.com/@reactivex/rxjs@5.0.0-beta.3/dist/global/Rx.umd.js"></script>
+</head>
+
+<body>
+  <input id="range" type="number">
+  <button id="update">Update</button>
+  <h3 id="display"></h3>
+</body>
+<script>
+  // utility functions
+  const takeUntilFunc = (endRange, currentNumber) => {
+    return endRange > currentNumber
+      ? val => val <= endRange
+      : val => val >= endRange;
+  };
+
+  const positiveOrNegative = (endRange, currentNumber) => {
+    return endRange > currentNumber ? 1 : -1;
+  };
+
+  const updateHTML = id => val => document.getElementById(id).innerHTML = val;
+  // display
+  const input = document.getElementById('range');
+  const updateButton = document.getElementById('update');
+
+  const subscription = (function (currentNumber) {
+    return Rx.Observable
+      .fromEvent(updateButton, 'click')
+      .map(_ => parseInt(input.value))
+      .switchMap(endRange => {
+        return Rx.Observable.timer(0, 20)
+          .mapTo(positiveOrNegative(endRange, currentNumber))
+          .startWith(currentNumber)
+          .scan((acc, curr) => acc + curr)
+          // .delayWhen(//easing here)
+          .takeWhile(takeUntilFunc(endRange, currentNumber))
+      })
+      .do(v => currentNumber = v)
+      .startWith(currentNumber)
+      .subscribe(updateHTML('display'));
+  }(0))
+</script>
+
+</html>

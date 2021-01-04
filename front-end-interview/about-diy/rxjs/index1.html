@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rxjs demo</title>
+  <script src="https://cdn.bootcdn.net/ajax/libs/rxjs/6.6.3/rxjs.umd.js"></script>
+</head>
+
+<body>
+
+</body>
+<script>
+  // const observable = new rxjs.Observable(subscriber => {
+  //   subscriber.next(1);
+  //   subscriber.next(2);
+  //   subscriber.next(3);
+  //   setTimeout(() => {
+  //     subscriber.next(4);
+  //     subscriber.complete();
+  //   }, 1000);
+  // });
+
+  // console.log('just before subscribe');
+  // observable.subscribe({
+  //   next(x) { console.log('got value ' + x); },
+  //   error(err) { console.error('something wrong occurred: ' + err); },
+  //   complete() { console.log('done'); }
+  // });
+  // console.log('just after subscribe');
+
+  var arr = ['Jerry', 'Anna', 2016, 2017, '30 days']
+  var source = rxjs.from(arr);
+
+  source.subscribe({
+    next: function (value) {
+      console.log(value)
+    },
+    complete: function () {
+      console.log('complete!');
+    },
+    error: function (error) {
+      console.log(error)
+    }
+  });
+</script>
+
+</html>

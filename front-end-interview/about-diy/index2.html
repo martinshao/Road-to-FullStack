@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="root">
+    <p>
+      <span>a</span>
+    </p>
+    <div>
+      <span>b</span>
+    </div>
+    <p>c</p>
+  </div>
+</body>
+<script>
+  // var length = document.getElementById("parent").children.length;
+  // for (var n = 0; n < length; n++) {
+  //   if (document.getElementById("parent").getElementsByClassName("childclass")[i].parentNode.id = "parent") {
+  //     console.info(document.getElementById("parent").getElementsByClassName("childclass")[i]);
+  //   }
+  // }
+  function levelOrderDomTree(idName) {
+    const root = document.querySelector('#root')
+    if (root === null) return '';
+    const result = []
+    const queue = []
+    queue.push(root)
+    while (queue.length !== 0) {
+      const temp = []
+      const size = queue.length
+      for (let i = 0; i < size; i++) {
+        const node = queue.shift()
+        temp.push(node.tagName)
+        for (let i = 0; i < node.children.length; i++) {
+          queue.push(node.children[i])
+        }
+      }
+      result.push(temp)
+    }
+
+    function print(arr) {
+      arr.forEach(el => {
+        console.info(el.join(' '))
+      });
+    }
+
+    print(result)
+  }
+  levelOrderDomTree('root')
+</script>
+
+</html>
