@@ -114,7 +114,6 @@ function listToTree(data, options) {
     item[CHILDREN_KEY] = childrenOf[id]; 
     if (parentId != 0) {
       childrenOf[parentId] = childrenOf[parentId] || []; 
-      console.info(parentId);
       childrenOf[parentId].push(item);
     } else {
       tree.push(item);

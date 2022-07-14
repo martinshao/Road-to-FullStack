@@ -8,6 +8,14 @@
 - [20 行 js 的贪吃蛇](https://juejin.cn/post/6844903481808158734)
 - [eatSnake](https://github.com/DMQ/eatSnake)
 
+## 设计模式
+
+- [深入理解JavaScript系列](https://www.kancloud.cn/kancloud/deep-understand-javascript/43686)
+
+## HTML 基础
+
+- [HTML-表单（非常详细）](https://blog.csdn.net/nanjinzhu/article/details/82251110)
+
 ## 函数式编程
 
 ### 基础
@@ -62,6 +70,10 @@
 - [七种实现左侧固定，右侧自适应两栏布局的方法](https://zhuqingguang.github.io/2017/08/16/adapting-two-layout/)
 - [CSS三栏布局的四种方法](https://juejin.cn/post/6844903456323403783)
 - [CSS绝对定位absolute详解](https://www.jianshu.com/p/a3da5e27d22b)
+
+### CSS 动画
+
+- [CSS动画：animation、transition、transform、translate傻傻分不清](https://juejin.cn/post/6844903615920898056)
 
 ### 掘金篇
 
@@ -158,6 +170,10 @@
 ## 工程化——脚手架搭建
 
 - [从零开始搭建 Vue 脚手架工具（一）](https://juejin.im/post/6844903927062724621)
+- [create-react-app 源代码简析(1)](https://zqblog.beaf.tech/create-react-app-source-code-explore/)
+- [create-react-app 源代码简析(2)](https://zqblog.beaf.tech/create-react-app-source-code-explore/2/)
+- [用webpack4从零开始构建react脚手架](https://www.jianshu.com/p/91a4214b913b)
+- 
 
 ## 关于 webpack 的方方面面
 
@@ -212,6 +228,10 @@
 
 - [非常简单易懂的 DOM Diff 算法简析](https://blog.csdn.net/one_girl/article/details/81086289)
 - [The History of React.js on a Timeline](https://blog.risingstack.com/the-history-of-react-js-on-a-timeline/)
+- [ReactJs 的各个版本生命周期、API 变化 汇总](https://github.com/erbing/blog/blob/master/%E5%89%8D%E7%AB%AF%E4%B9%8B%E8%B7%AF%20-%20%E7%AC%AC%E4%B8%89%E7%AB%A0%20-%20React/react-16.0.0.md)
+
+- [Top 50 React Interview Questions You Must Prepare In 2020](https://www.edureka.co/blog/interview-questions/react-interview-questions/)
+- [React Components – Props and States in ReactJS with Examples](https://www.edureka.co/blog/react-components/)
 
 ### react 最佳实践
 
@@ -271,6 +291,9 @@
 - [使用 React hooks 处理复杂表单状态数据](https://blog.csdn.net/EthanQ/article/details/100650253)
 - [React Hook Form](https://react-hook-form.com/zh/advanced-usage/)
 - [[译]使用 React Hooks 请求数据](https://zhuanlan.zhihu.com/p/61511310)
+
+- [React 中获取数据的 3 种方法：哪种最好？](https://juejin.cn/post/6844903989834678279)
+- 
 
 ### React 源码
 
@@ -524,6 +547,15 @@
 ## 优秀博客
 
 - [他石的碎碎念](https://www.yuque.com/himstone/eowoaw)
+
+### robinwieruch
+
+- [How to fetch data with React Hooks?](https://www.robinwieruch.de/react-hooks-fetch-data)
+- [React Hooks Tutorial](https://www.robinwieruch.de/react-hooks)
+- [React Render Props](https://www.robinwieruch.de/react-render-props)
+- [React Higher Order Components](https://www.robinwieruch.de/react-higher-order-components)
+- [React State Hooks: useReducer, useState, useContext](https://www.robinwieruch.de/react-state-usereducer-usestate-usecontext)
+- [How to learn React.js in 2020](https://www.robinwieruch.de/learn-react-js)
 
 三面
 这一轮主要会提供一些特定场景，让你进行方案设计。也包括一些软件工程相关的抽象概念。
