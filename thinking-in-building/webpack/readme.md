@@ -9,12 +9,24 @@
 * webpack 插件机制
 * webpack loader机制
 
+## webpack 构建小知识点
+
+* [webpack的hash、chunkhash、contenthash](https://juejin.cn/post/6850418120436711432)
+* [webpack 优化 浏览器缓存 hash 、 chunkHash、contentHash](https://blog.csdn.net/weixin_42317878/article/details/116494112)
+
 ## webpack 工作流程
 
 ### 重要参考资料
 
 * [细说 webpack 之流程篇](https://developer.aliyun.com/article/61047)
 * [webpack源码学习系列之一：如何实现一个简单的webpack](https://github.com/youngwind/blog/issues/99)
+
+## webpack 插件机制
+
+### 重要参考资料
+
+* [webpack-插件机制杂记](https://juejin.cn/post/6844903789804126222)
+* [Webpack4不求人(5)——编写自定义插件](https://juejin.cn/post/6844904095774408711)
 
 ## webpack loader机制
 

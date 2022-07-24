@@ -56,6 +56,8 @@
 3. React 原理之Fiber调度过程
 4. React 原理之Fiber更新过程
 5. React 原理之React hooks
+6. React 原理之 合成事件
+   1. [由浅到深的React合成事件](https://juejin.cn/post/6844903988794671117)
 
 ## 7-React全家桶
 1. Redux介绍与原理解析
