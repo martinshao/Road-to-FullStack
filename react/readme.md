@@ -58,6 +58,11 @@
 5. React 原理之React hooks
 6. React 原理之 合成事件
    1. [由浅到深的React合成事件](https://juejin.cn/post/6844903988794671117)
+7. React 原理之 setState
+   1. [React setState 数据更新机制](http://121.40.166.6/docs/advanced/react/setState.html)
+   2. [setState的执行机制](https://johninch.github.io/Roundtable/Question-Bank/react/setState.html)
+   3. [【React】setState的执行机制](https://github.com/swiftwind0405/blog/issues/60)
+   4. [React - setState源码分析（小白可读）](https://juejin.cn/post/6844903573453537287)
 
 ## 7-React全家桶
 1. Redux介绍与原理解析
