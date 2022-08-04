@@ -45,9 +45,15 @@
 ## 5-React黑魔法Hooks
 
 1. [hooks介绍与基本应用][42]
-1. hooks使用实践及注意事项
-1. hooks造轮子之Redux实现
-1. hooks造轮子之……
+2. hooks使用实践及注意事项
+3. hooks造轮子之Redux实现
+4. hooks造轮子之……
+5. 大神文章推荐
+   1. [A Complete Guide to useEffect](https://overreacted.io/zh-hans/a-complete-guide-to-useeffect/)
+   2. [理解 React Hooks 的 Capture Value 特性](https://segmentfault.com/a/1190000018685253)
+   3. [精读《useEffect 完全指南》](https://segmentfault.com/a/1190000018639033)
+   4. [一文彻底搞懂react hooks的原理和实现](https://juejin.cn/post/6844903975838285838)
+   5. [How Does React Tell a Class from a Function?](https://overreacted.io/how-does-react-tell-a-class-from-a-function/)
 
 ## 6-React原理深度解析系列
 
@@ -63,6 +69,8 @@
    2. [setState的执行机制](https://johninch.github.io/Roundtable/Question-Bank/react/setState.html)
    3. [【React】setState的执行机制](https://github.com/swiftwind0405/blog/issues/60)
    4. [React - setState源码分析（小白可读）](https://juejin.cn/post/6844903573453537287)
+   5. [React中的Transaction](https://oychao.github.io/2017/09/25/react/16_transaction/)
+   6. [React transaction完全解读](https://segmentfault.com/a/1190000021303172)
 
 ## 7-React全家桶
 1. Redux介绍与原理解析
