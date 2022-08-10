@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #content {
+      display: flex;
+
+      /* justify-content: space-around; */
+      flex-flow: row wrap;
+      align-items: stretch;
+
+      width: 300px;
+      height: 50px;
+    }
+
+    .box {
+      flex-grow: 1;
+    }
+
+    .box1 {
+      flex-grow: 2;
+    }
+  </style>
+</head>
+
+<body>
+  <h4>这展示了 flex 增长</h4>
+  <h5>A,B,C 和 F 具有 flex-grow:1。D 和 E 具有 flex-grow:2 .</h5>
+  <div id="content">
+    <div class="box" style="background-color:red;">A</div>
+    <div class="box1" style="background-color:brown;">B</div>
+  </div>
+
+</body>
+<script>
+  var scope = "global scope";
+  function checkscope() {
+    var scope2 = 'local scope';
+    function innerscope() {
+      var scope3 = 'inner scope'
+      return scope3
+    }
+    var a = innerscope()
+    return scope2;
+  }
+  checkscope();
+</script>
+
+</html>
