@@ -1,16 +1,22 @@
 # JavaScript面试题
 
 ## 基础部分，考察一些基本API用法和基本语言特性
-1. null、undefined和未声明变量之间有什么区别？如何检查判断这些状态值？
-2. 请说明.forEach循环和.map()循环的主要区别，它们分别在什么情况下使用？
-3. JavaScript中的map和filter、reduce使用方法介绍和日常使用场景。
-4. .call和.apply有什么区别？
-5. 请说明Function.prototype.bind的用法。
-6. 请描述事件冒泡。
-7. ==和===的区别是什么？
-8. 请解释关于 JavaScript 的同源策略。
-9. 你使用什么语句遍历对象的属性和数组的元素？
-10. 使用let、var和const创建变量有什么区别？
+
+* 介绍一下JavaScript的变量类型
+* JavaScript中栈内存和堆内存的区别
+* map类型和object类型的区别
+* weak-Set、weak-Map 和 Set、Map 区别
+
+* null、undefined和未声明变量之间有什么区别？如何检查判断这些状态值？
+* 请说明.forEach循环和.map()循环的主要区别，它们分别在什么情况下使用？
+* JavaScript中的map和filter、reduce使用方法介绍和日常使用场景。
+* .call和.apply有什么区别？
+* 请说明Function.prototype.bind的用法。
+* 请描述事件冒泡。
+* ==和===的区别是什么？
+* 请解释关于 JavaScript 的同源策略。
+* 你使用什么语句遍历对象的属性和数组的元素？
+* 使用let、var和const创建变量有什么区别？
 
 
 ## 进阶部分，考察一些基本原理知识和复杂API使用
@@ -31,6 +37,13 @@
 14. 什么是事件循环？调用堆栈和任务队列之间有什么区别？
 
 ## 高级部分，JavaScript运行原理和语言特性的深入了解
+
+
+## JavaScript 运行机制
+
+* 介绍一下Event Loop
+* 讲一下宏任务和微任务的区别
+* requestAnimationFrame、requestIdleCallback、setTimeout之间的区别
 
 
 ## 京城一灯面试题
