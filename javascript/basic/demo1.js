@@ -24,3 +24,16 @@ iterator1.next().value
 var a = 'foo', b = 42, c = {};
 var o = {a, b, c};
 var o = {a: a, b: b, c: c};
+
+function test (...theArgs) {
+  console.info(Array.isArray(theArgs))
+  console.info(Array.isArray(...theArgs))
+  console.info(...theArgs)
+  console.info(theArgs)
+}
+
+test(1,2,3,4)
+// true
+// false
+// 1 2 3 4
+// [1, 2, 3, 4]

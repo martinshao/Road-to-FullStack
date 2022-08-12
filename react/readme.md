@@ -45,10 +45,11 @@
 ## 5-React黑魔法Hooks
 
 1. [hooks介绍与基本应用][42]
-2. hooks使用实践及注意事项
-3. hooks造轮子之Redux实现
-4. hooks造轮子之……
-5. 大神文章推荐
+2. [hooks原理与源码解析][43]
+3. [hooks使用实践及注意事项][44]
+4. hooks造轮子之Redux实现
+5. hooks造轮子之……
+6. 大神文章推荐
    1. [A Complete Guide to useEffect](https://overreacted.io/zh-hans/a-complete-guide-to-useeffect/)
    2. [理解 React Hooks 的 Capture Value 特性](https://segmentfault.com/a/1190000018685253)
    3. [精读《useEffect 完全指南》](https://segmentfault.com/a/1190000018639033)
@@ -110,15 +111,17 @@
 * [Presentational and Container Components](https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0)
 
 
-[31]: https://github.com/Martin-Shao/Road-to-FullStack/blob/master/react/articles/component1.md
-[32]: https://github.com/Martin-Shao/Road-to-FullStack/blob/master/react/articles/component2.md
-[33]: https://github.com/Martin-Shao/Road-to-FullStack/blob/master/react/articles/component3.md
-[34]: https://github.com/Martin-Shao/Road-to-FullStack/blob/master/react/articles/component4.md
-[35]: https://github.com/Martin-Shao/Road-to-FullStack/blob/master/react/articles/component5.md
-[36]: https://github.com/Martin-Shao/Road-to-FullStack/blob/master/react/articles/component6.md
-[37]: https://github.com/Martin-Shao/Road-to-FullStack/blob/master/react/articles/component7.md
-[38]: https://github.com/Martin-Shao/Road-to-FullStack/blob/master/react/articles/component8.md
-[39]: https://github.com/Martin-Shao/Road-to-FullStack/blob/master/react/articles/component9.md
+[31]: https://github.com/martinshao/Road-to-FullStack/blob/master/react/articles/component1.md
+[32]: https://github.com/martinshao/Road-to-FullStack/blob/master/react/articles/component2.md
+[33]: https://github.com/martinshao/Road-to-FullStack/blob/master/react/articles/component3.md
+[34]: https://github.com/martinshao/Road-to-FullStack/blob/master/react/articles/component4.md
+[35]: https://github.com/martinshao/Road-to-FullStack/blob/master/react/articles/component5.md
+[36]: https://github.com/martinshao/Road-to-FullStack/blob/master/react/articles/component6.md
+[37]: https://github.com/martinshao/Road-to-FullStack/blob/master/react/articles/component7.md
+[38]: https://github.com/martinshao/Road-to-FullStack/blob/master/react/articles/component8.md
+[39]: https://github.com/martinshao/Road-to-FullStack/blob/master/react/articles/component9.md
 
-[41]: https://github.com/Martin-Shao/Road-to-FullStack/blob/master/react/articles/about-lifecycle.md
-[42]: https://github.com/Martin-Shao/Road-to-FullStack/blob/master/react/articles/about-hooks1.md
+[41]: https://github.com/martinshao/Road-to-FullStack/blob/master/react/articles/about-lifecycle.md
+[42]: https://github.com/martinshao/Road-to-FullStack/blob/master/react/articles/about-hooks1.md
+[43]: https://github.com/martinshao/Road-to-FullStack/blob/master/react/articles/about-hooks2.md
+[44]: https://github.com/martinshao/Road-to-FullStack/blob/master/react/articles/about-hooks3.md
