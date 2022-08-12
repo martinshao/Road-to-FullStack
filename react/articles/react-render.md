@@ -393,3 +393,36 @@ renderRootSync
 performSyncWorkOnRoot
 flushSyncCallbacks
 ```
+
+```
+// 全部渲染流程
+./src/App.tsx
+isLikelyComponentType
+createRoot$1
+createRoot
+createContainer
+createFiberRoot
+createHostRootFiber
+createFiber
+FiberNode
+listenToAllSupportedEvents
+listenToNativeEvent
+addTrappedEventListener => addEventCaptureListener => addEventBubbleListener
+createEventListenerWrapperWithPriority
+getEventPriority
+
+
+ReactDOMHydrationRoot.render.ReactDOMRoot.render
+findHostInstanceWithNoPortals
+findCurrentHostFiberWithNoPortals
+updateContainer  => enqueueUpdate
+                 => enqueueConcurrentClassUpdate
+                 => scheduleUpdateOnFiber   => ensureRootIsScheduled  => getNextLanes => scheduleCallback$1
+requestUpdateLane
+
+performWorkUntilDeadline
+flushWork
+workLoop
+performConcurrentWorkOnRoot
+
+```
