@@ -34,10 +34,17 @@
     #bottom {
       background-color: cornsilk;
     }
+
+    .box {
+      width: 200px;
+      height: 200px;
+      background-color: aliceblue;
+    }
   </style>
 </head>
 
 <body>
+  <h1 id="count"></h1>
   <div class="container">
     <div class="content"></div>
     <div class="draw">
@@ -46,19 +53,29 @@
       <canvas id="bottom" width="800"></canvas>
     </div>
   </div>
+  <button id="button">button</button>
   <input id="name" type="text">
+  <div class="box"></div>
 
   <script>
     const contextTop = document.getElementById("top").getContext("2d");
     const contextMiddle = document.getElementById("middle").getContext("2d");
     const contextBottom = document.getElementById("bottom").getContext("2d");
+    const count = document.getElementById("count")
+    const button = document.getElementById("button")
+
+    let countNum = 0
+
+    setInterval(() => {
+      count.innerText = ++countNum
+    }, 1000)
 
     let startX = 1
 
     function paint(context) {
-      console.info('paint start...')
+      // console.info('paint start...')
       context.beginPath();
-      context.lineWidth = 1;
+      context.lineWidth = 0.5;
       context.moveTo(startX, 0);
       context.lineTo(startX, 100);
       context.closePath();
@@ -66,46 +83,106 @@
       context.stroke();
     }
 
-    function debounce(fn, delay = 100) {
-      let timeout = null
-      return function (...args) {
-        clearTimeout(timeout)
-        timeout = setTimeout(() => {
-          fn.apply(this, args)
-        }, delay);
-      }
+    // function debounce(fn, delay = 100) {
+    //   let timeout = null
+    //   const _this = this
+    //   return function (...args) {
+    //     timeout && clearTimeout(timeout)
+    //     timeout = setTimeout(() => {
+    //       fn.apply(_this, args)
+    //     }, delay);
+    //   }
+    // }
+
+    // const debounce = (fn, ms = 50) => {
+    //   let timeoutId;
+    //   return function (...args) {
+    //     clearTimeout(timeoutId);
+    //     timeoutId = setTimeout(() => fn.apply(this, args), ms);
+    //   };
+    // };
+
+    var debounce = function (func, execAsap) {
+      var timeout;
+
+      return function debounced() {
+        var obj = this, args = arguments;
+        function delayed() {
+          if (!execAsap)
+            func.apply(obj, args);
+          timeout = null;
+        };
+
+        if (timeout)
+          cancelAnimationFrame(timeout);
+        else if (execAsap)
+          func.apply(obj, args);
+
+        timeout = requestAnimationFrame(delayed);
+      };
     }
 
-    const paintDebounce = debounce(paint)
+    // function debounce(fn, delay) {
+    //   var timer = null;
+    //   return function (...args) {
+    //     if (!timer) {
+    //       fn && fn.apply(this, args);
+    //     }
+    //     clearTimeout(timer);
+    //     timer = setTimeout(function () {
+    //       timer = null;
+    //     }, delay)
+    //   }
+    // }
 
-    function throttle(fn, delay = 100) {
-      let flag = false
-      const that = this
-      console.info('throttle...', flag)
-      return function (...args) {
-        console.info('before flag', flag)
-        if (flag) return;
-        flag = true
-        console.info('after flag', flag)
-        setTimeout(() => {
-          fn.apply(that, args)
-          flag = false
-        }, delay);
-      }
-    }
+    // function throttle(fn, delay = 100) {
+    //   let flag = false
+    //   return function (...args) {
+    //     if (flag) return;
+    //     flag = true
+    //     setTimeout(() => {
+    //       fn.apply(this, args)
+    //       flag = false
+    //     }, delay);
+    //   }
+    // }
+
+    const throttle = (fn, wait = 300) => {
+      let inThrottle, lastFn, lastTime;
+      return function () {
+        const context = this, args = arguments;
+        if (!inThrottle) {
+          fn.apply(context, args);
+          lastTime = Date.now();
+          inThrottle = true;
+        }
+        else {
+          clearTimeout(lastFn);
+          console.info('........')
+          console.info(Math.max(wait - (Date.now() - lastTime), 0))
+          lastFn = setTimeout(() => {
+            if (Date.now() - lastTime >= wait) {
+              fn.apply(context, args);
+              lastTime = Date.now();
+            }
+          }, Math.max(wait - (Date.now() - lastTime), 0));
+        }
+      };
+    };
 
     const throttlePrint = throttle(print)
     const paintThrottle = throttle(paint)
+    const paintDebounce = debounce(paint)
 
     const input = document.getElementById('name')
     input.addEventListener('keyup', function () {
-      console.info('keyup')
+      // console.info('keyup')
       throttlePrint(input.value)
     })
 
     const content = document.querySelector('.content')
     content.addEventListener('mousemove', function () {
-      console.info('mouse move')
+      // console.info('mouse move')
       startX += 3;
       if (startX > 800) return false;
       paintDebounce(contextTop)
@@ -113,11 +190,12 @@
       paint(contextMiddle)
     })
     content.addEventListener('mouseenter', function () {
-      console.info('mouse enter')
+      // console.info('mouse enter')
     })
     content.addEventListener('mouseleave', function () {
-      console.info('mouse leave')
+      // console.info('mouse leave')
     })
+
   </script>
 </body>
 

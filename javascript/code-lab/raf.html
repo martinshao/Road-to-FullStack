@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <style>
+    #SomeElementYouWantToAnimate {
+      height: 200px;
+      width: 200px;
+      background: red;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="SomeElementYouWantToAnimate"></div>
+  <script>
+    var start = null
+    var element = document.getElementById("SomeElementYouWantToAnimate")
+    element.style.position = "absolute"
+
+    function step(timestamp) {
+      if (!start) start = timestamp
+      var progress = timestamp - start
+      element.style.left = Math.min(progress / 10, 200) + "px"
+      let i = 1000
+      while (i > 0) {
+        console.log("i", i)
+        i--
+      }
+      if (progress < 2000) {
+        window.requestAnimationFrame(step)
+      }
+    }
+    // 动画
+    window.requestAnimationFrame(step)
+
+    // 空闲调度
+    window.requestIdleCallback(() => {
+      alert("rIC")
+    })
+  </script>
+</body>
+
+</html>

@@ -275,3 +275,20 @@ function clone(target, map = new WeakMap()) {
         cloneTarget[key] = clone(target[key], map);
       });
 }
+
+function deepClone(obj, cache = new WeakMap()) {
+  if (obj === null) return obj
+  if (obj instanceof Date) return new Date(obj)
+  if (obj instanceof RegExp) return new RegExp(obj)
+  if (typeof obj !== 'object') return obj
+
+  if(cache.get(obj)) return cache.get(obj)
+  let cloneObj = new obj.constructor()
+  cache.set(obj, cloneObj)
+  for (const key in obj) {
+    if (Object.hasOwnProperty.call(obj, key)) {
+      cloneObj[key] = deepClone(obj[key], cache)
+    }
+  }
+  return cloneObj
+}
