@@ -1,3 +1,5 @@
+
+
 # React 从入门到精通
 
 ## 1-React系列总结文章大纲
@@ -73,7 +75,21 @@
    5. [React中的Transaction](https://oychao.github.io/2017/09/25/react/16_transaction/)
    6. [React transaction完全解读](https://segmentfault.com/a/1190000021303172)
 
-## 7-React全家桶
+## 7-React 状态管理
+1. Redux介绍与原理解析
+2. react-redux源码分析
+3. Redux中间件:redux-thunk、redux-saga
+4. 深度封装的状态库:dva
+5. Mobx原理
+6. Rxjs 原理
+
+7. jutai
+8. Recoil
+9. Zustand
+10. Xstate
+
+## 7-React 路由
+
 1. Redux介绍与原理解析
 1. react-redux源码分析
 1. Redux中间件:redux-thunk、redux-saga
@@ -81,6 +97,7 @@
 1. Mobx原理
 1. React路由管理与react-router
 1. react-router原理与源码解析
+
 
 ## 8-React周边--好用的项目收集
 

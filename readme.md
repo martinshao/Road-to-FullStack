@@ -216,7 +216,8 @@
 
 [41]: https://github.com/Martin-Shao/Road-to-FullStack/blob/master/react/articles/about-lifecycle.md
 
-### Webpack
+### Ⅶ Webpack
+![](https://raw.githubusercontent.com/webpack-contrib/awesome-webpack/master/media/awesome_webpack_branding.png)
 
 [欢迎来到webpack的世界][42]
 

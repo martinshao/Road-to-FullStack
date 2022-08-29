@@ -1,5 +1,13 @@
 # Typescript 学习之路
 
+## 研究一波
+
+* typescript 的常用关键词
+* typescript 中常用utility types的使用场景
+* typescript 中 extends 和 implements 的区别
+* typescript 中 void never any 和 unknown
+* typescript 中 interface 和 type 的区别
+
 ## 参考资料
 
 * [TypeScript 强大的类型别名][101] - 文章介绍了一些 `Typescript` 关键字
