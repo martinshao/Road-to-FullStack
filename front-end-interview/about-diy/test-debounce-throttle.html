@@ -94,13 +94,13 @@
     //   }
     // }
 
-    // const debounce = (fn, ms = 50) => {
-    //   let timeoutId;
-    //   return function (...args) {
-    //     clearTimeout(timeoutId);
-    //     timeoutId = setTimeout(() => fn.apply(this, args), ms);
-    //   };
-    // };
+    const debounce = (fn, ms = 50) => {
+      let timeoutId;
+      return function (...args) {
+        clearTimeout(timeoutId);
+        timeoutId = setTimeout(() => fn.apply(this, args), ms);
+      };
+    };
 
     var debounce = function (func, execAsap) {
       var timeout;

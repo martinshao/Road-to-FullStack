@@ -39,6 +39,10 @@
 * [webpack css-loader原理](https://blog.csdn.net/weixin_39877050/article/details/111164129)
 * [多图详解，一次性搞懂Webpack Loader](https://juejin.cn/post/6992754161221632030)
 
+## webpack 热更新
+
+* [轻松理解webpack热更新原理](https://juejin.cn/post/6844904008432222215)
+
 ## 参考资料
 
 * [webpack document Configuration](https://webpack.js.org/configuration/)
