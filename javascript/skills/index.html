@@ -27,15 +27,30 @@
     //     ), {}
     //   )
 
-    const specFromPairs = pairs =>
-      pairs.reduce(
-        (res, pair) => {
-          res[pair.moduleId] = pair.specifications
-          return res
-        }, {}
-      )
+    // const specFromPairs = pairs =>
+    //   pairs.reduce(
+    //     (res, pair) => {
+    //       res[pair.moduleId] = pair.specifications
+    //       return res
+    //     }, {}
+    //   )
 
-    const a = specFromPairs(spec)
+    // const a = specFromPairs(spec)
+
+    // let sum = 0
+    // for (let i = 0; i <= 5; i++) {
+    //   sum += i
+
+    // }
+
+    // console.info(sum)
+
+    let a = 1;
+    (function () {
+      let foo = () => a
+      let a = 2;
+      console.log(foo())
+    }())
   </script>
 </body>
 
